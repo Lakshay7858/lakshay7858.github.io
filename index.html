@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>DoseCerta</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%231e1b4b%27/%3E%3Cpath d=%27M9 16h14M16 9v14%27 stroke=%27%2334d399%27 stroke-width=%274%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<script src="assets/gate.js"></script>
+<style>
+/* Layout: faixa de marca no topo + grade de módulos (cards clicáveis). */
+:root{
+  --bg:#eef0f7; --surface:#ffffff; --line:#dde1ee; --fg:#1b1f36; --muted:#5b6382;
+  --brand:#1e1b4b; --on-brand:#ffffff; --on-brand-muted:#c7d2fe; --mint:#34d399; --accent:#4f46e5; --accent-soft:#ecebfe;
+  --soon:#8a91ad;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0e1020; --surface:#171a2f; --line:#2b3052; --fg:#e7e9f4; --muted:#9aa1c0;
+  --brand:#131130; --on-brand-muted:#b9c0f5; --mint:#4ade80; --accent:#8b85ff; --accent-soft:#25234e; --soon:#6c7392; color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --bg:#0e1020; --surface:#171a2f; --line:#2b3052; --fg:#e7e9f4; --muted:#9aa1c0;
+  --brand:#131130; --on-brand-muted:#b9c0f5; --mint:#4ade80; --accent:#8b85ff; --accent-soft:#25234e; --soon:#6c7392; color-scheme:dark; }
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{font-family:var(--font);background:var(--bg);color:var(--fg);font-size:15px;line-height:1.5}
+header{background:var(--brand);color:var(--on-brand);padding-inline:16px;padding-block:34px 30px}
+.inner{max-width:980px;margin:0 auto}
+h1{margin:0;font-size:2.1rem;letter-spacing:-.6px}
+h1 span{color:var(--mint)}
+header p{margin:6px 0 0;color:var(--on-brand-muted);max-width:60ch}
+main{padding-inline:16px;padding-block:22px 48px}
+.label{font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.mod{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;color:inherit;text-decoration:none;min-width:0}
+a.mod:hover{border-color:var(--accent);box-shadow:0 4px 14px rgba(79,70,229,.15)}
+a.mod:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mod h2{margin:0;font-size:1.1rem}
+.mod p{margin:0;font-size:.85rem;color:var(--muted)}
+.tag{align-self:flex-start;font-size:.64rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px}
+.on{background:var(--accent-soft);color:var(--accent)}
+.off{background:transparent;border:1px dashed var(--soon);color:var(--soon)}
+.mod.soon{opacity:.75}
+.go{margin-top:auto;font-size:.82rem;font-weight:700;color:var(--accent)}
+footer{max-width:980px;margin:26px auto 0;font-size:.75rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><div class="inner">
+  <h1>Dose<span>Certa</span></h1>
+  <p>Doses por peso, condutas com opção SUS × ideal e receita pronta para colar no prontuário.</p>
+</div></header>
+<main><div class="inner">
+  <p class="label">Módulos</p>
+  <div class="grid">
+    <a class="mod" href="pediatria/">
+      <span class="tag on">Disponível</span>
+      <h2>Pediatria</h2>
+      <p>154 medicamentos com dose calculada, 40 condutas SUS × ideal, calculadoras e folha de receita.</p>
+      <span class="go">Abrir →</span>
+    </a>
+    <div class="mod soon">
+      <span class="tag off">Em construção</span>
+      <h2>Emergência adulto</h2>
+      <p>Sala vermelha, sala amarela, drogas vasoativas, SRI e protocolos de urgência.</p>
+    </div>
+    <div class="mod soon">
+      <span class="tag off">Em construção</span>
+      <h2>Cirurgia</h2>
+      <p>Pré e pós-operatório, profilaxia antibiótica, analgesia e condutas cirúrgicas.</p>
+    </div>
+  </div>
+  <footer>Ferramenta de apoio para médicos e estudantes sob supervisão. Confira peso, função renal, interações e bula antes de prescrever. Nenhum dado de paciente é enviado ou armazenado em servidor.</footer>
+</div></main>
+</body>
+</html>

@@ -1,0 +1,2027 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%231e1b4b%27/%3E%3Cpath d=%27M9 16h14M16 9v14%27 stroke=%27%2334d399%27 stroke-width=%274%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<script src="../assets/gate.js"></script>
+<title>DoseCerta · Pediatria</title>
+<style>
+/* Layout: barra do paciente fixa no topo de todas as abas; abaixo, abas de trabalho (prescrição em duas colunas: catálogo | folha A4). */
+:root{
+  --bg:#eef0f7; --surface:#ffffff; --surface-2:#f6f7fc; --line:#dde1ee; --fg:#1b1f36; --muted:#5b6382;
+  --brand:#1e1b4b; --brand-2:#312e81; --on-brand:#ffffff; --on-brand-muted:#c7d2fe;
+  --accent:#4f46e5; --accent-hover:#4338ca; --accent-soft:#ecebfe; --mint:#34d399;
+  --sus:#047857; --sus-bg:#e2f5ec; --hosp:#0e6f86; --hosp-bg:#dff1f6; --estr:#6d28d9; --estr-bg:#efe8fd;
+  --misto:#3f6212; --misto-bg:#eef6dc; --part:#a44d07; --part-bg:#fdefdc;
+  --danger:#b91c1c; --danger-bg:#fdecec; --warn:#92580a; --warn-bg:#fdf4d6;
+  --paper:#ffffff; --ink:#0f172a; --ink-muted:#5f6b7f; --ink-line:#e3e7ef;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --r:8px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0e1020; --surface:#171a2f; --surface-2:#1d2139; --line:#2b3052; --fg:#e7e9f4; --muted:#9aa1c0;
+  --brand:#131130; --brand-2:#26236a; --on-brand:#ffffff; --on-brand-muted:#b9c0f5;
+  --accent:#8b85ff; --accent-hover:#a19cff; --accent-soft:#25234e; --mint:#4ade80;
+  --sus:#5fdca5; --sus-bg:#10301f; --hosp:#62c9de; --hosp-bg:#0e2c35; --estr:#b9a2ff; --estr-bg:#2a2049;
+  --misto:#b5d87a; --misto-bg:#24301a; --part:#f6b05e; --part-bg:#3a2a14;
+  --danger:#f87171; --danger-bg:#3a1719; --warn:#f3c94e; --warn-bg:#35290c; color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --bg:#0e1020; --surface:#171a2f; --surface-2:#1d2139; --line:#2b3052; --fg:#e7e9f4; --muted:#9aa1c0;
+  --brand:#131130; --brand-2:#26236a; --on-brand:#ffffff; --on-brand-muted:#b9c0f5;
+  --accent:#8b85ff; --accent-hover:#a19cff; --accent-soft:#25234e; --mint:#4ade80;
+  --sus:#5fdca5; --sus-bg:#10301f; --hosp:#62c9de; --hosp-bg:#0e2c35; --estr:#b9a2ff; --estr-bg:#2a2049;
+  --misto:#b5d87a; --misto-bg:#24301a; --part:#f6b05e; --part-bg:#3a2a14;
+  --danger:#f87171; --danger-bg:#3a1719; --warn:#f3c94e; --warn-bg:#35290c; color-scheme:dark; }
+
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{font-family:var(--font);background:var(--bg);color:var(--fg);font-size:14px;line-height:1.45}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1,h2,h3{text-wrap:balance;margin:0}
+
+/* ---------- topo ---------- */
+.topbar{background:var(--brand);color:var(--on-brand);padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;position:sticky;top:env(safe-area-inset-top,0px);z-index:30;box-shadow:0 2px 6px rgba(0,0,0,.18)}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand-icon{background:var(--brand-2);padding:7px;border-radius:8px;display:flex}
+.brand-icon svg{width:22px;height:22px;stroke:var(--mint)}
+.brand-title{font-size:1.05rem;font-weight:750;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.brand-sub{font-size:.72rem;color:var(--on-brand-muted)}
+.pill-soft{font-size:.62rem;background:rgba(52,211,153,.18);color:var(--mint);border:1px solid rgba(52,211,153,.4);padding:2px 8px;border-radius:999px;font-weight:700;letter-spacing:.02em}
+.tabs{display:flex;gap:4px;background:rgba(0,0,0,.25);padding:4px;border-radius:9px;flex-wrap:wrap}
+.tab{background:transparent;border:0;color:var(--on-brand-muted);padding:7px 12px;font-size:.78rem;font-weight:650;border-radius:6px;cursor:pointer}
+.tab:hover{color:var(--on-brand)}
+.tab[aria-selected="true"]{background:var(--accent);color:#fff}
+.top-actions{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.btn{padding:7px 12px;border-radius:6px;font-size:.75rem;font-weight:650;cursor:pointer;border:1px solid transparent;display:inline-flex;align-items:center;gap:6px;background:var(--surface-2);color:var(--fg)}
+.btn svg{width:15px;height:15px}
+.btn-on-brand{background:transparent;border-color:var(--on-brand-muted);color:var(--on-brand)}
+.btn-on-brand:hover{background:var(--brand-2)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-hover)}
+.btn-line{background:transparent;border-color:var(--line);color:var(--accent)}
+.btn-line:hover{background:var(--accent-soft)}
+.btn-danger{background:var(--danger-bg);color:var(--danger)}
+.btn-sm{padding:4px 9px;font-size:.7rem}
+
+/* ---------- paciente ---------- */
+.wrap{padding-inline:16px;padding-block:14px 40px;max-width:1500px;margin:0 auto}
+.ptbar{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:14px}
+.ptbar-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.ptbar-head h2{font-size:.85rem;font-weight:750;display:flex;align-items:center;gap:8px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-variant-numeric:tabular-nums}
+.pt-grid{display:grid;grid-template-columns:2fr .9fr 1.1fr .9fr .9fr;gap:10px}
+.pt-grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+label{display:block;font-weight:650;color:var(--muted);font-size:.7rem;margin-bottom:3px;letter-spacing:.01em}
+input,select,textarea{width:100%;border:1px solid var(--line);border-radius:6px;padding:7px 9px;font-size:.8rem;background:var(--surface);outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.in-hi{background:var(--accent-soft);font-weight:750;color:var(--accent)}
+.age-row{display:flex;gap:4px}.age-row input{width:64px;flex:none}
+.alert{background:var(--danger-bg);border-left:4px solid var(--danger);padding:9px 11px;border-radius:0 6px 6px 0;font-size:.75rem;color:var(--danger);margin-top:10px}
+.alert b{display:block;margin-bottom:2px}
+
+/* ---------- views ---------- */
+.split{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:14px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;min-width:0}
+.card+.card{margin-top:14px}
+.card-h{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding-bottom:9px;margin-bottom:11px;border-bottom:1px solid var(--line)}
+.card-h h3{font-size:.85rem;font-weight:750}
+.filters{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:9px}
+.fbtn{background:var(--surface-2);border:1px solid var(--line);color:var(--muted);padding:4px 9px;border-radius:6px;font-size:.68rem;font-weight:650;cursor:pointer}
+.fbtn[aria-pressed="true"]{background:var(--fg);color:var(--surface);border-color:var(--fg)}
+.acc-filter{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:9px;font-size:.7rem;color:var(--muted)}
+.catalog{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px;max-height:620px;overflow-y:auto;padding-right:3px}
+.dcard{border:1px solid var(--line);border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:6px;background:var(--surface);min-width:0}
+.dcard:hover{border-color:var(--accent)}
+.dname{font-size:.78rem;font-weight:750}
+.dind{font-size:.7rem;color:var(--muted)}
+.dose{background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:7px 8px;font-size:.72rem;font-family:var(--mono);white-space:pre-line;line-height:1.45;overflow-wrap:anywhere}
+.warnline{font-size:.68rem;font-weight:700;color:var(--warn);background:var(--warn-bg);padding:4px 7px;border-radius:5px}
+.badge{display:inline-block;font-size:.6rem;font-weight:800;padding:2px 7px;border-radius:4px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.acc-sus{background:var(--sus-bg);color:var(--sus)} .acc-hosp{background:var(--hosp-bg);color:var(--hosp)}
+.acc-estr{background:var(--estr-bg);color:var(--estr)} .acc-misto{background:var(--misto-bg);color:var(--misto)}
+.acc-part{background:var(--part-bg);color:var(--part)}
+.dfoot{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:auto}
+.empty{color:var(--muted);text-align:center;font-size:.78rem;padding:18px;font-style:italic}
+
+.rxitem{background:var(--surface-2);border:1px solid var(--line);border-radius:7px;padding:9px;margin-bottom:8px}
+.rxitem-h{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.num{background:var(--accent);color:#fff;min-width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.66rem;font-weight:800}
+.rxitem-h input{border:0;background:transparent;font-weight:750;padding:2px 4px;flex:1;min-width:0}
+.rxitem select{width:auto;font-size:.68rem;padding:3px 6px}
+.xbtn{background:none;border:0;color:var(--danger);font-weight:800;font-size:1.1rem;cursor:pointer;padding:0 4px}
+.quick{display:flex;gap:4px;flex-wrap:wrap}
+
+/* ---------- folha A4 ---------- */
+.preview-col{position:sticky;top:calc(env(safe-area-inset-top,0px) + 70px)}
+.sheet-wrap{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:14px;max-height:calc(100vh - 110px);overflow:auto}
+#printArea{background:var(--paper);color:var(--ink);max-width:210mm;min-height:270mm;margin:0 auto;padding:34px 36px;box-shadow:0 4px 14px rgba(0,0,0,.12);display:flex;flex-direction:column;justify-content:space-between;font-size:.83rem;line-height:1.5}
+.doc-h{border-bottom:2px solid #1e1b4b;padding-bottom:10px;margin-bottom:14px;display:flex;justify-content:space-between;gap:10px}
+.doc-name{font-size:1.1rem;font-weight:800;color:#1e1b4b;text-transform:uppercase;letter-spacing:-.3px}
+.doc-spec{font-size:.74rem;font-weight:700;color:#4338ca}
+.doc-crm,.doc-small{font-size:.72rem;color:var(--ink-muted);font-weight:600}
+.rx-badge{display:inline-block;padding:2px 8px;border:1px solid #94a3b8;border-radius:4px;font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#475569}
+.pt-box{background:#f8fafc;border:1px solid var(--ink-line);border-radius:6px;padding:9px 12px;margin-bottom:16px;font-size:.74rem}
+.pt-row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pt-sub{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:6px;padding-top:6px;border-top:1px solid var(--ink-line);color:#475569}
+.sec-route{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#475569;margin:10px 0 4px;text-decoration:underline}
+.rx-it{padding-bottom:9px;margin-bottom:9px;border-bottom:1px solid #f1f5f9}
+.rx-it:last-child{border-bottom:0}
+.rx-title{font-weight:750;font-size:.86rem}
+.rx-inst{padding-left:11px;border-left:2px solid #a5b4fc;margin-top:3px;color:#334155;font-size:.78rem;white-space:pre-line}
+.notes-box{margin-top:14px;padding-top:9px;border-top:1px solid var(--ink-line);font-size:.74rem;color:#334155;white-space:pre-line}
+.notes-t{font-weight:800;text-transform:uppercase;font-size:.64rem;color:#64748b;letter-spacing:.5px;margin-bottom:3px}
+.doc-f{text-align:center;padding-top:26px;margin-top:26px}
+.stamp{width:230px;border-top:1px solid #0f172a;margin:0 auto 4px;padding-top:4px;font-weight:750;font-size:.74rem}
+
+/* ---------- SUS × ideal ---------- */
+.sus-layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:14px;align-items:start}
+.dx-list{max-height:calc(100vh - 220px);overflow-y:auto}
+.dx-group{font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:12px 4px 5px}
+.dx-btn{display:block;width:100%;text-align:left;background:transparent;border:0;border-radius:6px;padding:7px 9px;font-size:.78rem;cursor:pointer;color:var(--fg)}
+.dx-btn:hover{background:var(--surface-2)}
+.dx-btn[aria-current="true"]{background:var(--accent-soft);color:var(--accent);font-weight:700}
+.dx-btn .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;vertical-align:1px}
+.dot-sus{background:var(--sus)} .dot-part{background:var(--part)} .dot-misto{background:var(--misto)}
+.dx-title{font-size:1.15rem;font-weight:780;margin-bottom:4px}
+.dx-when{font-size:.8rem;color:var(--muted);margin-bottom:12px;max-width:85ch}
+.opt{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:12px}
+.opt-h{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:9px 12px}
+.opt-ideal .opt-h{background:var(--accent-soft)}
+.opt-sus .opt-h{background:var(--sus-bg)}
+.opt-alt .opt-h{background:var(--surface-2)}
+.opt-h h4{margin:0;font-size:.82rem;font-weight:800;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.opt-b{padding:10px 12px;display:grid;gap:9px}
+.verdict{font-size:.72rem;font-weight:800;padding:3px 9px;border-radius:999px}
+.v-sus{background:var(--sus);color:var(--surface)} .v-part{background:var(--part);color:var(--surface)} .v-misto{background:var(--misto);color:var(--surface)}
+.note{font-size:.76rem;color:var(--fg);background:var(--surface-2);border-radius:6px;padding:8px 10px;max-width:95ch}
+.src{font-size:.68rem;color:var(--muted);font-weight:650}
+.rx-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:start;border-top:1px dashed var(--line);padding-top:9px}
+.rx-row:first-child{border-top:0;padding-top:0}
+.rx-row .t{font-weight:750;font-size:.8rem;display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:4px}
+.orient{white-space:pre-line;font-size:.78rem}
+
+/* ---------- calculadoras ---------- */
+.calc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.8rem;font-variant-numeric:tabular-nums}
+.kv dt{color:var(--muted)} .kv dd{margin:0;font-weight:700}
+table.vt{width:100%;border-collapse:collapse;font-size:.76rem;font-variant-numeric:tabular-nums}
+table.vt th,table.vt td{padding:5px 6px;border-bottom:1px solid var(--line);text-align:left}
+table.vt tr.hl td{background:var(--accent-soft);font-weight:750}
+.tbl-wrap{overflow-x:auto}
+.refs li{margin-bottom:6px;font-size:.8rem}
+.refs a{color:var(--accent)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.disclaimer{font-size:.72rem;color:var(--muted);margin-top:16px;max-width:110ch}
+
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;background:rgba(10,12,30,.6);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-box{background:var(--surface);width:100%;max-width:480px;border-radius:12px;padding:18px;display:grid;gap:9px}
+.toast{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--fg);color:var(--surface);padding:8px 14px;border-radius:8px;font-size:.78rem;font-weight:650;z-index:120}
+.seg{display:none;gap:4px;margin-bottom:10px}
+
+@media (max-width:1100px){
+  .split{grid-template-columns:1fr}
+  .preview-col{position:static}
+  .seg{display:flex}
+  .split[data-mob="editor"] .preview-col{display:none}
+  .split[data-mob="preview"] .editor-col{display:none}
+  .sus-layout{grid-template-columns:1fr}
+  .dx-list{max-height:260px}
+  .sheet-wrap{max-height:none}
+}
+@media (max-width:760px){
+  .pt-grid{grid-template-columns:1fr 1fr}
+  .pt-grid .span2{grid-column:span 2}
+  .pt-grid2{grid-template-columns:1fr}
+  #printArea{padding:20px 16px}
+  .top-actions{margin-left:0}
+  .topbar{position:static}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  body,html{background:#fff!important}
+  .topbar,.ptbar,.editor-col,.seg,.modal,.toast,.view:not(#view-rx){display:none!important}
+  .wrap{padding:0!important;max-width:none}
+  .split{display:block!important}
+  .preview-col{display:block!important;position:static}
+  .sheet-wrap{border:0;padding:0;background:#fff;max-height:none;overflow:visible}
+  #printArea{box-shadow:none!important;max-width:100%!important;padding:0!important;min-height:auto}
+}
+</style>
+
+</head>
+<body>
+<!-- ======== TOPO ======== -->
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-icon"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg></div>
+    <div>
+      <div class="brand-title">Dose<span style="color:var(--mint)">Certa</span> <span class="pill-soft">PEDIATRIA · SUS × IDEAL</span></div>
+      <div class="brand-sub">Doses por peso · SBP · OMS · MS/RENAME 2024 · PALS 2025 · GINA 2026</div>
+    </div>
+  </div>
+  <nav class="tabs" role="tablist" aria-label="Seções">
+    <button class="tab" role="tab" id="tab-rx" aria-selected="true" data-view="rx">Prescrição</button>
+    <button class="tab" role="tab" id="tab-sus" aria-selected="false" data-view="sus">SUS × Ideal</button>
+    <button class="tab" role="tab" id="tab-calc" aria-selected="false" data-view="calc">Calculadoras</button>
+    <button class="tab" role="tab" id="tab-ref" aria-selected="false" data-view="ref">Fontes</button>
+  </nav>
+  <div class="top-actions">
+    <a class="btn btn-on-brand" href="../" style="text-decoration:none">← Módulos</a>
+    <button class="btn btn-on-brand" id="btnDoctor" type="button"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Dados do médico</button>
+    <button class="btn btn-on-brand" id="btnCopy" type="button"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copiar receita</button>
+    <button class="btn btn-primary" id="btnPrint" type="button" hidden><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>Imprimir / PDF</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <!-- ======== PACIENTE ======== -->
+  <section class="ptbar" aria-label="Paciente">
+    <div class="ptbar-head">
+      <h2>Paciente <span class="chip" id="chipAge">Criança</span></h2>
+      <div class="chips" id="chipsBio"></div>
+    </div>
+    <div class="pt-grid">
+      <div class="span2"><label for="ptName">Nome do paciente</label><input id="ptName" value="Paciente exemplo"></div>
+      <div><label for="ptSex">Sexo</label><select id="ptSex"><option value="M">Masculino</option><option value="F">Feminino</option></select></div>
+      <div><label for="ptAgeVal">Idade</label><div class="age-row"><input type="number" id="ptAgeVal" value="4" min="0" step="1"><select id="ptAgeUnit"><option value="anos">anos</option><option value="meses">meses</option><option value="dias">dias</option></select></div></div>
+      <div><label for="ptWeight">Peso (kg) *</label><input type="number" id="ptWeight" step="0.1" min="0.5" value="16" class="in-hi"></div>
+      <div><label for="ptHeight">Estatura (cm)</label><input type="number" id="ptHeight" value="102" min="30"></div>
+    </div>
+    <div class="pt-grid2">
+      <div><label for="ptAllergies" style="color:var(--danger)">Alergias</label><input id="ptAllergies" placeholder="Ex.: penicilina, sulfa, dipirona, AINE, ovo…"></div>
+      <div><label for="ptComorb">Comorbidades / observações</label><input id="ptComorb" placeholder="Ex.: asma, prematuridade, cardiopatia…"></div>
+    </div>
+    <div class="alert" id="safetyBox" hidden><b>Alerta de segurança</b><div id="safetyMsg"></div></div>
+  </section>
+
+  <!-- ======== PRESCRIÇÃO ======== -->
+  <section class="view" id="view-rx">
+    <div class="seg" role="group" aria-label="Alternar painel">
+      <button class="fbtn" id="segEditor" aria-pressed="true" type="button">Catálogo &amp; itens</button>
+      <button class="fbtn" id="segPreview" aria-pressed="false" type="button">Folha A4 (<span id="countMob">0</span>)</button>
+    </div>
+    <div class="split" id="split" data-mob="editor">
+      <div class="editor-col">
+        <div class="card">
+          <div class="card-h"><h3>Catálogo clínico com dose calculada</h3><span class="src" id="catCount"></span></div>
+          <div class="filters" id="catFilters"></div>
+          <div class="acc-filter" role="group" aria-label="Disponibilidade">
+            <span>Mostrar:</span>
+            <button class="fbtn" data-acc="all" aria-pressed="true" type="button">Tudo</button>
+            <button class="fbtn" data-acc="sus" aria-pressed="false" type="button">Somente SUS</button>
+            <button class="fbtn" data-acc="part" aria-pressed="false" type="button">Somente particular</button>
+          </div>
+          <div style="margin-bottom:9px"><label for="searchDrug" class="sr">Buscar</label><input id="searchDrug" placeholder="Busque fármaco ou situação (ex.: amoxicilina, crupe, escabiose, ferro, adrenalina, CAD)…"></div>
+          <div class="catalog" id="catalog"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-h"><h3>Itens desta receita / prescrição</h3><div class="quick"><span id="clearZone"><button class="btn btn-danger btn-sm" id="btnClear" type="button">Limpar tudo</button></span></div></div>
+          <div id="rxList"></div>
+          <details style="margin-top:8px">
+            <summary class="btn btn-line btn-sm" style="list-style:none;display:inline-flex">+ Item livre</summary>
+            <div style="display:grid;gap:8px;margin-top:9px;padding:10px;background:var(--surface-2);border-radius:7px;border:1px solid var(--line)">
+              <div style="display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:8px">
+                <div><label for="custName">Medicamento ou conduta</label><input id="custName" placeholder="Ex.: Ringer lactato 20 mL/kg em bólus"></div>
+                <div><label for="custRoute">Via</label><select id="custRoute"></select></div>
+              </div>
+              <div><label for="custInst">Posologia / orientações</label><textarea id="custInst" rows="2"></textarea></div>
+              <div><button class="btn btn-primary btn-sm" id="btnAddCustom" type="button">Adicionar</button></div>
+            </div>
+          </details>
+          <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--line)">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:5px">
+              <label for="extraNotes" style="margin:0;color:var(--fg)">Orientações gerais e sinais de alerta</label>
+              <div class="quick" id="quickNotes"></div>
+            </div>
+            <textarea id="extraNotes" rows="4" placeholder="Orientações aos pais, metas ou sinais de alarme…"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="preview-col">
+        <div class="sheet-wrap">
+          <div id="printArea">
+            <div>
+              <div class="doc-h">
+                <div><div class="doc-name" id="vDocName"></div><div class="doc-spec" id="vDocEsp"></div><div class="doc-crm" id="vDocCrm"></div></div>
+                <div style="text-align:right"><span class="rx-badge" id="vRxType">Receituário</span><div class="doc-small" id="vDocInst" style="margin-top:4px"></div><div class="doc-small" id="vDocContact"></div></div>
+              </div>
+              <div class="pt-box">
+                <div class="pt-row"><div><span class="doc-small">PACIENTE</span><div id="vPtName" style="font-size:.95rem;font-weight:750"></div></div><div style="text-align:right"><span class="doc-small">DATA</span><div id="vDate" style="font-weight:700"></div></div></div>
+                <div class="pt-sub"><span id="vPtBio"></span><span id="vPtAll" style="font-weight:750;color:#b91c1c"></span></div>
+              </div>
+              <div id="vRx"></div>
+              <div class="notes-box" id="vNotesBox" hidden><div class="notes-t">Orientações gerais e sinais de alerta</div><div id="vNotes"></div></div>
+            </div>
+            <div class="doc-f"><div class="stamp"><div id="vFootName"></div><div id="vFootCrm" style="font-size:.68rem;color:#64748b"></div></div><div style="font-size:.62rem;color:#94a3b8">Prescrição emitida via DoseCerta · conferir doses antes de dispensar</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== SUS × IDEAL ======== -->
+  <section class="view" id="view-sus" hidden>
+    <div class="sus-layout">
+      <div class="card">
+        <div class="card-h"><h3>Diagnósticos</h3><span class="src" id="dxCount"></span></div>
+        <input id="dxSearch" placeholder="Buscar diagnóstico…" style="margin-bottom:6px">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;font-size:.66rem;color:var(--muted);margin:4px 2px 2px"><span><span class="dot dot-sus" style="display:inline-block;width:8px;height:8px;border-radius:50%"></span> ideal no SUS</span><span><span class="dot dot-misto" style="display:inline-block;width:8px;height:8px;border-radius:50%"></span> parte SUS</span><span><span class="dot dot-part" style="display:inline-block;width:8px;height:8px;border-radius:50%"></span> ideal particular</span></div>
+        <div class="dx-list" id="dxList"></div>
+      </div>
+      <div class="card" id="dxDetail"></div>
+    </div>
+  </section>
+
+  <!-- ======== CALCULADORAS ======== -->
+  <section class="view" id="view-calc" hidden>
+    <div class="calc-grid" id="calcGrid"></div>
+  </section>
+
+  <!-- ======== FONTES ======== -->
+  <section class="view" id="view-ref" hidden>
+    <div class="card" id="refCard"></div>
+  </section>
+</div>
+
+<!-- ======== MODAL MÉDICO ======== -->
+<div class="modal" id="docModal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="docModalT">
+    <div style="display:flex;justify-content:space-between;align-items:center"><h3 id="docModalT" style="font-size:.95rem">Identificação profissional</h3><button class="xbtn" id="docClose" type="button" aria-label="Fechar">×</button></div>
+    <div><label for="docName">Nome</label><input id="docName" value="Dr(a). Médico Assistente"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div><label for="docCrm">CRM/UF</label><input id="docCrm" value="CRM/ES 00000"></div><div><label for="docEsp">Especialidade / RQE</label><input id="docEsp" value="Pediatria"></div></div>
+    <div><label for="docInst">Serviço</label><input id="docInst" value="Pronto-Socorro & Ambulatório Pediátrico"></div>
+    <div><label for="docContact">Endereço / contato</label><input id="docContact" value="Cachoeiro de Itapemirim - ES"></div>
+    <div style="display:flex;justify-content:flex-end"><button class="btn btn-primary" id="docSave" type="button">Salvar</button></div>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+// =====================================================================
+// UTILITÁRIOS DE CÁLCULO
+// =====================================================================
+const nf = (x, d = 1) => {
+  const v = Number(x);
+  if (!isFinite(v)) return '--';
+  const p = Math.pow(10, d);
+  return (Math.round(v * p) / p).toLocaleString('pt-BR', { maximumFractionDigits: d });
+};
+const cap = (v, m) => Math.min(v, m);
+const flo = (v, m) => Math.max(v, m);
+const gts = (v, max) => Math.max(1, Math.round(max ? Math.min(v, max) : v));
+const half = v => Math.round(v * 2) / 2; // arredonda p/ 0,5
+const idade = a => a < 1/12 ? `${Math.round(a*365)} dias` : (a < 2 ? `${Math.round(a*12)} meses` : `${nf(a,1)} anos`);
+
+// Acesso / disponibilidade
+// SUS = Componente Básico (RENAME 2024) — UBS/farmácia municipal
+// SUSH = Uso hospitalar / urgência na rede SUS
+// SUSE = Componente Estratégico (programas do MS)
+// SUSESP = Componente Especializado (PCDT, via farmácia de alto custo)
+// MISTO = parte das apresentações no SUS / consta em algumas REMUMEs
+// PART = Particular / pago (não consta na RENAME)
+const ACESSO = {
+  SUS:    { lbl: 'SUS · RENAME básico', cls: 'acc-sus' },
+  SUSH:   { lbl: 'SUS · hospitalar/urgência', cls: 'acc-hosp' },
+  SUSE:   { lbl: 'SUS · estratégico (MS)', cls: 'acc-estr' },
+  SUSESP: { lbl: 'SUS · especializado (PCDT)', cls: 'acc-estr' },
+  MISTO:  { lbl: 'SUS parcial / REMUME', cls: 'acc-misto' },
+  PART:   { lbl: 'Particular / pago', cls: 'acc-part' }
+};
+
+const CATS = [
+  ['todos', 'Todos'],
+  ['sintomaticos', 'Febre, dor & cólica'],
+  ['antimicrobianos', 'Antibióticos VO'],
+  ['atb_iv', 'Antibióticos IV/IM'],
+  ['respiratorio', 'Respiratório & asma'],
+  ['corticoides', 'Corticoides'],
+  ['antihistaminicos', 'Anti-histamínicos'],
+  ['tgi', 'TGI, diarreia & constipação'],
+  ['antiparasitarios', 'Antiparasitários & ectoparasitoses'],
+  ['antiinfec', 'Antivirais & antifúngicos'],
+  ['topicos', 'Pele, olhos & ouvidos'],
+  ['puericultura', 'Puericultura & prevenção'],
+  ['convulsao', 'Crises epilépticas'],
+  ['urgencia_pcr', 'PCR, choque & anafilaxia'],
+  ['sedacao_sri', 'Sedação, analgesia & SRI'],
+  ['intox', 'Intoxicações & antídotos'],
+  ['disturbios_he', 'Eletrólitos & hidratação EV'],
+  ['cetoacidose_endocrino', 'CAD & endócrino'],
+  ['nutricao_parenteral', 'Nutrição & desnutrição']
+];
+
+// =====================================================================
+// BASE FARMACOLÓGICA
+// calc(w, a) -> { title, inst }   (w = peso kg; a = idade em anos)
+// v: variantes nomeadas usadas pela aba SUS × Ideal
+// =====================================================================
+const DRUG_DATA = [];
+const D = o => { DRUG_DATA.push(o); return o; };
+
+// ---------------- FEBRE, DOR & CÓLICA ----------------
+D({ id:'dipirona_gotas', cat:'sintomaticos', acc:'SUS', route:'Uso Oral',
+  name:'Dipirona gotas 500 mg/mL', ind:'Febre e dor leve a moderada · ≥ 3 meses e ≥ 5 kg',
+  min:{a:0.25, w:5, txt:'Bula: não usar < 3 meses ou < 5 kg'},
+  calc:(w)=>{ const g=gts(w*0.6,40); return { title:'Dipirona 500 mg/mL — solução oral (gotas)',
+    inst:`Dar ${g} gotas VO de 6/6 h se dor ou febre (Tax ≥ 37,8 °C).\n• 1 gota = 25 mg → ${nf(g*25,0)} mg/dose (≈ 15 mg/kg; faixa 10–25 mg/kg/dose).\n• Máx. 40 gotas (1 g)/dose e 4 doses/dia.` }; } });
+
+D({ id:'dipirona_inj', cat:'sintomaticos', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Dipirona injetável 500 mg/mL (IM/EV)', ind:'Febre/dor no PS quando VO não é possível',
+  min:{a:0.25, w:5, txt:'Evitar < 3 meses / < 5 kg'},
+  calc:(w)=>{ const mg=cap(w*20,1000); return { title:'Dipirona 500 mg/mL — ampola 2 mL',
+    inst:`Aspirar ${nf(mg/500,2)} mL (${nf(mg,0)} mg = 20 mg/kg; máx. 1 g) e diluir em 10 mL de AD/SF 0,9%.\n• EV lento (≥ 5 min) ou IM. Pode repetir 6/6 h.\n• Risco de hipotensão se EV rápido.` }; } });
+
+D({ id:'paracetamol_gotas', cat:'sintomaticos', acc:'SUS', route:'Uso Oral',
+  name:'Paracetamol gotas 200 mg/mL', ind:'Febre e dor · pode desde o RN · 1ª escolha na dengue',
+  calc:(w,a)=>{ const g=gts(w,35); return { title:'Paracetamol 200 mg/mL — solução oral (gotas)',
+    inst:`Dar ${g} gotas VO de 6/6 h se dor ou febre.\n• 1 gota/kg ≈ 10–13 mg/kg/dose (gotas/mL varia por fabricante — conferir bula).\n• Máx. 35 gotas/dose, 5 doses/dia e 75 mg/kg/dia (4 g/dia).${w>=40?'\n• ≥ 40 kg: preferir comprimido 500–750 mg/dose.':''}` }; } });
+
+D({ id:'paracetamol_susp', cat:'sintomaticos', acc:'PART', route:'Uso Oral',
+  name:'Paracetamol suspensão 32 mg/mL (160 mg/5 mL)', ind:'Mesma indicação; melhor para lactentes (dose em mL)',
+  calc:(w)=>{ const ml=cap(w*0.45,20); return { title:'Paracetamol 32 mg/mL — suspensão oral',
+    inst:`Dar ${nf(ml,1)} mL VO de 6/6 h se dor ou febre (≈ ${nf(ml*32,0)} mg ≈ 15 mg/kg/dose).\n• Máx. 5 doses/dia (75 mg/kg/dia).` }; } });
+
+D({ id:'ibuprofeno_50', cat:'sintomaticos', acc:'SUS', route:'Uso Oral',
+  name:'Ibuprofeno 50 mg/mL (gotas/suspensão)', ind:'Febre e dor · ≥ 6 meses · evitar na dengue/desidratação',
+  min:{a:0.5, w:5, txt:'Usar a partir de 6 meses (SBP)'},
+  calc:(w)=>{ const g=gts(w*2,40); return { title:'Ibuprofeno 50 mg/mL — gotas (1 gota = 5 mg)',
+    inst:`Dar ${g} gotas VO de 6/6 a 8/8 h se dor ou febre (${nf(g*5,0)} mg ≈ 10 mg/kg/dose).\n• Máx. 40 gotas (200 mg)/dose e 40 mg/kg/dia.\n• Contraindicado em dengue suspeita, desidratação, doença renal ou sangramento.` }; } });
+
+D({ id:'ibuprofeno_100', cat:'sintomaticos', acc:'PART', route:'Uso Oral',
+  name:'Ibuprofeno 100 mg/mL gotas', ind:'Febre, dor e ação anti-inflamatória · ≥ 6 meses',
+  min:{a:0.5, w:5, txt:'Usar a partir de 6 meses'},
+  calc:(w)=>{ const g=gts(w,40); return { title:'Ibuprofeno 100 mg/mL — gotas (1 gota = 10 mg)',
+    inst:`Dar ${g} gotas VO de 6/6 a 8/8 h se dor ou febre (${nf(g*10,0)} mg ≈ 10 mg/kg/dose).\n• Máx. 40 gotas (400 mg)/dose e 40 mg/kg/dia (2,4 g/dia).` }; } });
+
+D({ id:'cetoprofeno', cat:'sintomaticos', acc:'PART', route:'Uso Oral',
+  name:'Cetoprofeno gotas 20 mg/mL', ind:'Dor inflamatória · ≥ 1 ano',
+  min:{a:1, txt:'Uso a partir de 1 ano'},
+  calc:(w,a)=>{ const g = a>=12?50:(a>=7?25:gts(w,50)); return { title:'Cetoprofeno 20 mg/mL — gotas (1 gota = 1 mg)',
+    inst:`Dar ${g} gotas VO de 8/8 h por até 5 dias (≈ 1 mg/kg/dose; 7–11 anos 25 gotas; > 11 anos 50 gotas).` }; } });
+
+D({ id:'escopolamina', cat:'sintomaticos', acc:'MISTO', route:'Uso Oral',
+  name:'Butilbrometo de escopolamina gotas 10 mg/mL', ind:'Cólica abdominal · evitar em lactentes',
+  min:{a:1, txt:'Evitar em lactentes (< 1 ano)'},
+  calc:(w,a)=>{ const g = a<6 ? gts(cap(w*0.6,20)) : (a<12?gts(cap(w*0.6,20)):20); return { title:'Escopolamina 10 mg/mL — gotas (1 gota = 0,5 mg)',
+    inst:`Dar ${g} gotas VO de 8/8 h se cólica (≈ 0,3 mg/kg/dose).\n• 1–6 anos: máx. 10 mg/dose (20 gotas); > 6 anos: 10–20 mg/dose.\n• SUS: comprimido 10 mg e ampola 20 mg/mL; gotas geralmente particular.` }; } });
+
+D({ id:'simeticona', cat:'sintomaticos', acc:'PART', route:'Uso Oral',
+  name:'Simeticona gotas 75 mg/mL', ind:'Desconforto por gases (benefício modesto)',
+  calc:(w,a)=>{ const g = a<2?5:(a<12?10:15); return { title:'Simeticona 75 mg/mL — gotas',
+    inst:`Dar ${g} gotas VO de 8/8 h se desconforto por gases.\n• < 2 anos: 4–6 gotas; 2–12 anos: 6–12 gotas; > 12 anos: 13–16 gotas.` }; } });
+
+D({ id:'tramadol_gotas', cat:'sintomaticos', acc:'PART', route:'Uso Oral',
+  name:'Tramadol gotas 100 mg/mL', ind:'Dor moderada a intensa · ⚠ evitar < 12 anos',
+  min:{a:12, txt:'FDA/ANVISA: evitar < 12 anos (depressão respiratória em metabolizadores ultrarrápidos)'},
+  calc:(w)=>{ const mg=cap(w*1,100); const g=gts(mg/2.5); return { title:'Tramadol 100 mg/mL — gotas (1 gota = 2,5 mg)',
+    inst:`Dar ${g} gotas VO de 6/6 a 8/8 h se dor intensa (${nf(mg,0)} mg = 1 mg/kg/dose; máx. 100 mg/dose e 400 mg/dia).` }; } });
+
+D({ id:'morfina_ev', cat:'sintomaticos', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Morfina 10 mg/mL (EV/SC)', ind:'Dor intensa em ambiente monitorizado',
+  calc:(w,a)=>{ const dk = a<0.25?0.03:0.1; const mg=cap(w*dk,5); return { title:'Morfina 10 mg/mL — diluída a 1 mg/mL',
+    inst:`Diluir 1 mL (10 mg) + 9 mL SF 0,9% (1 mg/mL).\n• Fazer ${nf(mg,2)} mL (${nf(mg,2)} mg = ${dk} mg/kg) EV lento, até 4/4 h.${a<0.25?'\n• < 3 meses: 0,03–0,05 mg/kg com monitorização de apneia.':''}\n• Antídoto: naloxona. Monitorar SpO₂ e FR.` }; } });
+
+// ---------------- ANTIBIÓTICOS VO ----------------
+D({ id:'amox250', cat:'antimicrobianos', acc:'SUS', route:'Uso Oral',
+  name:'Amoxicilina 250 mg/5 mL (dose padrão 50 mg/kg/dia)', ind:'PAC, faringite, OMA (SBP), sinusite',
+  calc:(w)=>{ const ml8=cap(w/3,10), ml12=cap(w/2,15); return { title:'Amoxicilina 250 mg/5 mL — suspensão oral',
+    inst:`Dar ${nf(ml8,1)} mL VO de 8/8 h (50 mg/kg/dia)\n  ou ${nf(ml12,1)} mL VO de 12/12 h.\n• Duração conforme diagnóstico (PAC 5–7 d; OMA 7–10 d; faringite 10 d).\n• Máx. 500 mg/dose no esquema padrão.` }; },
+  v:{
+    faringite:(w)=>{ const mg=cap(w*50,1000); return { title:'Amoxicilina 250 mg/5 mL — 1x/dia por 10 dias',
+      inst:`Dar ${nf(mg/50,1)} mL VO 1 vez ao dia por 10 dias (50 mg/kg/dia; máx. 1 g/dia).\n• Alternativa: ${nf(cap(w/2,10),1)} mL de 12/12 h por 10 dias.` }; },
+    pac:(w)=>{ const ml=cap(w/2,15); return { title:'Amoxicilina 250 mg/5 mL — PAC ambulatorial',
+      inst:`Dar ${nf(ml,1)} mL VO de 12/12 h por 5 dias (50 mg/kg/dia — SBP).\n• OMS 2024: 3–5 dias se só taquipneia; 5 dias se tiragem sem sinais de perigo.\n• Reavaliar em 48–72 h.` }; }
+  } });
+
+D({ id:'amox_alta_sus', cat:'antimicrobianos', acc:'SUS', route:'Uso Oral',
+  name:'Amoxicilina 250 mg/5 mL em dose alta (90 mg/kg/dia)', ind:'OMA (AAP 2023), pneumococo resistente — com a apresentação do SUS',
+  calc:(w)=>{ const ml=cap(w*0.9,40); return { title:'Amoxicilina 250 mg/5 mL — dose alta (90 mg/kg/dia)',
+    inst:`Dar ${nf(ml,1)} mL VO de 12/12 h (45 mg/kg/dose; máx. 2 g/dose).\n• Volume grande: se a criança recusar, dividir de 8/8 h → ${nf(cap(w*0.6,27),1)} mL 8/8 h.\n• OMA: 10 dias se < 2 anos ou grave; 7 dias se ≥ 2 anos leve/moderada.` }; } });
+
+D({ id:'amox400', cat:'antimicrobianos', acc:'PART', route:'Uso Oral',
+  name:'Amoxicilina 400 mg/5 mL (BD)', ind:'Mesmas indicações; menor volume, 12/12 h',
+  calc:(w)=>{ const mlA=cap(w*0.5625,25), mlP=cap(w*0.3125,12.5); return { title:'Amoxicilina 400 mg/5 mL — suspensão BD',
+    inst:`Dose alta (90 mg/kg/dia): ${nf(mlA,1)} mL VO de 12/12 h.\nDose padrão (50 mg/kg/dia): ${nf(mlP,1)} mL VO de 12/12 h.` }; },
+  v:{ alta:(w)=>({ title:'Amoxicilina 400 mg/5 mL — dose alta 90 mg/kg/dia',
+      inst:`Dar ${nf(cap(w*0.5625,25),1)} mL VO de 12/12 h (45 mg/kg/dose; máx. 2 g/dose).\n• OMA: 10 dias se < 2 anos ou grave; 7 dias se ≥ 2 anos leve/moderada.` }) } });
+
+D({ id:'amoxclav_sus', cat:'antimicrobianos', acc:'SUS', route:'Uso Oral',
+  name:'Amoxicilina + clavulanato 250 + 62,5 mg/5 mL (4:1)', ind:'Falha de amoxicilina, OMA + conjuntivite, sinusite, mordedura, ITU',
+  calc:(w)=>{ const ml=cap(w/3,10); return { title:'Amoxicilina + clavulanato 250/62,5 mg/5 mL — suspensão',
+    inst:`Dar ${nf(ml,1)} mL VO de 8/8 h (≈ 50 mg/kg/dia de amoxicilina) por 7–10 dias.\n• Formulação 4:1: NÃO usar para dose alta (clavulanato > 10 mg/kg/dia → diarreia).\n• Para chegar a 90 mg/kg/dia no SUS: somar amoxicilina pura 250 mg/5 mL ${nf(cap(w*0.4,20),1)} mL 12/12 h (+40 mg/kg/dia).` }; } });
+
+D({ id:'amoxclav_bd', cat:'antimicrobianos', acc:'PART', route:'Uso Oral',
+  name:'Amoxicilina + clavulanato 400 + 57 mg/5 mL (7:1, BD)', ind:'Dose alta com menos clavulanato',
+  calc:(w)=>{ const mlA=cap(w*0.5625,25), mlP=cap(w*0.3125,12.5); return { title:'Amoxicilina + clavulanato 400/57 mg/5 mL — BD',
+    inst:`Dose alta (90 mg/kg/dia de amoxicilina): ${nf(mlA,1)} mL VO de 12/12 h.\nDose padrão (50 mg/kg/dia): ${nf(mlP,1)} mL VO de 12/12 h.\n• Duração 7–10 dias; tomar no início das refeições.` }; },
+  v:{ alta:(w)=>({ title:'Amoxicilina + clavulanato 400/57 mg/5 mL — dose alta',
+      inst:`Dar ${nf(cap(w*0.5625,25),1)} mL VO de 12/12 h (90 mg/kg/dia de amoxicilina) por 10 dias.\n• Tomar no início das refeições.` }) } });
+
+D({ id:'azitro', cat:'antimicrobianos', acc:'SUS', route:'Uso Oral',
+  name:'Azitromicina 200 mg/5 mL', ind:'PAC atípica, coqueluche, alergia grave a penicilina, disenteria',
+  calc:(w)=>{ const ml=cap(w/4,12.5); return { title:'Azitromicina 200 mg/5 mL — suspensão oral',
+    inst:`Dar ${nf(ml,1)} mL VO 1x/dia (10 mg/kg/dia; máx. 500 mg) por 3 dias\n  ou 10 mg/kg no D1 + ${nf(cap(w/8,6.25),1)} mL (5 mg/kg) do D2 ao D5.` }; },
+  v:{
+    faringite:(w)=>({ title:'Azitromicina 200 mg/5 mL — faringite (alergia à penicilina)',
+      inst:`Dar ${nf(cap(w*12/40,12.5),1)} mL VO 1x/dia por 5 dias (12 mg/kg/dia; máx. 500 mg/dia).` }),
+    coqueluche:(w,a)=> a<0.5 ? ({ title:'Azitromicina 200 mg/5 mL — coqueluche (< 6 meses)',
+      inst:`Dar ${nf(w/4,1)} mL VO 1x/dia por 5 dias (10 mg/kg/dia).\n• < 1 mês: azitromicina é a droga de escolha (monitorar estenose hipertrófica de piloro).` })
+      : ({ title:'Azitromicina 200 mg/5 mL — coqueluche',
+      inst:`D1: ${nf(cap(w/4,12.5),1)} mL VO (10 mg/kg; máx. 500 mg).\nD2 a D5: ${nf(cap(w/8,6.25),1)} mL VO 1x/dia (5 mg/kg; máx. 250 mg).` }),
+    oma:(w)=>({ title:'Azitromicina 200 mg/5 mL — OMA (alergia grave à penicilina)',
+      inst:`D1: ${nf(cap(w/4,12.5),1)} mL VO (10 mg/kg); D2–D5: ${nf(cap(w/8,6.25),1)} mL 1x/dia (5 mg/kg).\n• Última opção na OMA (alta resistência do pneumococo).` }),
+    disenteria:(w)=>({ title:'Azitromicina 200 mg/5 mL — disenteria/shigelose',
+      inst:`Dar ${nf(cap(w/4,12.5),1)} mL VO 1x/dia por 3 dias (10 mg/kg/dia; máx. 500 mg).` })
+  } });
+
+D({ id:'claritro', cat:'antimicrobianos', acc:'SUS', route:'Uso Oral',
+  name:'Claritromicina 250 mg/5 mL', ind:'Alternativa macrolídea (PAC atípica) · ≥ 6 meses',
+  min:{a:0.5, txt:'Bula: ≥ 6 meses'},
+  calc:(w)=>{ const ml=cap(w*0.15,10); return { title:'Claritromicina 250 mg/5 mL — suspensão oral',
+    inst:`Dar ${nf(ml,1)} mL VO de 12/12 h por 7–10 dias (7,5 mg/kg/dose; máx. 500 mg/dose).` }; } });
+
+D({ id:'cefalexina', cat:'antimicrobianos', acc:'SUS', route:'Uso Oral',
+  name:'Cefalexina 250 mg/5 mL', ind:'Impetigo extenso, celulite leve, cistite, faringite (alergia não grave)',
+  calc:(w)=>{ const ml=cap(w/4,10), mlG=cap(w/2,20); return { title:'Cefalexina 250 mg/5 mL — suspensão oral',
+    inst:`Dar ${nf(ml,1)} mL VO de 6/6 h (50 mg/kg/dia) por 7–10 dias.\n• Infecção de pele moderada: até 100 mg/kg/dia → ${nf(mlG,1)} mL 6/6 h (máx. 4 g/dia).` }; },
+  v:{ pele:(w)=>({ title:'Cefalexina 250 mg/5 mL — pele/partes moles',
+      inst:`Dar ${nf(cap(w*75/4/50,20),1)} mL VO de 6/6 h (75 mg/kg/dia) por 7 dias (máx. 1 g/dose).` }) } });
+
+D({ id:'cefadroxila', cat:'antimicrobianos', acc:'PART', route:'Uso Oral',
+  name:'Cefadroxila 250 mg/5 mL', ind:'Alternativa à cefalexina com posologia 12/12 h',
+  calc:(w)=>{ const ml=cap(w*0.3,20); return { title:'Cefadroxila 250 mg/5 mL — suspensão oral',
+    inst:`Dar ${nf(ml,1)} mL VO de 12/12 h por 10 dias (30 mg/kg/dia; máx. 2 g/dia).` }; } });
+
+D({ id:'cefuroxima', cat:'antimicrobianos', acc:'PART', route:'Uso Oral',
+  name:'Axetilcefuroxima 250 mg/5 mL', ind:'OMA/sinusite com alergia não grave, ITU febril VO · ≥ 3 meses',
+  min:{a:0.25, txt:'≥ 3 meses'},
+  calc:(w)=>{ const ml=cap(w*0.3,10); return { title:'Axetilcefuroxima 250 mg/5 mL — suspensão oral',
+    inst:`Dar ${nf(ml,1)} mL VO de 12/12 h (30 mg/kg/dia; máx. 500 mg/dose) por 7–10 dias.\n• Tomar com alimento.` }; } });
+
+D({ id:'cefaclor', cat:'antimicrobianos', acc:'PART', route:'Uso Oral',
+  name:'Cefaclor 250 mg/5 mL', ind:'ITU febril VO, OMA (alternativa)',
+  calc:(w)=>{ const ml=cap(w*40/3/50,6.7); return { title:'Cefaclor 250 mg/5 mL — suspensão oral',
+    inst:`Dar ${nf(ml,1)} mL VO de 8/8 h (40 mg/kg/dia; máx. 1 g/dia) por 7–10 dias.` }; } });
+
+D({ id:'smx_tmp', cat:'antimicrobianos', acc:'SUS', route:'Uso Oral',
+  name:'Sulfametoxazol + trimetoprima 200 + 40 mg/5 mL', ind:'ITU (se sensível), MRSA comunitário · ≥ 2 meses',
+  min:{a:1/6, txt:'Contraindicado < 2 meses (kernicterus)'},
+  calc:(w)=>{ const ml=cap(w*0.5,20); return { title:'Sulfametoxazol + trimetoprima 200/40 mg/5 mL',
+    inst:`Dar ${nf(ml,1)} mL VO de 12/12 h (8 mg/kg/dia de TMP; máx. 160 mg TMP/dose) por 7–10 dias.\n• Checar resistência local de E. coli (frequentemente > 20%).` }; } });
+
+D({ id:'nitrofurantoina', cat:'antimicrobianos', acc:'SUS', route:'Uso Oral',
+  name:'Nitrofurantoína 5 mg/mL (ou cápsula 100 mg)', ind:'Cistite (ITU baixa afebril) e profilaxia · ≥ 1 mês',
+  min:{a:1/12, txt:'≥ 1 mês'},
+  calc:(w)=>{ const mg=cap(w*1.5,100); return { title:'Nitrofurantoína 5 mg/mL — suspensão oral',
+    inst:`Dar ${nf(mg/5,1)} mL VO de 6/6 h (${nf(mg,0)} mg; 5–7 mg/kg/dia) por 5–7 dias.\n• Não usar na pielonefrite/ITU febril (não atinge parênquima renal).\n• Profilaxia: 1–2 mg/kg à noite → ${nf(cap(w*1.5,100)/5,1)} mL.` }; } });
+
+D({ id:'metronidazol_vo', cat:'antimicrobianos', acc:'SUS', route:'Uso Oral',
+  name:'Metronidazol (benzoil) 40 mg/mL', ind:'Giardíase, amebíase, vaginose',
+  calc:(w)=>{ const mlG=cap(w*5/40,6.25), mlA=cap(w*12/40,18.75); return { title:'Metronidazol 40 mg/mL (200 mg/5 mL) — suspensão',
+    inst:`Giardíase: ${nf(mlG,1)} mL VO de 8/8 h por 5–7 dias (15 mg/kg/dia; máx. 250 mg/dose).\nAmebíase: ${nf(mlA,1)} mL VO de 8/8 h por 7–10 dias (35 mg/kg/dia; máx. 750 mg/dose).\n• Gosto metálico; evitar álcool (adolescentes).` }; } });
+
+D({ id:'cipro_vo', cat:'antimicrobianos', acc:'SUS', route:'Uso Oral',
+  name:'Ciprofloxacino 500 mg comprimido', ind:'Disenteria (OMS), shigelose · uso pediátrico restrito',
+  calc:(w)=>{ const mg=cap(w*15,500); return { title:'Ciprofloxacino 500 mg — comprimido',
+    inst:`Dar ${nf(mg,0)} mg VO de 12/12 h por 3 dias (15 mg/kg/dose; máx. 500 mg/dose).\n• Comprimido pode ser dissolvido em 5 mL de água (100 mg/mL) para crianças menores.` }; } });
+
+// ---------------- ANTIBIÓTICOS IV/IM ----------------
+D({ id:'pen_benzatina', cat:'atb_iv', acc:'SUS', route:'Uso Intramuscular',
+  name:'Penicilina G benzatina 600.000 / 1.200.000 UI', ind:'Faringite estreptocócica (dose única), profilaxia de febre reumática',
+  calc:(w)=>{ const d = w<27?'600.000 UI':'1.200.000 UI'; return { title:`Penicilina G benzatina ${d} — IM`,
+    inst:`Aplicar ${d} IM profundo (glúteo/vasto lateral) em dose única.\n• < 27 kg: 600.000 UI · ≥ 27 kg: 1.200.000 UI (AHA/SBP).\n• Pó liofilizado: reconstituir com 4 mL AD (ou AD + lidocaína 1% sem vasoconstritor). Observar 30 min após.` }; } });
+
+D({ id:'ceftriaxona_ev', cat:'atb_iv', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Ceftriaxona 1 g (IV/IM)', ind:'Sepse, meningite, PAC grave, pielonefrite, OMA refratária (IM)',
+  calc:(w)=>{ const dM=cap(w*50,2000), d1=cap(w*75,2000); return { title:'Ceftriaxona 1 g — frasco-ampola',
+    inst:`Reconstituir 1 g em 10 mL AD (100 mg/mL).\n• Habitual: ${nf(d1/100,1)} mL (${nf(d1,0)} mg; 50–75 mg/kg) EV 1x/dia, diluído em 50–100 mL SF, em 30 min.\n• Meningite: ${nf(dM/100,1)} mL (${nf(dM,0)} mg = 50 mg/kg) de 12/12 h (100 mg/kg/dia; máx. 4 g/dia).\n• Não infundir com soluções contendo cálcio (RN).` }; },
+  v:{ im_oma:(w)=>({ title:'Ceftriaxona — IM (OMA com falha/sem via oral)',
+      inst:`Aplicar ${nf(cap(w*50,1000),0)} mg IM 1x/dia por 1–3 dias (50 mg/kg; máx. 1 g).\n• Reconstituir 1 g em 3,5 mL de lidocaína 1% (≈ 285 mg/mL) → ${nf(cap(w*50,1000)/285,1)} mL IM.` }),
+      pielo:(w)=>({ title:'Ceftriaxona — pielonefrite/ITU febril',
+      inst:`Fazer ${nf(cap(w*75,2000),0)} mg EV/IM 1x/dia (75 mg/kg/dia; 50–75) até melhora clínica (24–72 h afebril), depois trocar para VO conforme urocultura.` }),
+      sepse:(w)=>({ title:'Ceftriaxona — sepse / choque séptico (1ª hora)',
+      inst:`Fazer ${nf(cap(w*100,2000),0)} mg EV (100 mg/kg; máx. 2 g) dentro da 1ª hora, após hemoculturas.\n• Associar vancomicina se suspeita de S. aureus/pneumococo resistente ou meningite.` }) } });
+
+D({ id:'pen_cristalina', cat:'atb_iv', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Penicilina G cristalina (potássica)', ind:'PAC hospitalar sem complicações (SBP), sífilis congênita, meningite',
+  calc:(w)=>{ const ui=cap(w*50000,4000000); return { title:'Penicilina G cristalina — 200.000 UI/kg/dia',
+    inst:`Fazer ${nf(ui,0)} UI EV de 6/6 h (50.000 UI/kg/dose = 200.000 UI/kg/dia).\n• FA 5.000.000 UI + 8 mL AD = 500.000 UI/mL → aspirar ${nf(ui/500000,2)} mL e rediluir em SF (< 1 a: 50.000 UI/mL; > 1 a: 100.000 UI/mL).\n• Meningite: 300–400.000 UI/kg/dia de 4/4 h.` }; } });
+
+D({ id:'ampicilina', cat:'atb_iv', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Ampicilina 1 g (IV)', ind:'PAC hospitalar (SBP/OMS), sepse neonatal (+ gentamicina), meningite',
+  calc:(w)=>{ const mg=cap(w*50,2000); return { title:'Ampicilina 1 g — frasco-ampola',
+    inst:`Reconstituir 1 g em 10 mL AD (100 mg/mL).\n• PAC: ${nf(mg/100,1)} mL (${nf(mg,0)} mg = 50 mg/kg) EV de 6/6 h (200 mg/kg/dia).\n• Meningite: 75–100 mg/kg/dose 6/6 h (máx. 12 g/dia).\n• < 2 meses ou grave (OMS): associar gentamicina 7,5 mg/kg 1x/dia.` }; } });
+
+D({ id:'gentamicina', cat:'atb_iv', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Gentamicina 40 mg/mL', ind:'Pielonefrite, sepse neonatal (com ampicilina), PAC < 2 meses',
+  calc:(w,a)=>{ const dk = a<1/12?4:7.5; const mg=w*dk; return { title:'Gentamicina 40 mg/mL — dose diária única',
+    inst:`Fazer ${nf(mg,1)} mg (${nf(mg/40,2)} mL; ${dk} mg/kg) EV 1x/dia, diluído para ≤ 10 mg/mL em SF, em 30–60 min.\n• Faixa: 5–7,5 mg/kg/dia (RN: 4–5 mg/kg/dose com intervalo por IG).\n• Ajustar à função renal; nível sérico se > 5 dias.` }; } });
+
+D({ id:'amicacina', cat:'atb_iv', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Amicacina 50 mg/mL', ind:'Gram-negativos resistentes, neutropenia febril',
+  calc:(w)=>{ const mg=cap(w*15,1500); return { title:'Amicacina 50 mg/mL',
+    inst:`Fazer ${nf(mg,0)} mg (${nf(mg/50,1)} mL; 15 mg/kg) EV 1x/dia em 30–60 min (máx. 1,5 g/dia).` }; } });
+
+D({ id:'oxacilina_ev', cat:'atb_iv', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Oxacilina 500 mg', ind:'S. aureus sensível: celulite grave, osteomielite, PAC complicada',
+  calc:(w)=>{ const mg=cap(w*50,2000); return { title:'Oxacilina 500 mg — frasco-ampola',
+    inst:`Reconstituir 500 mg em 5 mL AD (100 mg/mL).\n• Fazer ${nf(mg/100,1)} mL (${nf(mg,0)} mg = 50 mg/kg) EV de 6/6 h (200 mg/kg/dia; faixa 150–200; máx. 12 g/dia), diluído em SF, 30–60 min.` }; } });
+
+D({ id:'clindamicina_ev', cat:'atb_iv', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Clindamicina 150 mg/mL', ind:'MRSA comunitário, alergia a betalactâmico, abscessos, choque tóxico',
+  calc:(w)=>{ const mg=cap(w*10,900); return { title:'Clindamicina 150 mg/mL',
+    inst:`Fazer ${nf(mg,0)} mg (${nf(mg/150,2)} mL; 10 mg/kg) EV de 8/8 h (30–40 mg/kg/dia; máx. 900 mg/dose), diluído a ≤ 18 mg/mL, em 30 min.` }; } });
+
+D({ id:'vancomicina', cat:'atb_iv', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Vancomicina 500 mg', ind:'MRSA, meningite (com ceftriaxona), choque séptico com suspeita de Gram+',
+  calc:(w)=>{ const mg=cap(w*15,1000); return { title:'Vancomicina 500 mg — frasco-ampola',
+    inst:`Fazer ${nf(mg,0)} mg (15 mg/kg) EV de 6/6 h (60 mg/kg/dia), diluído a ≤ 5 mg/mL em SF/SG 5%, em 60–120 min.\n• Infusão rápida → síndrome do homem vermelho.\n• Vale-alvo 10–15 (ou AUC 400–600).` }; } });
+
+D({ id:'meropenem_ev', cat:'atb_iv', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Meropenem 1 g', ind:'Infecção nosocomial grave, intra-abdominal complicada, neutropenia febril',
+  calc:(w)=>{ const mg=cap(w*20,1000), mM=cap(w*40,2000); return { title:'Meropenem 1 g — frasco-ampola',
+    inst:`Reconstituir 1 g em 20 mL AD (50 mg/mL).\n• Habitual: ${nf(mg/50,1)} mL (${nf(mg,0)} mg = 20 mg/kg) EV 8/8 h.\n• Meningite/neutropenia: ${nf(mM/50,1)} mL (${nf(mM,0)} mg = 40 mg/kg) 8/8 h (máx. 2 g/dose).\n• Diluir em 50–100 mL SF; infundir em 30 min (ou 3 h estendida).` }; } });
+
+D({ id:'cefepima', cat:'atb_iv', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Cefepima 1 g', ind:'Neutropenia febril, Pseudomonas',
+  calc:(w)=>{ const mg=cap(w*50,2000); return { title:'Cefepima 1 g — frasco-ampola',
+    inst:`Fazer ${nf(mg,0)} mg (50 mg/kg) EV de 8/8 h (máx. 2 g/dose), diluído a 40 mg/mL, em 30 min.` }; } });
+
+D({ id:'metronidazol_ev', cat:'atb_iv', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Metronidazol 5 mg/mL (bolsa)', ind:'Anaeróbios: abdome agudo, abscesso',
+  calc:(w)=>{ const mg=cap(w*10,500); return { title:'Metronidazol 5 mg/mL — solução injetável',
+    inst:`Fazer ${nf(mg/5,0)} mL (${nf(mg,0)} mg = 10 mg/kg) EV de 8/8 h em 60 min (máx. 500 mg/dose).` }; } });
+
+D({ id:'aciclovir_ev', cat:'atb_iv', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Aciclovir 250 mg (IV)', ind:'Encefalite herpética, varicela em imunossuprimido, HSV neonatal',
+  calc:(w,a)=>{ const dk = a<12?15:10; const mg=w*dk; return { title:'Aciclovir 250 mg — frasco-ampola',
+    inst:`Fazer ${nf(mg,0)} mg (${dk} mg/kg) EV de 8/8 h em 60 min, diluído a ≤ 7 mg/mL.\n• RN/HSV neonatal e encefalite < 12 a: 20 mg/kg/dose 8/8 h.\n• Hidratar bem (nefrotoxicidade).` }; } });
+
+// ---------------- RESPIRATÓRIO & ASMA ----------------
+D({ id:'salbutamol_spray', cat:'respiratorio', acc:'SUS', route:'Uso Inalatório',
+  name:'Salbutamol spray 100 mcg/jato (com espaçador)', ind:'Crise de asma/sibilância — 1ª escolha (GINA)',
+  calc:(w,a)=>{ const j = a<=5 ? cap(flo(Math.round(w/3),2),6) : cap(flo(Math.round(w/3),4),10);
+    return { title:'Salbutamol 100 mcg/jato — aerossol + espaçador',
+    inst:`Crise: ${j} jatos com espaçador (e máscara se < 4–5 anos) a cada 20 min por até 3 vezes na 1ª hora.\n• ${a<=5?'≤ 5 anos: até 6 jatos/dose':'> 5 anos: 4–10 jatos/dose'}; depois 2–4 jatos até de 4/4 h conforme resposta.\n• Técnica: 1 jato por vez, 5–6 respirações (ou 10 s) entre jatos.` }; },
+  v:{ casa:(w,a)=>({ title:'Salbutamol 100 mcg/jato — resgate domiciliar',
+      inst:`Usar ${a<=5?'2':'2 a 4'} jatos com espaçador se tosse/chiado/falta de ar, até de 4/4 h.\n• Se precisar antes de 4 h ou sem melhora: procurar atendimento.` }) } });
+
+D({ id:'fenoterol_neb', cat:'respiratorio', acc:'PART', route:'Uso Inalatório',
+  name:'Fenoterol gotas 5 mg/mL (nebulização)', ind:'Prática comum em UPA; spray + espaçador é preferível',
+  calc:(w)=>{ const g=gts(w/3,10); return { title:'Fenoterol 5 mg/mL — nebulização',
+    inst:`Nebulizar ${g} gotas (1 gota/3 kg; máx. 10) + SF 0,9% 3–5 mL com O₂ 6–8 L/min, a cada 20 min até 3 vezes.\n• Mais taquicardia/hipocalemia; não é superior ao spray com espaçador.` }; } });
+
+D({ id:'salbutamol_neb', cat:'respiratorio', acc:'MISTO', route:'Uso Inalatório',
+  name:'Salbutamol solução 5 mg/mL (nebulização)', ind:'Crise grave sem cooperação para espaçador; nebulização contínua em UTI',
+  calc:(w)=>{ const mg=cap(flo(w*0.15,2.5),5); return { title:'Salbutamol 5 mg/mL — nebulização',
+    inst:`Nebulizar ${nf(mg/5,2)} mL (${nf(mg,1)} mg; 0,15 mg/kg; mín. 2,5 mg, máx. 5 mg) + SF até 4 mL, a cada 20 min ×3.\n• Contínua (UTI): 0,5 mg/kg/h (máx. 20 mg/h).` }; } });
+
+D({ id:'ipratropio', cat:'respiratorio', acc:'SUS', route:'Uso Inalatório',
+  name:'Brometo de ipratrópio 0,25 mg/mL', ind:'Crise moderada a grave — associar ao β2 na 1ª hora',
+  calc:(w)=>{ const g = w<10?10:(w<20?20:40); return { title:'Ipratrópio 0,25 mg/mL — solução para inalação',
+    inst:`Associar ${g} gotas (${g*12.5} mcg) à nebulização com β2 a cada 20 min, por 3 vezes (só na 1ª hora).\n• Spray 20 mcg/jato: ${w<20?'2–4':'4–8'} jatos com espaçador.\n• Não há benefício em manter após a fase inicial.` }; } });
+
+D({ id:'beclometasona', cat:'respiratorio', acc:'SUS', route:'Uso Inalatório',
+  name:'Beclometasona spray 50 mcg/jato', ind:'Controle da asma (corticoide inalatório) — opção do SUS',
+  calc:(w,a)=>{ const t = a<6?'1 jato de 12/12 h (100 mcg/dia — dose baixa)':(a<12?'1–2 jatos de 12/12 h (100–200 mcg/dia — dose baixa)':'2–4 jatos de 12/12 h (200–400 mcg/dia — dose baixa)');
+    return { title:'Beclometasona 50 mcg/jato — aerossol + espaçador', inst:`Usar ${t} com espaçador${a<5?' e máscara':''}.\n• Enxaguar a boca após uso. Reavaliar controle em 2–3 meses.\n• SUS: há também 200/250 mcg/jato.` }; } });
+
+D({ id:'budform_100', cat:'respiratorio', acc:'PART', route:'Uso Inalatório',
+  name:'Budesonida + formoterol 100/6 mcg (ou 80/4,5)', ind:'GINA 2025–2026: 6–11 anos, MART ou só alívio (substitui SABA isolado)',
+  min:{a:6, txt:'Esquema MART com 100/6 a partir de 6 anos (GINA)'},
+  calc:(w,a)=>({ title:'Budesonida + formoterol 100/6 mcg — inalador',
+    inst:`Manutenção e alívio (MART): 1 inalação de 12/12 h${a<12?'':' (ou 1–2)'} + 1 inalação extra se sintomas.\n• Máx. 8 inalações/dia (6–11 anos).\n• Alternativa só-alívio: 1 inalação quando tiver sintomas.` }) });
+
+D({ id:'budform_200', cat:'respiratorio', acc:'SUSESP', route:'Uso Inalatório',
+  name:'Budesonida + formoterol 200/6 mcg', ind:'≥ 12 anos: via preferencial GINA (MART) · SUS via PCDT Asma 2026',
+  min:{a:12, txt:'Esquema 200/6 a partir de 12 anos'},
+  calc:()=>({ title:'Budesonida + formoterol 200/6 mcg — cápsula/inalador',
+    inst:`Asma leve: 1 inalação quando houver sintomas (alívio anti-inflamatório).\nAsma moderada (MART): 1–2 inalações de 12/12 h + 1 extra se sintomas (máx. 12/dia).\n• SUS: retirada no Componente Especializado mediante LME e PCDT.` }) });
+
+D({ id:'budesonida_neb', cat:'respiratorio', acc:'PART', route:'Uso Inalatório',
+  name:'Budesonida suspensão 0,25 mg/mL (nebulização)', ind:'Controle da sibilância/asma em ≤ 5 anos sem colaboração com espaçador',
+  calc:()=>({ title:'Budesonida 0,25 mg/mL — nebulização',
+    inst:`Nebulizar 1–2 mL (0,25–0,5 mg) de 12/12 h (dose baixa ≤ 5 anos: 0,5 mg/dia).\n• Lavar o rosto após a nebulização.` }) });
+
+D({ id:'montelucaste', cat:'respiratorio', acc:'PART', route:'Uso Oral',
+  name:'Montelucaste 4 / 5 / 10 mg', ind:'Alternativa de controle, rinite + asma · ⚠ alerta neuropsiquiátrico (FDA)',
+  min:{a:0.5, txt:'≥ 6 meses (sachê 4 mg)'},
+  calc:(w,a)=>{ const t = a<6?'4 mg (sachê ou comprimido mastigável)':(a<15?'5 mg (comprimido mastigável)':'10 mg (comprimido)');
+    return { title:`Montelucaste ${t.split(' ')[0]} mg`, inst:`Dar ${t} VO 1x/dia, à noite.\n• Orientar família sobre pesadelos, agitação e alterações de humor.` }; } });
+
+D({ id:'mgso4', cat:'respiratorio', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Sulfato de magnésio 50% (500 mg/mL)', ind:'Crise grave refratária à 1ª hora (≥ 2–6 anos)',
+  min:{a:2, txt:'Evidência sobretudo ≥ 6 anos; considerar 2–5 anos com cautela'},
+  calc:(w)=>{ const mg=cap(w*50,2000); return { title:'Sulfato de magnésio 50% — EV',
+    inst:`Fazer ${nf(mg/500,2)} mL (${nf(mg,0)} mg = 50 mg/kg; faixa 25–75; máx. 2 g) diluído em 50 mL SF 0,9%, EV em 20 min.\n• Monitorar PA, reflexos e FR. Antídoto: gluconato de cálcio.` }; } });
+
+D({ id:'adrenalina_neb', cat:'respiratorio', acc:'SUS', route:'Uso Inalatório',
+  name:'L-adrenalina 1 mg/mL (nebulização)', ind:'Crupe moderado/grave (estridor em repouso)',
+  calc:(w)=>{ const ml=cap(w*0.5,5); return { title:'Adrenalina 1 mg/mL (1:1.000) — nebulização',
+    inst:`Nebulizar ${nf(ml,1)} mL (0,5 mL/kg; máx. 5 mL) puro ou com SF até 5 mL, com O₂.\n• Pode repetir a cada 20 min se necessário. Observar ≥ 2–3 h após (efeito rebote).` }; } });
+
+D({ id:'salina_3_neb', cat:'respiratorio', acc:'SUSH', route:'Uso Inalatório',
+  name:'NaCl 3% nebulização', ind:'Bronquiolite internada (opcional, AAP: não na emergência)',
+  calc:()=>({ title:'Solução salina 3% — nebulização',
+    inst:`Preparo: 1,5 mL NaCl 20% + 8,5 mL AD = 10 mL a 3%.\n• Nebulizar 4 mL de 8/8 h (somente pacientes internados).\n• Suspender se broncoespasmo.` }) });
+
+D({ id:'lavagem_nasal', cat:'respiratorio', acc:'SUS', route:'Uso Nasal',
+  name:'Soro fisiológico 0,9% nasal (lavagem)', ind:'IVAS, bronquiolite, rinite, sinusite',
+  calc:(w,a)=>{ const t = a<0.5?'1 mL (conta-gotas/seringa) em cada narina':(a<2?'2–3 mL em cada narina com seringa (sem agulha)':'5–10 mL em cada narina com seringa ou frasco de alto volume');
+    return { title:'Soro fisiológico 0,9% — lavagem nasal', inst:`Aplicar ${t}, 3 a 6 vezes ao dia e antes das mamadas/refeições.\n• Cabeça levemente inclinada para frente; aspirar secreção se necessário.` }; } });
+
+D({ id:'budesonida_nasal', cat:'respiratorio', acc:'SUS', route:'Uso Nasal',
+  name:'Budesonida nasal 32 ou 50 mcg/jato', ind:'Rinite alérgica persistente · SUS (≥ 6 anos)',
+  min:{a:6, txt:'Bula SUS: a partir de 6 anos'},
+  calc:()=>({ title:'Budesonida 32 mcg/jato — spray nasal',
+    inst:`Aplicar 1–2 jatos em cada narina 1x/dia (máx. 256 mcg/dia) por 30–60 dias; reduzir à menor dose eficaz.\n• Direcionar o jato para fora do septo.` }) });
+
+D({ id:'mometasona_nasal', cat:'respiratorio', acc:'PART', route:'Uso Nasal',
+  name:'Mometasona nasal 50 mcg/jato', ind:'Rinite alérgica — menor biodisponibilidade sistêmica · ≥ 2 anos',
+  min:{a:2, txt:'≥ 2 anos'},
+  calc:(w,a)=>({ title:'Mometasona 50 mcg/jato — spray nasal',
+    inst:`Aplicar ${a<12?'1 jato':'2 jatos'} em cada narina 1x/dia por 30–60 dias.` }) });
+
+// ---------------- CORTICOIDES ----------------
+D({ id:'prednisolona', cat:'corticoides', acc:'SUS', route:'Uso Oral',
+  name:'Prednisolona 3 mg/mL (fosfato sódico)', ind:'Crise de asma, crupe (alternativa), urticária intensa',
+  calc:(w,a)=>{ const mx = a<2?20:(a<6?30:40); const mg=cap(w*1.5,mx); return { title:'Prednisolona 3 mg/mL — solução oral',
+    inst:`Dar ${nf(mg/3,1)} mL VO 1x/dia pela manhã por 3–5 dias (${nf(mg,0)} mg; 1–2 mg/kg/dia).\n• Máx. GINA: < 2 a 20 mg; 2–5 a 30 mg; 6–11 a 40 mg; adolescentes 50 mg.\n• Sem necessidade de desmame se ≤ 7 dias.` }; } });
+
+D({ id:'prednisolona_gotas', cat:'corticoides', acc:'PART', route:'Uso Oral',
+  name:'Prednisolona gotas 11 mg/mL', ind:'Mesma indicação, em gotas',
+  calc:(w,a)=>{ const mx = a<2?20:(a<6?30:40); const mg=cap(w*1.1,mx); return { title:'Prednisolona 11 mg/mL — gotas (1 gota ≈ 0,55 mg)',
+    inst:`Dar ${gts(mg/0.55)} gotas VO 1x/dia por 3–5 dias (≈ ${nf(mg,0)} mg; 2 gotas/kg ≈ 1,1 mg/kg).` }; } });
+
+D({ id:'prednisona', cat:'corticoides', acc:'SUS', route:'Uso Oral',
+  name:'Prednisona 5 mg / 20 mg comprimido', ind:'Para quem engole comprimido',
+  calc:(w)=>{ const mg=cap(half(w*1/5)*5,40); return { title:'Prednisona — comprimido',
+    inst:`Dar ${nf(mg,0)} mg VO 1x/dia pela manhã por 3–5 dias (≈ 1 mg/kg; até 2 mg/kg, máx. 40–60 mg).` }; } });
+
+D({ id:'dexa_vo', cat:'corticoides', acc:'SUS', route:'Uso Oral',
+  name:'Dexametasona elixir 0,1 mg/mL', ind:'Crupe (dose única), anti-inflamatório',
+  calc:(w)=>{ const mg=cap(w*0.6,16), mgL=cap(w*0.15,16); return { title:'Dexametasona 0,1 mg/mL — elixir',
+    inst:`Crupe: dar ${nf(mg*10,0)} mL VO dose única (0,6 mg/kg; máx. 16 mg).\n• Crupe leve: 0,15 mg/kg = ${nf(mgL*10,0)} mL é suficiente.\n• Volume alto: pode usar a ampola 4 mg/mL por VO.` }; } });
+
+D({ id:'dexa_inj', cat:'corticoides', acc:'SUS', route:'Uso Intramuscular',
+  name:'Dexametasona 4 mg/mL injetável', ind:'Crupe (IM/EV/VO), meningite bacteriana (adjuvante)',
+  calc:(w)=>{ const mg=cap(w*0.6,16), mgM=cap(w*0.15,10); return { title:'Dexametasona 4 mg/mL — ampola',
+    inst:`Crupe: ${nf(mg/4,2)} mL (${nf(mg,1)} mg = 0,6 mg/kg; máx. 16 mg) IM ou EV dose única.\nMeningite (> 6 semanas, Hib/pneumococo): ${nf(mgM/4,2)} mL (0,15 mg/kg) EV 6/6 h por 2–4 dias, antes ou com a 1ª dose de antibiótico.` }; },
+  v:{ crupe:(w)=>({ title:'Dexametasona 4 mg/mL — crupe',
+      inst:`Fazer ${nf(cap(w*0.6,16)/4,2)} mL (${nf(cap(w*0.6,16),1)} mg = 0,6 mg/kg; máx. 16 mg) IM, EV ou VO, dose única.` }) } });
+
+D({ id:'hidrocortisona_asma', cat:'corticoides', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Hidrocortisona 100/500 mg (asma, anafilaxia)', ind:'Crise grave sem via oral',
+  calc:(w)=>{ const mg=cap(w*5,100); return { title:'Hidrocortisona — EV',
+    inst:`Reconstituir 100 mg em 2 mL AD (50 mg/mL).\n• Fazer ${nf(mg/50,1)} mL (${nf(mg,0)} mg = 5 mg/kg; máx. 100 mg) EV de 6/6 h.\n• Ataque opcional na asma grave: 10 mg/kg (máx. 250 mg).` }; } });
+
+D({ id:'metilpred', cat:'corticoides', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Metilprednisolona 125/500 mg', ind:'Asma grave, anafilaxia refratária',
+  calc:(w)=>{ const a1=cap(w*2,60), m=cap(w*1,60); return { title:'Metilprednisolona — EV',
+    inst:`Ataque: ${nf(a1,0)} mg EV (2 mg/kg; máx. 60 mg).\nManutenção: ${nf(m,0)} mg EV de 12/12 h (1 mg/kg/dose) ou 0,5 mg/kg 6/6 h (máx. 120 mg/dia).` }; } });
+
+// ---------------- ANTI-HISTAMÍNICOS ----------------
+D({ id:'loratadina', cat:'antihistaminicos', acc:'SUS', route:'Uso Oral',
+  name:'Loratadina 1 mg/mL xarope', ind:'Rinite, urticária, prurido — 2ª geração disponível no SUS · ≥ 2 anos',
+  min:{a:2, txt:'Bula: ≥ 2 anos'},
+  calc:(w)=>{ const ml = w<=30?5:10; return { title:'Loratadina 1 mg/mL — xarope',
+    inst:`Dar ${ml} mL VO 1x/dia (${w<=30?'≤ 30 kg: 5 mg':'> 30 kg: 10 mg'}) por 5–14 dias ou enquanto houver sintomas.` }; } });
+
+D({ id:'dexclorfeniramina', cat:'antihistaminicos', acc:'SUS', route:'Uso Oral',
+  name:'Dexclorfeniramina 2 mg/5 mL', ind:'Prurido/urticária quando sedação é desejável · ≥ 2 anos',
+  min:{a:2, txt:'Contraindicado < 2 anos'},
+  calc:(w,a)=>{ const ml = a<6?1.25:(a<12?2.5:5); return { title:'Dexclorfeniramina 0,4 mg/mL — solução oral',
+    inst:`Dar ${nf(ml,2)} mL VO de 8/8 h por 5 dias (2–6 a: 1,25 mL; 6–12 a: 2,5 mL; > 12 a: 5 mL).\n• 1ª geração: sonolência; evitar em convulsão e asma descompensada.` }; } });
+
+D({ id:'desloratadina', cat:'antihistaminicos', acc:'PART', route:'Uso Oral',
+  name:'Desloratadina 0,5 mg/mL', ind:'Rinite/urticária · ≥ 6 meses',
+  min:{a:0.5, txt:'≥ 6 meses'},
+  calc:(w,a)=>{ const ml = a<1?2:(a<6?2.5:(a<12?5:10)); return { title:'Desloratadina 0,5 mg/mL — xarope',
+    inst:`Dar ${nf(ml,1)} mL VO 1x/dia (6–11 m: 2 mL; 1–5 a: 2,5 mL; 6–11 a: 5 mL; ≥ 12 a: 10 mL).` }; } });
+
+D({ id:'cetirizina', cat:'antihistaminicos', acc:'PART', route:'Uso Oral',
+  name:'Cetirizina 1 mg/mL', ind:'Urticária aguda (leve vantagem), rinite · ≥ 6 meses',
+  min:{a:0.5, txt:'≥ 6 meses (FDA); bula BR ≥ 2 anos'},
+  calc:(w,a)=>{ const t = a<2?'2,5 mL 1x/dia (12–23 m pode 12/12 h)':(a<6?'2,5 mL de 12/12 h':'5 mL de 12/12 h (ou 10 mL 1x/dia)');
+    return { title:'Cetirizina 1 mg/mL — solução oral', inst:`Dar ${t} VO enquanto houver sintomas.` }; } });
+
+D({ id:'hidroxizina', cat:'antihistaminicos', acc:'MISTO', route:'Uso Oral',
+  name:'Hidroxizina 2 mg/mL', ind:'Prurido intenso (varicela, dermatite) · ≥ 6 meses',
+  min:{a:0.5, txt:'≥ 6 meses'},
+  calc:(w)=>{ const mg=cap(w*0.5,25); return { title:'Hidroxizina 2 mg/mL (10 mg/5 mL) — xarope',
+    inst:`Dar ${nf(mg/2,1)} mL VO de 8/8 h (${nf(mg,1)} mg = 0,5 mg/kg/dose; máx. 25 mg/dose) por 5 dias.\n• Sedativo; consta em algumas REMUMEs.` }; } });
+
+D({ id:'prometazina_inj', cat:'antihistaminicos', acc:'SUSH', route:'Uso Intramuscular',
+  name:'Prometazina 25 mg/mL (IM)', ind:'Reação alérgica no PS · ⚠ proibido < 2 anos',
+  min:{a:2, txt:'Contraindicado < 2 anos (depressão respiratória fatal — FDA)'},
+  calc:(w)=>{ const mg=cap(w*0.5,25); return { title:'Prometazina 25 mg/mL — ampola',
+    inst:`Aplicar ${nf(mg/25,2)} mL (${nf(mg,1)} mg = 0,5 mg/kg; máx. 25 mg) IM profundo.\n• Não é tratamento da anafilaxia (adrenalina primeiro).` }; } });
+
+D({ id:'difenidramina_inj', cat:'antihistaminicos', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Difenidramina 50 mg/mL', ind:'Urticária/reação alérgica, distonia por bromoprida/metoclopramida',
+  calc:(w)=>{ const mg=cap(w*1,50); return { title:'Difenidramina 50 mg/mL — ampola',
+    inst:`Fazer ${nf(mg/50,2)} mL (${nf(mg,0)} mg = 1 mg/kg; máx. 50 mg) EV lento ou IM.` }; } });
+
+// ---------------- TGI, DIARREIA & CONSTIPAÇÃO ----------------
+D({ id:'sro', cat:'tgi', acc:'SUS', route:'Uso Oral',
+  name:'Sais de reidratação oral (osmolaridade reduzida)', ind:'Diarreia/vômitos — Plano A (prevenção) e Plano B (desidratação)',
+  calc:(w,a)=>{ const pA = a<1?'50–100 mL':(a<10?'100–200 mL':'à vontade'); return { title:'Sais de reidratação oral — envelope',
+    inst:`Diluir 1 envelope em 1 L de água filtrada/fervida (usar em até 24 h).\n• Plano A: oferecer ${pA} após cada evacuação líquida ou vômito.\n• Plano B (com desidratação): ${nf(w*50,0)}–${nf(w*100,0)} mL em 4–6 h (50–100 mL/kg) na unidade, em pequenas alíquotas a cada 1–2 min; reavaliar.` }; },
+  v:{ planoA:(w,a)=>({ title:'Sais de reidratação oral — Plano A (domicílio)',
+      inst:`Diluir 1 envelope em 1 L de água filtrada/fervida.\n• Oferecer ${a<1?'50–100 mL':(a<10?'100–200 mL':'à vontade')} após cada evacuação líquida ou vômito, em pequenos goles.\n• Manter aleitamento e alimentação habitual.` }),
+      planoB:(w)=>({ title:'Sais de reidratação oral — Plano B (na unidade)',
+      inst:`Oferecer ${nf(w*50,0)}–${nf(w*100,0)} mL (50–100 mL/kg) em 4–6 h, em colheradas/goles a cada 1–2 min.\n• Se vômitos: aguardar 10 min e recomeçar mais devagar; considerar ondansetrona.\n• Reavaliar a cada hora; ao hidratar, passar ao Plano A.` }) } });
+
+D({ id:'zinco', cat:'tgi', acc:'SUS', route:'Uso Oral',
+  name:'Sulfato de zinco 4 mg/mL (xarope)', ind:'Diarreia aguda e persistente (OMS/UNICEF, MS)',
+  calc:(w,a)=>{ const mg = a<0.5?10:20; return { title:'Sulfato de zinco 4 mg/mL — xarope',
+    inst:`Dar ${nf(mg/4,1)} mL VO 1x/dia por 10–14 dias (${mg} mg/dia; < 6 m: 10 mg; ≥ 6 m: 20 mg).\n• OMS 2024 sugere dose menor (5 mg/dia = 1,25 mL), com eficácia semelhante e menos vômitos.` }; } });
+
+D({ id:'ondansetrona_vo', cat:'tgi', acc:'SUS', route:'Uso Oral',
+  name:'Ondansetrona 4 mg orodispersível', ind:'Vômitos na GECA para viabilizar TRO · ≥ 6 meses / ≥ 8 kg',
+  min:{a:0.5, w:8, txt:'≥ 6 meses e ≥ 8 kg'},
+  calc:(w)=>{ const t = w<15?'2 mg (½ comprimido)':(w<30?'4 mg (1 comprimido)':'8 mg (2 comprimidos)'); return { title:'Ondansetrona 4 mg — comprimido orodispersível',
+    inst:`Dar ${t} sobre a língua, dose única no PS (≈ 0,15 mg/kg); pode repetir 8/8 h se vômitos (máx. 2–3 dias).\n• Aguardar 15–30 min e reiniciar SRO. Atenção a QT longo.` }; } });
+
+D({ id:'ondansetrona_ev', cat:'tgi', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Ondansetrona 2 mg/mL (EV)', ind:'Vômitos sem via oral',
+  calc:(w)=>{ const mg=cap(w*0.15,4); return { title:'Ondansetrona 2 mg/mL — ampola',
+    inst:`Fazer ${nf(mg/2,2)} mL (${nf(mg,1)} mg = 0,15 mg/kg; máx. 4 mg) EV lento, diluído em 20–50 mL SF, em 15 min; até 8/8 h.` }; } });
+
+D({ id:'bromoprida', cat:'tgi', acc:'PART', route:'Uso Oral',
+  name:'Bromoprida gotas 4 mg/mL', ind:'Náuseas · ≥ 1 ano · preferir ondansetrona (extrapiramidal)',
+  min:{a:1, txt:'≥ 1 ano'},
+  calc:(w)=>{ const g=gts(w,58); return { title:'Bromoprida 4 mg/mL — gotas',
+    inst:`Dar ${g} gotas VO de 8/8 h se náuseas/vômitos (1 gota/kg; 0,5–1 mg/kg/dia; máx. 58 gotas).\n• Risco de distonia aguda — se ocorrer: difenidramina/biperideno.` }; } });
+
+D({ id:'racecadotrila', cat:'tgi', acc:'PART', route:'Uso Oral',
+  name:'Racecadotrila sachê 10 / 30 mg', ind:'Antissecretor na diarreia aguda (ESPGHAN: pode considerar) · ≥ 3 meses',
+  min:{a:0.25, txt:'≥ 3 meses'},
+  calc:(w)=>{ const t = w<9?'10 mg (1 sachê infantil)':(w<13?'20 mg (2 sachês infantis)':(w<27?'30 mg (1 sachê criança)':'60 mg (2 sachês criança)'));
+    return { title:'Racecadotrila — sachê', inst:`Dar ${t} VO de 8/8 h até 2 evacuações normais (máx. 7 dias) (≈ 1,5 mg/kg/dose).\n• Adjuvante: não substitui a reidratação.` }; } });
+
+D({ id:'sboulardii', cat:'tgi', acc:'PART', route:'Uso Oral',
+  name:'Saccharomyces boulardii 200–250 mg', ind:'Probiótico na GECA (ESPGHAN 2023: considerar; OMS 2024: não sugere)',
+  calc:()=>({ title:'Saccharomyces boulardii — sachê/cápsula',
+    inst:`Dar 250 mg (1 sachê) VO de 12/12 h por 5–7 dias (250–750 mg/dia).\n• Evitar em imunossuprimidos e com cateter venoso central.` }) });
+
+D({ id:'lactulose', cat:'tgi', acc:'SUS', route:'Uso Oral',
+  name:'Lactulose 667 mg/mL', ind:'Constipação funcional — opção do SUS (liberada para lactentes)',
+  calc:(w)=>{ const ml=cap(w*0.5,30); return { title:'Lactulose 667 mg/mL — xarope',
+    inst:`Dar ${nf(ml,1)} mL VO de 12/12 h (1 mL/kg/dia; faixa 1–2 mL/kg/dia; máx. 60 mL/dia).\n• Ajustar para 1–2 evacuações pastosas/dia. Pode causar gases/cólica.` }; } });
+
+D({ id:'peg', cat:'tgi', acc:'PART', route:'Uso Oral',
+  name:'Polietilenoglicol 3350/4000 (pó)', ind:'Constipação funcional — 1ª linha ESPGHAN/NASPGHAN',
+  min:{a:0.5, txt:'Bula ≥ 6 meses (estudos ≥ 1 ano mais robustos)'},
+  calc:(w)=>{ const m=cap(w*0.6,17), d=cap(w*1.5,100); return { title:'PEG 3350/4000 — pó para solução oral',
+    inst:`Manutenção: ${nf(m,1)} g VO 1x/dia (0,4–0,8 g/kg/dia; máx. 17 g/dia) diluído em 120–240 mL de água/suco.\n• Desimpactação: ${nf(d,0)} g/dia (1–1,5 g/kg/dia) por 3–6 dias.\n• Ajustar para 1–2 evacuações pastosas/dia; manter ≥ 2 meses.` }; } });
+
+D({ id:'oleo_mineral', cat:'tgi', acc:'SUS', route:'Uso Oral',
+  name:'Óleo mineral', ind:'Constipação · ≥ 1 ano, sem risco de aspiração',
+  min:{a:1, txt:'Não usar < 1 ano, disfagia, DRGE grave ou neuropatas (pneumonia lipoídica)'},
+  calc:(w)=>{ const ml=cap(w*1,30); return { title:'Óleo mineral — uso oral',
+    inst:`Dar ${nf(ml,0)} mL VO 1x/dia, longe das refeições (1–3 mL/kg/dia; máx. 30 mL/dia de manutenção).\n• Nunca deitar a criança logo após (risco de aspiração).` }; } });
+
+D({ id:'omeprazol', cat:'tgi', acc:'SUS', route:'Uso Oral',
+  name:'Omeprazol 10 / 20 mg cápsula', ind:'DRGE com esofagite, úlcera, H. pylori',
+  calc:(w)=>{ const mg = w<10?5:(w<20?10:20); return { title:'Omeprazol — cápsula',
+    inst:`Dar ${mg} mg VO 1x/dia, 30 min antes do café (≈ 1 mg/kg/dia).\n• Para doses fracionadas: abrir a cápsula e misturar os grânulos em alimento ácido (não triturar).` }; } });
+
+// ---------------- ANTIPARASITÁRIOS & ECTOPARASITOSES ----------------
+D({ id:'albendazol', cat:'antiparasitarios', acc:'SUS', route:'Uso Oral',
+  name:'Albendazol 400 mg (40 mg/mL ou cp mastigável)', ind:'Ascaridíase, ancilostomíase, tricuríase, oxiurose; larva migrans',
+  min:{a:1, txt:'1–2 anos: 200 mg (5 mL); ≥ 2 anos: 400 mg'},
+  calc:(w,a)=>{ const d = a<2?'5 mL (200 mg)':'10 mL (400 mg) ou 1 comprimido mastigável'; return { title:'Albendazol 40 mg/mL — suspensão oral',
+    inst:`Dar ${d} VO em dose única.\n• Oxiurose: repetir em 2 semanas e tratar contactantes.\n• Larva migrans: 400 mg 1x/dia por 3 dias. Estrongiloidíase/giardíase: 400 mg 1x/dia por 5 dias (ivermectina/metronidazol são preferíveis).` }; },
+  v:{ larva:(w,a)=>({ title:'Albendazol 400 mg — larva migrans',
+      inst:`Dar ${a<2?'200 mg (5 mL)':'400 mg (10 mL ou 1 cp)'} VO 1x/dia por 3 dias (até 7 dias se extensa).` }) } });
+
+D({ id:'mebendazol', cat:'antiparasitarios', acc:'MISTO', route:'Uso Oral',
+  name:'Mebendazol 100 mg/5 mL', ind:'Helmintíases, oxiurose · ≥ 1 ano',
+  min:{a:1, txt:'≥ 1 ano'},
+  calc:()=>({ title:'Mebendazol 100 mg/5 mL — suspensão oral',
+    inst:`Dar 5 mL (100 mg) VO de 12/12 h por 3 dias; repetir em 2 semanas.\n• Oxiurose: 5 mL dose única, repetir em 2 semanas.` }) });
+
+D({ id:'ivermectina', cat:'antiparasitarios', acc:'SUS', route:'Uso Oral',
+  name:'Ivermectina 6 mg comprimido', ind:'Escabiose, pediculose, estrongiloidíase, larva migrans · ≥ 15 kg',
+  min:{w:15, txt:'Bula: ≥ 15 kg (e ≥ 5 anos)'},
+  calc:(w)=>{ const c = w<15?0:(w<25?0.5:(w<36?1:(w<51?1.5:(w<66?2:(w<80?2.5:3)))));
+    return { title:'Ivermectina 6 mg — comprimido', inst:`Dar ${c? nf(c,1)+' comprimido(s)':'— (peso < 15 kg: não indicada)'} VO em dose única, em jejum (≈ 200 mcg/kg).\n• Escabiose/pediculose: repetir em 7–14 dias. Tratar contactantes.` }; } });
+
+D({ id:'nitazoxanida', cat:'antiparasitarios', acc:'PART', route:'Uso Oral',
+  name:'Nitazoxanida 20 mg/mL', ind:'Giardíase, criptosporidiose, amebíase · ≥ 1 ano',
+  min:{a:1, txt:'≥ 1 ano'},
+  calc:(w,a)=>{ const t = a<4?'5 mL (100 mg)':(a<12?'10 mL (200 mg)':'500 mg (comprimido ou 25 mL)'); return { title:'Nitazoxanida 20 mg/mL — suspensão oral',
+    inst:`Dar ${t} VO de 12/12 h por 3 dias, com alimento.` }; } });
+
+D({ id:'secnidazol', cat:'antiparasitarios', acc:'PART', route:'Uso Oral',
+  name:'Secnidazol 30 mg/kg (suspensão)', ind:'Giardíase/amebíase em dose única',
+  calc:(w)=>{ const mg=cap(w*30,2000); return { title:'Secnidazol — dose única',
+    inst:`Dar ${nf(mg,0)} mg VO (30 mg/kg; máx. 2 g) em dose única, após o jantar.` }; } });
+
+D({ id:'praziquantel', cat:'antiparasitarios', acc:'SUSE', route:'Uso Oral',
+  name:'Praziquantel 600 mg', ind:'Esquistossomose (Programa MS), teníase',
+  calc:(w)=>{ const mg=w*60, mt=w*10; return { title:'Praziquantel 600 mg — comprimido',
+    inst:`Esquistossomose (criança): ${nf(mg,0)} mg VO dose única (60 mg/kg) → ${nf(half(mg/600),1)} comprimido(s).\nTeníase: ${nf(mt,0)} mg VO dose única (10 mg/kg).` }; } });
+
+D({ id:'permetrina5', cat:'antiparasitarios', acc:'SUS', route:'Uso Tópico',
+  name:'Permetrina 5% loção', ind:'Escabiose — 1ª escolha · ≥ 2 meses',
+  min:{a:1/6, txt:'≥ 2 meses (< 2 meses: enxofre precipitado 5–10%)'},
+  calc:(w,a)=>({ title:'Permetrina 5% — loção',
+    inst:`Aplicar à noite em todo o corpo ${a<2?'(incluindo couro cabeludo, face e orelhas, poupando olhos e boca)':'do pescoço aos pés'}, inclusive entre dedos, sob unhas e genitais.\n• Retirar com banho após 8–14 h. Repetir em 7 dias.\n• Tratar todos os contactantes; lavar roupas de cama/uso a ≥ 60 °C.` }) });
+
+D({ id:'permetrina1', cat:'antiparasitarios', acc:'SUS', route:'Uso Tópico',
+  name:'Permetrina 1% loção/xampu', ind:'Pediculose · ≥ 2 meses',
+  min:{a:1/6, txt:'≥ 2 meses'},
+  calc:()=>({ title:'Permetrina 1% — loção capilar',
+    inst:`Lavar o cabelo, secar com toalha e aplicar até encharcar couro cabeludo e cabelo; deixar 10 min e enxaguar.\n• Passar pente fino. Repetir em 7–10 dias.` }) });
+
+D({ id:'dimeticona4', cat:'antiparasitarios', acc:'PART', route:'Uso Tópico',
+  name:'Dimeticona 4% loção', ind:'Pediculose (mecanismo físico, sem resistência) · ≥ 6 meses',
+  min:{a:0.5, txt:'≥ 6 meses'},
+  calc:()=>({ title:'Dimeticona 4% — loção',
+    inst:`Aplicar no cabelo seco até cobrir todo o couro cabeludo; deixar 8 h (à noite) e lavar com xampu.\n• Repetir em 7 dias. Pente fino.` }) });
+
+D({ id:'enxofre', cat:'antiparasitarios', acc:'PART', route:'Uso Tópico',
+  name:'Enxofre precipitado 5–10% em vaselina (manipulado)', ind:'Escabiose em < 2 meses e gestantes',
+  calc:()=>({ title:'Enxofre precipitado 5% em vaselina — manipulado',
+    inst:`Aplicar em todo o corpo à noite por 3 noites consecutivas; banho 24 h após a última aplicação.\n• Repetir o ciclo após 1 semana se necessário.` }) });
+
+// ---------------- ANTIVIRAIS & ANTIFÚNGICOS ----------------
+D({ id:'oseltamivir', cat:'antiinfec', acc:'SUSE', route:'Uso Oral',
+  name:'Oseltamivir 30 / 45 / 75 mg', ind:'Influenza: SRAG ou SG com fator de risco (< 5 anos é grupo de risco) — iniciar ≤ 48 h',
+  calc:(w,a)=>{ let mg, txt;
+    if (a < 0.75) { mg = w*3; txt = `${nf(mg,1)} mg (3 mg/kg)`; }
+    else if (a < 1) { mg = w*3.5; txt = `${nf(mg,1)} mg (3,5 mg/kg)`; }
+    else { mg = w<=15?30:(w<=23?45:(w<=40?60:75)); txt = `${mg} mg`; }
+    return { title:'Oseltamivir — cápsula (preparo 15 mg/mL)',
+    inst:`Dar ${txt} VO de 12/12 h por 5 dias.\n• Preparo: abrir cápsula de 75 mg em 5 mL de água (15 mg/mL) → ${nf(mg/15,1)} mL por dose.\n• Iniciar mesmo após 48 h em SRAG/grupo de risco. Disponível nas UBS (Componente Estratégico).` }; } });
+
+D({ id:'aciclovir_vo', cat:'antiinfec', acc:'MISTO', route:'Uso Oral',
+  name:'Aciclovir 200 mg cp (SUS) / suspensão 200 mg/5 mL', ind:'Varicela (≥ 12 a, risco), gengivoestomatite herpética',
+  calc:(w)=>{ const mg=cap(w*20,800), mh=cap(w*15,200); return { title:'Aciclovir — via oral',
+    inst:`Varicela: ${nf(mg,0)} mg VO 4x/dia por 5 dias (20 mg/kg/dose; máx. 800 mg/dose) — iniciar em até 24 h do exantema.\nGengivoestomatite herpética: ${nf(mh,0)} mg VO 5x/dia por 7 dias (15 mg/kg/dose; máx. 200 mg).\n• SUS: comprimido 200 mg; suspensão é particular.` }; },
+  v:{ varicela:(w)=>({ title:'Aciclovir — varicela',
+      inst:`Dar ${nf(cap(w*20,800),0)} mg VO 4x/dia por 5 dias (20 mg/kg/dose; máx. 800 mg/dose), iniciar ≤ 24 h do exantema.` }) } });
+
+D({ id:'nistatina_oral', cat:'antiinfec', acc:'SUS', route:'Uso Oral',
+  name:'Nistatina suspensão 100.000 UI/mL', ind:'Candidíase oral (monilíase)',
+  calc:(w,a)=>{ const t = a<1?'1 mL em cada lado da boca (2 mL)':'2–3 mL em cada lado da boca (4–6 mL)'; return { title:'Nistatina 100.000 UI/mL — suspensão oral',
+    inst:`Aplicar ${t} de 6/6 h, com gaze/seringa nas lesões, por 7–14 dias (manter 48 h após desaparecer).\n• Tratar mamilos/bicos e ferver chupetas.` }; } });
+
+D({ id:'miconazol_gel', cat:'antiinfec', acc:'PART', route:'Uso Oral',
+  name:'Miconazol gel oral 20 mg/g', ind:'Candidíase oral — maior taxa de cura que nistatina · ≥ 4 meses',
+  min:{a:0.33, txt:'≥ 4 meses (risco de engasgo)'},
+  calc:(w,a)=>({ title:'Miconazol 20 mg/g — gel oral',
+    inst:`Aplicar ${a<2?'1,25 mL (¼ da colher-medida)':'2,5 mL (½ colher-medida)'} 4x/dia nas lesões, por 7 dias após a cura (em pequenas porções, longe da garganta).` }) });
+
+D({ id:'fluconazol', cat:'antiinfec', acc:'SUS', route:'Uso Oral',
+  name:'Fluconazol 10 mg/mL (suspensão) / 150 mg', ind:'Candidíase orofaríngea refratária, esofagite, vulvovaginal (adolescente)',
+  calc:(w)=>{ const d1=cap(w*6,400), dm=cap(w*3,200); return { title:'Fluconazol 10 mg/mL — suspensão oral',
+    inst:`D1: ${nf(d1/10,1)} mL (${nf(d1,0)} mg = 6 mg/kg); depois ${nf(dm/10,1)} mL (3 mg/kg) 1x/dia por 7–14 dias.\n• Vulvovaginal (adolescente): 150 mg VO dose única.` }; } });
+
+D({ id:'griseofulvina', cat:'antiinfec', acc:'MISTO', route:'Uso Oral',
+  name:'Griseofulvina 500 mg', ind:'Tinea capitis · ≥ 2 anos',
+  min:{a:2, txt:'≥ 2 anos'},
+  calc:(w)=>{ const mg=cap(w*20,1000); return { title:'Griseofulvina — micronizada',
+    inst:`Dar ${nf(mg,0)} mg VO 1x/dia com alimento gorduroso (20–25 mg/kg/dia; máx. 1 g) por 6–8 semanas.` }; } });
+
+D({ id:'terbinafina', cat:'antiinfec', acc:'PART', route:'Uso Oral',
+  name:'Terbinafina 250 mg', ind:'Tinea capitis (Trichophyton) — ciclo mais curto',
+  calc:(w)=>{ const t = w<20?'62,5 mg (¼ cp)':(w<=40?'125 mg (½ cp)':'250 mg (1 cp)'); return { title:'Terbinafina 250 mg — comprimido',
+    inst:`Dar ${t} VO 1x/dia por 4–6 semanas.` }; } });
+
+// ---------------- PELE, OLHOS & OUVIDOS ----------------
+D({ id:'mupirocina', cat:'topicos', acc:'PART', route:'Uso Tópico',
+  name:'Mupirocina 2% pomada', ind:'Impetigo localizado — 1ª escolha tópica',
+  calc:()=>({ title:'Mupirocina 20 mg/g — pomada',
+    inst:`Limpar com água e sabão, remover crostas e aplicar fina camada nas lesões de 8/8 h por 5–7 dias.` }) });
+
+D({ id:'neo_bacitracina', cat:'topicos', acc:'MISTO', route:'Uso Tópico',
+  name:'Neomicina + bacitracina pomada', ind:'Opção de baixo custo para impetigo muito localizado (menos eficaz; sensibilização)',
+  calc:()=>({ title:'Neomicina + bacitracina — pomada',
+    inst:`Aplicar nas lesões limpas de 8/8 h por 5–7 dias.\n• Se > 3 lesões, lesões extensas ou sem melhora em 48–72 h: antibiótico VO.` }) });
+
+D({ id:'miconazol_creme', cat:'topicos', acc:'SUS', route:'Uso Tópico',
+  name:'Miconazol 2% creme', ind:'Candidíase cutânea, dermatite de fraldas com candidíase, tinea corporis',
+  calc:()=>({ title:'Nitrato de miconazol 20 mg/g — creme',
+    inst:`Aplicar fina camada na área afetada de 12/12 h por 2 semanas (manter 1 semana após melhora).\n• Fralda: aplicar antes da pasta de barreira.` }) });
+
+D({ id:'nistatina_zinco', cat:'topicos', acc:'PART', route:'Uso Tópico',
+  name:'Nistatina + óxido de zinco pomada', ind:'Dermatite de fraldas com suspeita de Candida',
+  calc:()=>({ title:'Nistatina 100.000 UI/g + óxido de zinco 200 mg/g — pomada',
+    inst:`Aplicar camada generosa a cada troca de fralda (4–6x/dia) por 7–14 dias.\n• Trocas frequentes, períodos sem fralda, limpar só com água/algodão.` }) });
+
+D({ id:'dexa_creme', cat:'topicos', acc:'SUS', route:'Uso Tópico',
+  name:'Dexametasona 0,1% creme', ind:'Dermatite atópica/contato leve a moderada (opção SUS)',
+  calc:()=>({ title:'Dexametasona 1 mg/g — creme dermatológico',
+    inst:`Aplicar fina camada nas lesões 1–2x/dia por até 7 dias; evitar face, dobras e área da fralda.\n• Hidratar a pele 2–3x/dia.` }) });
+
+D({ id:'mometasona_creme', cat:'topicos', acc:'PART', route:'Uso Tópico',
+  name:'Mometasona 0,1% creme', ind:'Dermatite atópica (corpo) — potência média, 1x/dia',
+  calc:()=>({ title:'Furoato de mometasona 1 mg/g — creme',
+    inst:`Aplicar fina camada nas lesões 1x/dia por 5–7 dias; depois manutenção 2x/semana (proativa) se recidiva.\n• Face/dobras: preferir hidrocortisona 1% ou desonida.` }) });
+
+D({ id:'hidrocortisona_creme', cat:'topicos', acc:'PART', route:'Uso Tópico',
+  name:'Hidrocortisona 1% creme', ind:'Dermatite em face, dobras e área de fralda',
+  calc:()=>({ title:'Hidrocortisona 10 mg/g — creme',
+    inst:`Aplicar fina camada 2x/dia por até 7 dias (< 4 anos: máx. 3 semanas contínuas).` }) });
+
+D({ id:'sulfadiazina', cat:'topicos', acc:'SUS', route:'Uso Tópico',
+  name:'Sulfadiazina de prata 1% creme', ind:'Queimadura de 2º grau ambulatorial · ≥ 2 meses',
+  min:{a:1/6, txt:'Evitar < 2 meses (kernicterus)'},
+  calc:()=>({ title:'Sulfadiazina de prata 10 mg/g — creme',
+    inst:`Limpar com SF 0,9%, aplicar camada de 3–5 mm e cobrir com gaze 1–2x/dia até epitelização.\n• 1º grau: só hidratante e analgesia.` }) });
+
+D({ id:'cetoconazol_xampu', cat:'topicos', acc:'SUS', route:'Uso Tópico',
+  name:'Cetoconazol xampu 2%', ind:'Dermatite seborreica, pitiríase versicolor, adjuvante na tinea capitis',
+  calc:()=>({ title:'Cetoconazol 20 mg/mL — xampu',
+    inst:`Aplicar no couro cabeludo/lesões, deixar 3–5 min e enxaguar, 2–3x/semana por 2–4 semanas.\n• Crosta láctea: amolecer antes com óleo vegetal.` }) });
+
+D({ id:'tobramicina_col', cat:'topicos', acc:'PART', route:'Uso Oftálmico',
+  name:'Tobramicina 0,3% colírio', ind:'Conjuntivite bacteriana',
+  calc:()=>({ title:'Tobramicina 3 mg/mL — colírio',
+    inst:`Pingar 1–2 gotas em cada olho de 4/4 h por 2 dias, depois de 6/6 h até completar 7 dias.\n• Limpar secreção com SF 0,9% antes. < 1 mês/conjuntivite neonatal: avaliar com oftalmologia.` }) });
+
+D({ id:'moxi_col', cat:'topicos', acc:'PART', route:'Uso Oftálmico',
+  name:'Moxifloxacino 0,5% colírio', ind:'Conjuntivite bacteriana — espectro amplo, 3x/dia · ≥ 1 ano',
+  calc:()=>({ title:'Moxifloxacino 5 mg/mL — colírio',
+    inst:`Pingar 1 gota em cada olho afetado de 8/8 h por 7 dias.` }) });
+
+D({ id:'cipro_hidro_oto', cat:'topicos', acc:'PART', route:'Uso Otológico',
+  name:'Ciprofloxacino + hidrocortisona otológico', ind:'Otite externa aguda; otorreia por tubo de ventilação · ≥ 1 ano',
+  calc:()=>({ title:'Ciprofloxacino 0,2% + hidrocortisona 1% — solução otológica',
+    inst:`Pingar 3 gotas no ouvido afetado de 12/12 h por 7 dias.\n• Não molhar o ouvido no período. Analgesia VO associada.` }) });
+
+// ---------------- PUERICULTURA & PREVENÇÃO ----------------
+D({ id:'ferro_prof', cat:'puericultura', acc:'SUS', route:'Uso Oral',
+  name:'Sulfato ferroso 25 mg/mL Fe (profilaxia)', ind:'Profilaxia de anemia — SBP 2021 / PNSF (MS)',
+  calc:(w)=>{ const mg=cap(w*1,15); return { title:'Sulfato ferroso 25 mg/mL de ferro elementar — gotas',
+    inst:`Dar ${nf(mg,0)} mg de ferro elementar/dia = ${nf(mg/25,2)} mL (≈ ${gts(mg)} gotas; 1 mg/kg/dia) VO 1x/dia, 30 min antes da refeição, com suco cítrico.\n• SBP: termo AIG — dos 90 dias (fator de risco) ou 180 dias (sem risco) até 24 meses. Baixo peso/prematuro: 2–4 mg/kg/dia a partir de 30 dias por 1 ano, depois 1 mg/kg/dia.\n• Gotas/mL varia (≈ 1–1,25 mg Fe/gota) — conferir rótulo.` }; } });
+
+D({ id:'ferro_trat', cat:'puericultura', acc:'SUS', route:'Uso Oral',
+  name:'Sulfato ferroso 25 mg/mL Fe (tratamento)', ind:'Anemia ferropriva — 3 a 6 mg/kg/dia (SBP)',
+  calc:(w)=>{ const mg=cap(w*4,120); return { title:'Sulfato ferroso 25 mg/mL — tratamento',
+    inst:`Dar ${nf(mg/25,1)} mL (${nf(mg,0)} mg Fe = 4 mg/kg/dia; faixa 3–6) VO 1x/dia ou dividido 12/12 h, 30 min antes das refeições, longe de leite.\n• Hemograma + reticulócitos em 30–45 dias (esperado ↑ Hb ≥ 1 g/dL). Manter até repor estoques (≈ 6 meses / ferritina normal).` }; } });
+
+D({ id:'ferro_quelato', cat:'puericultura', acc:'PART', route:'Uso Oral',
+  name:'Ferro quelato glicinato / ferripolimaltose 50 mg/mL', ind:'Melhor tolerância GI; pode tomar com refeição',
+  calc:(w)=>{ const mp=cap(w,15), mt=cap(w*4,120); return { title:'Ferro aminoácido quelato / polimaltose 50 mg/mL (2,5 mg/gota)',
+    inst:`Profilaxia: ${gts(mp/2.5)} gotas VO 1x/dia (1 mg/kg/dia).\nTratamento: ${gts(mt/2.5)} gotas VO 1x/dia (4 mg/kg/dia).\n• Concentração varia por marca (2,5 ou 5 mg/gota) — conferir.` }; } });
+
+D({ id:'vitd', cat:'puericultura', acc:'PART', route:'Uso Oral',
+  name:'Colecalciferol (vitamina D3) 200 UI/gota', ind:'Profilaxia de raquitismo — SBP: 400 UI até 1 ano, 600 UI de 1 a 2 anos',
+  calc:(w,a)=>{ const g = a<1?2:3, ui = a<1?400:600; return { title:'Vitamina D3 200 UI/gota — solução oral',
+    inst:`Dar ${g} gotas (${ui} UI) VO 1x/dia, todos os dias${a<2?' até 2 anos':''}.\n• > 2 anos: 600 UI/dia nos grupos de risco (pouca exposição solar, obesidade, anticonvulsivantes, má absorção).\n• Não há vitamina D isolada na RENAME.` }; } });
+
+D({ id:'vita_megadose', cat:'puericultura', acc:'SUSE', route:'Uso Oral',
+  name:'Vitamina A (palmitato de retinol) megadose', ind:'Programa Nacional de Suplementação de Vitamina A (MS)',
+  min:{a:0.5, txt:'6 a 59 meses'},
+  calc:(w,a)=>{ const t = a<1?'100.000 UI (cápsula amarela) — dose única':(a<5?'200.000 UI (cápsula vermelha) a cada 6 meses':'Fora da faixa do programa (6–59 meses)'); return { title:'Vitamina A — megadose (cápsula)',
+    inst:`Administrar ${t} VO, abrindo a cápsula na boca da criança.\n• Registrar na Caderneta e no e-SUS. Na desnutrição grave/sarampo: esquema terapêutico próprio.` }; } });
+
+D({ id:'nirsevimabe', cat:'puericultura', acc:'SUSE', route:'Uso Intramuscular',
+  name:'Nirsevimabe 50 / 100 mg (anticorpo anti-VSR)', ind:'Prevenção de VSR — SUS (NT 109/2025): prematuros ≤ 36s6d e < 24 m com comorbidades',
+  calc:(w)=>{ const d = w<5?'50 mg (0,5 mL)':'100 mg (1 mL)'; return { title:'Nirsevimabe — IM dose única',
+    inst:`1ª sazonalidade: ${d} IM no vasto lateral, dose única (< 5 kg: 50 mg; ≥ 5 kg: 100 mg).\n• 2ª sazonalidade (comorbidade, < 24 m): 200 mg (2 × 100 mg).\n• SUS: maternidades de referência/Rede de Imunobiológicos; demais crianças: rede privada.` }; } });
+
+// ---------------- CRISES EPILÉPTICAS ----------------
+D({ id:'midazolam_crise', cat:'convulsao', acc:'SUSH', route:'Uso Intranasal/IM/EV',
+  name:'Midazolam 5 mg/mL — crise ≥ 5 min', ind:'1ª linha (IM/intranasal sem acesso; EV com acesso)',
+  calc:(w)=>{ const mg=cap(w*0.2,10), mgE=cap(w*0.15,10); return { title:'Midazolam 5 mg/mL — ampola',
+    inst:`Sem acesso: ${nf(mg/5,2)} mL (${nf(mg,1)} mg = 0,2 mg/kg; máx. 10 mg) IM no vasto lateral ou intranasal com atomizador (metade em cada narina).\nCom acesso: ${nf(mgE/5,2)} mL (${nf(mgE,1)} mg = 0,15 mg/kg; máx. 10 mg) EV lento.\n• Pode repetir 1 vez após 5 min. Preparar suporte ventilatório.` }; } });
+
+D({ id:'diazepam_crise', cat:'convulsao', acc:'SUSH', route:'Uso Intravenoso/Retal',
+  name:'Diazepam 5 mg/mL — crise ≥ 5 min', ind:'1ª linha EV ou retal',
+  calc:(w)=>{ const mg=cap(w*0.3,10), mr=cap(w*0.5,20); return { title:'Diazepam 10 mg/2 mL — ampola',
+    inst:`EV: ${nf(mg/5,2)} mL (${nf(mg,1)} mg = 0,3 mg/kg; máx. 10 mg) puro, lento (≤ 2 mg/min). Pode repetir 1x em 5 min.\nRetal: ${nf(mr/5,2)} mL (${nf(mr,1)} mg = 0,5 mg/kg; máx. 20 mg) com sonda curta.` }; } });
+
+D({ id:'fenitoina_ataque', cat:'convulsao', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Fenitoína 50 mg/mL — ataque', ind:'2ª linha após 2 doses de benzodiazepínico',
+  calc:(w)=>{ const mg=cap(w*20,1500); return { title:'Fenitoína 50 mg/mL — ataque 20 mg/kg',
+    inst:`Aspirar ${nf(mg/50,1)} mL (${nf(mg,0)} mg; máx. 1,5 g) e diluir em SF 0,9% (NUNCA SG — precipita) a ≤ 10 mg/mL.\n• Infundir em 20 min (≤ 1 mg/kg/min; máx. 50 mg/min) com monitor cardíaco.\n• Se persistir: +10 mg/kg. Manutenção 5 mg/kg/dia ÷ 12/12 h após 12 h.` }; } });
+
+D({ id:'levetiracetam_ev', cat:'convulsao', acc:'MISTO', route:'Uso Intravenoso',
+  name:'Levetiracetam 100 mg/mL — ataque', ind:'2ª linha (ESETT: eficácia igual, menos efeitos)',
+  calc:(w)=>{ const mg=cap(w*60,4500); return { title:'Levetiracetam 500 mg/5 mL — ataque 60 mg/kg',
+    inst:`Fazer ${nf(mg/100,1)} mL (${nf(mg,0)} mg = 60 mg/kg; máx. 4,5 g) diluído em 100 mL SF ou SG 5%, EV em 10–15 min.\n• Disponibilidade EV variável na rede SUS.` }; } });
+
+D({ id:'fenobarbital_ataque', cat:'convulsao', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Fenobarbital 100 mg/mL — ataque', ind:'2ª/3ª linha; 1ª linha no período neonatal',
+  calc:(w)=>{ const mg=cap(w*20,1000); return { title:'Fenobarbital 200 mg/2 mL — ataque 20 mg/kg',
+    inst:`Fazer ${nf(mg/100,2)} mL (${nf(mg,0)} mg; máx. 1 g) diluído 1:10 em SF, EV em 20 min (≤ 1 mg/kg/min; máx. 30 mg/min).\n• Risco de depressão respiratória e hipotensão (sobretudo após benzodiazepínico).\n• Manutenção: 3–5 mg/kg/dia após 12–24 h.` }; } });
+
+// ---------------- PCR, CHOQUE & ANAFILAXIA ----------------
+D({ id:'adrenalina_pcr', cat:'urgencia_pcr', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Adrenalina IV/IO — PCR', ind:'PCR (todos os ritmos) — PALS/AHA 2025',
+  calc:(w)=>{ const ml=cap(w*0.1,10); return { title:'Adrenalina 1:10.000 (0,1 mg/mL) — IV/IO',
+    inst:`Diluir 1 mL de adrenalina 1 mg/mL + 9 mL SF 0,9%.\n• Fazer ${nf(ml,1)} mL (${nf(ml/10,2)} mg = 0,01 mg/kg; máx. 1 mg) IV/IO em bólus + flush 5 mL, a cada 3–5 min.\n• Ritmo não chocável: dar o mais precoce possível. Via traqueal: 0,1 mg/kg (1 mg/mL).` }; } });
+
+D({ id:'energia_choque', cat:'urgencia_pcr', acc:'SUSH', route:'Orientações',
+  name:'Desfibrilação e cardioversão — energias', ind:'FV/TV sem pulso; TSV/TV com pulso instável',
+  calc:(w)=>({ title:'Energias para choque elétrico',
+    inst:`Desfibrilação: 1º choque ${nf(w*2,0)} J (2 J/kg) → 2º ${nf(w*4,0)} J (4 J/kg) → seguintes ≥ 4 J/kg (máx. 10 J/kg ou dose adulto).\nCardioversão sincronizada: ${nf(w*0.5,0)}–${nf(w*1,0)} J (0,5–1 J/kg) → até ${nf(w*2,0)} J (2 J/kg).` }) });
+
+D({ id:'amiodarona', cat:'urgencia_pcr', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Amiodarona 50 mg/mL', ind:'FV/TV sem pulso refratária; TV com pulso',
+  calc:(w)=>{ const mg=cap(w*5,300); return { title:'Amiodarona 150 mg/3 mL',
+    inst:`PCR: ${nf(mg/50,1)} mL (${nf(mg,0)} mg = 5 mg/kg; máx. 300 mg) IV/IO em bólus; repetir até 3 doses (15 mg/kg).\nCom pulso: mesma dose em 20–60 min (diluída em SG 5%).\n• Alternativa: lidocaína 1 mg/kg.` }; } });
+
+D({ id:'adenosina', cat:'urgencia_pcr', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Adenosina 3 mg/mL', ind:'TSV estável/instável com acesso',
+  calc:(w)=>{ const d1=cap(w*0.1,6), d2=cap(w*0.2,12); return { title:'Adenosina 6 mg/2 mL',
+    inst:`1ª dose: ${nf(d1/3,2)} mL (${nf(d1,1)} mg = 0,1 mg/kg; máx. 6 mg) IV em bólus rápido + flush 5–10 mL (técnica das 2 seringas).\n2ª dose: ${nf(d2/3,2)} mL (${nf(d2,1)} mg = 0,2 mg/kg; máx. 12 mg).` }; } });
+
+D({ id:'atropina', cat:'urgencia_pcr', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Atropina 0,5 mg/mL', ind:'Bradicardia por tônus vagal/BAV; pré-IOT selecionada',
+  calc:(w)=>{ const mg=cap(w*0.02,0.5); return { title:'Atropina 0,5 mg/mL',
+    inst:`Fazer ${nf(mg/0.5,2)} mL (${nf(mg,2)} mg = 0,02 mg/kg; máx. 0,5 mg/dose) IV/IO; pode repetir 1x (máx. total 1 mg criança / 3 mg adolescente).\n• Bradicardia com hipoperfusão: adrenalina é a 1ª droga.` }; } });
+
+D({ id:'adrenalina_anafilaxia', cat:'urgencia_pcr', acc:'SUS', route:'Uso Intramuscular',
+  name:'Adrenalina 1 mg/mL IM — anafilaxia', ind:'1ª linha imediata na anafilaxia (vasto lateral)',
+  calc:(w,a)=>{ const mx = a>=12?0.5:0.3; const mg=cap(w*0.01,mx); return { title:'Adrenalina 1 mg/mL (1:1.000) — IM',
+    inst:`Aplicar ${nf(mg,2)} mL (${nf(mg,2)} mg = 0,01 mg/kg; máx. ${nf(mx,1)} mg) IM na face anterolateral da coxa AGORA.\n• Repetir a cada 5–15 min se necessário. Deitar com pernas elevadas; O₂; SF 20 mL/kg se hipotensão.\n• Anti-H1 e corticoide são adjuvantes, nunca substitutos.` }; } });
+
+D({ id:'expansao', cat:'urgencia_pcr', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Expansão volêmica — cristaloide', ind:'Choque hipovolêmico/séptico (SSC 2020): 10–20 mL/kg com reavaliação',
+  calc:(w)=>({ title:'Ringer lactato (preferencial) ou SF 0,9% — bólus',
+    inst:`Fazer ${nf(w*10,0)}–${nf(w*20,0)} mL (10–20 mL/kg) EV em 5–20 min; reavaliar perfusão, FC, fígado e ausculta após cada bólus.\n• Até 40–60 mL/kg na 1ª hora se UTI disponível e sem sinais de sobrecarga.\n• Cristaloide balanceado é preferível ao SF (SSC 2020).` }) });
+
+D({ id:'adrenalina_choque_bic', cat:'urgencia_pcr', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Adrenalina em BIC — choque', ind:'Choque frio / refratário a volume (0,05–0,3 mcg/kg/min, até 1)',
+  calc:(w)=>({ title:'Adrenalina infusão contínua (10 mcg/mL)',
+    inst:`Preparo: 1 mL adrenalina 1 mg/mL + 99 mL SG 5% ou SF (10 mcg/mL).\n• Iniciar ${nf(w*0.3,1)} mL/h (0,05 mcg/kg/min) e titular até ${nf(w*1.8,1)} mL/h (0,3 mcg/kg/min).\n• Pode iniciar em veia periférica calibrosa enquanto obtém acesso central.` }) });
+
+D({ id:'noradrenalina_bic', cat:'urgencia_pcr', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Noradrenalina em BIC — choque quente', ind:'Choque vasoplégico (0,05–1 mcg/kg/min)',
+  calc:(w)=>({ title:'Noradrenalina infusão contínua (16 mcg/mL)',
+    inst:`Preparo: 4 mL noradrenalina (4 mg) + 246 mL SG 5% (16 mcg/mL).\n• Iniciar ${nf(w*0.1*60/16,1)} mL/h (0,1 mcg/kg/min) e titular até ${nf(w*1*60/16,1)} mL/h (1 mcg/kg/min) conforme PAM e perfusão.` }) });
+
+D({ id:'dobutamina', cat:'urgencia_pcr', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Dobutamina — disfunção miocárdica', ind:'Choque cardiogênico/baixo débito (5–20 mcg/kg/min)',
+  calc:(w)=>({ title:'Dobutamina infusão contínua (1.000 mcg/mL)',
+    inst:`Preparo: 1 ampola (250 mg/20 mL) + 230 mL SG 5% (1 mg/mL).\n• Iniciar ${nf(w*5*60/1000,1)} mL/h (5 mcg/kg/min) e titular até ${nf(w*20*60/1000,1)} mL/h (20 mcg/kg/min).` }) });
+
+D({ id:'glicose_hipo', cat:'urgencia_pcr', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Glicose 10% — hipoglicemia', ind:'HGT < 60 mg/dL sintomática ou sem via oral',
+  calc:(w,a)=>({ title:'Glicose 10% — bólus',
+    inst:`Fazer ${nf(w*(a<1/12?2:3),0)} mL (${a<1/12?'2':'3'} mL/kg; faixa 2–5 mL/kg = 0,2–0,5 g/kg) EV em 2–3 min.\n• Preparo SG 10%: 1 parte de glicose 50% + 4 partes de AD.\n• Reavaliar HGT em 15 min e manter TIG (SG com 5–8 mg/kg/min).\n• Sem acesso: glucagon ${w<25?'0,5 mg':'1 mg'} IM.` }) });
+
+// ---------------- SEDAÇÃO, ANALGESIA & SRI ----------------
+D({ id:'cetamina', cat:'sedacao_sri', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Cetamina 50 mg/mL', ind:'Indução na SRI (asma, choque), sedoanalgesia para procedimento',
+  calc:(w)=>({ title:'Cetamina 50 mg/mL',
+    inst:`SRI: ${nf(w*2,0)} mg (${nf(w*2/50,2)} mL = 2 mg/kg) EV.\nProcedimento: ${nf(w*1,0)}–${nf(w*1.5,0)} mg (1–1,5 mg/kg) EV lento ou ${nf(w*4,0)} mg (4 mg/kg) IM.\n• Evitar < 3 meses. Ter aspiração pronta (sialorreia).` }) });
+
+D({ id:'fentanil', cat:'sedacao_sri', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Fentanil 50 mcg/mL', ind:'Analgesia na SRI e para procedimentos',
+  calc:(w)=>{ const m=cap(w*2,100); return { title:'Fentanil 50 mcg/mL',
+    inst:`Fazer ${nf(m/50,2)} mL (${nf(m,0)} mcg = 1–2 mcg/kg; máx. 100 mcg) EV lento em 1–2 min (rigidez torácica se rápido).` }; } });
+
+D({ id:'etomidato', cat:'sedacao_sri', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Etomidato 2 mg/mL', ind:'Indução hemodinamicamente neutra · evitar no choque séptico',
+  calc:(w)=>{ const mg=cap(w*0.3,20); return { title:'Etomidato 2 mg/mL',
+    inst:`Fazer ${nf(mg/2,1)} mL (${nf(mg,1)} mg = 0,3 mg/kg; máx. 20 mg) EV em 30–60 s.\n• Supressão adrenal: evitar na sepse.` }; } });
+
+D({ id:'rocuronio', cat:'sedacao_sri', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Rocurônio 10 mg/mL', ind:'Bloqueio neuromuscular na SRI',
+  calc:(w)=>({ title:'Rocurônio 10 mg/mL',
+    inst:`Fazer ${nf(w*1.2/10,2)} mL (${nf(w*1.2,1)} mg = 1–1,2 mg/kg) EV em bólus.\n• Reversão: sugamadex 16 mg/kg (imediata).` }) });
+
+D({ id:'succinilcolina', cat:'sedacao_sri', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Succinilcolina 100 mg (10 mg/mL após diluição)', ind:'BNM de curta ação · CI: hipercalemia, queimado > 48 h, miopatia',
+  calc:(w,a)=>{ const dk=a<1?2:1.5; return { title:'Succinilcolina 100 mg + 10 mL AD (10 mg/mL)',
+    inst:`Fazer ${nf(w*dk/10,2)} mL (${nf(w*dk,0)} mg = ${dk} mg/kg) EV em bólus.\n• Lactentes: 2 mg/kg; crianças: 1–1,5 mg/kg. Considerar atropina em < 1 ano.` }; } });
+
+D({ id:'sedacao_continua', cat:'sedacao_sri', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Midazolam + fentanil em BIC — sedação contínua', ind:'Paciente em ventilação mecânica',
+  calc:(w)=>({ title:'Sedoanalgesia contínua — solução única (1 mL/h)',
+    inst:`Midazolam 5 mg/mL ${nf(w*0.1*24/5,1)} mL (0,1 mg/kg/h)\nFentanil 50 mcg/mL ${nf(w*1*24/50,1)} mL (1 mcg/kg/h)\nSF 0,9% q.s.p. 24 mL → correr EV em BIC a 1 mL/h.\n• Titular: midazolam 0,05–0,3 mg/kg/h; fentanil 1–4 mcg/kg/h. Escala COMFORT-B.` }) });
+
+// ---------------- INTOXICAÇÕES & ANTÍDOTOS ----------------
+D({ id:'naloxona', cat:'intox', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Naloxona 0,4 mg/mL', ind:'Intoxicação por opioide (depressão respiratória)',
+  calc:(w)=>{ const mg=cap(w*0.1,2); return { title:'Naloxona 0,4 mg/mL',
+    inst:`Reversão total (intoxicação): ${nf(mg/0.4,2)} mL (${nf(mg,2)} mg = 0,1 mg/kg; máx. 2 mg) IV/IM/IN; repetir a cada 2–3 min.\nDepressão por opioide terapêutico: 1–5 mcg/kg titulado.` }; } });
+
+D({ id:'flumazenil', cat:'intox', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Flumazenil 0,1 mg/mL', ind:'Depressão por benzodiazepínico iatrogênico · evitar em epilépticos',
+  calc:(w)=>{ const mg=cap(w*0.01,0.2); return { title:'Flumazenil 0,1 mg/mL',
+    inst:`Fazer ${nf(mg/0.1,2)} mL (${nf(mg,2)} mg = 0,01 mg/kg; máx. 0,2 mg) IV em 15 s; repetir a cada 1 min até 1 mg total.\n• Risco de convulsão; meia-vida curta (ressedação).` }; } });
+
+D({ id:'carvao', cat:'intox', acc:'SUSH', route:'Uso Oral',
+  name:'Carvão ativado', ind:'Ingestão tóxica < 1–2 h com via aérea protegida (não para álcool, ferro, lítio, cáusticos, hidrocarbonetos)',
+  calc:(w)=>{ const g=cap(w*1,50); return { title:'Carvão ativado — pó',
+    inst:`Dar ${nf(g,0)} g (1 g/kg; máx. 50 g) VO/SNG diluído em 8–10 mL de água/SF por grama.\n• Dose múltipla (fenobarbital, carbamazepina): 0,5 g/kg 4/4 h.` }; } });
+
+// ---------------- ELETRÓLITOS & HIDRATAÇÃO EV ----------------
+D({ id:'hv_manutencao', cat:'disturbios_he', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Hidratação venosa de manutenção isotônica (AAP 2018)', ind:'Manutenção em > 28 dias — reduz hiponatremia hospitalar',
+  calc:(w)=>{ const hol = w<=10?w*100:(w<=20?1000+(w-10)*50:Math.min(1500+(w-20)*20,2400));
+    const kcl = hol/1000*20/1.34, g50 = hol/1000*50*2; const sf = hol - kcl - g50;
+    return { title:`Soro de manutenção 24 h — ${nf(hol,0)} mL (Holliday-Segar)`,
+    inst:`SF 0,9% ........ ${nf(sf,0)} mL\nGlicose 50% .... ${nf(g50,0)} mL (≈ SG 5%)\nKCl 10% ........ ${nf(kcl,1)} mL (20 mEq/L)\n→ Volume ${nf(hol,0)} mL EV em BIC a ${nf(hol/24,1)} mL/h.\n• Na ≈ 140 mEq/L, glicose ≈ 5%. K só após diurese. Reduzir para ⅔ se SIADH (bronquiolite, meningite, pós-op).` }; } });
+
+D({ id:'plano_c', cat:'disturbios_he', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Plano C — desidratação grave (MS/OMS)', ind:'Desidratação grave/choque hipovolêmico na diarreia',
+  calc:(w,a)=>{ const f1=w*30, f2=w*70; const t = a<1?['1 h','5 h']:['30 min','2 h 30 min'];
+    return { title:'Plano C — reidratação EV (Ringer lactato ou SF 0,9%)',
+    inst:`1ª etapa: ${nf(f1,0)} mL (30 mL/kg) em ${t[0]}.\n2ª etapa: ${nf(f2,0)} mL (70 mL/kg) em ${t[1]}.\n• Choque: começar com bólus 20 mL/kg em 5–10 min e repetir conforme resposta.\n• Iniciar SRO (5 mL/kg/h) assim que puder beber; reavaliar a cada 15–30 min.` }; } });
+
+D({ id:'kcl_correcao', cat:'disturbios_he', acc:'SUSH', route:'Uso Intravenoso',
+  name:'KCl 10% — hipocalemia grave (K < 2,5 ou ECG alterado)', ind:'Reposição EV monitorizada',
+  calc:(w)=>{ const meq=cap(w*0.5,40); const ml=meq/1.34, vol=Math.ceil(meq/8*100);
+    return { title:`KCl 10% — ${nf(meq,1)} mEq em 1–2 h`,
+    inst:`Aspirar ${nf(ml,1)} mL de KCl 10% (${nf(meq,1)} mEq = 0,5 mEq/kg; máx. 40 mEq) e diluir em ≥ ${vol} mL de SF 0,9% (periférico ≤ 8 mEq/100 mL; central ≤ 15–20 mEq/100 mL).\n• Infundir em 1–2 h (≤ 0,5–1 mEq/kg/h) com monitor cardíaco. Dosar K após.` }; } });
+
+D({ id:'gluconato_calcio_10', cat:'disturbios_he', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Gluconato de cálcio 10%', ind:'Hipercalemia com ECG alterado, hipocalcemia sintomática, hipermagnesemia',
+  calc:(w)=>{ const ml=cap(w*0.5,20); return { title:'Gluconato de cálcio 10% (100 mg/mL)',
+    inst:`Fazer ${nf(ml,1)} mL (0,5 mL/kg = 50 mg/kg; máx. 20 mL = 2 g) diluído em igual volume de SF, EV em 5–10 min com monitor.\n• Suspender se bradicardia. Não misturar com bicarbonato.` }; } });
+
+D({ id:'solucao_polarizante', cat:'disturbios_he', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Insulina + glicose (hipercalemia K > 6,5)', ind:'Desvio intracelular de potássio',
+  calc:(w)=>({ title:'Solução polarizante — insulina regular + glicose',
+    inst:`Insulina regular ${nf(cap(w*0.1,10),1)} UI (0,1 UI/kg; máx. 10 UI) + glicose 10% ${nf(w*5,0)} mL (0,5 g/kg) EV em 30 min.\n• HGT a cada 30 min por 2 h. Associar salbutamol inalatório e tratar causa.` }) });
+
+D({ id:'nacl_3', cat:'disturbios_he', acc:'SUSH', route:'Uso Intravenoso',
+  name:'NaCl 3% — hiponatremia sintomática / HIC', ind:'Na < 125 com convulsão/rebaixamento; edema cerebral',
+  calc:(w)=>{ const ml=cap(w*3,150); return { title:'NaCl 3% (salina hipertônica)',
+    inst:`Preparo: 15 mL NaCl 20% + 85 mL AD (ou 100 mL SF 0,9% + 12 mL NaCl 20%).\n• Fazer ${nf(ml,0)} mL (3 mL/kg; faixa 2–5; máx. 150 mL) EV em 10–20 min; repetir até cessar sintomas.\n• Elevar Na ≤ 8–10 mEq/L em 24 h após controle dos sintomas.` }; } });
+
+D({ id:'bicarbonato', cat:'disturbios_he', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Bicarbonato de sódio 8,4% (1 mEq/mL)', ind:'Acidose grave pH < 7,0–7,1 selecionada, hipercalemia, intoxicação por tricíclico',
+  calc:(w)=>({ title:'Bicarbonato de sódio 8,4%',
+    inst:`Fazer ${nf(w,1)} mL (1 mEq/kg) diluído 1:1 em AD (< 6 meses: usar 4,2%), EV lento.\n• Déficit = 0,3 × peso × (15 − HCO₃); repor metade em 2–4 h e repetir gasometria.\n• Não usar rotineiramente na CAD ou PCR.` }) });
+
+// ---------------- CAD & ENDÓCRINO ----------------
+D({ id:'cad_volume', cat:'cetoacidose_endocrino', acc:'SUSH', route:'Uso Intravenoso',
+  name:'CAD — expansão inicial (ISPAD 2022)', ind:'1ª hora da cetoacidose diabética',
+  calc:(w)=>({ title:'SF 0,9% ou Ringer lactato — CAD',
+    inst:`Fazer ${nf(w*10,0)}–${nf(w*20,0)} mL (10–20 mL/kg) EV em 20–60 min; repetir se má perfusão.\n• Depois: déficit (5–10%) + manutenção em 24–48 h, com SF/RL + KCl 40 mEq/L.\n• Choque: 20 mL/kg rápido.` }) });
+
+D({ id:'cad_insulina_bic', cat:'cetoacidose_endocrino', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Insulina regular em BIC — CAD', ind:'Iniciar 1–2 h após a expansão; K ≥ 3,5',
+  calc:(w)=>{ const uiH=w*0.1, mlH=uiH*10; return { title:`Insulina regular 0,05–0,1 UI/kg/h (${nf(uiH,2)} UI/h)`,
+    inst:`Preparo (0,1 UI/mL): 25 UI insulina regular + 250 mL SF 0,9%; desprezar 50 mL no equipo.\n• Correr ${nf(mlH,1)} mL/h (0,1 UI/kg/h) — ou ${nf(mlH/2,1)} mL/h (0,05) em < 5 anos/glicemia muito alta. Sem bólus.\n• Glicemia < 250–300: associar SG 5–10% e manter insulina até pH > 7,30 e HCO₃ > 15.\n• Queda ideal da glicemia: 50–100 mg/dL/h.` }; } });
+
+D({ id:'cad_edema', cat:'cetoacidose_endocrino', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Edema cerebral na CAD — manitol / NaCl 3%', ind:'Cefaleia, bradicardia, HAS, rebaixamento',
+  calc:(w)=>({ title:'Manitol 20% ou NaCl 3% — edema cerebral',
+    inst:`Manitol 20%: ${nf(w*2.5,0)}–${nf(w*5,0)} mL (0,5–1 g/kg) EV em 10–15 min.\nou NaCl 3%: ${nf(w*2.5,0)}–${nf(w*5,0)} mL (2,5–5 mL/kg) em 10–15 min.\n• Elevar cabeceira 30°, reduzir volume de hidratação, chamar UTI.` }) });
+
+D({ id:'hidrocortisona_adrenal', cat:'cetoacidose_endocrino', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Hidrocortisona — crise adrenal', ind:'HAC, insuficiência adrenal, choque refratário a catecolaminas',
+  calc:(w,a)=>{ const bol = a<3?25:(a<12?50:100); const bsa=(w*4+7)/(w+90); const m=Math.round(bsa*100/4);
+    return { title:`Hidrocortisona — ataque ${bol} mg + manutenção`,
+    inst:`Ataque: ${bol} mg EV em bólus agora (≈ 50–100 mg/m²; < 3 a 25 mg; 3–12 a 50 mg; > 12 a 100 mg).\nManutenção: ≈ ${m} mg EV de 6/6 h (100 mg/m²/dia) até estabilizar.\n• Corrigir hipoglicemia e hiponatremia (SG + SF). SC estimada se altura ausente.` }; } });
+
+// ---------------- NUTRIÇÃO & DESNUTRIÇÃO ----------------
+D({ id:'npt_tig_glicose', cat:'nutricao_parenteral', acc:'SUSH', route:'Uso Intravenoso',
+  name:'TIG e glicose (taxa de infusão de glicose)', ind:'Jejum prolongado / NP — oferta de carboidrato',
+  calc:(w,a)=>{ const tig = a<28/365?6:(a<1?5:(a<10?4:3)); const g=tig*w*1.44;
+    return { title:`TIG inicial ${tig} mg/kg/min — ${nf(g,1)} g de glicose/dia`,
+    inst:`• Glicose/dia = peso × TIG × 1,44 = ${nf(g,1)} g (3,4 kcal/g) = ${nf(g*2,0)} mL de glicose 50%.\n• Concentração máx.: periférica 12,5%; central 25%.\n• HGT 6/6 h; alvo 70–180 mg/dL (NP: < 145).` }; } });
+
+D({ id:'npt_aminoacidos_10', cat:'nutricao_parenteral', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Aminoácidos 10% (NP)', ind:'Aporte proteico parenteral (ESPGHAN 2018)',
+  calc:(w,a)=>{ const gk = a<1?2.5:(a<10?2:1.5); const g=w*gk; return { title:`Aminoácidos 10% — ${gk} g/kg/dia`,
+    inst:`Infundir ${nf(g*10,0)} mL/dia (${nf(g,1)} g) na solução de NP.\n• Iniciar 1–1,5 g/kg/dia e progredir até a meta (lactente 2–3; criança 1–2; adolescente 1–2 g/kg/dia).\n• 4 kcal/g; 1 g N = 6,25 g proteína.` }; } });
+
+D({ id:'npt_lipidios_20', cat:'nutricao_parenteral', acc:'SUSH', route:'Uso Intravenoso',
+  name:'Emulsão lipídica 20% (NP)', ind:'Calorias e ácidos graxos essenciais',
+  calc:(w)=>{ const ml=w*1*5; return { title:'Emulsão lipídica 20% — 1 g/kg/dia',
+    inst:`Infundir ${nf(ml,1)} mL em 24 h (${nf(ml/24,1)} mL/h) em via dedicada.\n• Progredir até 2–3 g/kg/dia (máx. 3–4). 1 mL = 2 kcal.\n• Triglicerídeos > 250–400 mg/dL: reduzir.` }; } });
+
+D({ id:'desnutricao_micronutrientes', cat:'nutricao_parenteral', acc:'MISTO', route:'Uso Oral',
+  name:'Desnutrição grave — micronutrientes (OMS)', ind:'Fase de estabilização (prevenir síndrome de realimentação)',
+  calc:(w,a)=>{ const vitA = a<0.5?'50.000':(a<1?'100.000':'200.000'); const zn=cap(w*2,20), cu=cap(w*0.3,2);
+    return { title:'Desnutrição grave — suplementação (OMS)',
+    inst:`1. Vitamina A: ${vitA} UI VO no D1 (se sinais oculares, sarampo ou sem F-75/F-100 enriquecidos; repetir D2 e D14 se lesão ocular).\n2. Zinco: ${nf(zn,1)} mg/dia (2 mg/kg).\n3. Cobre: ${nf(cu,2)} mg/dia (0,3 mg/kg).\n4. Ácido fólico: 5 mg no D1, depois 1 mg/dia.\n5. Polivitamínico: 2× a recomendação diária.\n6. Ferro: NÃO na estabilização; 3 mg/kg/dia só na reabilitação (ganho de peso).` }; } });
+
+// =====================================================================
+// CONDUTAS POR DIAGNÓSTICO — OPÇÃO IDEAL × OPÇÃO SUS
+// itens: 'id_do_farmaco' ou 'id:variante'
+// =====================================================================
+const GRUPOS = ['Vias aéreas', 'Ouvido, nariz & garganta', 'Gastro & hidratação', 'Urinário', 'Pele & parasitas', 'Infecciosas sistêmicas', 'Puericultura & prevenção', 'Urgência'];
+
+const CONDUTAS = [
+// ---------------- VIAS AÉREAS ----------------
+{ id:'pac', grupo:'Vias aéreas', nome:'Pneumonia comunitária — ambulatorial', chave:'pac pneumonia comunitaria',
+  quando:'Febre + tosse + taquipneia (OMS: < 2 m ≥ 60; 2–11 m ≥ 50; 1–4 a ≥ 40 irpm) sem sinais de perigo, SpO₂ ≥ 92%, aceitando VO.',
+  ideal:{ fonte:'SBP 2022 · OMS 2024', itens:['amox250:pac'], nota:'Amoxicilina é a droga de escolha. OMS 2024: 3–5 dias se só taquipneia; 5 dias se tiragem sem sinais de perigo. SBP mantém 7 dias como prática habitual. A opção ideal já está no SUS.' },
+  sus:'igual',
+  alt:[ { label:'> 5 anos com suspeita de atípica (Mycoplasma)', itens:['azitro'] },
+        { label:'Falha em 48–72 h ou amoxicilina recente', itens:['amoxclav_sus'] },
+        { label:'Internação (hipoxemia, < 2 m, toxemia, tiragem com perigo)', itens:['ampicilina','pen_cristalina','gentamicina'] } ],
+  orient:'• Reavaliar em 48–72 h ou antes se piora.\n• Retornar se gemência, batimento de asa nasal, tiragem, respiração rápida, recusa alimentar, sonolência ou menos xixi.' },
+
+{ id:'asma_crise', grupo:'Vias aéreas', nome:'Crise de asma / sibilância no PS', chave:'asma broncoespasmo sibilancia crise chiado',
+  quando:'Tosse, sibilos e dispneia. Classificar: leve/moderada × grave (fala frases curtas, SpO₂ < 92%, uso de musculatura acessória).',
+  ideal:{ fonte:'GINA 2025–2026 · SBP', itens:['salbutamol_spray','ipratropio','prednisolona'], nota:'β2 por spray com espaçador é tão eficaz quanto nebulização e com menos efeitos. Ipratrópio só na 1ª hora (moderada/grave). Corticoide VO precoce. O₂ se SpO₂ < 94% (≤ 5 anos: ≤ 92%). Todos disponíveis no SUS.' },
+  sus:'igual',
+  alt:[ { label:'Sem espaçador / não coopera', itens:['salbutamol_neb','fenoterol_neb'] },
+        { label:'Grave sem resposta na 1ª hora', itens:['mgso4','hidrocortisona_asma','metilpred'] } ],
+  orient:'• Alta: salbutamol de resgate + corticoide VO por 3–5 dias + iniciar/ajustar controlador.\n• Revisar técnica do espaçador e plano de ação por escrito.\n• Retorno em 2–7 dias.' },
+
+{ id:'asma_controle', grupo:'Vias aéreas', nome:'Asma — tratamento de manutenção', chave:'asma controle manutencao corticoide inalatorio mart',
+  quando:'Sintomas > 2x/mês, despertar noturno ou ≥ 1 exacerbação no ano.',
+  ideal:{ fonte:'GINA 2026', itens:['budform_100','budform_200'], nota:'6–11 anos: budesonida-formoterol baixa dose como alívio ou MART (SABA isolado deixou de ser recomendado — GINA 2026, estudo CARE). ≥ 12 anos: budesonida-formoterol como alívio anti-inflamatório/MART. A dose 100/6 é particular; a 200/6 sai pelo PCDT (≥ 12 anos).' },
+  sus:{ itens:['beclometasona','salbutamol_spray:casa'], nota:'Na UBS: beclometasona inalatória diária + salbutamol de resgate (Componente Básico). Budesonida-formoterol 6/200 e 12/400 via Componente Especializado (PCDT Asma 2026, com LME).' },
+  alt:[ { label:'≤ 5 anos sem colaboração com espaçador', itens:['budesonida_neb'] },
+        { label:'Rinite associada / alternativa', itens:['montelucaste'] } ],
+  orient:'• Controle ambiental (ácaros, fumaça).\n• Vacina influenza anual.\n• Reavaliar controle em 1–3 meses e técnica inalatória em toda consulta.' },
+
+{ id:'bronquiolite', grupo:'Vias aéreas', nome:'Bronquiolite viral aguda', chave:'bronquiolite bva vsr lactente',
+  quando:'< 2 anos, 1º episódio de sibilância/crepitações após pródromo viral.',
+  ideal:{ fonte:'AAP 2014 (reafirmada) · SBP', itens:['lavagem_nasal','paracetamol_gotas'], nota:'Tratamento de suporte: aspiração/lavagem nasal, hidratação, O₂ se SpO₂ < 90–92%. Não usar broncodilatador, corticoide, antibiótico, fisioterapia ou nebulização com SF de rotina. Tudo isso está no SUS.' },
+  sus:'igual',
+  alt:[ { label:'Internado (opcional)', itens:['salina_3_neb'] },
+        { label:'Prevenção — elegíveis ao SUS (prematuros ≤ 36s6d; < 24 m com comorbidade)', itens:['nirsevimabe'] } ],
+  orient:'• Alimentar em volumes menores e mais vezes; cabeceira elevada.\n• Retornar se pausas respiratórias, gemência, tiragem, cansaço para mamar, cianose ou < metade da ingesta.\n• Não usar xaropes, descongestionantes ou antitussígenos.' },
+
+{ id:'crupe', grupo:'Vias aéreas', nome:'Crupe viral (laringotraqueobronquite)', chave:'crupe laringite estridor tosse ladrante',
+  quando:'Tosse ladrante, rouquidão e estridor; 6 m–3 anos. Excluir epiglotite e corpo estranho.',
+  ideal:{ fonte:'SBP · Cochrane', itens:['dexa_inj:crupe'], nota:'Dexametasona dose única para todos (0,15 mg/kg nos leves; 0,6 mg/kg moderado/grave), VO ou IM. Disponível no SUS (elixir 0,1 mg/mL e ampola 4 mg/mL).' },
+  sus:{ itens:['dexa_vo'], nota:'Mesma droga; usar elixir se a família for para casa ou a ampola por VO.' },
+  alt:[ { label:'Estridor em repouso / desconforto moderado-grave', itens:['adrenalina_neb'] },
+        { label:'Sem dexametasona', itens:['prednisolona'] } ],
+  orient:'• Ambiente calmo, criança no colo; evitar exame de orofaringe agressivo.\n• Após adrenalina: observar ≥ 2–3 h.\n• Retornar se estridor em repouso, agitação, cianose ou dificuldade de engolir.' },
+
+{ id:'ivas', grupo:'Vias aéreas', nome:'Resfriado comum / IVAS', chave:'resfriado ivas gripe coriza tosse',
+  quando:'Coriza, obstrução nasal, tosse, febre baixa; < 10 dias e melhorando.',
+  ideal:{ fonte:'SBP · AAP', itens:['lavagem_nasal','paracetamol_gotas'], nota:'Lavagem nasal, antitérmico se desconforto e mel para tosse (> 1 ano). Antitussígenos, mucolíticos, descongestionantes e anti-histamínicos não têm benefício e são desaconselhados < 6 anos. Ideal no SUS.' },
+  sus:'igual',
+  alt:[ { label:'Alternativa antitérmica', itens:['dipirona_gotas','ibuprofeno_50'] } ],
+  orient:'• Mel: 1 colher de chá à noite se > 1 ano (nunca < 1 ano — botulismo).\n• Duração esperada 7–10 dias; tosse pode durar 3 semanas.\n• Retornar se febre > 3 dias, dispneia ou otalgia.' },
+
+{ id:'influenza', grupo:'Vias aéreas', nome:'Influenza (síndrome gripal)', chave:'influenza gripe oseltamivir tamiflu',
+  quando:'Febre súbita + tosse/dor de garganta + cefaleia/mialgia. Grupo de risco: < 5 anos, doença crônica, imunossupressão; ou qualquer SRAG.',
+  ideal:{ fonte:'MS — Guia de Manejo da Influenza 2023 · CDC', itens:['oseltamivir'], nota:'Oseltamivir em SRAG e em SG com fator de risco, idealmente ≤ 48 h (iniciar mesmo depois em SRAG). Distribuído pelo SUS (Componente Estratégico) nas UBS.' },
+  sus:'igual',
+  alt:[ { label:'Sintomáticos', itens:['paracetamol_gotas','lavagem_nasal'] } ],
+  orient:'• Isolamento até 24 h sem febre.\n• Retornar se dispneia, SpO₂ baixa, desidratação ou piora após melhora.' },
+
+// ---------------- ORL ----------------
+{ id:'faringite', grupo:'Ouvido, nariz & garganta', nome:'Faringoamigdalite estreptocócica', chave:'faringite amigdalite estreptococica garganta',
+  quando:'5–15 anos, febre, exsudato, adenite cervical dolorosa, sem tosse/coriza (Centor/McIsaac ≥ 4 ou teste rápido +). < 3 anos: quase sempre viral.',
+  ideal:{ fonte:'SBP · AHA · IDSA', itens:['pen_benzatina'], nota:'Penicilina benzatina IM dose única ou amoxicilina VO por 10 dias (previnem febre reumática). Ambas estão no SUS.' },
+  sus:{ itens:['amox250:faringite'], nota:'Amoxicilina 1x/dia por 10 dias é igualmente eficaz se houver boa adesão.' },
+  alt:[ { label:'Alergia não grave à penicilina', itens:['cefalexina'] },
+        { label:'Alergia grave (anafilaxia)', itens:['azitro:faringite'] } ],
+  orient:'• Afastar da escola até 12–24 h de antibiótico.\n• Analgesia: paracetamol/ibuprofeno.\n• Retornar se trismo, voz abafada, sialorreia ou abaulamento de palato (abscesso).' },
+
+{ id:'oma', grupo:'Ouvido, nariz & garganta', nome:'Otite média aguda', chave:'oma otite media aguda ouvido',
+  quando:'Abaulamento da membrana timpânica (ou otorreia aguda) + sinais inflamatórios. Observar 48–72 h se > 2 anos, unilateral e sem gravidade.',
+  ideal:{ fonte:'AAP 2023 · Einstein (pathway OMA)', itens:['amox_alta_sus','dipirona_gotas'], nota:'Amoxicilina 80–90 mg/kg/dia ÷ 12/12 h (SBP aceita 40–50 mg/kg/dia em áreas de baixa resistência). 10 dias se < 2 anos ou grave; 7 dias ≥ 2 anos. Pode ser feita com a amoxicilina do SUS, com volume maior; a 400 mg/5 mL (particular) reduz o volume.' },
+  sus:{ itens:['amox250','dipirona_gotas'], nota:'Dose padrão SBP 50 mg/kg/dia (8/8 h) com a apresentação 250 mg/5 mL.' },
+  alt:[ { label:'Falha em 48–72 h, ATB < 30 dias ou conjuntivite purulenta', itens:['amoxclav_bd:alta','amoxclav_sus'] },
+        { label:'Alergia não grave', itens:['cefuroxima'] },
+        { label:'Alergia grave', itens:['azitro:oma'] },
+        { label:'Vômitos/sem VO ou falha', itens:['ceftriaxona_ev:im_oma'] } ],
+  orient:'• Analgesia é obrigatória mesmo sem antibiótico.\n• Não usar gotas otológicas na OMA com membrana íntegra.\n• Retornar se febre ≥ 39 °C, dor persistente > 48 h ou edema retroauricular (mastoidite).' },
+
+{ id:'sinusite', grupo:'Ouvido, nariz & garganta', nome:'Rinossinusite bacteriana aguda', chave:'sinusite rinossinusite',
+  quando:'Sintomas > 10 dias sem melhora, quadro grave (febre ≥ 39 °C + secreção purulenta ≥ 3 dias) ou piora após melhora.',
+  ideal:{ fonte:'AAP 2013 · SBP', itens:['amox_alta_sus','lavagem_nasal'], nota:'Amoxicilina 45 ou 90 mg/kg/dia por 10 dias + lavagem nasal. Disponível no SUS.' },
+  sus:{ itens:['amox250','lavagem_nasal'], nota:'Dose padrão 50 mg/kg/dia se baixo risco de resistência.' },
+  alt:[ { label:'< 2 anos, creche, ATB recente ou falha', itens:['amoxclav_bd:alta','amoxclav_sus'] },
+        { label:'Alergia não grave', itens:['cefuroxima'] } ],
+  orient:'• Retornar se edema/eritema palpebral, dor ocular, cefaleia intensa ou alteração de consciência.' },
+
+{ id:'rinite', grupo:'Ouvido, nariz & garganta', nome:'Rinite alérgica', chave:'rinite alergica espirros coriza prurido nasal',
+  quando:'Espirros, prurido, coriza hialina e obstrução recorrentes; desencadeantes ambientais.',
+  ideal:{ fonte:'ARIA · V Consenso Brasileiro de Rinites 2024', itens:['mometasona_nasal','desloratadina','lavagem_nasal'], nota:'Corticoide nasal é o tratamento mais eficaz; anti-H1 de 2ª geração para sintomas oculares/esporádicos. Corticoide sistêmico só em casos graves, ≤ 5–7 dias. Mometasona e desloratadina são particulares.' },
+  sus:{ itens:['budesonida_nasal','loratadina','lavagem_nasal'], nota:'SUS: budesonida nasal (≥ 6 anos) e loratadina xarope (≥ 2 anos).' },
+  alt:[ { label:'Outras opções', itens:['cetirizina','montelucaste'] } ],
+  orient:'• Controle de ácaros: capas, lavar roupa de cama em água quente, evitar tapetes/bichos de pelúcia.\n• Uso contínuo do corticoide nasal por ≥ 4 semanas.' },
+
+{ id:'otite_externa', grupo:'Ouvido, nariz & garganta', nome:'Otite externa aguda', chave:'otite externa piscina ouvido',
+  quando:'Dor à tração do pavilhão/tragus, edema do conduto, após água/manipulação.',
+  ideal:{ fonte:'AAO-HNS 2014', itens:['cipro_hidro_oto','ibuprofeno_50'], nota:'Gotas tópicas com quinolona ± corticoide por 7 dias + analgesia. Gotas otológicas são particulares na maioria dos municípios.' },
+  sus:{ itens:['dipirona_gotas'], nota:'Sem gota otológica na RENAME: analgesia e manter conduto seco; checar a REMUME local.' },
+  alt:[],
+  orient:'• Não molhar o ouvido por 7–10 dias (algodão com vaselina no banho).\n• Não usar cotonete.' },
+
+{ id:'conjuntivite', grupo:'Ouvido, nariz & garganta', nome:'Conjuntivite bacteriana', chave:'conjuntivite olho vermelho secrecao',
+  quando:'Secreção purulenta, pálpebras coladas pela manhã. Viral: secreção aquosa + adenopatia pré-auricular (só suporte).',
+  ideal:{ fonte:'AAO · SBP', itens:['moxi_col'], nota:'Colírio antibiótico encurta a doença. Opções particulares; a OMA + conjuntivite pede amoxicilina-clavulanato VO.' },
+  sus:{ itens:['tobramicina_col'], nota:'Colírios antibióticos não constam na RENAME básica — verificar REMUME. Limpeza com SF 0,9% é a base.' },
+  alt:[],
+  orient:'• Limpar com SF 0,9% e gaze descartável; lavar as mãos.\n• Neonatos, dor ocular, baixa visual ou fotofobia: oftalmologia urgente.' },
+
+// ---------------- GASTRO ----------------
+{ id:'geca', grupo:'Gastro & hidratação', nome:'Diarreia aguda (GECA) sem desidratação — Plano A', chave:'diarreia geca gastroenterite plano a',
+  quando:'Diarreia aguda aquosa, sem sinais de desidratação.',
+  ideal:{ fonte:'OMS 2024 · MS · ESPGHAN 2014/2023', itens:['sro:planoA','zinco'], nota:'SRO de osmolaridade reduzida + zinco + manter alimentação. Ambos no SUS. Antibiótico não é indicado na diarreia aquosa.' },
+  sus:'igual',
+  alt:[ { label:'Vômitos que impedem a TRO (≥ 6 meses)', itens:['ondansetrona_vo'] },
+        { label:'Adjuvantes particulares (ESPGHAN: considerar)', itens:['racecadotrila','sboulardii'] } ],
+  orient:'• Manter aleitamento e dieta habitual; evitar refrigerantes, sucos industrializados e chás adoçados.\n• Retornar se sangue nas fezes, vômitos incoercíveis, sede intensa, olhos fundos, letargia ou pouca urina.' },
+
+{ id:'desidratacao', grupo:'Gastro & hidratação', nome:'Desidratação — Planos B e C', chave:'desidratacao plano b plano c terapia de reidratacao',
+  quando:'Plano B: ≥ 2 sinais (irritado, olhos fundos, bebe com avidez, sinal da prega lento). Plano C: letárgico, não consegue beber, prega muito lenta.',
+  ideal:{ fonte:'MS — Manejo do paciente com diarreia · OMS', itens:['sro:planoB','ondansetrona_vo'], nota:'TRO na unidade é preferível à EV quando possível (inclusive por SNG). Tudo no SUS.' },
+  sus:'igual',
+  alt:[ { label:'Plano C / falha da TRO', itens:['plano_c','expansao'] } ],
+  orient:'• Reavaliar a cada hora no Plano B; ao final, Plano A em casa com zinco.' },
+
+{ id:'disenteria', grupo:'Gastro & hidratação', nome:'Disenteria (diarreia com sangue)', chave:'disenteria shigella sangue fezes',
+  quando:'Diarreia com sangue visível ± febre e tenesmo.',
+  ideal:{ fonte:'OMS 2024 · SBP', itens:['azitro:disenteria','sro:planoA','zinco'], nota:'Azitromicina 3 dias (ciprofloxacino é a 1ª escolha da OMS onde a sensibilidade é boa). Disponível no SUS.' },
+  sus:'igual',
+  alt:[ { label:'> 30 kg / alternativa OMS', itens:['cipro_vo'] },
+        { label:'< 3 meses ou toxêmico', itens:['ceftriaxona_ev'] } ],
+  orient:'• Reavaliar em 48 h. Investigar SHU se palidez, oligúria ou petéquias.' },
+
+{ id:'constipacao', grupo:'Gastro & hidratação', nome:'Constipação funcional', chave:'constipacao intestino preso fecaloma',
+  quando:'Critérios de Roma IV; excluir sinais de alarme (início < 1 mês, eliminação de mecônio > 48 h, distensão importante, déficit neurológico).',
+  ideal:{ fonte:'ESPGHAN/NASPGHAN 2014', itens:['peg'], nota:'PEG é a 1ª linha (desimpactação + manutenção ≥ 2 meses). Particular.' },
+  sus:{ itens:['lactulose'], nota:'SUS: lactulose (qualquer idade) ou óleo mineral (> 1 ano, sem risco de aspiração).' },
+  alt:[ { label:'Alternativa SUS > 1 ano', itens:['oleo_mineral'] } ],
+  orient:'• Treino de toalete: sentar 5–10 min após as refeições, com apoio para os pés.\n• Fibras e água conforme idade; diário de evacuações.\n• Desmame lento do laxativo só após 1 mês sem sintomas.' },
+
+// ---------------- URINÁRIO ----------------
+{ id:'itu_febril', grupo:'Urinário', nome:'ITU febril / pielonefrite', chave:'itu pielonefrite infeccao urinaria febre',
+  quando:'Febre + EAS alterado; confirmar com urocultura (punção suprapúbica ou cateterismo em quem usa fralda).',
+  ideal:{ fonte:'AAP 2011/2016 · SBP', itens:['cefuroxima'], nota:'VO é tão eficaz quanto EV na criança > 2 meses estável. Cefalosporina de 2ª geração cobre melhor E. coli; ajustar pelo antibiograma. 7–14 dias (10 dias habitual). Particular.' },
+  sus:{ itens:['amoxclav_sus','ceftriaxona_ev:pielo'], nota:'SUS: amoxicilina-clavulanato VO ou ceftriaxona IM/EV 1x/dia até afebril, depois VO; SMX-TMP só se sensível.' },
+  alt:[ { label:'VO particular alternativa', itens:['cefaclor'] },
+        { label:'Hospitalar / < 2 meses', itens:['gentamicina','ampicilina'] },
+        { label:'Se sensível no antibiograma', itens:['smx_tmp'] } ],
+  orient:'• US de rins e vias urinárias após 1º episódio febril em < 2 anos.\n• Tratar constipação e disfunção miccional.\n• Retornar se febre persistir > 48 h de tratamento.' },
+
+{ id:'cistite', grupo:'Urinário', nome:'Cistite (ITU afebril)', chave:'cistite disuria itu baixa',
+  quando:'Disúria, polaciúria, urgência sem febre; crianças maiores.',
+  ideal:{ fonte:'SBP · AAP', itens:['nitrofurantoina'], nota:'Nitrofurantoína ou cefalexina por 5–7 dias, ajustar à urocultura. Ambas no SUS.' },
+  sus:'igual',
+  alt:[ { label:'Alternativas', itens:['cefalexina','smx_tmp'] } ],
+  orient:'• Ingesta hídrica, micções regulares, higiene da frente para trás, tratar constipação.' },
+
+// ---------------- PELE & PARASITAS ----------------
+{ id:'impetigo', grupo:'Pele & parasitas', nome:'Impetigo', chave:'impetigo piodermite crosta melicerica',
+  quando:'Crostas melicéricas ou bolhas; localizado (< 3 lesões) × extenso.',
+  ideal:{ fonte:'IDSA 2014 · SBD', itens:['mupirocina'], nota:'Localizado: mupirocina 5–7 dias. Particular.' },
+  sus:{ itens:['neo_bacitracina'], nota:'Limpeza com água e sabão + neomicina-bacitracina (menor eficácia). Se extenso ou sem melhora: cefalexina VO (SUS).' },
+  alt:[ { label:'Extenso / múltiplas lesões', itens:['cefalexina:pele'] },
+        { label:'Estreptocócico / penicilina IM', itens:['pen_benzatina'] } ],
+  orient:'• Unhas curtas, toalhas individuais; afastar da creche até 24 h de tratamento.' },
+
+{ id:'celulite', grupo:'Pele & parasitas', nome:'Celulite / abscesso cutâneo', chave:'celulite abscesso furunculo erisipela',
+  quando:'Eritema, calor, edema; abscesso flutuante → drenagem é o tratamento principal.',
+  ideal:{ fonte:'IDSA 2014', itens:['cefalexina:pele'], nota:'Cefalexina 7 dias para celulite não purulenta. No SUS.' },
+  sus:'igual',
+  alt:[ { label:'Suspeita de MRSA comunitário / abscesso recorrente', itens:['smx_tmp'] },
+        { label:'Grave / periorbitária / falha VO', itens:['oxacilina_ev','clindamicina_ev','ceftriaxona_ev'] } ],
+  orient:'• Demarcar a borda com caneta; retornar se progredir em 48 h, febre alta ou dor desproporcional.' },
+
+{ id:'escabiose', grupo:'Pele & parasitas', nome:'Escabiose (sarna)', chave:'escabiose sarna prurido noturno',
+  quando:'Prurido noturno, pápulas e túneis em interdígitos, punhos, axilas, genitais; lactentes: palmas, plantas e couro cabeludo.',
+  ideal:{ fonte:'IUSTI · SBP', itens:['permetrina5'], nota:'Permetrina 5% em 2 aplicações (D1 e D7). Disponível no SUS.' },
+  sus:'igual',
+  alt:[ { label:'≥ 15 kg, surtos, adesão difícil', itens:['ivermectina'] },
+        { label:'< 2 meses', itens:['enxofre'] },
+        { label:'Prurido', itens:['hidroxizina','dexclorfeniramina'] } ],
+  orient:'• Tratar todos os contactantes no mesmo dia.\n• Lavar roupas e roupas de cama a ≥ 60 °C ou guardar em saco fechado por 72 h.\n• O prurido pode persistir 2–4 semanas após a cura.' },
+
+{ id:'pediculose', grupo:'Pele & parasitas', nome:'Pediculose (piolho)', chave:'pediculose piolho lendea',
+  quando:'Piolho vivo no couro cabeludo.',
+  ideal:{ fonte:'AAP 2022', itens:['permetrina1'], nota:'Permetrina 1% + pente fino; dimeticona 4% se suspeita de resistência. Permetrina no SUS.' },
+  sus:'igual',
+  alt:[ { label:'Resistência / particular', itens:['dimeticona4'] },
+        { label:'≥ 15 kg, falha tópica', itens:['ivermectina'] } ],
+  orient:'• Pente fino no cabelo molhado a cada 2–3 dias por 2 semanas.\n• Não há necessidade de afastar da escola.' },
+
+{ id:'parasitose', grupo:'Pele & parasitas', nome:'Parasitoses intestinais', chave:'verminose parasitose ascaris giardia oxiuro',
+  quando:'Helmintíases (ascaridíase, oxiurose, ancilostomíase) ou giardíase confirmada/provável.',
+  ideal:{ fonte:'OMS · SBP', itens:['albendazol','metronidazol_vo'], nota:'Helmintos: albendazol dose única (oxiúros: repetir em 2 semanas). Giardíase: metronidazol 5–7 dias. Todos no SUS.' },
+  sus:'igual',
+  alt:[ { label:'Giardíase — opções particulares', itens:['secnidazol','nitazoxanida'] },
+        { label:'Estrongiloidíase (≥ 15 kg)', itens:['ivermectina'] },
+        { label:'Esquistossomose (Programa MS)', itens:['praziquantel'] } ],
+  orient:'• Lavar mãos e alimentos; unhas curtas; tratar contactantes na oxiurose.' },
+
+{ id:'larva_migrans', grupo:'Pele & parasitas', nome:'Larva migrans cutânea (bicho-geográfico)', chave:'larva migrans bicho geografico',
+  quando:'Lesão serpiginosa pruriginosa após contato com areia/terra.',
+  ideal:{ fonte:'CDC · SBD', itens:['ivermectina'], nota:'Ivermectina dose única (≥ 15 kg) ou albendazol 3 dias. Ambos no SUS.' },
+  sus:{ itens:['albendazol:larva'], nota:'Albendazol por 3 dias serve para qualquer peso ≥ 1 ano.' },
+  alt:[ { label:'Prurido', itens:['loratadina'] } ],
+  orient:'• Usar calçados em areia; evitar áreas com fezes de cães e gatos.' },
+
+{ id:'candidiase_oral', grupo:'Pele & parasitas', nome:'Candidíase oral (sapinho)', chave:'candidiase oral sapinho monilíase',
+  quando:'Placas brancas aderidas na mucosa oral.',
+  ideal:{ fonte:'IDSA 2016', itens:['miconazol_gel'], nota:'Miconazol gel tem maior taxa de cura que a nistatina (≥ 4 meses). Particular.' },
+  sus:{ itens:['nistatina_oral'], nota:'Nistatina suspensão 7–14 dias (SUS).' },
+  alt:[ { label:'Refratária / extensa', itens:['fluconazol'] } ],
+  orient:'• Ferver bicos e chupetas; tratar mamilos maternos se dor/fissura.' },
+
+{ id:'fralda', grupo:'Pele & parasitas', nome:'Dermatite da área das fraldas', chave:'dermatite fralda assadura candida',
+  quando:'Eritema em áreas de contato (irritativa) ou com lesões satélites e dobras acometidas (Candida).',
+  ideal:{ fonte:'SBD · SBP', itens:['nistatina_zinco'], nota:'Barreira com óxido de zinco a cada troca; antifúngico se Candida. Particular.' },
+  sus:{ itens:['miconazol_creme'], nota:'SUS: miconazol creme 2x/dia + pasta d’água/óxido de zinco quando disponível.' },
+  alt:[ { label:'Muito inflamada (curto prazo)', itens:['hidrocortisona_creme'] } ],
+  orient:'• Trocar fraldas com frequência, limpar com água morna e algodão, deixar períodos sem fralda.\n• Evitar lenços umedecidos com perfume/álcool.' },
+
+{ id:'dermatite_atopica', grupo:'Pele & parasitas', nome:'Dermatite atópica — crise', chave:'dermatite atopica eczema',
+  quando:'Eczema pruriginoso crônico/recidivante com distribuição típica para a idade.',
+  ideal:{ fonte:'ASBAI/SBP · AAD 2023', itens:['mometasona_creme','hidrocortisona_creme','cetirizina'], nota:'Corticoide tópico de potência adequada ao local + hidratação intensa (emolientes 2–3x/dia). Anti-H1 só se prurido atrapalha o sono. Particular.' },
+  sus:{ itens:['dexa_creme','dexclorfeniramina'], nota:'SUS: dexametasona creme 0,1% por curto período + hidratante.' },
+  alt:[],
+  orient:'• Banho morno e rápido (5–10 min), sabonete syndet; hidratante em até 3 min após o banho.\n• Roupas de algodão; unhas curtas.' },
+
+{ id:'varicela', grupo:'Infecciosas sistêmicas', nome:'Varicela', chave:'varicela catapora',
+  quando:'Exantema vesicular polimorfo pruriginoso.',
+  ideal:{ fonte:'AAP Red Book 2024', itens:['aciclovir_vo:varicela','paracetamol_gotas'], nota:'Aciclovir em ≥ 13 anos, doença crônica de pele/pulmão, corticoide/salicilato ou 2º caso domiciliar (iniciar ≤ 24 h). Comprimido 200 mg no SUS; suspensão particular.' },
+  sus:{ itens:['paracetamol_gotas','dexclorfeniramina'], nota:'Criança saudável: sintomáticos (paracetamol) e anti-H1 para prurido.' },
+  alt:[ { label:'Prurido intenso', itens:['hidroxizina','loratadina'] } ],
+  orient:'• Nunca usar AAS (síndrome de Reye); evitar ibuprofeno (risco de infecção estreptocócica invasiva).\n• Afastar até todas as lesões em crosta.\n• Retornar se febre após o 4º dia, lesão quente/dolorosa, dispneia ou alteração neurológica.' },
+
+{ id:'coqueluche', grupo:'Infecciosas sistêmicas', nome:'Coqueluche', chave:'coqueluche pertussis tosse paroxistica',
+  quando:'Tosse paroxística, guincho, vômito pós-tosse, cianose/apneia em lactentes.',
+  ideal:{ fonte:'MS · CDC', itens:['azitro:coqueluche'], nota:'Azitromicina 5 dias (droga de escolha em < 1 mês). No SUS. Notificação compulsória.' },
+  sus:'igual',
+  alt:[ { label:'Alternativa > 2 meses', itens:['smx_tmp'] } ],
+  orient:'• Quimioprofilaxia dos contactantes com o mesmo esquema.\n• Internar < 3–4 meses ou com apneia/cianose.' },
+
+{ id:'dengue', grupo:'Infecciosas sistêmicas', nome:'Dengue — grupos A/B (sem sinais de alarme)', chave:'dengue arbovirose',
+  quando:'Febre 2–7 dias + 2 de: cefaleia, dor retro-orbitária, mialgia, exantema, petéquias, náuseas. Sem sinais de alarme.',
+  ideal:{ fonte:'MS — Dengue: diagnóstico e manejo clínico 2024', itens:['paracetamol_gotas','sro'], nota:'Hidratação oral vigorosa e analgesia com paracetamol ou dipirona. Proibido AINE e AAS. No SUS.' },
+  sus:'igual',
+  alt:[ { label:'Analgesia alternativa', itens:['dipirona_gotas'] },
+        { label:'Grupo C (sinal de alarme)', itens:['expansao'] } ],
+  orient:'HIDRATAÇÃO ORAL',
+  orientFn:(w)=>{ const ml = w<=10?130:(w<=20?100:80); const t=w*ml; return `• Hidratação oral: ${nf(t,0)} mL/dia (${ml} mL/kg/dia), 1/3 com SRO e o restante com água, sucos e leite.\n• Proibido: ibuprofeno, diclofenaco, AAS e outros AINEs.\n• Retornar imediatamente se dor abdominal intensa, vômitos persistentes, sangramento, sonolência/irritabilidade, tontura ao levantar ou queda brusca da febre com piora.\n• Reavaliar no dia da defervescência (fase crítica).`; } },
+
+// ---------------- PUERICULTURA ----------------
+{ id:'ferro_profilaxia', grupo:'Puericultura & prevenção', nome:'Profilaxia de anemia ferropriva', chave:'ferro profilaxia sulfato ferroso puericultura',
+  quando:'Todos os lactentes; dose e início dependem de peso ao nascer, IG e fatores de risco.',
+  ideal:{ fonte:'SBP 2021', itens:['ferro_prof'], nota:'SBP: termo AIG com fatores de risco a partir de 90 dias (sem risco: 180 dias) até 24 meses, 1 mg/kg/dia. Baixo peso/prematuros desde 30 dias. Sulfato ferroso está no SUS.' },
+  sus:{ itens:['ferro_prof'], nota:'PNSF/MS: 1 mg/kg/dia (sulfato ferroso 25 mg/mL) — o MS inicia a profilaxia universal aos 6 meses; a SBP antecipa para 90 dias quando há fator de risco.' },
+  alt:[ { label:'Intolerância GI (particular)', itens:['ferro_quelato'] } ],
+  orient:'• Dar longe do leite, com suco de fruta cítrica.\n• Fezes escuras são esperadas.' },
+
+{ id:'anemia', grupo:'Puericultura & prevenção', nome:'Anemia ferropriva — tratamento', chave:'anemia ferropriva tratamento',
+  quando:'Hb abaixo do esperado + ferritina baixa (ou resposta à prova terapêutica).',
+  ideal:{ fonte:'SBP 2021', itens:['ferro_trat'], nota:'3–6 mg/kg/dia de ferro elementar; checar resposta em 30–45 dias; manter até repor estoques. Sulfato ferroso no SUS.' },
+  sus:'igual',
+  alt:[ { label:'Intolerância GI (particular)', itens:['ferro_quelato'] } ],
+  orient:'• Reduzir leite de vaca (máx. 500 mL/dia), aumentar carne/feijão/folhas verde-escuras.\n• Investigar parasitose e perda sanguínea.' },
+
+{ id:'vitamina_d', grupo:'Puericultura & prevenção', nome:'Suplementação de vitamina D', chave:'vitamina d raquitismo puericultura',
+  quando:'Do nascimento até 2 anos (SBP); depois em grupos de risco.',
+  ideal:{ fonte:'SBP 2016 · AAP', itens:['vitd'], nota:'400 UI/dia no 1º ano e 600 UI/dia de 12 a 24 meses. Não há vitamina D isolada na RENAME — custo para a família.' },
+  sus:{ itens:[], nota:'Sem colecalciferol isolado no SUS (apenas associado a cálcio, para adultos). Orientar exposição solar segura e alimentação; algumas prefeituras fornecem via REMUME.' },
+  alt:[],
+  orient:'• Usar todos os dias, de preferência no mesmo horário.' },
+
+{ id:'vitamina_a', grupo:'Puericultura & prevenção', nome:'Suplementação de vitamina A', chave:'vitamina a megadose',
+  quando:'6 a 59 meses nas regiões e grupos do Programa Nacional (Norte, Nordeste, Centro-Oeste, DSEI, CadÚnico).',
+  ideal:{ fonte:'MS — NT 134/2025 · OMS', itens:['vita_megadose'], nota:'Megadose a cada 6 meses. Oferta exclusiva do SUS.' },
+  sus:'igual', alt:[], orient:'• Registrar na Caderneta da Criança.' },
+
+{ id:'vsr_prevencao', grupo:'Puericultura & prevenção', nome:'Prevenção do VSR (nirsevimabe)', chave:'vsr nirsevimabe palivizumabe bronquiolite prevencao',
+  quando:'Antes/durante a sazonalidade do VSR.',
+  ideal:{ fonte:'SBP · SBIm · MS NT 109/2025', itens:['nirsevimabe'], nota:'SBIm/SBP recomendam para todos os lactentes na 1ª sazonalidade. SUS: prematuros ≤ 36s6d e < 24 meses com comorbidades (cardiopatia, DBP, imunodeficiência, Down, etc.). Demais: rede privada.' },
+  sus:'igual', alt:[], orient:'• Pode ser aplicado junto com as vacinas do calendário.' },
+
+// ---------------- URGÊNCIA ----------------
+{ id:'anafilaxia', grupo:'Urgência', nome:'Anafilaxia', chave:'anafilaxia alergia grave choque anafilatico',
+  quando:'Início agudo com pele/mucosa + respiratório ou hipotensão; ou exposição a alérgeno conhecido + hipotensão.',
+  ideal:{ fonte:'WAO 2020 · ASBAI', itens:['adrenalina_anafilaxia','expansao'], nota:'Adrenalina IM imediata é o único tratamento de 1ª linha. Disponível no SUS.' },
+  sus:'igual',
+  alt:[ { label:'Adjuvantes (após adrenalina)', itens:['difenidramina_inj','metilpred','salbutamol_spray'] },
+        { label:'Refratária', itens:['adrenalina_choque_bic'] } ],
+  orient:'• Observar 6–12 h (bifásica).\n• Alta com plano de ação; autoinjetor de adrenalina (0,15 mg 10–25 kg; 0,3 mg ≥ 25 kg) — importado, alto custo.\n• Encaminhar ao alergista.' },
+
+{ id:'convulsao', grupo:'Urgência', nome:'Crise epiléptica / estado de mal', chave:'convulsao crise epileptica estado de mal febril',
+  quando:'Crise ≥ 5 min ou crises repetidas sem recuperação.',
+  ideal:{ fonte:'AES 2016 · ESETT 2019 · ILAE', itens:['midazolam_crise','levetiracetam_ev'], nota:'Benzodiazepínico (até 2 doses) → 2ª linha com levetiracetam, fenitoína ou valproato (eficácia igual; levetiracetam tem menos efeitos). Levetiracetam EV tem disponibilidade variável no SUS.' },
+  sus:{ itens:['diazepam_crise','fenitoina_ataque'], nota:'Rede SUS: diazepam/midazolam + fenitoína; fenobarbital como alternativa (1ª linha no RN).' },
+  alt:[ { label:'Alternativa / RN', itens:['fenobarbital_ataque'] },
+        { label:'Hipoglicemia', itens:['glicose_hipo'] } ],
+  orient:'• ABC, O₂, HGT, decúbito lateral.\n• Refratário (> 40 min): IOT e infusão contínua em UTI.' },
+
+{ id:'sepse', grupo:'Urgência', nome:'Sepse / choque séptico', chave:'sepse choque septico',
+  quando:'Suspeita de infecção + disfunção orgânica (Phoenix 2024) ou hipoperfusão.',
+  ideal:{ fonte:'Surviving Sepsis Campaign Pediátrica 2020 · Phoenix 2024', itens:['ceftriaxona_ev:sepse','expansao','adrenalina_choque_bic'], nota:'ATB na 1ª hora, cristaloide balanceado em bólus de 10–20 mL/kg com reavaliação, adrenalina ou noradrenalina (não dopamina). Disponível no SUS hospitalar.' },
+  sus:'igual',
+  alt:[ { label:'Choque quente / vasoplégico', itens:['noradrenalina_bic'] },
+        { label:'MRSA / meningite / grave', itens:['vancomicina'] },
+        { label:'Refratário a catecolamina', itens:['hidrocortisona_adrenal'] } ],
+  orient:'• Coletar hemoculturas sem atrasar o ATB.\n• Metas: TEC ≤ 2 s, pulsos normais, diurese > 1 mL/kg/h, lactato em queda.' },
+
+{ id:'cad', grupo:'Urgência', nome:'Cetoacidose diabética', chave:'cad cetoacidose diabetes',
+  quando:'Glicemia > 200, pH < 7,3 ou HCO₃ < 18 (ISPAD 2022), cetonemia/cetonúria.',
+  ideal:{ fonte:'ISPAD 2022', itens:['cad_volume','cad_insulina_bic'], nota:'Expansão 10–20 mL/kg, insulina 0,05–0,1 UI/kg/h após 1–2 h, KCl 40 mEq/L. No SUS hospitalar.' },
+  sus:'igual',
+  alt:[ { label:'Edema cerebral', itens:['cad_edema'] },
+        { label:'Hipocalemia grave', itens:['kcl_correcao'] } ],
+  orient:'• HGT 1/1 h; gasometria e eletrólitos 2/2–4/4 h; neurológico horário.' }
+];
+
+// =====================================================================
+// APLICAÇÃO
+// =====================================================================
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SUS_SET = new Set(['SUS','SUSH','SUSE','SUSESP']);
+const ROUTES = ['Uso Oral','Uso Intravenoso','Uso Intramuscular','Uso Inalatório','Uso Nasal','Uso Tópico','Uso Oftálmico','Uso Otológico','Uso Retal','Uso Intranasal/IM/EV','Uso Intravenoso/Retal','Orientações'];
+
+let items = [];
+let curCat = 'todos', accFilter = 'all', curDx = 'pac', curView = 'rx';
+
+const store = {
+  get(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } },
+  set(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+};
+
+function pt(){
+  const w = parseFloat($('ptWeight').value) || 0;
+  const h = parseFloat($('ptHeight').value) || 0;
+  const av = parseFloat($('ptAgeVal').value) || 0;
+  const u = $('ptAgeUnit').value;
+  const a = u==='meses' ? av/12 : (u==='dias' ? av/365 : av);
+  return { w: w>0?w:10, wReal:w, h, a, av, u };
+}
+const DRUG = Object.fromEntries(DRUG_DATA.map(d => [d.id, d]));
+
+function lookup(ref){
+  const [id, vk] = ref.split(':');
+  const d = DRUG[id]; if (!d) return null;
+  const { w, a } = pt();
+  const fn = (vk && d.v && d.v[vk]) ? d.v[vk] : d.calc;
+  return { d, res: fn(w, a), ref };
+}
+function minWarn(d){
+  if (!d.min) return '';
+  const { wReal, a } = pt();
+  if ((d.min.a !== undefined && a < d.min.a) || (d.min.w !== undefined && wReal > 0 && wReal < d.min.w)) return d.min.txt;
+  return '';
+}
+const badge = acc => `<span class="badge ${ACESSO[acc].cls}">${ACESSO[acc].lbl}</span>`;
+
+// ---------------- paciente ----------------
+function ageGroup(a){
+  if (a < 28/365) return 'Neonato (< 28 dias)';
+  if (a < 2) return 'Lactente (< 2 anos)';
+  if (a < 10) return 'Criança (2–9 anos)';
+  return 'Adolescente (≥ 10 anos)';
+}
+function estWeight(a){
+  if (a < 1) return a*12/2 + 4;
+  if (a <= 5) return a*2 + 8;
+  if (a <= 12) return a*3 + 7;
+  return null;
+}
+function holliday(w){ return w<=10 ? w*100 : (w<=20 ? 1000+(w-10)*50 : Math.min(1500+(w-20)*20, 2400)); }
+function bsa(w,h){ return h>0 ? Math.sqrt(w*h/3600) : (w*4+7)/(w+90); }
+
+function renderChips(){
+  const { w, wReal, h, a } = pt();
+  $('chipAge').textContent = ageGroup(a);
+  const ew = estWeight(a);
+  const chips = [
+    `SC ${nf(bsa(w,h),2)} m²${h>0?'':' (estimada)'}`,
+    `Holliday ${nf(holliday(w),0)} mL/dia · ${nf(holliday(w)/24,1)} mL/h`
+  ];
+  if (ew) chips.push(`Peso esperado p/ idade ≈ ${nf(ew,1)} kg`);
+  $('chipsBio').innerHTML = chips.map(c => `<span class="chip">${c}</span>`).join('');
+  if (!wReal) $('chipsBio').insertAdjacentHTML('beforeend','<span class="chip" style="background:var(--danger-bg);color:var(--danger)">Informe o peso — usando 10 kg</span>');
+}
+
+// ---------------- segurança ----------------
+const ALLERGY_RULES = [
+  { re:/penicil|amoxi|ampicil|oxacil|benzetacil|clavul|betalact|beta-lact/, ids:['amox250','amox_alta_sus','amox400','amoxclav_sus','amoxclav_bd','pen_benzatina','pen_cristalina','ampicilina','oxacilina_ev'], msg:'alergia a penicilinas e há penicilina prescrita.' },
+  { re:/penicil|amoxi|betalact|cefal|cefa|cef/, ids:['cefalexina','cefadroxila','cefuroxima','cefaclor','ceftriaxona_ev','cefepima'], msg:'cefalosporina com relato de alergia a betalactâmico (reação cruzada baixa, ~1–2%; evitar se anafilaxia).' },
+  { re:/sulfa|sulfonamid|bactrim/, ids:['smx_tmp','sulfadiazina'], msg:'alergia a sulfa e há sulfonamida prescrita.' },
+  { re:/dipiron|metamizol|novalgin/, ids:['dipirona_gotas','dipirona_inj'], msg:'alergia/intolerância à dipirona.' },
+  { re:/aine|ibupro|aas|aspirin|diclofen|cetoprof|nimesul/, ids:['ibuprofeno_50','ibuprofeno_100','cetoprofeno'], msg:'intolerância a AINE e há AINE prescrito.' },
+  { re:/azitro|claritro|eritro|macrol/, ids:['azitro','claritro'], msg:'alergia a macrolídeo.' },
+  { re:/paracet|acetamin|tylenol/, ids:['paracetamol_gotas','paracetamol_susp'], msg:'alergia ao paracetamol.' }
+];
+function checkSafety(){
+  const all = ($('ptAllergies').value||'').toLowerCase();
+  const com = ($('ptComorb').value||'').toLowerCase();
+  const ids = items.map(i => (i.ref||'').split(':')[0]);
+  const out = [];
+  if (all.trim()) ALLERGY_RULES.forEach(r => { if (r.re.test(all)) { const hit = r.ids.filter(x => ids.includes(x)); if (hit.length) out.push('• Relato de ' + r.msg); } });
+  if (/dengue|arbovir|chikun/.test(com) && ids.some(x => ['ibuprofeno_50','ibuprofeno_100','cetoprofeno'].includes(x))) out.push('• Suspeita de dengue: AINE contraindicado (risco hemorrágico).');
+  if (/epilep|convuls/.test(com) && ids.includes('flumazenil')) out.push('• Flumazenil em paciente com epilepsia pode precipitar crises.');
+  items.forEach(i => { const d = DRUG[(i.ref||'').split(':')[0]]; const mw = d && minWarn(d); if (mw) out.push(`• ${d.name}: ${mw}.`); });
+  $('safetyBox').hidden = !out.length;
+  $('safetyMsg').innerHTML = out.map(esc).join('<br>');
+}
+
+// ---------------- catálogo ----------------
+function renderFilters(){
+  $('catFilters').innerHTML = CATS.map(([k,l]) => `<button class="fbtn" type="button" data-cat="${k}" aria-pressed="${k===curCat}">${l}</button>`).join('');
+}
+function renderCatalog(){
+  const q = ($('searchDrug').value||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const list = DRUG_DATA.filter(d =>
+    (curCat==='todos' || d.cat===curCat) &&
+    (accFilter==='all' || (accFilter==='sus' ? SUS_SET.has(d.acc) || d.acc==='MISTO' : d.acc==='PART')) &&
+    (!q || norm(d.name+' '+d.ind+' '+d.id+' '+d.cat).includes(q)));
+  $('catCount').textContent = `${list.length} de ${DRUG_DATA.length} itens`;
+  if (!list.length) { $('catalog').innerHTML = '<div class="empty" style="grid-column:1/-1">Nada encontrado com esses filtros.</div>'; return; }
+  const { w, a } = pt();
+  $('catalog').innerHTML = list.map(d => {
+    const r = d.calc(w, a); const mw = minWarn(d);
+    return `<article class="dcard">
+      <div style="display:flex;justify-content:space-between;gap:6px;align-items:flex-start"><div class="dname">${esc(d.name)}</div></div>
+      <div>${badge(d.acc)}</div>
+      <div class="dind">${esc(d.ind)}</div>
+      ${mw?`<div class="warnline">⚠ ${esc(mw)}</div>`:''}
+      <div class="dose">${esc(r.inst)}</div>
+      <div class="dfoot"><span class="src">${esc(d.route)}</span><button class="btn btn-line btn-sm" type="button" data-rx="${d.id}">+ Prescrever</button></div>
+    </article>`; }).join('');
+}
+
+// ---------------- itens prescritos ----------------
+function prescribe(ref, silent){
+  const L = lookup(ref); if (!L) return;
+  items.push({ uid: 'i'+Date.now()+Math.random().toString(36).slice(2,6), ref, title: L.res.title, route: L.d.route, inst: L.res.inst });
+  renderRx(); checkSafety(); syncPreview();
+  if (!silent) toast('Adicionado à receita: ' + L.res.title);
+}
+function renderRx(){
+  $('countMob').textContent = items.length;
+  if (!items.length) { $('rxList').innerHTML = '<div class="empty">Nenhum item ainda. Escolha no catálogo acima ou na aba SUS × Ideal.</div>'; return; }
+  $('rxList').innerHTML = items.map((it,i) => `<div class="rxitem">
+    <div class="rxitem-h"><span class="num">${i+1}</span>
+      <input aria-label="Título do item ${i+1}" value="${esc(it.title)}" data-uid="${it.uid}" data-f="title">
+      <select aria-label="Via do item ${i+1}" data-uid="${it.uid}" data-f="route">${ROUTES.map(r=>`<option${r===it.route?' selected':''}>${r}</option>`).join('')}</select>
+      <button class="xbtn" type="button" data-del="${it.uid}" aria-label="Remover item ${i+1}">×</button></div>
+    <textarea rows="3" aria-label="Posologia do item ${i+1}" data-uid="${it.uid}" data-f="inst">${esc(it.inst)}</textarea></div>`).join('');
+}
+function recalcItems(){
+  items.forEach(it => { if (it.ref && !it.edited) { const L = lookup(it.ref); if (L) { it.title = L.res.title; it.inst = L.res.inst; } } });
+  renderRx();
+}
+
+// ---------------- folha A4 ----------------
+function doc(){ return store.get('prescrimed_doc_cfg') || { name:$('docName').value, crm:$('docCrm').value, esp:$('docEsp').value, inst:$('docInst').value, contact:$('docContact').value }; }
+function syncPreview(){
+  const d = doc();
+  $('vDocName').textContent = d.name; $('vDocEsp').textContent = d.esp; $('vDocCrm').textContent = d.crm;
+  $('vDocInst').textContent = d.inst; $('vDocContact').textContent = d.contact;
+  $('vFootName').textContent = d.name; $('vFootCrm').textContent = d.crm;
+  const { av, u, wReal } = pt();
+  $('vPtName').textContent = $('ptName').value || 'Paciente';
+  $('vPtBio').textContent = `Idade: ${av} ${u} · Peso: ${wReal ? nf(wReal,1) : '--'} kg${$('ptHeight').value ? ' · Estatura: '+$('ptHeight').value+' cm':''}`;
+  const all = $('ptAllergies').value.trim();
+  $('vPtAll').textContent = all ? 'Alergias: ' + all : '';
+  $('vDate').textContent = new Date().toLocaleDateString('pt-BR');
+  if (!items.length) { $('vRx').innerHTML = '<div class="empty" style="color:#94a3b8">Nenhum medicamento selecionado.</div>'; }
+  else {
+    const groups = {}; items.forEach((it,i) => { (groups[it.route] = groups[it.route] || []).push({it,i}); });
+    let n = 0;
+    $('vRx').innerHTML = Object.entries(groups).map(([r, arr]) => `<div class="sec-route">${esc(r)}</div>` + arr.map(({it}) => { n++; return `<div class="rx-it"><div class="rx-title">${n}. ${esc(it.title)}</div><div class="rx-inst">${esc(it.inst)}</div></div>`; }).join('')).join('');
+  }
+  const notes = $('extraNotes').value.trim();
+  $('vNotesBox').hidden = !notes; $('vNotes').textContent = notes;
+  store.set('prescrimed_draft', { items, notes: $('extraNotes').value });
+}
+function rxText(){
+  const d = doc(); const { av, u, wReal } = pt();
+  let t = `${d.name} — ${d.esp} — ${d.crm}\n${d.inst}\n\nPaciente: ${$('ptName').value} · ${av} ${u} · ${wReal?nf(wReal,1):'--'} kg\n`;
+  if ($('ptAllergies').value.trim()) t += `Alergias: ${$('ptAllergies').value.trim()}\n`;
+  t += `Data: ${new Date().toLocaleDateString('pt-BR')}\n\n`;
+  let lastR = '';
+  items.forEach((it,i) => { if (it.route !== lastR) { t += `\n${it.route.toUpperCase()}\n`; lastR = it.route; } t += `${i+1}. ${it.title}\n${it.inst}\n\n`; });
+  const notes = $('extraNotes').value.trim(); if (notes) t += `ORIENTAÇÕES\n${notes}\n`;
+  return t;
+}
+
+// ---------------- notas rápidas ----------------
+const QUICK = [
+  ['Febre', () => '• Febre: dar antitérmico se Tax ≥ 37,8 °C com desconforto; banho morno opcional (não usar álcool ou compressa fria). Retornar se febre > 72 h, criança muito prostrada mesmo sem febre ou manchas na pele.'],
+  ['Respiratório', () => '• Retornar imediatamente se respiração rápida, gemência, batimento de asa do nariz, costelas afundando, lábios roxos ou dificuldade para mamar/comer.'],
+  ['Diarreia', () => '• Oferecer soro de reidratação após cada evacuação e manter alimentação. Retornar se sangue nas fezes, vômitos que não param, muita sede, olhos fundos, pouca urina ou sonolência.'],
+  ['Dengue', () => { const { w } = pt(); const ml = w<=10?130:(w<=20?100:80); return `• Dengue: beber ${nf(w*ml,0)} mL/dia (1/3 soro oral). NÃO usar ibuprofeno, AAS ou anti-inflamatórios. Retornar se dor abdominal forte, vômitos, sangramento, tontura, sonolência ou quando a febre baixar com piora.`; }],
+  ['Retorno 48 h', () => '• Retorno para reavaliação em 48–72 h, ou antes se piora.']
+];
+function renderQuick(){ $('quickNotes').innerHTML = QUICK.map(([l],i) => `<button class="fbtn" type="button" data-q="${i}">+ ${l}</button>`).join(''); }
+function addNote(txt){ const t = $('extraNotes'); t.value = (t.value.trim() ? t.value.trim()+'\n' : '') + txt; syncPreview(); }
+
+// ---------------- SUS × IDEAL ----------------
+function verdictOf(refs){
+  if (!refs.length) return null;
+  const accs = refs.map(r => (DRUG[r.split(':')[0]]||{}).acc).filter(Boolean);
+  const sus = accs.filter(a => SUS_SET.has(a)).length, part = accs.filter(a => a==='PART').length;
+  if (sus === accs.length) return { cls:'v-sus', dot:'dot-sus', txt:'Disponível no SUS' };
+  if (part === accs.length) return { cls:'v-part', dot:'dot-part', txt:'Só particular / pago' };
+  return { cls:'v-misto', dot:'dot-misto', txt:'Parte no SUS, parte particular' };
+}
+function renderDxList(){
+  const q = ($('dxSearch').value||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  let html = '', n = 0;
+  GRUPOS.forEach(g => {
+    const list = CONDUTAS.filter(c => c.grupo===g && (!q || norm(c.nome+' '+c.chave).includes(q)));
+    if (!list.length) return;
+    html += `<div class="dx-group">${g}</div>` + list.map(c => { n++; const v = verdictOf(c.ideal.itens); return `<button class="dx-btn" type="button" data-dx="${c.id}" aria-current="${c.id===curDx}"><span class="dot ${v?v.dot:'dot-sus'}"></span>${esc(c.nome)}</button>`; }).join('');
+  });
+  $('dxList').innerHTML = html || '<div class="empty">Nenhum diagnóstico encontrado.</div>';
+  $('dxCount').textContent = `${CONDUTAS.length} condutas`;
+}
+function rxRows(refs){
+  return refs.map(ref => { const L = lookup(ref); if (!L) return ''; const mw = minWarn(L.d);
+    return `<div class="rx-row"><div style="min-width:0"><div class="t">${esc(L.res.title)} ${badge(L.d.acc)}</div>${mw?`<div class="warnline" style="margin-bottom:5px">⚠ ${esc(mw)}</div>`:''}<div class="dose">${esc(L.res.inst)}</div></div>
+      <button class="btn btn-line btn-sm" type="button" data-rx="${ref}">+ Prescrever</button></div>`; }).join('');
+}
+function renderDx(){
+  const c = CONDUTAS.find(x => x.id===curDx) || CONDUTAS[0]; curDx = c.id;
+  const { w, a } = pt();
+  const vI = verdictOf(c.ideal.itens);
+  const susSame = c.sus === 'igual';
+  const susRefs = susSame ? c.ideal.itens : c.sus.itens;
+  const vS = verdictOf(susRefs);
+  const orient = c.orientFn ? c.orientFn(w, a) : c.orient;
+  let h = `<div class="dx-title">${esc(c.nome)}</div><div class="dx-when">${esc(c.quando)}</div>`;
+  h += `<div class="opt opt-ideal"><div class="opt-h"><h4>★ Opção ideal ${vI?`<span class="verdict ${vI.cls}">${vI.txt}</span>`:''}</h4><span class="src">${esc(c.ideal.fonte)}</span></div>
+    <div class="opt-b"><div class="note">${esc(c.ideal.nota)}</div>${rxRows(c.ideal.itens)}
+    <div><button class="btn btn-primary btn-sm" type="button" data-rxall="ideal">Prescrever opção ideal completa</button></div></div></div>`;
+  h += `<div class="opt opt-sus"><div class="opt-h"><h4>Opção SUS ${vS?`<span class="verdict ${vS.cls}">${vS.txt}</span>`:'<span class="verdict v-part">Sem opção na RENAME</span>'}</h4><span class="src">RENAME 2024 · Componentes Básico/Estratégico/Especializado</span></div>
+    <div class="opt-b">${susSame ? '<div class="note">A opção ideal já é a disponível no SUS — mesma prescrição, mesmas doses.</div>' : `<div class="note">${esc(c.sus.nota)}</div>${rxRows(susRefs)}`}
+    ${susRefs.length?'<div><button class="btn btn-primary btn-sm" type="button" data-rxall="sus">Prescrever opção SUS completa</button></div>':''}</div></div>`;
+  (c.alt||[]).forEach((al,i) => { h += `<div class="opt opt-alt"><div class="opt-h"><h4>Alternativa · ${esc(al.label)}</h4></div><div class="opt-b">${rxRows(al.itens)}</div></div>`; });
+  h += `<div class="opt"><div class="opt-h" style="background:var(--surface-2)"><h4>Orientações e sinais de alarme</h4><button class="btn btn-line btn-sm" type="button" data-addorient="1">Adicionar à receita</button></div><div class="opt-b"><div class="orient">${esc(orient)}</div></div></div>`;
+  $('dxDetail').innerHTML = h;
+}
+
+// ---------------- calculadoras ----------------
+function vitalRow(a){
+  const rows = [
+    ['RN (0–28 d)', 0, 28/365, '30–60', '100–205', '< 60'],
+    ['1–12 meses', 28/365, 1, '30–53', '100–180', '< 70'],
+    ['1–2 anos', 1, 3, '22–37', '98–140', '< 70 + 2×idade'],
+    ['3–5 anos', 3, 6, '20–28', '80–120', '< 70 + 2×idade'],
+    ['6–11 anos', 6, 12, '18–25', '75–118', '< 70 + 2×idade (até 10 a)'],
+    ['≥ 12 anos', 12, 99, '12–20', '60–100', '< 90']
+  ];
+  return rows.map(r => `<tr class="${a>=r[1]&&a<r[2]?'hl':''}"><td>${r[0]}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td></tr>`).join('');
+}
+function renderCalc(){
+  const { w, h, a } = pt();
+  const hol = holliday(w), ew = estWeight(a);
+  const tCuff = a>=1 ? a/4+3.5 : (a<1/12?3.0:3.5), tSem = a>=1 ? a/4+4 : (a<1/12?3.5:4.0);
+  const blade = a<1/12?'0 (reta)':(a<1?'1 (reta)':(a<6?'2':(a<12?'2–3':'3')));
+  const taqui = a<1/6?'≥ 60':(a<1?'≥ 50':(a<5?'≥ 40':'≥ 30 (5–12 a, referência)'));
+  const hv = DRUG.hv_manutencao.calc(w,a), pc = DRUG.plano_c.calc(w,a);
+  const dengueMl = w<=10?130:(w<=20?100:80);
+  $('calcGrid').innerHTML = `
+  <div class="card"><div class="card-h"><h3>Biometria e necessidades</h3></div><dl class="kv">
+    <dt>Peso usado</dt><dd>${nf(w,1)} kg</dd>
+    <dt>Peso esperado p/ idade</dt><dd>${ew?nf(ew,1)+' kg':'—'}</dd>
+    <dt>Superfície corpórea</dt><dd>${nf(bsa(w,h),2)} m² ${h>0?'(Mosteller)':'(fórmula peso)'}</dd>
+    <dt>Holliday-Segar</dt><dd>${nf(hol,0)} mL/dia · ${nf(hol/24,1)} mL/h</dd>
+    <dt>Peso calórico</dt><dd>${nf(hol/100,1)} kg</dd>
+    <dt>Diurese mínima</dt><dd>${nf(w*1,0)} mL/h (1 mL/kg/h)</dd>
+    <dt>Concentrado de hemácias</dt><dd>${nf(w*10,0)}–${nf(w*15,0)} mL (10–15 mL/kg)</dd>
+    <dt>Plaquetas</dt><dd>${nf(w*10,0)} mL (10 mL/kg) ou 1 U/7–10 kg</dd>
+    <dt>Plasma fresco</dt><dd>${nf(w*10,0)}–${nf(w*15,0)} mL</dd></dl></div>
+  <div class="card"><div class="card-h"><h3>Soro de manutenção isotônico</h3></div><div class="dose">${esc(hv.title)}\n${esc(hv.inst)}</div><div style="margin-top:8px"><button class="btn btn-line btn-sm" type="button" data-rx="hv_manutencao">+ Prescrever</button></div></div>
+  <div class="card"><div class="card-h"><h3>Via aérea e SRI</h3></div><dl class="kv">
+    <dt>Tubo com cuff</dt><dd>${nf(tCuff,1)} mm</dd>
+    <dt>Tubo sem cuff</dt><dd>${nf(tSem,1)} mm</dd>
+    <dt>Fixação na rima labial</dt><dd>${nf(tCuff*3,1)} cm (3 × tubo)</dd>
+    <dt>Lâmina</dt><dd>${blade}</dd>
+    <dt>Sonda de aspiração</dt><dd>${nf(tCuff*2,0)} Fr</dd>
+    <dt>Volume corrente</dt><dd>${nf(w*6,0)}–${nf(w*8,0)} mL (6–8 mL/kg)</dd>
+    <dt>Desfibrilação</dt><dd>${nf(w*2,0)} J → ${nf(w*4,0)} J</dd>
+    <dt>Adrenalina PCR</dt><dd>${nf(cap(w*0.1,10),1)} mL de 0,1 mg/mL</dd></dl></div>
+  <div class="card"><div class="card-h"><h3>Sinais vitais de referência</h3><span class="src">PALS/AHA · linha da idade destacada</span></div>
+    <div class="tbl-wrap"><table class="vt"><thead><tr><th>Idade</th><th>FR</th><th>FC acordado</th><th>Hipotensão (PAS)</th></tr></thead><tbody>${vitalRow(a)}</tbody></table></div>
+    <p class="src" style="margin-top:8px">Taquipneia (OMS) para esta idade: FR ${taqui} irpm.</p></div>
+  <div class="card"><div class="card-h"><h3>Reidratação</h3></div><dl class="kv">
+    <dt>Plano B (TRO)</dt><dd>${nf(w*50,0)}–${nf(w*100,0)} mL em 4–6 h</dd>
+    <dt>Bólus cristaloide</dt><dd>${nf(w*10,0)}–${nf(w*20,0)} mL</dd>
+    <dt>Dengue — VO/dia</dt><dd>${nf(w*dengueMl,0)} mL (${dengueMl} mL/kg; ⅓ SRO)</dd>
+    <dt>Dengue grupo C</dt><dd>${nf(w*10,0)} mL/h na 1ª hora (10 mL/kg)</dd></dl>
+    <div class="dose" style="margin-top:9px">${esc(pc.title)}\n${esc(pc.inst)}</div></div>
+  <div class="card"><div class="card-h"><h3>Glicose</h3></div><dl class="kv">
+    <dt>Bólus hipoglicemia</dt><dd>${nf(w*(a<1/12?2:3),0)} mL de SG 10%</dd>
+    <dt>TIG 5 mg/kg/min</dt><dd>${nf(w*5*1.44,1)} g/dia</dd>
+    <dt>TIG 8 mg/kg/min</dt><dd>${nf(w*8*1.44,1)} g/dia</dd>
+    <dt>Glucagon IM</dt><dd>${w<25?'0,5 mg':'1 mg'}</dd></dl></div>`;
+}
+
+// ---------------- fontes ----------------
+const REFS = [
+  ['Sociedade Brasileira de Pediatria — Consenso sobre Anemia Ferropriva (atualização 2021)', 'https://www.sbp.com.br/fileadmin/user_upload/23172c-Diretrizes-Consenso_sobre_Anemia_Ferropriva.pdf'],
+  ['Ministério da Saúde — RENAME 2024 (Relação Nacional de Medicamentos Essenciais)', 'https://www.gov.br/saude/pt-br/composicao/sectics/rename'],
+  ['Ministério da Saúde — Guia de Manejo e Tratamento de Influenza 2023 (resumo SES-RJ 2026)', 'https://www.rj.gov.br/saude/sites/default/files/arquivo_pagina_basica/NOTA-INFORMATIVA-04-2026-COOGAF-SUPAFIE-SAS-SES-RJ-Orientacoes-gerais-sobre-o-medicamento-Oseltamivir-para-o-tratamento-de-Influenza.pdf'],
+  ['Ministério da Saúde — Nota Técnica 134/2025: suplementação de vitamina A', 'https://www.saude.sc.gov.br/index.php/pt/atencao-primaria-a-saude/gerencias-da-aps/gapps/nota-tecnica-conjunta-n-134-2025-cgan-deppros-saps-ms-cgesco-desco-saps-ms/download'],
+  ['Nirsevimabe no SUS — Nota Técnica 109/2025', 'https://portal.afya.com.br/pediatria/nirsevimabe-no-sus-maternidades-publicas-terao-o-imunizante-em-2026'],
+  ['PCDT Asma — Portaria Conjunta nº 43/2026 (resumo SES-SC)', 'https://www.saude.sc.gov.br/index.php/pt/servicos/assistencia-farmaceutica-diaf/componente-especializado-da-assistencia-farmaceutica-ceaf/protocolos-clinicos-ter-resumos-e-formularios/asma/resumo-asma/download'],
+  ['GINA 2026 — mudanças em crianças (resumo)', 'https://thelimbic.com/?p=20607988'],
+  ['AHA 2025 — PALS: principais mudanças', 'https://journalfeed.org/article-a-day/2025/new-2025-aha-pals-refining-how-we-resuscitate/'],
+  ['OMS 2024 — Management of pneumonia and diarrhoea in children up to 10 years', 'https://guidelinecentral.com/guideline/4223408'],
+  ['Dengue — fluxograma de manejo 2024 (MS/SES-SC)', 'https://protocolodengue.saude.sc.gov.br/app_dengue/Fluxograma-manejo-dengue-2024.pdf'],
+  ['Hospital Israelita Albert Einstein — Pathway OMA em crianças (AAP 2023 · SBP 2023)', 'https://medicalsuite.einstein.br/pratica-medica/Pathways/Otite%20Me%CC%81dia%20Aguda%20em%20Crianc%CC%A7as%20e%20Adolescentes%20V.4.pdf']
+];
+const MATERIAIS = ['Manual de Prescrições Pediátricas 2026 (Instituto Cafeína)', 'Pediatria de Bolso 2026', 'Guia Prático de Prescrição — Pediatria (Medconexão)', 'Manual de Sobrevivência do Residente de Pediatria (HIAS)', 'Mini Guia de Pediatria — Condutas e Doses no plantão', 'Macetes de Pediatria (HRO e HLF)', 'Puericultura atual', 'Black Book do PSF (seção Pediatria)', 'Manual de Procedimentos Médicos 2025', 'Guia de medicações (USA)'];
+function renderRefs(){
+  $('refCard').innerHTML = `<div class="card-h"><h3>Fontes</h3></div>
+  <p style="font-size:.8rem;max-width:95ch">As doses partem dos seus materiais e foram conferidas com as diretrizes abaixo. Quando havia divergência, prevaleceu a diretriz mais recente (por exemplo: OMA com amoxicilina 80–90 mg/kg/dia pela AAP 2023, ferro profilático pela SBP 2021, oseltamivir pelo MS, SABA isolado substituído por budesonida-formoterol na GINA 2026).</p>
+  <h4 style="font-size:.78rem;margin:12px 0 6px">Diretrizes e documentos oficiais</h4>
+  <ul class="refs">${REFS.map(([t,u]) => `<li><a href="${u}" target="_blank" rel="noopener">${esc(t)}</a></li>`).join('')}</ul>
+  <h4 style="font-size:.78rem;margin:12px 0 6px">Seus materiais usados como base</h4>
+  <ul class="refs">${MATERIAIS.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
+  <h4 style="font-size:.78rem;margin:12px 0 6px">Como ler a disponibilidade</h4>
+  <div style="display:flex;gap:6px;flex-wrap:wrap">${Object.keys(ACESSO).map(badge).join('')}</div>
+  <p class="disclaimer">“SUS · RENAME básico” indica presença na RENAME 2024; a oferta real depende da REMUME do município. “SUS parcial” = parte das apresentações no SUS ou presente só em algumas REMUMEs. Ferramenta de apoio para médicos e estudantes sob supervisão: confira peso, função renal, interações e bula antes de prescrever.</p>`;
+}
+
+// ---------------- navegação e eventos ----------------
+function setView(v){
+  curView = v;
+  ['rx','sus','calc','ref'].forEach(k => { $('view-'+k).hidden = k!==v; $('tab-'+k).setAttribute('aria-selected', k===v); });
+  if (v==='sus') { renderDxList(); renderDx(); }
+  if (v==='calc') renderCalc();
+  try { history.replaceState(null, '', '#'+v); } catch(e){}
+  store.set('prescrimed_view', v);
+}
+let toastT;
+function toast(m){ const t = $('toast'); t.textContent = m; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => t.hidden = true, 2200); }
+
+function refreshAll(){ renderChips(); renderCatalog(); recalcItems(); checkSafety(); syncPreview(); if (curView==='sus') renderDx(); if (curView==='calc') renderCalc(); }
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('button,[data-rx]'); if (!t) return;
+  if (t.dataset.view) return setView(t.dataset.view);
+  if (t.dataset.cat) { curCat = t.dataset.cat; renderFilters(); renderCatalog(); return; }
+  if (t.dataset.acc) { accFilter = t.dataset.acc; document.querySelectorAll('[data-acc]').forEach(b => b.setAttribute('aria-pressed', b===t)); renderCatalog(); return; }
+  if (t.dataset.rx) return prescribe(t.dataset.rx);
+  if (t.dataset.del) { items = items.filter(i => i.uid!==t.dataset.del); renderRx(); checkSafety(); syncPreview(); return; }
+  if (t.dataset.q !== undefined) return addNote(QUICK[+t.dataset.q][1]());
+  if (t.dataset.dx) { curDx = t.dataset.dx; renderDxList(); renderDx(); if (window.innerWidth < 1100) $('dxDetail').scrollIntoView({behavior:'smooth', block:'start'}); return; }
+  if (t.dataset.rxall) { const c = CONDUTAS.find(x => x.id===curDx); const refs = t.dataset.rxall==='ideal' ? c.ideal.itens : (c.sus==='igual' ? c.ideal.itens : c.sus.itens); refs.forEach(r => prescribe(r, true)); toast(`${refs.length} item(ns) adicionados — veja a aba Prescrição`); return; }
+  if (t.dataset.addorient) { const c = CONDUTAS.find(x => x.id===curDx); const { w, a } = pt(); addNote(c.orientFn ? c.orientFn(w,a) : c.orient); toast('Orientações adicionadas à receita'); return; }
+  switch (t.id) {
+    case 'btnClear': $('clearZone').innerHTML = '<span class="src" style="margin-right:6px">Limpar todos os itens?</span><button class="btn btn-danger btn-sm" id="btnClearYes" type="button">Sim, limpar</button> <button class="btn btn-sm" id="btnClearNo" type="button">Cancelar</button>'; break;
+    case 'btnClearYes': items = []; renderRx(); checkSafety(); syncPreview(); // fallthrough
+    case 'btnClearNo': $('clearZone').innerHTML = '<button class="btn btn-danger btn-sm" id="btnClear" type="button">Limpar tudo</button>'; break;
+    case 'btnAddCustom': {
+      const n = $('custName').value.trim(); if (!n) { $('custName').focus(); toast('Digite o nome do medicamento ou da conduta.'); break; }
+      items.push({ uid:'c'+Date.now(), ref:'', title:n, route:$('custRoute').value, inst:$('custInst').value.trim() || 'Conforme orientação médica.', edited:true });
+      $('custName').value=''; $('custInst').value=''; renderRx(); syncPreview(); break; }
+    case 'btnDoctor': $('docModal').hidden = false; $('docName').focus(); break;
+    case 'docClose': $('docModal').hidden = true; break;
+    case 'docSave': store.set('prescrimed_doc_cfg', { name:$('docName').value, crm:$('docCrm').value, esp:$('docEsp').value, inst:$('docInst').value, contact:$('docContact').value }); $('docModal').hidden = true; syncPreview(); toast('Dados do médico salvos'); break;
+    case 'btnCopy': { const txt = rxText(); if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(() => toast('Receita copiada'), () => fallbackCopy(txt)); else fallbackCopy(txt); break; }
+    case 'btnPrint': window.print(); break;
+    case 'segEditor': case 'segPreview': { const mob = t.id==='segEditor'?'editor':'preview'; $('split').dataset.mob = mob; $('segEditor').setAttribute('aria-pressed', mob==='editor'); $('segPreview').setAttribute('aria-pressed', mob==='preview'); break; }
+  }
+});
+function fallbackCopy(txt){
+  const ta = document.createElement('textarea'); ta.value = txt; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select();
+  let ok = false; try { ok = document.execCommand('copy'); } catch(e){}
+  document.body.removeChild(ta); toast(ok ? 'Receita copiada' : 'Não foi possível copiar automaticamente — selecione o texto da folha.');
+}
+document.addEventListener('input', e => {
+  const t = e.target;
+  if (t.dataset && t.dataset.uid) { const it = items.find(i => i.uid===t.dataset.uid); if (it) { it[t.dataset.f] = t.value; it.edited = true; checkSafety(); syncPreview(); } return; }
+  if (['ptWeight','ptHeight','ptAgeVal'].includes(t.id)) return refreshAll();
+  if (['ptName','extraNotes'].includes(t.id)) return syncPreview();
+  if (['ptAllergies','ptComorb'].includes(t.id)) { checkSafety(); syncPreview(); return; }
+  if (t.id==='searchDrug') return renderCatalog();
+  if (t.id==='dxSearch') return renderDxList();
+});
+document.addEventListener('change', e => {
+  const t = e.target;
+  if (t.dataset && t.dataset.uid) { const it = items.find(i => i.uid===t.dataset.uid); if (it) { it[t.dataset.f] = t.value; syncPreview(); } return; }
+  if (['ptAgeUnit','ptSex'].includes(t.id)) refreshAll();
+});
+document.addEventListener('keydown', e => { if (e.key==='Escape' && !$('docModal').hidden) $('docModal').hidden = true; });
+
+// ---------------- início ----------------
+(function init(){
+  let inFrame = true; try { inFrame = window.self !== window.top; } catch(e){}
+  $('btnPrint').hidden = inFrame;
+  $('custRoute').innerHTML = ROUTES.map(r => `<option>${r}</option>`).join('');
+  const dc = store.get('prescrimed_doc_cfg'); if (dc) { $('docName').value=dc.name||''; $('docCrm').value=dc.crm||''; $('docEsp').value=dc.esp||''; $('docInst').value=dc.inst||''; $('docContact').value=dc.contact||''; }
+  const dr = store.get('prescrimed_draft');
+  if (dr && Array.isArray(dr.items) && dr.items.length) { items = dr.items; $('extraNotes').value = dr.notes || ''; }
+  else { ['amox250','dipirona_gotas','lavagem_nasal'].forEach(r => prescribe(r, true)); $('extraNotes').value = QUICK[1][1](); }
+  renderFilters(); renderQuick(); renderRefs();
+  refreshAll();
+  const h = (location.hash||'').replace('#','');
+  setView(['rx','sus','calc','ref'].includes(h) ? h : (store.get('prescrimed_view') || 'rx'));
+})();
+
+</script>
+
+</body>
+</html>
