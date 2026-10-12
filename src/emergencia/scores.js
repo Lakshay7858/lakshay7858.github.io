@@ -136,7 +136,9 @@ function scoreHTML() {
   }).join('');
   const { t, n } = scoreTotal(s);
   let res = '';
-  if (s.custom === 'ccs') {
+  if (s.result) {
+    res = s.result(vals);
+  } else if (s.custom === 'ccs') {
     const hi = vals[0], lo = vals[1], rot = vals[2];
     res = hi ? box('bad', '<b>Alto risco → imagem (TC de coluna cervical)</b>') : !lo ? box('bad', '<b>Sem fator de baixo risco que permita testar a mobilidade → imagem</b>') : rot ? box('ok', '<b>Roda 45° para ambos os lados → sem imagem</b>') : box('bad', '<b>Não roda 45° → imagem</b>');
   } else {

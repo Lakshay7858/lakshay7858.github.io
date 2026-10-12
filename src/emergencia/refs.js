@@ -57,6 +57,10 @@ const REFS = {
   idsa_men: ['IDSA — Bacterial meningitis guideline / ESCMID 2016', ''],
   esc2015peric: ['ESC 2015 Guidelines on pericardial diseases', ''],
   acep_psa: ['ACEP 2014 — Clinical policy: procedural sedation and analgesia in the ED', ''],
+  aao_traq: ['AAO-HNS 2013 Clinical Consensus: tracheostomy care; NAP4 / Tracheostomy Safety Project', ''],
+  eau_trauma: ['EAU Guidelines — Urological Trauma (2025)', ''],
+  idsa2014: ['IDSA 2014 — Skin and soft tissue infections', ''],
+  east_edt: ['EAST 2015 — Emergency department thoracotomy guideline', ''],
 };
 const MATERIAIS_EM = [
   'Medicina de Emergência: abordagem prática (HC-FMUSP) — padrões de diluição e reposição de eletrólitos',

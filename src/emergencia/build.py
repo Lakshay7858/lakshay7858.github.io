@@ -1,8 +1,8 @@
 # Gera ../../emergencia/index.html a partir dos fontes. Uso: python3 src/emergencia/build.py
 import pathlib
-p = pathlib.Path(__file__).parent
+p = pathlib.Path(__file__).resolve().parent
 root = p.parent.parent
-files = ['core.js', 'refs.js', 'sv_data.js', 'proc.js', 'inf.js', 'calc.js', 'scores.js', 'ps_data.js', 'ex_data.js', 'app.js']
+files = ['core.js', 'refs.js', 'sv_data.js', 'proc.js', 'proc_extra.js', 'inf.js', 'calc.js', 'scores.js', 'ps_data.js', 'ex_data.js', 'app.js']
 js = '\n'.join((p/f).read_text() for f in files)
 out = (p/'shell.html').read_text().replace('/*__SCRIPTS__*/', js)
 head = ('<!DOCTYPE html>\n<html lang="pt-BR">\n<head>\n<meta charset="UTF-8">\n'

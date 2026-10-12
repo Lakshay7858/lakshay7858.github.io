@@ -34,7 +34,9 @@ function renderSv() {
   const t = TOPICS.find((x) => x.id === ST.sv) || TOPICS[0]; const p = P();
   let h = `<div class="sv-kick">${esc(t.cat)}</div><div class="dx-title"><span class="sv-dot c-${t.cor}"></span>${esc(t.title)}</div><p class="sv-lead">${md(t.resumo)}</p>`;
   h += p.has ? `<p class="sv-wnote">Doses calculadas para <b>${nf(p.w, 1)} kg</b>${p.age ? ` · ${nf(p.age, 0)} anos` : ''}${p.clcr ? ` · ClCr ${nf(p.clcr, 0)} mL/min` : ''}. Confira a apresentação disponível.</p>` : `<p class="sv-wnote">Informe o <b>peso</b> na barra do paciente para ver as doses calculadas.</p>`;
+  h += icHTML(t);
   t.secs.forEach((s) => { h += `<section class="sv-s"><h4>${esc(s.h)}</h4>${s.li ? `<ul>${s.li.map((l) => `<li>${lineHTML(l, p)}</li>`).join('')}</ul>` : ''}${s.table ? tableHTML(s.table) : ''}</section>`; });
+  h += icPosHTML(t);
   if (t.proc) h += procFormHTML(t);
   t.rx.forEach((r, i) => { h += `<div class="opt sv-rx"><div class="opt-h"><h4>${esc(r.h)}</h4><button class="btn btn-line btn-sm" type="button" data-svcopy="${i}">Copiar</button></div><ol class="rx-ol">${r.li.map((l) => `<li>${lineHTML(l, p)}</li>`).join('')}</ol></div>`; });
   const fs = (t.fontes || []).map((k) => REFS[k]).filter(Boolean);

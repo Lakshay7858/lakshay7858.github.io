@@ -1,6 +1,6 @@
 # Gera ../../pediatria/index.html a partir dos fontes. Uso: python3 src/pediatria/build.py
 import pathlib
-p = pathlib.Path(__file__).parent
+p = pathlib.Path(__file__).resolve().parent
 root = p.parent.parent
 js = '\n'.join((p/f).read_text() for f in ['drugs1.js','drugs2.js','drugs3.js','drugs4.js','condutas.js','who_data.js','puericultura.js','prematuro.js','modelos.js','salavermelha.js','app.js'])
 out = (p/'shell.html').read_text().replace('/*__SCRIPTS__*/', js)

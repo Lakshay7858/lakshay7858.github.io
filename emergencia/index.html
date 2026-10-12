@@ -321,6 +321,7 @@ details.pm-guia>summary::before{content:"▸ ";color:var(--accent)} details.pm-g
 .chk-list input{width:auto;margin-top:2px}
 .tag-acc{font-size:.6rem;font-weight:750;padding:1px 6px;border-radius:999px;margin-left:4px;white-space:nowrap;vertical-align:middle}
 .ta-SUS{background:var(--sus-bg);color:var(--sus)} .ta-HOSP{background:var(--hosp-bg);color:var(--hosp)} .ta-PART{background:var(--part-bg,var(--warn-bg));color:var(--part,var(--warn))} .ta-MISTO{background:var(--warn-bg);color:var(--warn)}
+.opt-ci .opt-h{background:var(--danger-bg)} .opt-ci .opt-h h4{color:var(--danger)}
 .rx-ol{margin:0;padding:9px 14px 10px 30px} .rx-ol li{margin:5px 0;font-size:.8rem;line-height:1.5}
 </style>
 
@@ -579,6 +580,10 @@ const REFS = {
   idsa_men: ['IDSA — Bacterial meningitis guideline / ESCMID 2016', ''],
   esc2015peric: ['ESC 2015 Guidelines on pericardial diseases', ''],
   acep_psa: ['ACEP 2014 — Clinical policy: procedural sedation and analgesia in the ED', ''],
+  aao_traq: ['AAO-HNS 2013 Clinical Consensus: tracheostomy care; NAP4 / Tracheostomy Safety Project', ''],
+  eau_trauma: ['EAU Guidelines — Urological Trauma (2025)', ''],
+  idsa2014: ['IDSA 2014 — Skin and soft tissue infections', ''],
+  east_edt: ['EAST 2015 — Emergency department thoracotomy guideline', ''],
 };
 const MATERIAIS_EM = [
   'Medicina de Emergência: abordagem prática (HC-FMUSP) — padrões de diluição e reposição de eletrólitos',
@@ -1521,6 +1526,136 @@ function procFormHTML(t) {
     <pre class="pre-out" id="pfOut">${esc(t.proc.texto(v, P()))}</pre><p class="src">Edite os campos ou o texto copiado; substitua os "___" pelos dados reais. Descreva apenas o que foi efetivamente realizado.</p></div></div>`;
 }
 
+// Procedimentos à beira-leito adicionais + bloco padronizado (indicações, contraindicações, material, cuidados pós) para todos.
+T({ id: 'p_traq', cat: 'Procedimentos', cor: 'azul', title: 'Traqueostomia cirúrgica (aberta)',
+  alias: ['traqueostomia', 'tqt', 'traqueo', 'traqueostomia aberta', 'beira-leito'],
+  resumo: 'Via aérea definitiva para IOT prolongada, desmame difícil ou obstrução alta. Pode ser feita no centro cirúrgico ou à beira-leito na UTI com estrutura adequada.',
+  secs: [
+    { h: 'Técnica (resumo)', li: [
+      'Decúbito dorsal com coxim sob os ombros (hiperextensão cervical), FiO₂ 100%, sedação profunda + bloqueio neuromuscular; anestesista/intensivista controlando o tubo.',
+      'Incisão **transversa de 2–3 cm** ~2 cm acima da fúrcula (ou vertical na urgência). Divulsão da rafe mediana dos músculos pré-tireoidianos; istmo da tireoide afastado cranialmente ou ligado/seccionado.',
+      'Abertura traqueal entre o **2º e 3º (ou 3º e 4º) anéis**: janela, incisão em H ou retalho de Björk; pontos de reparo laterais (facilitam recolocação). **Nunca acima do 1º anel** (estenose subglótica).',
+      'Tracionar o tubo orotraqueal até a borda superior da abertura (sem retirá-lo) → introduzir a cânula com cuff → insuflar → **capnografia** → retirar o tubo. Fixar com cadarço e pontos.' ] },
+    { h: 'Complicações', li: [ 'Precoces: sangramento (tireoide, jugular anterior, inominada), pneumotórax/enfisema, perda da via aérea, falso trajeto, decanulação acidental (<7 dias: **reintubar pela boca**, não tentar recolocar às cegas). Tardias: estenose traqueal, granuloma, fístula traqueoinominada (sangramento sentinela!), fístula traqueoesofágica.' ] },
+  ],
+  rx: [],
+  proc: { campos: [CAMPO_HORA, CAMPO_CONS,
+    { id: 'local', l: 'Local', o: ['à beira-leito na UTI', 'no centro cirúrgico', 'na sala de emergência'] },
+    { id: 'ind', l: 'Indicação', o: ['intubação orotraqueal prolongada / desmame ventilatório difícil', 'obstrução de via aérea superior', 'proteção de via aérea e higiene brônquica (rebaixamento crônico)', 'trauma de face/via aérea'] },
+    { id: 'diaIot', l: 'Dias de IOT', t: 'txt', d: '' },
+    { id: 'anest', l: 'Anestesia', o: ['sedação venosa profunda + bloqueio neuromuscular + infiltração local com lidocaína 1% com vasoconstritor', 'anestesia geral', 'anestesia local (paciente não intubado)'] },
+    { id: 'inc', l: 'Incisão', o: ['transversa de 3 cm, 2 cm acima da fúrcula esternal', 'longitudinal mediana cervical (urgência)'] },
+    { id: 'istmo', l: 'Istmo da tireoide', o: ['afastado cranialmente', 'ligado e seccionado'] },
+    { id: 'anel', l: 'Abertura traqueal', o: ['janela entre o 2º e 3º anéis traqueais', 'incisão em H entre o 2º e 3º anéis', 'retalho de Björk no 3º anel', 'entre o 3º e 4º anéis'] },
+    { id: 'can', l: 'Cânula', o: ['cânula plástica nº 8,0 com cuff', 'cânula plástica nº 7,0 com cuff', 'cânula plástica nº 8,5 com cuff', 'cânula metálica nº 4'] },
+    { id: 'sang', l: 'Sangramento', o: ['mínimo', 'moderado, controlado com eletrocautério e ligaduras'] },
+    { id: 'interc', l: 'Intercorrências', o: INTERC(['dessaturação transitória durante a troca do tubo pela cânula', 'sangramento de veia jugular anterior ligada']) }, CAMPO_OBS],
+    texto: (v, p) => TOPO(v, 'Traqueostomia', p) + `Local: ${v.local}. Indicação: ${v.ind}${v.diaIot ? ` (${v.diaIot} dias de IOT)` : ''}. Consentimento: ${v.cons}.\n` +
+      `Paciente em decúbito dorsal com coxim sob os ombros e hiperextensão cervical, FiO₂ 100%, monitorização com oximetria, capnografia, PA e cardioscopia. Anestesia: ${v.anest}. Antissepsia com clorexidina e campos estéreis.\n` +
+      `Incisão ${v.inc}. Abertura do platisma e divulsão da rafe mediana da musculatura pré-tireoidiana. Istmo da tireoide ${v.istmo}. Hemostasia rigorosa. Identificados os anéis traqueais; realizada ${v.anel}, com pontos de reparo laterais. Tubo orotraqueal tracionado sob visão até a borda superior do traqueostoma e inserida ${v.can}, cuff insuflado; confirmação por capnografia com curva sustentada e ausculta simétrica, após o que o tubo orotraqueal foi retirado. Sangramento ${v.sang}. Fixação da cânula com cadarço e pontos de náilon. Curativo.\n` + tail(v) },
+  fontes: ['nejmv', 'aao_traq'] });
+
+T({ id: 'p_tqp', cat: 'Procedimentos', cor: 'azul', title: 'Traqueostomia percutânea (beira-leito)',
+  alias: ['traqueostomia percutanea', 'tqt percutanea', 'ciaglia', 'griggs', 'broncoscopia'],
+  resumo: 'Técnica de dilatação (Ciaglia — dilatador único; ou Griggs — pinça) à beira-leito, preferencialmente com broncoscopia e/ou ultrassom.',
+  secs: [
+    { h: 'Técnica (resumo)', li: [
+      'USG cervical prévio (vasos, istmo, profundidade); broncoscópio pelo tubo, que é tracionado até a região subglótica (luz da broncoscopia transilumina a pele).',
+      'Incisão de 1,5–2 cm; punção entre o **1º–2º ou 2º–3º anéis** na linha média (confirmar pela broncoscopia: agulha às 12 h, sem lesar a parede posterior) → fio-guia → dilatação (dilatador único cônico ou pinça de Griggs) → cânula sobre o introdutor → capnografia e broncoscopia pela cânula.' ] },
+    { h: 'Complicações', li: [ 'Lesão de parede posterior/esôfago, sangramento, falso trajeto, perda da via aérea, pneumotórax, fratura de anel; decanulação nos primeiros 7 dias é mais perigosa que na técnica aberta (trajeto não maduro) → reintubar pela boca.' ] },
+  ],
+  rx: [],
+  proc: { campos: [CAMPO_HORA, CAMPO_CONS,
+    { id: 'ind', l: 'Indicação', o: ['intubação orotraqueal prolongada / desmame ventilatório difícil', 'proteção de via aérea e higiene brônquica'] },
+    { id: 'tec', l: 'Técnica', o: ['dilatação percutânea com dilatador único (Ciaglia Blue Rhino)', 'dilatação percutânea com pinça (Griggs)'] },
+    { id: 'guia', l: 'Guiada por', o: ['broncoscopia e ultrassonografia', 'broncoscopia', 'ultrassonografia', 'reparos anatômicos'] },
+    { id: 'anel', l: 'Nível', o: ['entre o 1º e 2º anéis', 'entre o 2º e 3º anéis'] },
+    { id: 'can', l: 'Cânula', o: ['cânula nº 8,0 com cuff', 'cânula nº 7,0 com cuff', 'cânula nº 8,5 com cuff'] },
+    { id: 'interc', l: 'Intercorrências', o: INTERC(['sangramento leve controlado com compressão', 'dessaturação transitória']) }, CAMPO_OBS],
+    texto: (v, p) => TOPO(v, 'Traqueostomia percutânea', p) + `Local: à beira-leito na UTI. Indicação: ${v.ind}. Consentimento: ${v.cons}.\nPaciente em decúbito dorsal com hiperextensão cervical, FiO₂ 100%, sedação profunda e bloqueio neuromuscular, monitorização com oximetria, capnografia, PA e cardioscopia. Antissepsia com clorexidina e campos estéreis. Ultrassonografia cervical sem vasos interpostos na linha média. Infiltração com lidocaína 1% com vasoconstritor. Tubo orotraqueal tracionado sob visão broncoscópica até a região subglótica.\nIncisão horizontal de 1,5 cm, divulsão romba. Punção traqueal na linha média ${v.anel}, confirmada pela broncoscopia (sem lesão de parede posterior), passagem de fio-guia e ${v.tec}, guiada por ${v.guia}. Inserida ${v.can}, cuff insuflado, posição confirmada por broncoscopia e capnografia. Fixação com cadarço e pontos. Curativo.\n` + tail(v) },
+  fontes: ['nejmv', 'aao_traq'] });
+
+T({ id: 'p_flebo', cat: 'Procedimentos', cor: 'azul', title: 'Flebotomia (dissecção venosa)',
+  alias: ['flebotomia', 'disseccao venosa', 'safena', 'cutdown'],
+  resumo: 'Acesso venoso por dissecção quando punção periférica, central e intraóssea não são possíveis (cada vez menos usada).',
+  secs: [ { h: 'Técnica', li: [ 'Sítios: **veia safena magna no maléolo medial** (2 cm anterior e 2 cm superior ao maléolo), veia basílica na prega do cotovelo. Garrote, antissepsia, anestesia, incisão transversa de 2–3 cm, isolar a veia com pinça curva, dois fios (distal ligado, proximal reparado), venotomia, introduzir o cateter, amarrar o fio proximal sobre o cateter, sutura da pele.' ] },
+    { h: 'Complicações', li: [ 'Flebite, infecção, hematoma, lesão de nervo safeno, transecção da veia, trombose.' ] } ],
+  rx: [],
+  proc: { campos: [CAMPO_HORA, { id: 'ind', l: 'Indicação', o: ['impossibilidade de acesso venoso periférico, central e intraósseo', 'choque com necessidade de acesso calibroso'] },
+    { id: 'veia', l: 'Veia', o: ['safena magna no maléolo medial', 'basílica na prega do cotovelo', 'cefálica'] }, { id: 'lado', l: 'Lado', o: LADO },
+    { id: 'cat', l: 'Cateter', t: 'txt', d: 'cateter de silicone/sonda uretral nº 6' }, { id: 'interc', l: 'Intercorrências', o: INTERC() }, CAMPO_OBS],
+    texto: (v, p) => TOPO(v, 'Flebotomia', p) + `Indicação: ${v.ind}.\nAntissepsia, campos estéreis, anestesia local com lidocaína 2%. Incisão transversa de 2,5 cm sobre a veia ${v.veia} ${v.lado}, dissecção romba e isolamento da veia com dois fios de algodão (distal ligado e proximal reparado). Venotomia transversa e introdução de ${v.cat}, com refluxo sanguíneo e infusão livre; fio proximal amarrado sobre o cateter. Fechamento da pele com náilon e fixação do cateter. Curativo.\n` + tail(v) },
+  fontes: ['atls'] });
+
+T({ id: 'p_cisto', cat: 'Procedimentos', cor: 'azul', title: 'Cistostomia suprapúbica por punção',
+  alias: ['cistostomia', 'cistostomia por puncao', 'retencao urinaria', 'trauma de uretra', 'bexigoma'],
+  resumo: 'Drenagem vesical quando a sondagem uretral é contraindicada (trauma de uretra) ou impossível (estenose, falso trajeto, prostatite aguda).',
+  secs: [ { h: 'Técnica', li: [ '**Bexiga palpável/distendida obrigatória** (confirmar ao USG, ≥300–400 mL, sem alça interposta). Punção 2 dedos acima da sínfise púbica na linha média, perpendicular (ou 10–20° caudal); aspiração de urina confirma; introdutor (cistofix) ou Seldinger com dilatadores → cateter/Foley 12–16 Fr → fixar.' ] },
+    { h: 'Complicações', li: [ 'Lesão de alça intestinal (abdome operado, bexiga pouco distendida), hematúria, perda do cateter, infecção.' ] } ],
+  rx: [],
+  proc: { campos: [CAMPO_HORA, CAMPO_CONS, { id: 'ind', l: 'Indicação', o: ['retenção urinária aguda com falha de sondagem uretral', 'suspeita de lesão de uretra (sangue no meato)', 'estenose de uretra', 'prostatite aguda com retenção'] },
+    { id: 'usg', l: 'Guiada por USG', o: ['Sim', 'Não'] }, { id: 'kit', l: 'Material', o: ['kit de cistostomia por punção (trocater) com cateter 12 Fr', 'técnica de Seldinger com dilatadores e sonda Foley 14 Fr', 'kit de cistostomia com cateter 16 Fr'] },
+    { id: 'vol', l: 'Volume drenado (mL)', t: 'txt', d: '' }, { id: 'interc', l: 'Intercorrências', o: INTERC(['hematúria leve autolimitada']) }, CAMPO_OBS],
+    texto: (v, p) => TOPO(v, 'Cistostomia suprapúbica por punção', p) + `Indicação: ${v.ind}. Consentimento: ${v.cons}.\nBexiga palpável${v.usg === 'Sim' ? ' e confirmada ao ultrassom, sem alças interpostas' : ''}. Antissepsia, campos estéreis, anestesia local com lidocaína 2% por planos até a parede vesical. Punção na linha média, 2 dedos acima da sínfise púbica, com aspiração de urina; inserção de ${v.kit}. Drenados ${v.vol || '___'} mL de urina. Cateter fixado à pele e conectado a coletor fechado. Curativo.\n` + tail(v) },
+  fontes: ['eau_trauma'] });
+
+T({ id: 'p_absc', cat: 'Procedimentos', cor: 'azul', title: 'Drenagem de abscesso cutâneo / subcutâneo',
+  alias: ['abscesso', 'drenagem', 'furunculo', 'carbunculo', 'incisao e drenagem'],
+  resumo: 'Incisão e drenagem é o tratamento; antibiótico só se celulite extensa, sinais sistêmicos, imunossupressão, abscesso >2 cm em local de risco ou MRSA.',
+  secs: [ { h: 'Técnica', li: [ 'USG ajuda a confirmar coleção. Anestesia local (bloqueio de campo — anestésico pouco eficaz no tecido inflamado; considerar sedação). Incisão sobre o ponto de flutuação no sentido das linhas de tensão, extensão suficiente; romper lojas com pinça; irrigação com SF; tamponamento frouxo opcional (abscessos <5 cm podem dispensar). Cultura se recorrente/sistêmico/imunossuprimido.', 'Abscesso perianal/pilonidal/mama: ver Cirurgia → Clínica cirúrgica.' ] } ],
+  rx: [],
+  proc: { campos: [CAMPO_HORA, { id: 'loc', l: 'Local', t: 'txt', d: '' }, { id: 'tam', l: 'Tamanho (cm)', t: 'txt', d: '' }, { id: 'anest', l: 'Anestesia', t: 'txt', d: '@lido' },
+    { id: 'sec', l: 'Secreção', o: ['purulenta, ___ mL', 'purulenta com odor fétido', 'sero-purulenta'] }, { id: 'cult', l: 'Cultura', o: ['não coletada', 'coletada e enviada'] },
+    { id: 'tamp', l: 'Cavidade', o: ['irrigada com SF 0,9%, sem tamponamento', 'irrigada e tamponada com gaze (retirar em 24–48 h)', 'dreno de Penrose deixado'] }, { id: 'interc', l: 'Intercorrências', o: INTERC() }, CAMPO_OBS],
+    texto: (v, p) => TOPO(v, 'Drenagem de abscesso', p) + `Abscesso em ${v.loc || '___'}, de aproximadamente ${v.tam || '___'} cm, com flutuação.\nAntissepsia, campos estéreis, anestesia com ${v.anest}. Incisão sobre a área de maior flutuação, com saída de secreção ${v.sec}. Desfeitas as lojas com pinça hemostática. Cavidade ${v.tamp}. Cultura: ${v.cult}. Curativo.\n` + tail(v),
+    calc: (p) => ({ lido: p.w ? `lidocaína 2% __ mL em bloqueio de campo (máx. ${nf(Math.min(4.5 * p.w, 300) / 20, 1)} mL)` : 'lidocaína 2% em bloqueio de campo' }) },
+  fontes: ['idsa2014'] });
+
+T({ id: 'p_toracot', cat: 'Procedimentos', cor: 'azul', title: 'Toracotomia de reanimação (sala de emergência)',
+  alias: ['toracotomia de reanimacao', 'toracotomia de emergencia', 'clamshell', 'edt', 'trauma penetrante'],
+  resumo: 'Procedimento de exceção: PCR traumática presenciada com sinais de vida recentes, principalmente trauma torácico penetrante.',
+  secs: [ { h: 'Técnica', li: [ 'Toracotomia anterolateral esquerda no 4º–5º EIC (submamário), do esterno à linha axilar média (ou clamshell bilateral). Afastador de Finochietto. **Pericardiotomia longitudinal anterior ao nervo frênico** (alívio de tamponamento, controle de lesão cardíaca com dedo/sutura/sonda de Foley), clampeamento da aorta descendente, massagem cardíaca interna, controle de hilo pulmonar.', 'Sobrevida: penetrante cardíaco ~15–35%; contuso <2%.' ] } ],
+  rx: [],
+  proc: { campos: [CAMPO_HORA, { id: 'mec', l: 'Mecanismo', o: ['ferimento por arma branca em tórax', 'ferimento por arma de fogo em tórax', 'trauma penetrante abdominal', 'trauma contuso'] },
+    { id: 'tempo', l: 'Tempo de RCP antes (min)', t: 'txt', d: '' }, { id: 'via', l: 'Acesso', o: ['toracotomia anterolateral esquerda no 5º EIC', 'toracotomia bilateral (clamshell)'] },
+    { id: 'ach', l: 'Achados', t: 'txt', d: 'tamponamento cardíaco por ferimento de ventrículo direito de 1 cm' }, { id: 'man', l: 'Manobras', t: 'txt', d: 'pericardiotomia, cardiorrafia com ponto em U, massagem cardíaca interna' },
+    { id: 'des', l: 'Desfecho', o: ['retorno da circulação espontânea e encaminhado ao centro cirúrgico', 'óbito constatado'] }, CAMPO_OBS],
+    texto: (v, p) => TOPO(v, 'Toracotomia de reanimação', p) + `Indicação: parada cardiorrespiratória traumática (${v.mec}) com sinais de vida recentes; ${v.tempo ? v.tempo + ' min' : '___ min'} de RCP.\nRealizada ${v.via}, com afastador de Finochietto. Achados: ${v.ach}. Manobras: ${v.man}. Desfecho: ${v.des}.${v.obs ? ' ' + v.obs : ''}` },
+  fontes: ['atls', 'east_edt'] });
+
+// ---------- bloco padronizado (antes da técnica) ----------
+const PROC_IC = {
+  p_iot: { ind: ['Falha em manter/proteger a via aérea (Glasgow ≤8, ausência de reflexos)', 'Falha de oxigenação ou ventilação apesar de VNI/CNAF', 'Curso clínico previsto de deterioração (choque, queimadura de via aérea, sepse grave, agitação incontrolável com necessidade de exames)'], ci: ['Relativas: via aérea difícil prevista sem preparo (considerar IOT acordado/especialista); diretiva antecipada de não intubação'], mat: ['Laringoscópio/videolaringoscópio, lâminas 3–4, tubos 7,0–8,0, fio-guia, bougie, seringa 10 mL, aspirador rígido, BVM com PEEP, supraglótico, kit de cricotireoidostomia, capnógrafo, drogas de indução/bloqueio, vasopressor'], pos: ['RX de tórax (ponta 2–4 cm da carina), pressão de cuff 20–30 cmH₂O, sedoanalgesia, cabeceira 30°, gasometria em 30–60 min, SNG/SOG'] },
+  p_cvc: { ind: ['Drogas vasoativas, soluções irritantes (NaCl 3%, KCl concentrado, NPT, quimioterapia)', 'Acesso periférico inviável', 'Hemodiálise/plasmaférese, monitorização (PVC, SvcO₂), marca-passo transvenoso'], ci: ['Infecção, queimadura ou trombose no sítio', 'Coagulopatia grave → preferir sítio compressível (jugular/femoral) guiado por USG', 'Subclávia: evitar em coagulopatia e se pneumotórax contralateral (puncionar o mesmo lado do dreno)'], mat: ['Kit de CVC (duplo/triplo lúmen), USG com capa estéril, gorro, máscara, avental e luvas estéreis, campo amplo, clorexidina alcoólica 2%, lidocaína 2%, SF para lavagem, náilon 3-0, curativo transparente'], pos: ['RX de tórax (exceto femoral); curativo transparente a cada 7 dias (gaze: 48 h); avaliar diariamente a necessidade; troca de equipos conforme CCIH'] },
+  p_pai: { ind: ['Choque com vasopressor', 'Emergência hipertensiva com droga IV titulável', 'Gasometrias frequentes', 'Cirurgia de grande porte/paciente instável'], ci: ['Circulação colateral insuficiente, infecção/queimadura local, fístula arteriovenosa no membro, doença arterial periférica grave'], mat: ['Kit arterial (20G com fio-guia) ou jelco 20G, transdutor, bolsa pressurizada com SF, USG, clorexidina, lidocaína'], pos: ['Zerar no eixo flebostático; checar perfusão distal; identificar a linha (vermelha)'] },
+  p_io: { ind: ['PCR ou choque sem acesso venoso em 90 s/2 tentativas'], ci: ['Fratura no osso-alvo, IO prévia em <48 h no mesmo osso, infecção local, prótese, impossibilidade de localizar reparos'], mat: ['Perfurador (EZ-IO) com agulhas 25/45 mm ou agulha manual, extensão, seringa 10 mL com SF, lidocaína 2% sem vasoconstritor, bolsa pressurizada'], pos: ['Retirar em até 24 h; vigiar síndrome compartimental'] },
+  p_dreno: { ind: ['Pneumotórax hipertensivo (após descompressão), pneumotórax traumático/em VM/volumoso/sintomático', 'Hemotórax, hemopneumotórax', 'Empiema/derrame parapneumônico complicado (pH <7,2, glicose <60, pus)', 'Quilotórax, derrame maligno recorrente (pré-pleurodese)'], ci: ['Relativas: coagulopatia (corrigir se possível), aderências pleurais extensas, bolhas (usar USG/TC)', 'Absoluta: necessidade de toracotomia imediata (não atrasar)'], mat: ['Dreno tubular 24–32 Fr ou pigtail 10–14 Fr, frasco de selo d\'água, pinças (Kelly), bisturi 11/15, fios 0/2-0, lidocaína, clorexidina, gazes, campos'], pos: ['RX de tórax; registrar débito, aspecto, oscilação e borbulhamento; analgesia; fisioterapia; não clampear dreno borbulhante; retirar quando sem fuga aérea e débito <200–300 mL/24 h'] },
+  p_agulha: { ind: ['Suspeita clínica de pneumotórax hipertensivo com instabilidade'], ci: ['Nenhuma na emergência (não esperar RX)'], mat: ['Cateter 14G de 8 cm, clorexidina, seringa'], pos: ['Drenagem torácica em seguida; RX'] },
+  p_toraco: { ind: ['Diagnóstica: derrame pleural novo sem causa evidente (exceto IC típica bilateral)', 'Alívio: derrame volumoso com dispneia'], ci: ['Relativas: coagulopatia grave não corrigida, derrame pequeno (<1 cm ao USG/RX em decúbito), infecção cutânea local, VM com PEEP alta (maior risco)'], mat: ['Kit de toracocentese ou jelco 14–16G + torneira de 3 vias + seringa 20–60 mL + equipo/frasco, USG, lidocaína, frascos para exames (bioquímica, cultura, citologia)'], pos: ['RX se ar aspirado, sintomas ou múltiplas punções; curativo; vigiar dispneia/tosse (edema de reexpansão)'] },
+  p_parac: { ind: ['Diagnóstica: ascite nova; cirrótico internado/descompensado, com febre, dor, encefalopatia, piora renal ou HDA (pesquisa de PBE)', 'Alívio: ascite tensa/dispneia/refratária'], ci: ['CIVD clinicamente evidente ou fibrinólise; abdome agudo cirúrgico; infecção de parede no local; alças distendidas/aderidas (usar USG)', 'INR alto/plaquetopenia da cirrose NÃO contraindicam'], mat: ['Jelco 14–16G ou agulha de paracentese, equipo/frasco a vácuo, USG, lidocaína, frascos de hemocultura para cultura, tubos para celularidade/bioquímica, albumina 20% se alívio >5 L'], pos: ['Albumina 6–8 g/L retirado se >5 L; curativo compressivo; vigiar hipotensão e vazamento'] },
+  p_pl: { ind: ['Suspeita de meningite/encefalite', 'HSA com TC normal (>6 h)', 'Pressão de abertura (HIC idiopática), Guillain-Barré, doenças desmielinizantes, carcinomatose meníngea'], ci: ['Sinais de HIC/efeito de massa na TC (desvio, hérnia, lesão de fossa posterior)', 'Infecção cutânea no local', 'Plaquetas <50 mil/coagulopatia/anticoagulação plena', 'Instabilidade hemodinâmica ou respiratória'], mat: ['Agulha 20–22G (Quincke ou atraumática), manômetro com torneira, 4 tubos estéreis, lidocaína, clorexidina, campos'], pos: ['Repouso não previne cefaleia pós-punção; hidratação/analgesia; tampão sanguíneo se persistente'] },
+  p_peric: { ind: ['Tamponamento cardíaco com instabilidade', 'Diagnóstica: suspeita de pericardite purulenta, tuberculosa ou neoplásica'], ci: ['Dissecção de aorta com hemopericárdio (cirurgia)', 'Trauma (preferir janela/toracotomia — punção só como ponte)', 'Relativas: coagulopatia, derrame pequeno/posterior/loculado'], mat: ['Agulha 18G longa ou kit de pericardiocentese com pigtail, USG/eco, monitor, seringas, lidocaína'], pos: ['Eco de controle; débito do pigtail; retirar quando <25–50 mL/dia'] },
+  p_cve: { ind: ['Taquiarritmia com pulso e instabilidade', 'Cardioversão eletiva de FA/flutter'], ci: ['Intoxicação digitálica (relativa)', 'Taquicardia sinusal ou ritmos automáticos (taquicardia atrial multifocal, juncional) — não respondem', 'FA >48 h sem anticoagulação/ETE (exceto instabilidade)', 'Hipocalemia grave (corrigir antes, se eletiva)'], mat: ['Cardioversor/desfibrilador com pás adesivas, monitor, O₂, aspirador, material de via aérea, drogas de sedação'], pos: ['ECG; anticoagulação por ≥4 semanas na FA/flutter; observar até recuperar da sedação'] },
+  p_pcrdesc: { ind: ['Registro obrigatório de todo atendimento de PCR'], ci: [], mat: ['Anotador designado, cronômetro, folha de registro'], pos: ['Debriefing da equipe; comunicação à família; declaração de óbito ou cuidados pós-RCE'] },
+  p_mptc: { ind: ['Bradicardia sintomática instável refratária à atropina (BAVT, Mobitz II)', 'Ponte para marca-passo transvenoso'], ci: ['Hipotermia grave (relativa — risco de FV)', 'Assistolia (sem benefício)'], mat: ['Desfibrilador com função marca-passo e pás adesivas, analgesia/sedação'], pos: ['Checar captura mecânica periodicamente; providenciar transvenoso'] },
+  p_crico: { ind: ['"Não intubo, não oxigeno" (CICO)', 'Trauma facial grave impedindo IOT'], ci: ['<10–12 anos (preferir punção com agulha)', 'Transecção laríngea/lesão de cartilagem cricoide (relativa — traqueostomia)'], mat: ['Bisturi lâmina 10, bougie, tubo 6,0 com cuff, afastador traqueal (gancho), capnógrafo'], pos: ['Converter para traqueostomia formal em 24–72 h'] },
+  p_svd: { ind: ['SVD: retenção urinária, controle rigoroso de diurese (choque), cirurgia prolongada, hematúria com coágulos (3 vias)', 'SNG: descompressão (obstrução, íleo, HDA), dieta/medicação em quem não deglute'], ci: ['SVD: suspeita de lesão uretral (sangue no meato, hematoma perineal, próstata alta) → cistostomia', 'SNG: fratura de base de crânio/trauma facial grave (usar via oral), varizes de esôfago recém-ligadas (relativa), obstrução esofágica'], mat: ['SVD: sonda Foley 14–16 Fr, lidocaína gel, seringa com água destilada, coletor fechado, material estéril', 'SNG: sonda 14–18 Fr, lidocaína gel, seringa 20 mL, fita'], pos: ['SVD: retirar o quanto antes (risco de ITU); SNG: RX antes de dieta; medir débito'] },
+  p_sutura: { ind: ['Ferimentos limpos em até 12–24 h (face até 24 h) para cicatrização por 1ª intenção'], ci: ['Mordeduras (exceto face — avaliar), ferimentos muito contaminados ou >24 h (cicatrização por 2ª intenção / sutura tardia)', 'Lesão de tendão/nervo/vaso que exige especialista'], mat: ['Kit de sutura (porta-agulha, pinça, tesoura), fios conforme região, lidocaína, SF, clorexidina/PVPI, gazes'], pos: ['Curativo seco 24–48 h; retirada de pontos conforme a região; tétano'] },
+  p_sedproc: { ind: ['Procedimentos dolorosos ou que exigem imobilidade: redução de luxação/fratura, cardioversão, drenagens, desbridamentos'], ci: ['Via aérea difícil sem preparo, instabilidade hemodinâmica, ASA IV não otimizado (relativas)', 'Cetamina: psicose ativa, HAS grave/SCA (relativa)'], mat: ['Monitor com capnografia, O₂, aspirador, BVM, material de IOT, drogas e reversores (naloxona, flumazenil)'], pos: ['Observação até recuperar o basal; alta com acompanhante; não dirigir por 24 h'] },
+  p_traq: { ind: ['IOT prolongada / desmame difícil (geralmente considerar entre 7–14 dias; precoce se desmame previsto longo)', 'Obstrução de via aérea superior (tumor, edema, paralisia bilateral de pregas vocais)', 'Proteção de via aérea e higiene brônquica em rebaixamento crônico', 'Trauma maxilofacial/laríngeo'], ci: ['Infecção cervical ativa no local', 'Instabilidade hemodinâmica ou ventilatória grave (FiO₂ >60%, PEEP >10 — relativa, adiar)', 'Coagulopatia não corrigida (relativa)', 'Instabilidade de coluna cervical (relativa — técnica adaptada)'], mat: ['Caixa de pequena cirurgia + afastadores (Farabeuf, gancho traqueal, dilatador de Trousseau), eletrocautério, cânulas (7,0–8,5) testadas, aspirador, capnógrafo, fios'], pos: ['RX de tórax; cuff 20–30 cmH₂O; umidificação; aspiração; cânula reserva e obturador à beira-leito; 1ª troca após 5–7 dias; decanulação acidental precoce → reintubar pela boca'] },
+  p_tqp: { ind: ['IOT prolongada/desmame difícil em paciente com anatomia cervical favorável'], ci: ['Absolutas: urgência de via aérea, anatomia não identificável (pescoço curto/obeso sem USG), infecção local', 'Relativas: coagulopatia, tireoide aumentada/vaso anômalo na linha média, PEEP >10/FiO₂ >60%, coluna cervical instável, traqueostomia prévia'], mat: ['Kit de traqueostomia percutânea (Ciaglia ou Griggs), broncoscópio, USG, cânula, material de IOT e de traqueostomia aberta como resgate'], pos: ['Igual à aberta; trajeto amadurece mais tarde — cuidado redobrado com decanulação nos primeiros 7–10 dias'] },
+  p_flebo: { ind: ['Impossibilidade de punção periférica, central e intraóssea'], ci: ['Acesso alternativo disponível rapidamente, trauma/infecção do membro, coagulopatia (relativa)'], mat: ['Caixa de pequena cirurgia, fios de algodão 2-0/3-0, cateter de silicone ou sonda nº 6–8, lidocaína'], pos: ['Substituir por acesso adequado em até 24–48 h'] },
+  p_cisto: { ind: ['Retenção urinária com sondagem uretral impossível ou contraindicada (lesão de uretra, estenose, falso trajeto, prostatite aguda)'], ci: ['Bexiga não palpável/não distendida', 'Cirurgia pélvica/abdominal baixa prévia com risco de alça interposta (usar USG)', 'Suspeita de câncer de bexiga', 'Coagulopatia (relativa)'], mat: ['Kit de cistostomia por punção ou kit de Seldinger, USG, lidocaína, coletor'], pos: ['Fixação segura; troca a cada 4–6 semanas; encaminhar à urologia'] },
+  p_absc: { ind: ['Coleção purulenta flutuante (ou confirmada ao USG)'], ci: ['Abscessos em face (triângulo perigoso), mão profunda, mama extensa, perianal complexo ou próximos a grandes vasos → especialista/CC', 'Celulite sem coleção (não incisar)'], mat: ['Lâmina 11, pinça hemostática, SF, seringa 20 mL, gaze/dreno de Penrose, lidocaína, swab para cultura'], pos: ['Retorno em 24–48 h; troca de curativo; ATB se indicado (ver Prescrições)'] },
+  p_toracot: { ind: ['Trauma torácico penetrante com PCR e sinais de vida recentes (RCP <15 min)', 'Trauma penetrante extratorácico com RCP <5 min (casos selecionados)', 'Choque profundo refratário com suspeita de tamponamento'], ci: ['Trauma contuso com RCP >10 min ou assistolia sem tamponamento', 'Ausência de sinais de vida no local / sem cirurgião capacitado'], mat: ['Bandeja de toracotomia (bisturi, tesoura de Mayo, afastador de Finochietto, pinças vasculares/Satinsky, clamp aórtico), fios 2-0/3-0 com pledgets, sonda Foley, aspiração'], pos: ['Centro cirúrgico imediato se RCE; antibiótico; registro detalhado'] },
+};
+function icHTML(t) {
+  const ic = PROC_IC[t.id]; if (!ic) return '';
+  const blk = (h, arr, cls) => (arr && arr.length ? `<div class="opt ${cls || ''}" style="margin:8px 0"><div class="opt-h"><h4>${h}</h4></div><div class="opt-b"><ul style="margin:0;padding-left:18px">${arr.map((x) => `<li style="font-size:.8rem;margin:3px 0">${md(x)}</li>`).join('')}</ul></div></div>` : '');
+  return blk('Indicações', ic.ind, 'opt-sus') + blk('Contraindicações', ic.ci, 'opt-ci') + blk('Material', ic.mat) + (ic.pos && ic.pos.length ? '' : '');
+}
+function icPosHTML(t) { const ic = PROC_IC[t.id]; return ic && ic.pos && ic.pos.length ? `<div class="opt" style="margin:8px 0"><div class="opt-h"><h4>Cuidados após o procedimento</h4></div><div class="opt-b"><ul style="margin:0;padding-left:18px">${ic.pos.map((x) => `<li style="font-size:.8rem;margin:3px 0">${md(x)}</li>`).join('')}</ul></div></div>` : ''; }
+
 // Infusões contínuas — diluição padrão (HC-FMUSP quando disponível), cálculo dose ⇄ mL/h.
 // amp: quantidade por ampola na unidade-base (mg ou U); vamp: mL por ampola; n: nº de ampolas; dil: mL de diluente.
 const INF = [
@@ -1983,7 +2118,9 @@ function scoreHTML() {
   }).join('');
   const { t, n } = scoreTotal(s);
   let res = '';
-  if (s.custom === 'ccs') {
+  if (s.result) {
+    res = s.result(vals);
+  } else if (s.custom === 'ccs') {
     const hi = vals[0], lo = vals[1], rot = vals[2];
     res = hi ? box('bad', '<b>Alto risco → imagem (TC de coluna cervical)</b>') : !lo ? box('bad', '<b>Sem fator de baixo risco que permita testar a mobilidade → imagem</b>') : rot ? box('ok', '<b>Roda 45° para ambos os lados → sem imagem</b>') : box('bad', '<b>Não roda 45° → imagem</b>');
   } else {
@@ -2578,7 +2715,9 @@ function renderSv() {
   const t = TOPICS.find((x) => x.id === ST.sv) || TOPICS[0]; const p = P();
   let h = `<div class="sv-kick">${esc(t.cat)}</div><div class="dx-title"><span class="sv-dot c-${t.cor}"></span>${esc(t.title)}</div><p class="sv-lead">${md(t.resumo)}</p>`;
   h += p.has ? `<p class="sv-wnote">Doses calculadas para <b>${nf(p.w, 1)} kg</b>${p.age ? ` · ${nf(p.age, 0)} anos` : ''}${p.clcr ? ` · ClCr ${nf(p.clcr, 0)} mL/min` : ''}. Confira a apresentação disponível.</p>` : `<p class="sv-wnote">Informe o <b>peso</b> na barra do paciente para ver as doses calculadas.</p>`;
+  h += icHTML(t);
   t.secs.forEach((s) => { h += `<section class="sv-s"><h4>${esc(s.h)}</h4>${s.li ? `<ul>${s.li.map((l) => `<li>${lineHTML(l, p)}</li>`).join('')}</ul>` : ''}${s.table ? tableHTML(s.table) : ''}</section>`; });
+  h += icPosHTML(t);
   if (t.proc) h += procFormHTML(t);
   t.rx.forEach((r, i) => { h += `<div class="opt sv-rx"><div class="opt-h"><h4>${esc(r.h)}</h4><button class="btn btn-line btn-sm" type="button" data-svcopy="${i}">Copiar</button></div><ol class="rx-ol">${r.li.map((l) => `<li>${lineHTML(l, p)}</li>`).join('')}</ol></div>`; });
   const fs = (t.fontes || []).map((k) => REFS[k]).filter(Boolean);
