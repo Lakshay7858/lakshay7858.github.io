@@ -62,9 +62,10 @@ D({ id:'cipro_hidro_oto', cat:'topicos', acc:'PART', route:'Uso Otológico',
 
 // ---------------- PUERICULTURA & PREVENÇÃO ----------------
 D({ id:'ferro_prof', cat:'puericultura', acc:'SUS', route:'Uso Oral',
-  name:'Sulfato ferroso 25 mg/mL Fe (profilaxia)', ind:'Profilaxia de anemia — SBP 2021 / PNSF (MS)',
-  calc:(w)=>{ const mg=cap(w*1,15); return { title:'Sulfato ferroso 25 mg/mL de ferro elementar — gotas',
-    inst:`Dar ${nf(mg,0)} mg de ferro elementar/dia = ${nf(mg/25,2)} mL (≈ ${gts(mg)} gotas; 1 mg/kg/dia) VO 1x/dia, 30 min antes da refeição, com suco cítrico.\n• SBP: termo AIG — dos 90 dias (fator de risco) ou 180 dias (sem risco) até 24 meses. Baixo peso/prematuro: 2–4 mg/kg/dia a partir de 30 dias por 1 ano, depois 1 mg/kg/dia.\n• Gotas/mL varia (≈ 1–1,25 mg Fe/gota) — conferir rótulo.` }; } });
+  name:'Sulfato ferroso 25 mg/mL Fe (profilaxia)', ind:'Profilaxia de anemia — SBP mar/2026, unificada com o MS',
+  calc:(w,a)=>{ const ciclo = a<0.5?'iniciar aos 6 meses (ciclo I: 6 → 9 m)':(a<0.75?'ciclo I: 6 → 9 meses':(a<1?'pausa dos 9 aos 12 meses (retomar aos 12 m)':(a<1.25?'ciclo II: 12 → 15 meses':'profilaxia de rotina encerrada aos 15 meses')));
+    return { title:'Sulfato ferroso 25 mg/mL de ferro elementar — profilaxia',
+    inst:`Termo/peso adequado: dar 0,5 mL (12,5 mg de ferro elementar; ≈ 10–12 gotas) VO 1x/dia, 30 min antes da refeição, com suco cítrico.\n• Dose FIXA de 10–12,5 mg/dia em 2 ciclos de 3 meses: 6–9 m e 12–15 m (pausa 9–12 m). Agora: ${ciclo}.\n• Fator de risco (ex.: leite de vaca): pode iniciar aos 4 meses.\n• Prematuro/baixo peso: ${nf(w*2,1)}–${nf(w*4,1)} mg/dia (2–4 mg/kg/dia conforme PN) desde 30 dias no 1º ano, depois 1 mg/kg/dia até 24 m, sem pausa.` }; } });
 
 D({ id:'ferro_trat', cat:'puericultura', acc:'SUS', route:'Uso Oral',
   name:'Sulfato ferroso 25 mg/mL Fe (tratamento)', ind:'Anemia ferropriva — 3 a 6 mg/kg/dia (SBP)',
@@ -73,13 +74,13 @@ D({ id:'ferro_trat', cat:'puericultura', acc:'SUS', route:'Uso Oral',
 
 D({ id:'ferro_quelato', cat:'puericultura', acc:'PART', route:'Uso Oral',
   name:'Ferro quelato glicinato / ferripolimaltose 50 mg/mL', ind:'Melhor tolerância GI; pode tomar com refeição',
-  calc:(w)=>{ const mp=cap(w,15), mt=cap(w*4,120); return { title:'Ferro aminoácido quelato / polimaltose 50 mg/mL (2,5 mg/gota)',
-    inst:`Profilaxia: ${gts(mp/2.5)} gotas VO 1x/dia (1 mg/kg/dia).\nTratamento: ${gts(mt/2.5)} gotas VO 1x/dia (4 mg/kg/dia).\n• Concentração varia por marca (2,5 ou 5 mg/gota) — conferir.` }; } });
+  calc:(w)=>{ const mt=cap(w*4,120); return { title:'Ferro aminoácido quelato / polimaltose 50 mg/mL (2,5 mg/gota)',
+    inst:`Profilaxia (termo): 4–5 gotas VO 1x/dia (10–12,5 mg/dia) nos ciclos 6–9 m e 12–15 m.\nTratamento: ${gts(mt/2.5)} gotas VO 1x/dia (4 mg/kg/dia).\n• Concentração varia por marca (2,5 ou 5 mg/gota) — conferir.` }; } });
 
 D({ id:'vitd', cat:'puericultura', acc:'PART', route:'Uso Oral',
-  name:'Colecalciferol (vitamina D3) 200 UI/gota', ind:'Profilaxia de raquitismo — SBP: 400 UI até 1 ano, 600 UI de 1 a 2 anos',
+  name:'Colecalciferol (vitamina D3) 200 UI/gota', ind:'SBP 2024 (DC nº 181): 400 UI no 1º ano e 600 UI/dia para todos de 1 a 18 anos',
   calc:(w,a)=>{ const g = a<1?2:3, ui = a<1?400:600; return { title:'Vitamina D3 200 UI/gota — solução oral',
-    inst:`Dar ${g} gotas (${ui} UI) VO 1x/dia, todos os dias${a<2?' até 2 anos':''}.\n• > 2 anos: 600 UI/dia nos grupos de risco (pouca exposição solar, obesidade, anticonvulsivantes, má absorção).\n• Não há vitamina D isolada na RENAME.` }; } });
+    inst:`Dar ${g} gotas (${ui} UI) VO 1x/dia, todos os dias, desde a 1ª semana de vida.\n• SBP 2024: 400 UI/dia até 12 meses; 600 UI/dia de 1 a 18 anos para todos (1.200–1.800 UI se fator de risco: obesidade, má absorção, anticonvulsivante, pouca exposição solar).\n• Não há vitamina D isolada na RENAME.` }; } });
 
 D({ id:'vita_megadose', cat:'puericultura', acc:'SUSE', route:'Uso Oral',
   name:'Vitamina A (palmitato de retinol) megadose', ind:'Programa Nacional de Suplementação de Vitamina A (MS)',

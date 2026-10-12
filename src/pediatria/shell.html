@@ -171,6 +171,34 @@ table.vt tr.hl td{background:var(--accent-soft);font-weight:750}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .disclaimer{font-size:.72rem;color:var(--muted);margin-top:16px;max-width:110ch}
 
+/* ---------- puericultura ---------- */
+.pu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;margin-top:14px}
+.pu-form{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px 10px}
+.pu-form .sub{grid-column:1/-1;font-size:.7rem;font-weight:750;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-top:4px}
+.ig-row{display:flex;gap:6px}
+.pu-wide{grid-column:1/-1}
+.zpill{display:inline-block;background:var(--surface-2);color:var(--muted);font-size:.68rem;font-weight:750;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.z-ok{background:var(--sus-bg);color:var(--sus)} .z-warn{background:var(--warn-bg);color:var(--warn)} .z-bad{background:var(--danger-bg);color:var(--danger)}
+.mb-band{margin-bottom:10px}
+.mb-h{font-size:.7rem;font-weight:750;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.mb-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 0;border-bottom:1px solid var(--line);font-size:.78rem}
+.mb-sel{display:inline-flex;gap:3px;flex-shrink:0}
+.mb-b{border:1px solid var(--line);background:var(--surface-2);color:var(--muted);font-size:.66rem;font-weight:750;padding:3px 7px;border-radius:5px;cursor:pointer;min-width:30px}
+.mb-b.on.P{background:var(--sus);color:var(--surface);border-color:var(--sus)}
+.mb-b.on.A{background:var(--danger);color:var(--surface);border-color:var(--danger)}
+.mb-b.on.NV{background:var(--muted);color:var(--surface);border-color:var(--muted)}
+.mb-extra{display:grid;gap:6px;margin-top:10px;padding:10px;background:var(--surface-2);border:1px solid var(--line);border-radius:7px}
+.chk{display:flex;gap:7px;align-items:flex-start;font-weight:600;color:var(--fg);font-size:.75rem}
+.chk input{width:auto;margin-top:2px}
+.mb-result{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font-size:.8rem}
+.mb-result .src{width:100%}
+.cs-row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px;padding:7px 0;border-bottom:1px solid var(--line);font-size:.78rem;line-height:1.45}
+.cs-t{font-weight:750;color:var(--muted);font-size:.72rem}
+.cs-alert{background:var(--danger-bg);border-radius:6px;padding:8px;border:0;margin-top:6px}
+.cs-alert .cs-t{color:var(--danger)}
+#puEvo{font-family:var(--mono);font-size:.74rem;min-height:130px}
+@media (max-width:760px){.cs-row{grid-template-columns:1fr;gap:2px}.pu-grid{grid-template-columns:1fr}.mb-row{flex-wrap:wrap}}
+
 /* ---------- modal ---------- */
 .modal{position:fixed;inset:0;background:rgba(10,12,30,.6);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
 .modal-box{background:var(--surface);width:100%;max-width:480px;border-radius:12px;padding:18px;display:grid;gap:9px}
@@ -219,6 +247,7 @@ table.vt tr.hl td{background:var(--accent-soft);font-weight:750}
   <nav class="tabs" role="tablist" aria-label="Seções">
     <button class="tab" role="tab" id="tab-rx" aria-selected="true" data-view="rx">Prescrição</button>
     <button class="tab" role="tab" id="tab-sus" aria-selected="false" data-view="sus">SUS × Ideal</button>
+    <button class="tab" role="tab" id="tab-puer" aria-selected="false" data-view="puer">Puericultura</button>
     <button class="tab" role="tab" id="tab-calc" aria-selected="false" data-view="calc">Calculadoras</button>
     <button class="tab" role="tab" id="tab-ref" aria-selected="false" data-view="ref">Fontes</button>
   </nav>
@@ -323,10 +352,46 @@ table.vt tr.hl td{background:var(--accent-soft);font-weight:750}
       <div class="card">
         <div class="card-h"><h3>Diagnósticos</h3><span class="src" id="dxCount"></span></div>
         <input id="dxSearch" placeholder="Buscar diagnóstico…" style="margin-bottom:6px">
+        <div class="acc-filter" role="group" aria-label="Disponibilidade" style="margin:4px 0 6px">
+          <span>Mostrar:</span>
+          <button class="fbtn" data-susf="all" aria-pressed="true" type="button">Tudo</button>
+          <button class="fbtn" data-susf="sus" aria-pressed="false" type="button">Só SUS</button>
+          <button class="fbtn" data-susf="part" aria-pressed="false" type="button">Só particular</button>
+        </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;font-size:.66rem;color:var(--muted);margin:4px 2px 2px"><span><span class="dot dot-sus" style="display:inline-block;width:8px;height:8px;border-radius:50%"></span> ideal no SUS</span><span><span class="dot dot-misto" style="display:inline-block;width:8px;height:8px;border-radius:50%"></span> parte SUS</span><span><span class="dot dot-part" style="display:inline-block;width:8px;height:8px;border-radius:50%"></span> ideal particular</span></div>
         <div class="dx-list" id="dxList"></div>
       </div>
       <div class="card" id="dxDetail"></div>
+    </div>
+  </section>
+
+  <!-- ======== PUERICULTURA ======== -->
+  <section class="view" id="view-puer" hidden>
+    <div class="card">
+      <div class="card-h"><h3>Dados da consulta de puericultura</h3><span class="src">Sexo, peso e estatura vêm da barra do paciente</span></div>
+      <div class="pu-form">
+        <div><label for="pnDN">Data de nascimento</label><input type="date" id="pnDN"></div>
+        <div><label for="pnDC">Data da consulta</label><input type="date" id="pnDC"></div>
+        <div><label for="pnIG">Idade gestacional ao nascer</label><div class="ig-row"><input type="number" id="pnIG" min="22" max="44" value="40" aria-label="semanas"><input type="number" id="pnIGd" min="0" max="6" value="0" aria-label="dias"></div><span class="src">semanas + dias</span></div>
+        <div><label for="pnPC">PC hoje (cm)</label><input type="number" id="pnPC" step="0.1" min="20" max="60"></div>
+        <div class="sub">Ao nascer</div>
+        <div><label for="pnPN">Peso ao nascer (g)</label><input type="number" id="pnPN" step="1" min="300" max="6000"></div>
+        <div><label for="pnCN">Comprimento ao nascer (cm)</label><input type="number" id="pnCN" step="0.1" min="25" max="60"></div>
+        <div><label for="pnPCN">PC ao nascer (cm)</label><input type="number" id="pnPCN" step="0.1" min="18" max="40"></div>
+        <div class="sub">Consulta anterior</div>
+        <div><label for="pnDAnt">Data</label><input type="date" id="pnDAnt"></div>
+        <div><label for="pnWAnt">Peso (kg)</label><input type="number" id="pnWAnt" step="0.005" min="0.3"></div>
+        <div><label for="pnHAnt">Estatura (cm)</label><input type="number" id="pnHAnt" step="0.1" min="25"></div>
+        <div><label for="pnPCAnt">PC (cm)</label><input type="number" id="pnPCAnt" step="0.1" min="18"></div>
+      </div>
+    </div>
+    <div class="pu-grid">
+      <div class="card"><div class="card-h"><h3>Idade</h3></div><div id="puIdade"></div></div>
+      <div class="card"><div class="card-h"><h3>Ganho de peso, comprimento e PC</h3></div><div id="puGanho"></div></div>
+      <div class="card pu-wide"><div class="card-h"><h3>Escore-z e percentis (OMS)</h3></div><div id="puZ"></div></div>
+      <div class="card"><div class="card-h"><h3>Marcos do desenvolvimento</h3><span class="src">Caderneta da Criança (MS) · P presente · A ausente · NV não verificado</span></div><div id="puMarcos"></div></div>
+      <div class="card"><div class="card-h"><h3>Roteiro da consulta</h3><span class="src">Guia de Puericultura · SBP · PNI 2026</span></div><div id="puConsulta"></div></div>
+      <div class="card pu-wide"><div class="card-h"><h3>Evolução para o prontuário</h3><button class="btn btn-primary btn-sm" id="btnPuCopy" type="button">Copiar evolução</button></div><textarea id="puEvo" rows="7" readonly></textarea></div>
     </div>
   </section>
 

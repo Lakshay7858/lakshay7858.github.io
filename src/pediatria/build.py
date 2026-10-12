@@ -2,7 +2,7 @@
 import pathlib
 p = pathlib.Path(__file__).parent
 root = p.parent.parent
-js = '\n'.join((p/f).read_text() for f in ['drugs1.js','drugs2.js','drugs3.js','drugs4.js','condutas.js','app.js'])
+js = '\n'.join((p/f).read_text() for f in ['drugs1.js','drugs2.js','drugs3.js','drugs4.js','condutas.js','who_data.js','puericultura.js','app.js'])
 out = (p/'shell.html').read_text().replace('/*__SCRIPTS__*/', js)
 head = ('<!DOCTYPE html>\n<html lang="pt-BR">\n<head>\n<meta charset="UTF-8">\n'
  '<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">\n'

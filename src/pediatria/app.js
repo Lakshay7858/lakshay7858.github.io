@@ -7,7 +7,7 @@ const SUS_SET = new Set(['SUS','SUSH','SUSE','SUSESP']);
 const ROUTES = ['Uso Oral','Uso Intravenoso','Uso Intramuscular','Uso Inalatório','Uso Nasal','Uso Tópico','Uso Oftálmico','Uso Otológico','Uso Retal','Uso Intranasal/IM/EV','Uso Intravenoso/Retal','Orientações'];
 
 let items = [];
-let curCat = 'todos', accFilter = 'all', curDx = 'pac', curView = 'rx';
+let curCat = 'todos', accFilter = 'all', susFilter = 'all', curDx = 'pac', curView = 'rx';
 
 const store = {
   get(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } },
@@ -205,8 +205,16 @@ function renderDxList(){
   $('dxList').innerHTML = html || '<div class="empty">Nenhum diagnóstico encontrado.</div>';
   $('dxCount').textContent = `${CONDUTAS.length} condutas`;
 }
+function passSus(ref){
+  if (susFilter==='all') return true;
+  const a = (DRUG[ref.split(':')[0]]||{}).acc; if (!a) return true;
+  return susFilter==='sus' ? (SUS_SET.has(a) || a==='MISTO') : a==='PART';
+}
+const SUSF_LBL = { sus:'disponível no SUS', part:'só particular' };
 function rxRows(refs){
-  return refs.map(ref => { const L = lookup(ref); if (!L) return ''; const mw = minWarn(L.d);
+  const f = refs.filter(passSus);
+  if (!f.length) return `<div class="empty" style="padding:10px">Nenhum item ${SUSF_LBL[susFilter]} nesta opção.</div>`;
+  return f.map(ref => { const L = lookup(ref); if (!L) return ''; const mw = minWarn(L.d);
     return `<div class="rx-row"><div style="min-width:0"><div class="t">${esc(L.res.title)} ${badge(L.d.acc)}</div>${mw?`<div class="warnline" style="margin-bottom:5px">⚠ ${esc(mw)}</div>`:''}<div class="dose">${esc(L.res.inst)}</div></div>
       <button class="btn btn-line btn-sm" type="button" data-rx="${ref}">+ Prescrever</button></div>`; }).join('');
 }
@@ -221,10 +229,10 @@ function renderDx(){
   let h = `<div class="dx-title">${esc(c.nome)}</div><div class="dx-when">${esc(c.quando)}</div>`;
   h += `<div class="opt opt-ideal"><div class="opt-h"><h4>★ Opção ideal ${vI?`<span class="verdict ${vI.cls}">${vI.txt}</span>`:''}</h4><span class="src">${esc(c.ideal.fonte)}</span></div>
     <div class="opt-b"><div class="note">${esc(c.ideal.nota)}</div>${rxRows(c.ideal.itens)}
-    <div><button class="btn btn-primary btn-sm" type="button" data-rxall="ideal">Prescrever opção ideal completa</button></div></div></div>`;
+    ${c.ideal.itens.some(passSus)?`<div><button class="btn btn-primary btn-sm" type="button" data-rxall="ideal">Prescrever opção ideal${susFilter==='all'?' completa':' (itens filtrados)'}</button></div>`:''}</div></div>`;
   h += `<div class="opt opt-sus"><div class="opt-h"><h4>Opção SUS ${vS?`<span class="verdict ${vS.cls}">${vS.txt}</span>`:'<span class="verdict v-part">Sem opção na RENAME</span>'}</h4><span class="src">RENAME 2024 · Componentes Básico/Estratégico/Especializado</span></div>
     <div class="opt-b">${susSame ? '<div class="note">A opção ideal já é a disponível no SUS — mesma prescrição, mesmas doses.</div>' : `<div class="note">${esc(c.sus.nota)}</div>${rxRows(susRefs)}`}
-    ${susRefs.length?'<div><button class="btn btn-primary btn-sm" type="button" data-rxall="sus">Prescrever opção SUS completa</button></div>':''}</div></div>`;
+    ${susSame && susFilter!=='all' ? rxRows(susRefs) : ''}${susRefs.some(passSus)?`<div><button class="btn btn-primary btn-sm" type="button" data-rxall="sus">Prescrever opção SUS${susFilter==='all'?' completa':' (itens filtrados)'}</button></div>`:''}</div></div>`;
   (c.alt||[]).forEach((al,i) => { h += `<div class="opt opt-alt"><div class="opt-h"><h4>Alternativa · ${esc(al.label)}</h4></div><div class="opt-b">${rxRows(al.itens)}</div></div>`; });
   h += `<div class="opt"><div class="opt-h" style="background:var(--surface-2)"><h4>Orientações e sinais de alarme</h4><button class="btn btn-line btn-sm" type="button" data-addorient="1">Adicionar à receita</button></div><div class="opt-b"><div class="orient">${esc(orient)}</div></div></div>`;
   $('dxDetail').innerHTML = h;
@@ -317,27 +325,32 @@ function renderRefs(){
 // ---------------- navegação e eventos ----------------
 function setView(v){
   curView = v;
-  ['rx','sus','calc','ref'].forEach(k => { $('view-'+k).hidden = k!==v; $('tab-'+k).setAttribute('aria-selected', k===v); });
+  ['rx','sus','puer','calc','ref'].forEach(k => { $('view-'+k).hidden = k!==v; $('tab-'+k).setAttribute('aria-selected', k===v); });
   if (v==='sus') { renderDxList(); renderDx(); }
   if (v==='calc') renderCalc();
+  if (v==='puer') { renderPuer(); puEvo(); }
   try { history.replaceState(null, '', '#'+v); } catch(e){}
   store.set('prescrimed_view', v);
 }
 let toastT;
 function toast(m){ const t = $('toast'); t.textContent = m; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => t.hidden = true, 2200); }
 
-function refreshAll(){ renderChips(); renderCatalog(); recalcItems(); checkSafety(); syncPreview(); if (curView==='sus') renderDx(); if (curView==='calc') renderCalc(); }
+function refreshAll(){ renderChips(); renderCatalog(); recalcItems(); checkSafety(); syncPreview(); if (curView==='sus') renderDx(); if (curView==='calc') renderCalc(); if (curView==='puer') { renderPuer(); puEvo(); } }
 
 document.addEventListener('click', e => {
   const t = e.target.closest('button,[data-rx]'); if (!t) return;
   if (t.dataset.view) return setView(t.dataset.view);
   if (t.dataset.cat) { curCat = t.dataset.cat; renderFilters(); renderCatalog(); return; }
+  if (t.dataset.susf) { susFilter = t.dataset.susf; document.querySelectorAll('[data-susf]').forEach(b => b.setAttribute('aria-pressed', b===t)); renderDx(); return; }
+  if (t.dataset.mk) { PUER.marcos[t.dataset.mk] = t.dataset.mv; renderPuer(); puEvo(); return; }
+  if (t.dataset.cons !== undefined) { PUER.consultaSel = +t.dataset.cons; renderConsulta(0); return; }
+  if (t.id==='btnPuCopy') { const txt = $('puEvo').value; if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(() => toast('Evolução copiada'), () => fallbackCopy(txt)); else fallbackCopy(txt); return; }
   if (t.dataset.acc) { accFilter = t.dataset.acc; document.querySelectorAll('[data-acc]').forEach(b => b.setAttribute('aria-pressed', b===t)); renderCatalog(); return; }
   if (t.dataset.rx) return prescribe(t.dataset.rx);
   if (t.dataset.del) { items = items.filter(i => i.uid!==t.dataset.del); renderRx(); checkSafety(); syncPreview(); return; }
   if (t.dataset.q !== undefined) return addNote(QUICK[+t.dataset.q][1]());
   if (t.dataset.dx) { curDx = t.dataset.dx; renderDxList(); renderDx(); if (window.innerWidth < 1100) $('dxDetail').scrollIntoView({behavior:'smooth', block:'start'}); return; }
-  if (t.dataset.rxall) { const c = CONDUTAS.find(x => x.id===curDx); const refs = t.dataset.rxall==='ideal' ? c.ideal.itens : (c.sus==='igual' ? c.ideal.itens : c.sus.itens); refs.forEach(r => prescribe(r, true)); toast(`${refs.length} item(ns) adicionados — veja a aba Prescrição`); return; }
+  if (t.dataset.rxall) { const c = CONDUTAS.find(x => x.id===curDx); const refs = t.dataset.rxall==='ideal' ? c.ideal.itens : (c.sus==='igual' ? c.ideal.itens : c.sus.itens); const fr = refs.filter(passSus); fr.forEach(r => prescribe(r, true)); toast(`${fr.length} item(ns) adicionados — veja a aba Prescrição`); return; }
   if (t.dataset.addorient) { const c = CONDUTAS.find(x => x.id===curDx); const { w, a } = pt(); addNote(c.orientFn ? c.orientFn(w,a) : c.orient); toast('Orientações adicionadas à receita'); return; }
   switch (t.id) {
     case 'btnClear': $('clearZone').innerHTML = '<span class="src" style="margin-right:6px">Limpar todos os itens?</span><button class="btn btn-danger btn-sm" id="btnClearYes" type="button">Sim, limpar</button> <button class="btn btn-sm" id="btnClearNo" type="button">Cancelar</button>'; break;
@@ -368,12 +381,35 @@ document.addEventListener('input', e => {
   if (['ptAllergies','ptComorb'].includes(t.id)) { checkSafety(); syncPreview(); return; }
   if (t.id==='searchDrug') return renderCatalog();
   if (t.id==='dxSearch') return renderDxList();
+  if (t.id==='pnFen') { PUER.fen = parseInt(t.value) || 0; renderMarcosOnly(); return; }
+  if (t.id && t.id.startsWith('pn') && t.type!=='date' && t.type!=='checkbox') { renderPuer(); puEvo(); return; }
 });
 document.addEventListener('change', e => {
   const t = e.target;
   if (t.dataset && t.dataset.uid) { const it = items.find(i => i.uid===t.dataset.uid); if (it) { it[t.dataset.f] = t.value; syncPreview(); } return; }
   if (['ptAgeUnit','ptSex'].includes(t.id)) refreshAll();
+  if (t.id==='pnRisco') { PUER.risco = t.checked; renderMarcosOnly(); return; }
+  if (t.id==='pnFen') { renderMarcosOnly(); return; }
+  if (['pnDN','pnDC'].includes(t.id)) { syncAgeFromDN(); refreshAll(); return; }
+  if (t.id==='pnDAnt') { renderPuer(); puEvo(); return; }
 });
+function puEvo(){ $('puEvo').value = evolucaoTxt(); }
+function renderMarcosOnly(){
+  const P = puerData();
+  // preserva foco no campo fenotípico enquanto digita
+  const foc = document.activeElement && document.activeElement.id;
+  renderMarcos(P.dias/30.4375, P); puEvo();
+  if (foc==='pnFen') { const el = $('pnFen'); el.focus(); const v = el.value; el.value=''; el.value=v; }
+}
+// Data de nascimento → preenche a idade da barra do paciente
+function syncAgeFromDN(){
+  const dn = parseDate($('pnDN').value); if (!dn) return;
+  const dc = parseDate($('pnDC').value) || new Date();
+  const dias = Math.round((dc - dn)/DAY); if (dias < 0) return;
+  let v, u;
+  if (dias < 31) { v = dias; u = 'dias'; } else if (dias < 730.5) { v = Math.floor(dias/30.4375); u = 'meses'; } else { v = Math.floor(dias/365.25); u = 'anos'; }
+  $('ptAgeVal').value = v; $('ptAgeUnit').value = u;
+}
 document.addEventListener('keydown', e => { if (e.key==='Escape' && !$('docModal').hidden) $('docModal').hidden = true; });
 
 // ---------------- início ----------------
@@ -385,8 +421,9 @@ document.addEventListener('keydown', e => { if (e.key==='Escape' && !$('docModal
   const dr = store.get('prescrimed_draft');
   if (dr && Array.isArray(dr.items) && dr.items.length) { items = dr.items; $('extraNotes').value = dr.notes || ''; }
   else { ['amox250','dipirona_gotas','lavagem_nasal'].forEach(r => prescribe(r, true)); $('extraNotes').value = QUICK[1][1](); }
+  { const d = new Date(); $('pnDC').value = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
   renderFilters(); renderQuick(); renderRefs();
   refreshAll();
   const h = (location.hash||'').replace('#','');
-  setView(['rx','sus','calc','ref'].includes(h) ? h : (store.get('prescrimed_view') || 'rx'));
+  setView(['rx','sus','puer','calc','ref'].includes(h) ? h : (store.get('prescrimed_view') || 'rx'));
 })();

@@ -253,9 +253,9 @@ const CONDUTAS = [
 
 // ---------------- PUERICULTURA ----------------
 { id:'ferro_profilaxia', grupo:'Puericultura & prevenção', nome:'Profilaxia de anemia ferropriva', chave:'ferro profilaxia sulfato ferroso puericultura',
-  quando:'Todos os lactentes; dose e início dependem de peso ao nascer, IG e fatores de risco.',
-  ideal:{ fonte:'SBP 2021', itens:['ferro_prof'], nota:'SBP: termo AIG com fatores de risco a partir de 90 dias (sem risco: 180 dias) até 24 meses, 1 mg/kg/dia. Baixo peso/prematuros desde 30 dias. Sulfato ferroso está no SUS.' },
-  sus:{ itens:['ferro_prof'], nota:'PNSF/MS: 1 mg/kg/dia (sulfato ferroso 25 mg/mL) — o MS inicia a profilaxia universal aos 6 meses; a SBP antecipa para 90 dias quando há fator de risco.' },
+  quando:'Todos os lactentes. A SBP (mar/2026) passou a usar o mesmo esquema do Ministério da Saúde.',
+  ideal:{ fonte:'SBP mar/2026 (unificada com o MS)', itens:['ferro_prof'], nota:'Termo com peso adequado: dose fixa de 10–12,5 mg/dia em dois ciclos (6–9 m e 12–15 m, pausa de 9 a 12 m). Prematuro/baixo peso: 2–4 mg/kg/dia desde 30 dias, depois 1 mg/kg/dia até 24 m. Sulfato ferroso está no SUS.' },
+  sus:'igual',
   alt:[ { label:'Intolerância GI (particular)', itens:['ferro_quelato'] } ],
   orient:'• Dar longe do leite, com suco de fruta cítrica.\n• Fezes escuras são esperadas.' },
 
@@ -267,8 +267,8 @@ const CONDUTAS = [
   orient:'• Reduzir leite de vaca (máx. 500 mL/dia), aumentar carne/feijão/folhas verde-escuras.\n• Investigar parasitose e perda sanguínea.' },
 
 { id:'vitamina_d', grupo:'Puericultura & prevenção', nome:'Suplementação de vitamina D', chave:'vitamina d raquitismo puericultura',
-  quando:'Do nascimento até 2 anos (SBP); depois em grupos de risco.',
-  ideal:{ fonte:'SBP 2016 · AAP', itens:['vitd'], nota:'400 UI/dia no 1º ano e 600 UI/dia de 12 a 24 meses. Não há vitamina D isolada na RENAME — custo para a família.' },
+  quando:'Desde a 1ª semana de vida até 18 anos (SBP 2024).',
+  ideal:{ fonte:'SBP 2024 — Documento Científico nº 181', itens:['vitd'], nota:'400 UI/dia no 1º ano e 600 UI/dia para todos de 1 a 18 anos (1.200–1.800 UI se fator de risco). Não há vitamina D isolada na RENAME — custo para a família.' },
   sus:{ itens:[], nota:'Sem colecalciferol isolado no SUS (apenas associado a cálcio, para adultos). Orientar exposição solar segura e alimentação; algumas prefeituras fornecem via REMUME.' },
   alt:[],
   orient:'• Usar todos os dias, de preferência no mesmo horário.' },
