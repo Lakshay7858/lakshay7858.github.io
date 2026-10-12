@@ -171,6 +171,66 @@ table.vt tr.hl td{background:var(--accent-soft);font-weight:750}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .disclaimer{font-size:.72rem;color:var(--muted);margin-top:16px;max-width:110ch}
 
+/* ---------- sala vermelha ---------- */
+.c-vermelho{background:#c62828} .c-laranja{background:#e26a00} .c-amarelo{background:#e0b400} .c-verde{background:#2e7d32} .c-azul{background:#1e5aa8}
+.sv-kick{font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:var(--danger);font-weight:750;margin-bottom:2px}
+.sv-dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:8px;vertical-align:middle}
+.sv-lead{font-size:.86rem;margin:8px 0 10px;padding:9px 12px;border-left:4px solid var(--danger);background:var(--danger-bg);border-radius:0 7px 7px 0;line-height:1.5}
+.sv-wnote{font-size:.74rem;color:var(--muted);margin:0 0 10px}
+.sv-wnote b{color:var(--accent)}
+.sv-s{margin:14px 0}
+.sv-s h4{font-size:.84rem;margin:0 0 5px}
+.sv-s ul{margin:0;padding-left:18px}
+#view-sv li{margin:3px 0;font-size:.8rem;line-height:1.5}
+.sv-rx{margin:12px 0}
+.sv-rx ol{margin:0;padding:9px 14px 10px 32px}
+.sv-dose{display:inline;font-family:var(--mono);font-weight:650;font-size:.76rem;color:var(--sus);background:var(--sus-bg);padding:1px 6px;border-radius:5px}
+.sv-dose small{font-weight:400;opacity:.85}
+.sv-tbl{border:1px solid var(--line);border-radius:8px}
+.sv-tbl td{vertical-align:top}
+.sv-ett{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.sv-ett div{background:var(--sus-bg);color:var(--sus);border-radius:7px;padding:5px 10px;font-family:var(--mono);font-weight:650;font-size:.78rem}
+.sv-src{font-size:.72rem;color:var(--muted);margin-top:16px;border-top:1px solid var(--line);padding-top:8px}
+.sv-src a{color:var(--accent)}
+.sv-tools{display:flex;gap:6px;margin-bottom:6px}
+.sv-tools input{flex:1}
+
+/* ---------- prematuro ---------- */
+.pm .big{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:10px}
+.pm .stat{background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:9px 11px}
+.pm .stat.main{background:var(--accent-soft);border-color:var(--accent)}
+.pm .stat .l{font-size:.66rem;font-weight:750;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.pm .stat .v{font-size:1rem;font-weight:800;margin:2px 0}
+.pm .stat .d{font-size:.72rem;color:var(--muted)}
+.pm .chips{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 4px}
+.pm .chip{font-size:.68rem;font-weight:750;padding:2px 9px;border-radius:999px;background:var(--warn-bg);color:var(--warn)}
+.pm .chip.hot{background:var(--danger-bg);color:var(--danger)} .pm .chip.ok{background:var(--sus-bg);color:var(--sus)}
+.pm .box{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:10px 0;font-size:.8rem;line-height:1.5}
+.pm .box.hot{border-color:var(--danger);background:var(--danger-bg)}
+.pm h2{font-size:.95rem;margin:16px 0 6px} .pm h3{font-size:.82rem;margin:10px 0 5px}
+.pm .box h3{margin-top:0}
+.pm p,.pm li{font-size:.8rem;line-height:1.5} .pm ul,.pm ol{padding-left:18px;margin:4px 0}
+.pm .ex{font-family:var(--mono);font-size:.74rem;white-space:pre-line;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:8px 10px;margin:6px 0}
+.pm .hint{font-size:.72rem;color:var(--muted)}
+.pm .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px;margin:6px 0}
+.pm table{width:100%;border-collapse:collapse;font-size:.76rem}
+.pm th,.pm td{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.pm th{background:var(--surface-2)}
+.pm tr.now td{background:var(--accent-soft);font-weight:700} .pm tr.past td{color:var(--muted)}
+.pm .kick{font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:750}
+.pm .warn{font-size:.72rem;color:var(--muted);background:var(--surface-2);border-radius:6px;padding:8px 10px}
+.pm a{color:var(--accent)}
+details.pm-guia>summary{cursor:pointer;font-weight:750;font-size:.86rem;list-style:none}
+details.pm-guia>summary::before{content:"▸ ";color:var(--accent)} details.pm-guia[open]>summary::before{content:"▾ "}
+
+/* ---------- modelos de prontuário ---------- */
+.md-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:10px;margin-top:10px}
+.md-block{margin:0}
+.md-pre{margin:0;padding:10px 12px;font-family:var(--mono);font-size:.7rem;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere;max-height:360px;overflow:auto}
+.md-b{background:var(--warn-bg);color:var(--warn);border-radius:3px;padding:0 2px}
+.md-enc .opt-h{background:var(--danger-bg)}
+@media (max-width:760px){.md-grid{grid-template-columns:1fr}}
+
 /* ---------- puericultura ---------- */
 .pu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;margin-top:14px}
 .pu-form{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px 10px}
@@ -246,6 +306,7 @@ table.vt tr.hl td{background:var(--accent-soft);font-weight:750}
   </div>
   <nav class="tabs" role="tablist" aria-label="Seções">
     <button class="tab" role="tab" id="tab-rx" aria-selected="true" data-view="rx">Prescrição</button>
+    <button class="tab" role="tab" id="tab-sv" aria-selected="false" data-view="sv">Sala Vermelha</button>
     <button class="tab" role="tab" id="tab-sus" aria-selected="false" data-view="sus">SUS × Ideal</button>
     <button class="tab" role="tab" id="tab-puer" aria-selected="false" data-view="puer">Puericultura</button>
     <button class="tab" role="tab" id="tab-calc" aria-selected="false" data-view="calc">Calculadoras</button>
@@ -346,6 +407,19 @@ table.vt tr.hl td{background:var(--accent-soft);font-weight:750}
     </div>
   </section>
 
+  <!-- ======== SALA VERMELHA ======== -->
+  <section class="view" id="view-sv" hidden>
+    <div class="sus-layout">
+      <div class="card">
+        <div class="card-h"><h3>Sala Vermelha</h3><span class="src">PALS 2025 · SSC 2026 · MS · SBP</span></div>
+        <div class="sv-tools"><input id="svSearch" placeholder="Buscar: asma, IOT, sepse…"><button class="btn btn-line btn-sm" id="btnSvEst" type="button" title="Estimar peso pela idade (APLS)">Estimar peso</button></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:.64rem;color:var(--muted);margin:4px 2px 2px"><span><span class="dot c-vermelho" style="display:inline-block;width:8px;height:8px;border-radius:50%"></span> vermelho</span><span><span class="dot c-laranja" style="display:inline-block;width:8px;height:8px;border-radius:50%"></span> laranja</span><span><span class="dot c-amarelo" style="display:inline-block;width:8px;height:8px;border-radius:50%"></span> amarelo</span><span><span class="dot c-verde" style="display:inline-block;width:8px;height:8px;border-radius:50%"></span> verde</span><span><span class="dot c-azul" style="display:inline-block;width:8px;height:8px;border-radius:50%"></span> enfermaria</span></div>
+        <div class="dx-list" id="svNav"></div>
+      </div>
+      <div class="card" id="svMain"></div>
+    </div>
+  </section>
+
   <!-- ======== SUS × IDEAL ======== -->
   <section class="view" id="view-sus" hidden>
     <div class="sus-layout">
@@ -389,8 +463,11 @@ table.vt tr.hl td{background:var(--accent-soft);font-weight:750}
       <div class="card"><div class="card-h"><h3>Idade</h3></div><div id="puIdade"></div></div>
       <div class="card"><div class="card-h"><h3>Ganho de peso, comprimento e PC</h3></div><div id="puGanho"></div></div>
       <div class="card pu-wide"><div class="card-h"><h3>Escore-z e percentis (OMS)</h3></div><div id="puZ"></div></div>
+      <div class="card pu-wide"><div class="card-h"><h3 id="pmTitle">Seguimento do prematuro</h3><span class="src">Caderneta 2024 · SBP 2026/2024 · PNI 2026 · NT 109/2025</span></div><div class="pm" id="pmPanel"></div>
+        <details class="pm-guia" id="pmGuiaBox" style="margin-top:12px;padding-top:10px;border-top:1px solid var(--line)"><summary>Guia do prematuro na puericultura (definições, alimentação, vacinas, problemas frequentes)</summary><div class="pm" id="pmGuia"></div></details></div>
       <div class="card"><div class="card-h"><h3>Marcos do desenvolvimento</h3><span class="src">Caderneta da Criança (MS) · P presente · A ausente · NV não verificado</span></div><div id="puMarcos"></div></div>
       <div class="card"><div class="card-h"><h3>Roteiro da consulta</h3><span class="src">Guia de Puericultura · SBP · PNI 2026</span></div><div id="puConsulta"></div></div>
+      <div class="card pu-wide"><div class="card-h"><h3>Modelos de prontuário (texto pronto para o PEP)</h3><span class="src">PNI 2026 · ferro SBP mar/2026 · vit D SBP 2024 · campos ___ para preencher</span></div><div id="mdBox"></div></div>
       <div class="card pu-wide"><div class="card-h"><h3>Evolução para o prontuário</h3><button class="btn btn-primary btn-sm" id="btnPuCopy" type="button">Copiar evolução</button></div><textarea id="puEvo" rows="7" readonly></textarea></div>
     </div>
   </section>

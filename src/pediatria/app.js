@@ -325,22 +325,29 @@ function renderRefs(){
 // ---------------- navegação e eventos ----------------
 function setView(v){
   curView = v;
-  ['rx','sus','puer','calc','ref'].forEach(k => { $('view-'+k).hidden = k!==v; $('tab-'+k).setAttribute('aria-selected', k===v); });
+  ['rx','sv','sus','puer','calc','ref'].forEach(k => { $('view-'+k).hidden = k!==v; $('tab-'+k).setAttribute('aria-selected', k===v); });
   if (v==='sus') { renderDxList(); renderDx(); }
   if (v==='calc') renderCalc();
   if (v==='puer') { renderPuer(); puEvo(); }
+  if (v==='sv') SV.render();
   try { history.replaceState(null, '', '#'+v); } catch(e){}
   store.set('prescrimed_view', v);
 }
 let toastT;
 function toast(m){ const t = $('toast'); t.textContent = m; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => t.hidden = true, 2200); }
 
-function refreshAll(){ renderChips(); renderCatalog(); recalcItems(); checkSafety(); syncPreview(); if (curView==='sus') renderDx(); if (curView==='calc') renderCalc(); if (curView==='puer') { renderPuer(); puEvo(); } }
+function refreshAll(){ renderChips(); renderCatalog(); recalcItems(); checkSafety(); syncPreview(); if (curView==='sus') renderDx(); if (curView==='calc') renderCalc(); if (curView==='puer') { renderPuer(); puEvo(); } if (curView==='sv') SV.render(); }
 
 document.addEventListener('click', e => {
   const t = e.target.closest('button,[data-rx]'); if (!t) return;
   if (t.dataset.view) return setView(t.dataset.view);
   if (t.dataset.cat) { curCat = t.dataset.cat; renderFilters(); renderCatalog(); return; }
+  if (t.dataset.sv) { SV.go(t.dataset.sv); if (window.innerWidth < 1100) $('svMain').scrollIntoView({behavior:'smooth', block:'start'}); else window.scrollTo({top:0}); return; }
+  if (t.id==='btnSvEst') { const w = SV.estimar(); if (w===null) { toast('Informe a idade na barra do paciente'); return; } $('ptWeight').value = w; refreshAll(); toast(`Peso estimado (APLS): ${nf(w,1)} kg`); return; }
+  if (t.dataset.mage) { MOD.pick(t.dataset.mage); MOD.render(); return; }
+  if (t.dataset.mver) { MOD.ver(t.dataset.mver); MOD.render(); return; }
+  if (t.dataset.mcopy) { const txt = MOD.text(t.dataset.mcopy); if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(() => toast('Texto copiado'), () => fallbackCopy(txt)); else fallbackCopy(txt); return; }
+  if (t.dataset.pmtab) { PREM.setTab(t.dataset.pmtab); return; }
   if (t.dataset.susf) { susFilter = t.dataset.susf; document.querySelectorAll('[data-susf]').forEach(b => b.setAttribute('aria-pressed', b===t)); renderDx(); return; }
   if (t.dataset.mk) { PUER.marcos[t.dataset.mk] = t.dataset.mv; renderPuer(); puEvo(); return; }
   if (t.dataset.cons !== undefined) { PUER.consultaSel = +t.dataset.cons; renderConsulta(0); return; }
@@ -371,7 +378,7 @@ document.addEventListener('click', e => {
 function fallbackCopy(txt){
   const ta = document.createElement('textarea'); ta.value = txt; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select();
   let ok = false; try { ok = document.execCommand('copy'); } catch(e){}
-  document.body.removeChild(ta); toast(ok ? 'Receita copiada' : 'Não foi possível copiar automaticamente — selecione o texto da folha.');
+  document.body.removeChild(ta); toast(ok ? 'Copiado' : 'Não foi possível copiar automaticamente — selecione o texto.');
 }
 document.addEventListener('input', e => {
   const t = e.target;
@@ -381,6 +388,7 @@ document.addEventListener('input', e => {
   if (['ptAllergies','ptComorb'].includes(t.id)) { checkSafety(); syncPreview(); return; }
   if (t.id==='searchDrug') return renderCatalog();
   if (t.id==='dxSearch') return renderDxList();
+  if (t.id==='svSearch') return SV.navOnly();
   if (t.id==='pnFen') { PUER.fen = parseInt(t.value) || 0; renderMarcosOnly(); return; }
   if (t.id && t.id.startsWith('pn') && t.type!=='date' && t.type!=='checkbox') { renderPuer(); puEvo(); return; }
 });
@@ -410,6 +418,7 @@ function syncAgeFromDN(){
   if (dias < 31) { v = dias; u = 'dias'; } else if (dias < 730.5) { v = Math.floor(dias/30.4375); u = 'meses'; } else { v = Math.floor(dias/365.25); u = 'anos'; }
   $('ptAgeVal').value = v; $('ptAgeUnit').value = u;
 }
+document.addEventListener('toggle', e => { if (e.target.id==='pmGuiaBox' && e.target.open) PREM.guiaRender(); }, true);
 document.addEventListener('keydown', e => { if (e.key==='Escape' && !$('docModal').hidden) $('docModal').hidden = true; });
 
 // ---------------- início ----------------
@@ -422,8 +431,9 @@ document.addEventListener('keydown', e => { if (e.key==='Escape' && !$('docModal
   if (dr && Array.isArray(dr.items) && dr.items.length) { items = dr.items; $('extraNotes').value = dr.notes || ''; }
   else { ['amox250','dipirona_gotas','lavagem_nasal'].forEach(r => prescribe(r, true)); $('extraNotes').value = QUICK[1][1](); }
   { const d = new Date(); $('pnDC').value = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+  SV.init();
   renderFilters(); renderQuick(); renderRefs();
   refreshAll();
   const h = (location.hash||'').replace('#','');
-  setView(['rx','sus','puer','calc','ref'].includes(h) ? h : (store.get('prescrimed_view') || 'rx'));
+  setView(['rx','sv','sus','puer','calc','ref'].includes(h) ? h : (store.get('prescrimed_view') || 'rx'));
 })();

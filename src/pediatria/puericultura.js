@@ -235,6 +235,8 @@ function renderPuer(){
 
   renderMarcos(mesesCron, P);
   renderConsulta(mesesCron);
+  if (typeof PREM !== 'undefined') PREM.render();
+  if (typeof MOD !== 'undefined') MOD.render(mesesCron);
 }
 
 function bandaAtual(meses){ let i = MARCOS.findIndex(b => meses >= b[0] && meses < b[1]); if (i < 0) i = meses >= 120 ? MARCOS.length-1 : 0; return i; }

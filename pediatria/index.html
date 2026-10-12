@@ -179,6 +179,66 @@ table.vt tr.hl td{background:var(--accent-soft);font-weight:750}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .disclaimer{font-size:.72rem;color:var(--muted);margin-top:16px;max-width:110ch}
 
+/* ---------- sala vermelha ---------- */
+.c-vermelho{background:#c62828} .c-laranja{background:#e26a00} .c-amarelo{background:#e0b400} .c-verde{background:#2e7d32} .c-azul{background:#1e5aa8}
+.sv-kick{font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:var(--danger);font-weight:750;margin-bottom:2px}
+.sv-dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:8px;vertical-align:middle}
+.sv-lead{font-size:.86rem;margin:8px 0 10px;padding:9px 12px;border-left:4px solid var(--danger);background:var(--danger-bg);border-radius:0 7px 7px 0;line-height:1.5}
+.sv-wnote{font-size:.74rem;color:var(--muted);margin:0 0 10px}
+.sv-wnote b{color:var(--accent)}
+.sv-s{margin:14px 0}
+.sv-s h4{font-size:.84rem;margin:0 0 5px}
+.sv-s ul{margin:0;padding-left:18px}
+#view-sv li{margin:3px 0;font-size:.8rem;line-height:1.5}
+.sv-rx{margin:12px 0}
+.sv-rx ol{margin:0;padding:9px 14px 10px 32px}
+.sv-dose{display:inline;font-family:var(--mono);font-weight:650;font-size:.76rem;color:var(--sus);background:var(--sus-bg);padding:1px 6px;border-radius:5px}
+.sv-dose small{font-weight:400;opacity:.85}
+.sv-tbl{border:1px solid var(--line);border-radius:8px}
+.sv-tbl td{vertical-align:top}
+.sv-ett{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.sv-ett div{background:var(--sus-bg);color:var(--sus);border-radius:7px;padding:5px 10px;font-family:var(--mono);font-weight:650;font-size:.78rem}
+.sv-src{font-size:.72rem;color:var(--muted);margin-top:16px;border-top:1px solid var(--line);padding-top:8px}
+.sv-src a{color:var(--accent)}
+.sv-tools{display:flex;gap:6px;margin-bottom:6px}
+.sv-tools input{flex:1}
+
+/* ---------- prematuro ---------- */
+.pm .big{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:10px}
+.pm .stat{background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:9px 11px}
+.pm .stat.main{background:var(--accent-soft);border-color:var(--accent)}
+.pm .stat .l{font-size:.66rem;font-weight:750;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.pm .stat .v{font-size:1rem;font-weight:800;margin:2px 0}
+.pm .stat .d{font-size:.72rem;color:var(--muted)}
+.pm .chips{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 4px}
+.pm .chip{font-size:.68rem;font-weight:750;padding:2px 9px;border-radius:999px;background:var(--warn-bg);color:var(--warn)}
+.pm .chip.hot{background:var(--danger-bg);color:var(--danger)} .pm .chip.ok{background:var(--sus-bg);color:var(--sus)}
+.pm .box{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:10px 0;font-size:.8rem;line-height:1.5}
+.pm .box.hot{border-color:var(--danger);background:var(--danger-bg)}
+.pm h2{font-size:.95rem;margin:16px 0 6px} .pm h3{font-size:.82rem;margin:10px 0 5px}
+.pm .box h3{margin-top:0}
+.pm p,.pm li{font-size:.8rem;line-height:1.5} .pm ul,.pm ol{padding-left:18px;margin:4px 0}
+.pm .ex{font-family:var(--mono);font-size:.74rem;white-space:pre-line;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:8px 10px;margin:6px 0}
+.pm .hint{font-size:.72rem;color:var(--muted)}
+.pm .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px;margin:6px 0}
+.pm table{width:100%;border-collapse:collapse;font-size:.76rem}
+.pm th,.pm td{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.pm th{background:var(--surface-2)}
+.pm tr.now td{background:var(--accent-soft);font-weight:700} .pm tr.past td{color:var(--muted)}
+.pm .kick{font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:750}
+.pm .warn{font-size:.72rem;color:var(--muted);background:var(--surface-2);border-radius:6px;padding:8px 10px}
+.pm a{color:var(--accent)}
+details.pm-guia>summary{cursor:pointer;font-weight:750;font-size:.86rem;list-style:none}
+details.pm-guia>summary::before{content:"▸ ";color:var(--accent)} details.pm-guia[open]>summary::before{content:"▾ "}
+
+/* ---------- modelos de prontuário ---------- */
+.md-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:10px;margin-top:10px}
+.md-block{margin:0}
+.md-pre{margin:0;padding:10px 12px;font-family:var(--mono);font-size:.7rem;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere;max-height:360px;overflow:auto}
+.md-b{background:var(--warn-bg);color:var(--warn);border-radius:3px;padding:0 2px}
+.md-enc .opt-h{background:var(--danger-bg)}
+@media (max-width:760px){.md-grid{grid-template-columns:1fr}}
+
 /* ---------- puericultura ---------- */
 .pu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;margin-top:14px}
 .pu-form{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px 10px}
@@ -256,6 +316,7 @@ table.vt tr.hl td{background:var(--accent-soft);font-weight:750}
   </div>
   <nav class="tabs" role="tablist" aria-label="Seções">
     <button class="tab" role="tab" id="tab-rx" aria-selected="true" data-view="rx">Prescrição</button>
+    <button class="tab" role="tab" id="tab-sv" aria-selected="false" data-view="sv">Sala Vermelha</button>
     <button class="tab" role="tab" id="tab-sus" aria-selected="false" data-view="sus">SUS × Ideal</button>
     <button class="tab" role="tab" id="tab-puer" aria-selected="false" data-view="puer">Puericultura</button>
     <button class="tab" role="tab" id="tab-calc" aria-selected="false" data-view="calc">Calculadoras</button>
@@ -357,6 +418,19 @@ table.vt tr.hl td{background:var(--accent-soft);font-weight:750}
     </div>
   </section>
 
+  <!-- ======== SALA VERMELHA ======== -->
+  <section class="view" id="view-sv" hidden>
+    <div class="sus-layout">
+      <div class="card">
+        <div class="card-h"><h3>Sala Vermelha</h3><span class="src">PALS 2025 · SSC 2026 · MS · SBP</span></div>
+        <div class="sv-tools"><input id="svSearch" placeholder="Buscar: asma, IOT, sepse…"><button class="btn btn-line btn-sm" id="btnSvEst" type="button" title="Estimar peso pela idade (APLS)">Estimar peso</button></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:.64rem;color:var(--muted);margin:4px 2px 2px"><span><span class="dot c-vermelho" style="display:inline-block;width:8px;height:8px;border-radius:50%"></span> vermelho</span><span><span class="dot c-laranja" style="display:inline-block;width:8px;height:8px;border-radius:50%"></span> laranja</span><span><span class="dot c-amarelo" style="display:inline-block;width:8px;height:8px;border-radius:50%"></span> amarelo</span><span><span class="dot c-verde" style="display:inline-block;width:8px;height:8px;border-radius:50%"></span> verde</span><span><span class="dot c-azul" style="display:inline-block;width:8px;height:8px;border-radius:50%"></span> enfermaria</span></div>
+        <div class="dx-list" id="svNav"></div>
+      </div>
+      <div class="card" id="svMain"></div>
+    </div>
+  </section>
+
   <!-- ======== SUS × IDEAL ======== -->
   <section class="view" id="view-sus" hidden>
     <div class="sus-layout">
@@ -400,8 +474,11 @@ table.vt tr.hl td{background:var(--accent-soft);font-weight:750}
       <div class="card"><div class="card-h"><h3>Idade</h3></div><div id="puIdade"></div></div>
       <div class="card"><div class="card-h"><h3>Ganho de peso, comprimento e PC</h3></div><div id="puGanho"></div></div>
       <div class="card pu-wide"><div class="card-h"><h3>Escore-z e percentis (OMS)</h3></div><div id="puZ"></div></div>
+      <div class="card pu-wide"><div class="card-h"><h3 id="pmTitle">Seguimento do prematuro</h3><span class="src">Caderneta 2024 · SBP 2026/2024 · PNI 2026 · NT 109/2025</span></div><div class="pm" id="pmPanel"></div>
+        <details class="pm-guia" id="pmGuiaBox" style="margin-top:12px;padding-top:10px;border-top:1px solid var(--line)"><summary>Guia do prematuro na puericultura (definições, alimentação, vacinas, problemas frequentes)</summary><div class="pm" id="pmGuia"></div></details></div>
       <div class="card"><div class="card-h"><h3>Marcos do desenvolvimento</h3><span class="src">Caderneta da Criança (MS) · P presente · A ausente · NV não verificado</span></div><div id="puMarcos"></div></div>
       <div class="card"><div class="card-h"><h3>Roteiro da consulta</h3><span class="src">Guia de Puericultura · SBP · PNI 2026</span></div><div id="puConsulta"></div></div>
+      <div class="card pu-wide"><div class="card-h"><h3>Modelos de prontuário (texto pronto para o PEP)</h3><span class="src">PNI 2026 · ferro SBP mar/2026 · vit D SBP 2024 · campos ___ para preencher</span></div><div id="mdBox"></div></div>
       <div class="card pu-wide"><div class="card-h"><h3>Evolução para o prontuário</h3><button class="btn btn-primary btn-sm" id="btnPuCopy" type="button">Copiar evolução</button></div><textarea id="puEvo" rows="7" readonly></textarea></div>
     </div>
   </section>
@@ -1957,6 +2034,8 @@ function renderPuer(){
 
   renderMarcos(mesesCron, P);
   renderConsulta(mesesCron);
+  if (typeof PREM !== 'undefined') PREM.render();
+  if (typeof MOD !== 'undefined') MOD.render(mesesCron);
 }
 
 function bandaAtual(meses){ let i = MARCOS.findIndex(b => meses >= b[0] && meses < b[1]); if (i < 0) i = meses >= 120 ? MARCOS.length-1 : 0; return i; }
@@ -2010,6 +2089,1868 @@ function evolucaoTxt(){
   if (ausentes.length) t += `Marcos ausentes: ${ausentes.join('; ')}\n`;
   return t;
 }
+
+// Seguimento do prematuro — portado da "Calculadora do Prematuro" (set/2026), no padrão DoseCerta.
+// Usa os campos da Puericultura (pnDN, pnDC, pnIG, pnIGd, pnPN, pnDAnt, pnWAnt) e o peso da barra do paciente.
+const PREM = (function(){
+const DAY = 86400000;
+const parseD = (s) => { if (!s) return null; const [y, m, d] = s.split("-").map(Number); return Date.UTC(y, m - 1, d); };
+const fmtD = (t) => { const d = new Date(t); return `${String(d.getUTCDate()).padStart(2, "0")}/${String(d.getUTCMonth() + 1).padStart(2, "0")}/${d.getUTCFullYear()}`; };
+const addDays = (t, n) => t + n * DAY;
+const addMonths = (t, n) => { const d = new Date(t); const day = d.getUTCDate(); const r = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + n, 1)); const last = new Date(Date.UTC(r.getUTCFullYear(), r.getUTCMonth() + 1, 0)).getUTCDate(); r.setUTCDate(Math.min(day, last)); return r.getTime(); };
+function ymd(from, to) { // anos, meses, dias entre duas datas (to >= from)
+  const a = new Date(from), b = new Date(to);
+  let y = b.getUTCFullYear() - a.getUTCFullYear(), m = b.getUTCMonth() - a.getUTCMonth(), d = b.getUTCDate() - a.getUTCDate();
+  if (d < 0) { m -= 1; d += new Date(Date.UTC(b.getUTCFullYear(), b.getUTCMonth(), 0)).getUTCDate(); }
+  if (m < 0) { y -= 1; m += 12; }
+  return { y, m, d, months: y * 12 + m + d / 30.44 };
+}
+const pl = (n, s, p) => `${n} ${n === 1 ? s : p}`;
+function ymdTxt(o) { const parts = []; if (o.y) parts.push(pl(o.y, "ano", "anos")); if (o.m) parts.push(pl(o.m, "mês", "meses")); if (o.d || !parts.length) parts.push(pl(o.d, "dia", "dias")); return parts.join(", "); }
+const wd = (days) => `${Math.floor(days / 7)} sem + ${days % 7} d`;
+const nf = (x, d = 1) => Number(x.toFixed(d)).toLocaleString("pt-BR", { maximumFractionDigits: d });
+const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+const needBaby = `<p class="src">Preencha <b>data de nascimento</b> e <b>IG ao nascer</b> acima. Peso ao nascer e peso atual (barra do paciente) liberam suplementos e vacinas especiais.</p>`;
+function readBaby() {
+  const dn = parseD($("pnDN").value), hoje = parseD($("pnDC").value);
+  const igs = parseInt($("pnIG").value, 10), igd = parseInt($("pnIGd").value || "0", 10);
+  const pn = parseFloat(($("pnPN").value || "").replace(",", "."));
+  const wkg = parseFloat($("ptWeight").value) || 0, pa = wkg * 1000;
+  const ig = igs >= 20 && igs <= 44 && igd >= 0 && igd <= 6 ? igs * 7 + igd : null;
+  const ok = dn !== null && hoje !== null && ig !== null && hoje >= dn;
+  const B = { dn, hoje, ig, pn: pn > 200 && pn < 7000 ? pn : null, pa: pa > 200 && pa < 80000 ? pa : null, ok };
+  if (!ok) return B;
+  B.chronoDays = Math.round((hoje - dn) / DAY);
+  B.chrono = ymd(dn, hoje);
+  B.pmaDays = ig + B.chronoDays;
+  B.dpp = addDays(dn, 280 - ig);
+  B.preterm = ig < 259;
+  B.corrDays = Math.round((hoje - B.dpp) / DAY);
+  B.corr = B.corrDays >= 0 ? ymd(B.dpp, hoje) : null;
+  B.corrMonths = B.corrDays >= 0 ? B.corr.months : B.corrDays / 30.44;
+  B.correctUntil = addMonths(dn, ig < 196 ? 36 : 24);
+  B.stillCorrect = B.preterm && hoje < B.correctUntil;
+  B.ageForUse = B.stillCorrect ? B.corrMonths : B.chrono.months;
+  B.w = B.pa ? B.pa / 1000 : null;
+  return B;
+}
+function classIG(ig) {
+  if (ig < 196) return ["Prematuro extremo", "<28 semanas", "hot"];
+  if (ig < 224) return ["Muito prematuro", "28 a 31+6 semanas", "hot"];
+  if (ig < 238) return ["Prematuro moderado", "32 a 33+6 semanas", ""];
+  if (ig < 259) return ["Prematuro tardio", "34 a 36+6 semanas", ""];
+  if (ig < 294) return ["A termo", "37 a 41+6 semanas", "ok"];
+  return ["Pós-termo", "≥42 semanas", ""];
+}
+function classPN(pn) {
+  if (!pn) return null;
+  if (pn < 1000) return ["Extremo baixo peso", "<1.000 g", "hot"];
+  if (pn < 1500) return ["Muito baixo peso", "<1.500 g", "hot"];
+  if (pn < 2500) return ["Baixo peso", "<2.500 g", ""];
+  if (pn <= 4000) return ["Peso adequado", "2.500–4.000 g", "ok"];
+  return ["Macrossomia", ">4.000 g", ""];
+}
+function tabIdade(B) {
+  if (!B.ok) return needBaby;
+  const [ci, cr, ck] = classIG(B.ig), cp = classPN(B.pn);
+  let h = `<div class="big">`;
+  h += `<div class="stat"><div class="l">Idade cronológica</div><div class="v">${ymdTxt(B.chrono)}</div><div class="d">${B.chronoDays} dias · ${wd(B.chronoDays)}</div></div>`;
+  if (B.corrDays < 0) {
+    h += `<div class="stat main"><div class="l">Idade pós-menstrual (IPM)</div><div class="v">${wd(B.pmaDays)}</div><div class="d">Ainda não chegou ao termo — use a IPM. Faltam ${-B.corrDays} dias para 40 semanas (${fmtD(B.dpp)}).</div></div>`;
+  } else {
+    h += `<div class="stat main"><div class="l">Idade corrigida</div><div class="v">${B.preterm ? ymdTxt(B.corr) : "não se aplica"}</div><div class="d">${B.preterm ? `${B.corrDays} dias após o termo · ${wd(B.corrDays)}` : "Nasceu a termo: use a idade cronológica."}</div></div>`;
+    h += `<div class="stat"><div class="l">Idade pós-menstrual</div><div class="v">${wd(B.pmaDays)}</div><div class="d">IG ao nascer + idade cronológica</div></div>`;
+  }
+  h += `</div>`;
+  h += `<div class="chips"><span class="chip ${ck}">${ci} (${cr})</span>${cp ? `<span class="chip ${cp[2]}">${cp[0]} (${cp[1]})</span>` : ""}</div>`;
+  if (B.preterm) {
+    h += `<div class="box"><h3>Como foi calculado</h3><div class="ex">Faltou para 40 semanas: 40 sem − ${wd(B.ig)} = ${wd(280 - B.ig)}
+Data em que completaria 40 semanas (data provável do parto): ${fmtD(B.dpp)}
+Idade corrigida = data da consulta − ${fmtD(B.dpp)}${B.corrDays >= 0 ? ` = ${ymdTxt(B.corr)}` : " → ainda negativa"}
+Idade pós-menstrual = ${wd(B.ig)} + ${wd(B.chronoDays)} = ${wd(B.pmaDays)}</div></div>`;
+    h += `<div class="box"><h3>Use a idade corrigida até ${fmtD(B.correctUntil)}</h3><p>${B.ig < 196 ? "Nasceu com <28 semanas: corrigir até <b>3 anos</b> de idade cronológica." : "Corrigir até <b>2 anos</b> de idade cronológica."} ${B.stillCorrect ? "Hoje: <b>ainda corrigir</b>." : "Hoje: <b>já não precisa corrigir</b>."}</p>
+    <ul><li><b>Usar a idade corrigida para:</b> crescimento (peso, comprimento, PC nas curvas), desenvolvimento (marcos), início da alimentação complementar e expectativa de sono/choro.</li>
+    <li><b>Usar a idade cronológica para:</b> <b>vacinas</b>, limites de idade de vacinas (rotavírus), datas de suplementação de ferro, nirsevimabe e prazos de triagens (ROP, por exemplo).</li></ul></div>`;
+    const pmaW = B.pmaDays / 7;
+    const curva = pmaW < 64 ? `<b>INTERGROWTH-21st pós-natal para prematuros</b> (27 a 64 semanas de IPM — está na Caderneta da Criança). Plotar pela <b>idade pós-menstrual</b> (${wd(B.pmaDays)}).` : `<b>Curvas da OMS</b> (Caderneta), plotando pela <b>idade ${B.stillCorrect ? "corrigida" : "cronológica"}</b>.`;
+    h += `<div class="box"><h3>Curva de crescimento para hoje</h3><p>${curva}</p></div>`;
+    const eq = B.corrDays < 0 ? null : B.corrMonths;
+    if (eq !== null) {
+      const cons = [0.25, 1, 2, 4, 6, 9, 12, 18, 24, 36].reduce((a, c) => (Math.abs(c - eq) < Math.abs(a - eq) ? c : a));
+      h += `<div class="box"><h3>Consulta de puericultura equivalente</h3><p>Pela idade corrigida, avalie desenvolvimento e alimentação como na consulta de <b>${cons < 1 ? "1ª semana/1 mês" : cons + " meses"}</b>. Vacinas seguem a idade cronológica (${ymdTxt(B.chrono)}).</p></div>`;
+    }
+  }
+  return h;
+}
+const VACS = [
+  [0, "Ao nascer", ["BCG", "Hepatite B"]],
+  [2, "2 meses", ["Penta (ou Hexa no CRIE)", "VIP", "Rotavírus D1", "Pneumo 20 D1"]],
+  [3, "3 meses", ["Meningo C D1"]],
+  [4, "4 meses", ["Penta/Hexa D2", "VIP D2", "Rotavírus D2", "Pneumo D2"]],
+  [5, "5 meses", ["Meningo C D2"]],
+  [6, "6 meses", ["Penta/Hexa D3", "VIP D3", "COVID-19 D1", "Influenza (2 doses na 1ª vez)"]],
+  [7, "7 meses", ["COVID-19 D2"]],
+  [9, "9 meses", ["Febre amarela", "COVID-19 D3"]],
+  [12, "12 meses", ["Pneumo 20 reforço", "Meningo ACWY", "Tríplice viral"]],
+  [15, "15 meses", ["DTP/DTPa reforço", "VIP reforço", "Tetraviral", "Hepatite A"]],
+  [48, "4 anos", ["DTP/DTPa reforço", "VIP reforço", "Varicela D2", "Febre amarela reforço"]],
+];
+function tabVac(B) {
+  if (!B.ok) return needBaby;
+  const crie = B.ig < 231 || (B.pn && B.pn < 1500);
+  let h = `<p><b>Vacinas seguem a idade cronológica</b> (não corrigir), inclusive no prematuro extremo, desde que clinicamente estável.</p>`;
+  h += `<div class="tbl"><table><thead><tr><th>Idade</th><th>Data</th><th>Vacinas (PNI 2026)</th></tr></thead><tbody>`;
+  const now = B.hoje;
+  VACS.forEach(([m, n, vs], i) => {
+    const t = addMonths(B.dn, m), next = i < VACS.length - 1 ? addMonths(B.dn, VACS[i + 1][0]) : Infinity;
+    const cls = t <= now && now < next ? "now" : t < now ? "past" : "";
+    h += `<tr class="${cls}"><td><b>${n}</b></td><td>${fmtD(t)}</td><td>${vs.join(" · ")}</td></tr>`;
+  });
+  h += `</tbody></table></div>`;
+  h += `<div class="box"><h3>Particularidades deste bebê</h3><ul>`;
+  h += `<li><b>BCG:</b> aplicar quando atingir <b>2.000 g</b>${B.pn && B.pn < 2000 ? " — <b>nasceu com menos de 2 kg</b>: confirmar se já foi feita" : ""}.</li>`;
+  h += `<li><b>Hepatite B:</b> ${B.ig < 231 || (B.pn && B.pn < 2000) ? "<b>&lt;2.000 g ou &lt;33 semanas → esquema de 4 doses</b> (ao nascer + 2, 4 e 6 meses — já contemplado pela penta/hexa)." : "dose ao nascer + penta aos 2, 4 e 6 meses."}</li>`;
+  h += `<li><b>Hexavalente acelular (CRIE):</b> ${crie ? "<b>indicada</b> — nasceu com &lt;33 semanas ou &lt;1.500 g: hexa aos 2, 4 e 6 m e DTPa nos reforços (15 m e 4 anos). Encaminhar ao CRIE." : "não indicada por prematuridade (critério: &lt;33 semanas ou &lt;1.500 g)."}</li>`;
+  h += `<li><b>Rotavírus:</b> D1 entre ${fmtD(addDays(addMonths(B.dn, 1), 15))} e ${fmtD(addDays(addMonths(B.dn, 12), -1))}; D2 entre ${fmtD(addDays(addMonths(B.dn, 3), 15))} e ${fmtD(addDays(addMonths(B.dn, 24), -1))}. Vacina viva oral: aplicar após a alta (não na UTI).</li>`;
+  const nirLim = addMonths(B.dn, 6);
+  h += `<li><b>Nirsevimabe (VSR) no SUS:</b> ${B.ig <= 258 ? `prematuro ≤36s6d → elegível enquanto tiver &lt;6 meses (até ${fmtD(addDays(nirLim, -1))}), em qualquer época do ano${now < nirLim ? " — <b>hoje elegível</b>" : " — <b>prazo vencido</b> (ver comorbidades)"}.` : "a termo: só se comorbidade."} Com comorbidade (DBP, cardiopatia, imunodeficiência, Down etc.): até 24 m na sazonalidade (fev–ago).</li>`;
+  h += `<li><b>Influenza:</b> a partir de 6 meses cronológicos; vacinar também os contactantes domiciliares.</li></ul></div>`;
+  return h;
+}
+function tabSup(B) {
+  if (!B.ok) return needBaby;
+  const w = B.w;
+  const g = (mgkg) => w ? `<span class="sv-dose">${nf(mgkg * w, 1)} mg/dia = ${Math.max(1, Math.round(mgkg * w / 1.25))} gotas <small>[${mgkg} mg/kg/dia · sulfato ferroso 25 mg/mL, 1 gota ≈ 1,25 mg]</small></span>` : `<span class="sv-dose">${mgkg} mg/kg/dia <small>(informe o peso atual)</small></span>`;
+  const d30 = addDays(B.dn, 30), y1 = addMonths(B.dn, 12), y2 = addMonths(B.dn, 24);
+  let h = `<h3 style="margin-top:0">Ferro profilático (SBP 2026)</h3>`;
+  const pn = B.pn;
+  if (B.preterm || (pn && pn < 2500)) {
+    if (!pn) h += `<p>Informe o <b>peso ao nascer</b>.</p>`;
+    else {
+      const k = pn < 1000 ? 4 : pn < 1500 ? 3 : 2;
+      h += `<p>Prematuro/baixo peso com PN ${nf(pn, 0)} g → <b>${k} mg/kg/dia</b> a partir de <b>${fmtD(d30)}</b> (30 dias de vida) até <b>${fmtD(y1)}</b> (1 ano); depois <b>1 mg/kg/dia até ${fmtD(y2)}</b> (24 meses), contínuo, sem pausas.</p>`;
+      const nowK = B.hoje < d30 ? null : B.hoje < y1 ? k : B.hoje < y2 ? 1 : 0;
+      h += `<p>Hoje: ${nowK === null ? "ainda não iniciar (antes de 30 dias)." : nowK === 0 ? "suplementação encerrada (após 24 meses)." : g(nowK) + " VO 1x/dia, longe do leite."}</p>`;
+      h += `<p class="hint">Recebeu >100 mL de concentrado de hemácias na internação: avaliar individualmente (pode iniciar mais tarde).</p>`;
+    }
+  } else {
+    h += `<p>A termo com peso adequado: <b>10–12,5 mg/dia (8 a 10 gotas)</b> em 2 ciclos — <b>${fmtD(addMonths(B.dn, 6))} a ${fmtD(addMonths(B.dn, 9))}</b> e <b>${fmtD(addMonths(B.dn, 12))} a ${fmtD(addMonths(B.dn, 15))}</b>. Fator de risco (ex.: leite de vaca): pode iniciar aos 4 meses.</p>`;
+  }
+  h += `<h3>Vitamina D (SBP 2024)</h3><p><b>400 UI/dia</b> no 1º ano — no prematuro, iniciar quando <b>peso >1.500 g e dieta enteral plena</b>; depois <b>600 UI/dia</b> (1 a 18 anos). Fatores de risco (ex.: má absorção, anticonvulsivante): 1.200–1.800 UI/dia.</p>`;
+  h += `<p>Hoje: <span class="sv-dose">${B.hoje < y1 ? "400 UI/dia" : "600 UI/dia"}</span> <span class="hint">(ex.: 200 UI/gota = ${B.hoje < y1 ? "2" : "3"} gotas)</span></p>`;
+  if (B.preterm) {
+    const z0 = addDays(B.dn, 252 - B.ig), z1 = addMonths(B.dpp, 6);
+    h += `<h3>Zinco (prematuro em aleitamento materno exclusivo)</h3><p>Sulfato de zinco 10 mg/mL: <b>0,5–1 mg/kg/dia</b> de <b>${fmtD(Math.max(z0, B.dn))}</b> (36 semanas de IPM) até <b>${fmtD(z1)}</b> (6 meses de idade corrigida). ${w ? `Hoje: <span class="sv-dose">${nf(0.5 * w, 1)}–${nf(1 * w, 1)} mg/dia = ${nf(0.05 * w, 2)}–${nf(0.1 * w, 2)} mL</span>` : ""}</p>`;
+    h += `<h3>Vitamina A</h3><p>Prematuro &lt;32 semanas ou &lt;1.500 g: polivitamínico com A/C/D conforme protocolo local; megadose de vitamina A do programa nacional a partir de 6 meses em áreas de risco.</p>`;
+  }
+  return h;
+}
+function tabCresc(B) {
+  let h = '';
+  const p1 = (parseFloat($("pnWAnt").value) || 0) * 1000, d1 = parseD($("pnDAnt").value);
+  if (B.ok && B.pa && p1 > 0 && d1 !== null && B.hoje > d1) {
+    const days = (B.hoje - d1) / DAY, gd = (B.pa - p1) / days, gkd = gd / (((p1 + B.pa) / 2) / 1000);
+    h += `<div class="big"><div class="stat main"><div class="l">Ganho de peso</div><div class="v">${nf(gd, 1)} g/dia</div><div class="d">${nf(gkd, 1)} g/kg/dia em ${nf(days, 0)} dias</div></div></div>`;
+    if (gd < 20 && B.preterm && B.corrMonths < 3) h += `<div class="box hot"><b>Ganho abaixo de 20 g/dia.</b> Revisar técnica/frequência da mamada, volume e diluição da fórmula, intercorrências (anemia, refluxo, ITU, DBP) e considerar fortificação/fórmula pós-alta com nutricionista.</div>`;
+  } else h += `<p class="src">Preencha a <b>consulta anterior</b> (data e peso) acima para ver o ganho em g/dia e g/kg/dia.</p>`;
+  h += `<div class="box"><h3>Metas de ganho no prematuro</h3><ul>
+  <li><b>Antes do termo</b> (IPM &lt;40 sem, peso &lt;2 kg): <b>15–20 g/kg/dia</b>.</li>
+  <li><b>Do termo aos 3 meses corrigidos:</b> <b>25–35 g/dia</b> (mínimo 20 g/dia); PC ~0,5–1 cm/semana no início.</li>
+  <li><b>3–6 meses corrigidos:</b> 15–20 g/dia · <b>6–12 meses:</b> 10–15 g/dia.</li>
+  <li><b>Recuperação (catch-up):</b> primeiro o PC, depois comprimento, por último o peso; a maioria recupera até 2–3 anos. Ganho excessivo de peso sem ganho de comprimento → risco metabólico.</li></ul></div>`;
+  if (B.ok && B.w) { const w = B.w; h += `<p>Volume de leite habitual pós-alta do prematuro: <span class="sv-dose">${nf(150 * w, 0)}–${nf(180 * w, 0)} mL/dia</span> (150–180 mL/kg/dia).</p>`; }
+  return h;
+}
+function tabTri(B) {
+  if (!B.ok) return needBaby;
+  const r = [];
+  const rop = B.ig < 224 || (B.pn && B.pn < 1500);
+  r.push(["Retinopatia da prematuridade (ROP)", rop ? `<b>Indicada</b> (IG &lt;32 sem e/ou PN &lt;1.500 g). 1º exame entre <b>${fmtD(addDays(B.dn, 28))} e ${fmtD(addDays(B.dn, 42))}</b> (4ª–6ª semana de vida); repetir conforme achados até vascularização completa (~45 sem de IPM).` : "Não pelos critérios principais; considerar se fatores de risco (sepse, transfusões, HPIV, O₂ prolongado)."]);
+  r.push(["Audição", "Triagem na maternidade; se UTI >5 dias ou outro indicador de risco → <b>PEATE (BERA)</b>, não só EOA. Monitorar linguagem/audição até 3 anos."]);
+  r.push(["Reflexo vermelho", "Na alta e nas consultas; prematuros têm mais estrabismo e erros de refração → oftalmologista com 6–12 m corrigidos."]);
+  r.push(["Neuroimagem", B.ig < 224 ? "USG transfontanelar: na 1ª semana e repetir até o termo (≤32 sem); revisar laudos da UTI." : "USG transfontanelar se intercorrência neurológica."]);
+  r.push(["Doença metabólica óssea", (B.ig < 224 || (B.pn && B.pn < 1500)) ? `Cálcio, fósforo e fosfatase alcalina a partir de 4–6 semanas (~${fmtD(addDays(B.dn, 35))}) e no seguimento; FA >500–800 UI/L com P baixo = suspeitar.` : "Rastrear só se fatores de risco (corticoide, diurético, nutrição parenteral prolongada)."]);
+  r.push(["Anemia", "Hemograma e ferritina conforme risco (prematuro/BPN são grupo de risco: entre 9 e 12 meses, ou antes se palidez/baixo ganho)."]);
+  r.push(["Pressão arterial", "Ex-prematuro: medir PA em todas as consultas a partir do 1º ano (não esperar 3 anos), sobretudo se cateterismo umbilical, UTI ou doença renal."]);
+  let h = `<div class="tbl"><table><thead><tr><th>Triagem / exame</th><th>Para este bebê</th></tr></thead><tbody>${r.map(([a, b]) => `<tr><td><b>${a}</b></td><td>${b}</td></tr>`).join("")}</tbody></table></div>`;
+  // consultas
+  const base = B.dpp > B.dn ? B.dpp : B.dn;
+  const sch = [["1ª consulta", "até o 5º dia após a alta"], ["Até 6 meses corrigidos", `mensal (até ${fmtD(addMonths(base, 6))})`], ["6–12 meses corrigidos", `a cada 2–3 meses (até ${fmtD(addMonths(base, 12))})`], ["13–24 meses corrigidos", `trimestral (até ${fmtD(addMonths(base, 24))})`], ["2–4 anos", "semestral"], ["> 4 anos", "anual até a adolescência"]];
+  h += `<h3>Calendário de consultas de seguimento</h3><div class="tbl"><table><thead><tr><th>Período</th><th>Frequência</th></tr></thead><tbody>${sch.map(([a, b]) => `<tr><td>${a}</td><td>${b}</td></tr>`).join("")}</tbody></table></div><p class="hint">Método Canguru (3ª etapa): 3 consultas na 1ª semana, 2 na 2ª e 1 por semana até 2.500 g.</p>`;
+  return h;
+}
+const REFS = [
+  ["Ministério da Saúde — Caderneta da Criança, 7ª ed. (2024): idade corrigida e curvas INTERGROWTH-21st", "https://bvsms.saude.gov.br/bvs/publicacoes/caderneta_crianca_menina_passaporte_cidadania_7ed.pdf"],
+  ["Prefeitura de Porto Alegre — Seguimento de crianças nascidas pré-termo e baixo peso na APS (dez/2024; baseado em MS e SBP)", "https://prefeitura.poa.br/sites/default/files/usu_doc/hotsites/sms/bvaps-biblioteca-virtual-de-atencao-primaria-saude/"],
+  ["SBP — Recomendações para tratamento e prevenção da deficiência de ferro e anemia ferropriva em lactentes (mar/2026)", "https://www.sbp.com.br/wp-content/uploads/2026/03/25239c-Diretrizes-Recom-p-tratam-e-prevencao-da-deficiencia-de-Fe-e-anemia-ferropriva.pdf"],
+  ["SBP — Documento Científico nº 181: Hipovitaminose D em pediatria (nov/2024)", "https://www.sbp.com.br/fileadmin/user_upload/sbp/2024/novembro/25/24540j-DC_HipovitD_diagn-tratam-prevenc_Atualiz.pdf"],
+  ["Ministério da Saúde — Calendário Nacional de Vacinação 2026 e Instrução Normativa", "https://www.gov.br/saude/pt-br/vacinacao/arquivos/calendario-nacional-de-vacinacao-crianca"],
+  ["SES-DF — Resumo das indicações do CRIE (hexavalente para <33 semanas ou <1.500 g)", "https://www.saude.df.gov.br/documents/37101/0/Resumo+das+indica%C3%A7%C3%B5es+do+CRIE+por+imunobiol%C3%B3gico+(1).pdf/843b8810-a5c8-b4f9-e76f-89e1de8e5347?t=1729850366607"],
+  ["ONG Prematuridade.com — SUS amplia critérios da hexavalente para prematuros", "https://www.prematuridade.com/sus-amplia-criterios-para-aplicacao-da-vacina-hexavalente-em-prematuros"],
+  ["SESA-ES — Nota Técnica nº 014/2026: nirsevimabe (Nota Técnica Conjunta nº 109/2025/MS)", "https://saude.es.gov.br/media/Imuniza%C3%A7%C3%A3o/nota-tecnica/NOTA_TECNICA_N%C2%BA_014_2026_-_SESA_SSVS_GEVS_PEI_%20_NIRSEVIMABE.pdf"],
+  ["Zin A et al. — Brazilian guidelines proposal for screening and treatment of ROP. Arq Bras Oftalmol (2007)", "https://aboonline.org.br/details/1234/en-US/brazilian-guidelines-proposal-for-screening-and-treatment-of-retinopathy-of-prematurity--rop-"],
+  ["Ebook Puericultura (Medway) — suplementação no prematuro (anexado)", ""],
+];
+const GUIA = `
+<section id="g-def"><div class="kick">Guia</div><h2>1. Definições que mudam a conduta</h2>
+<div class="tbl"><table><thead><tr><th>Pela idade gestacional</th><th></th><th>Pelo peso ao nascer</th><th></th></tr></thead><tbody>
+<tr><td>Prematuro extremo</td><td>&lt;28 sem</td><td>Extremo baixo peso</td><td>&lt;1.000 g</td></tr>
+<tr><td>Muito prematuro</td><td>28 a 31+6</td><td>Muito baixo peso</td><td>&lt;1.500 g</td></tr>
+<tr><td>Prematuro moderado</td><td>32 a 33+6</td><td>Baixo peso</td><td>&lt;2.500 g</td></tr>
+<tr><td>Prematuro tardio</td><td>34 a 36+6</td><td>PIG / GIG</td><td>&lt;P10 / &gt;P90 para a IG (INTERGROWTH)</td></tr></tbody></table></div>
+<ul><li><b>Idade cronológica:</b> tempo desde o nascimento.</li><li><b>Idade pós-menstrual (IPM):</b> IG ao nascer + idade cronológica (em semanas). Usada <b>antes</b> de completar 40 semanas.</li><li><b>Idade corrigida:</b> idade cronológica − (40 semanas − IG ao nascer). Usada <b>depois</b> das 40 semanas.</li></ul></section>
+
+<section id="g-ic"><h2>2. Idade corrigida sem sofrimento</h2>
+<h3>Método mais rápido: a "data do termo"</h3><ol><li>Calcule quanto faltou para 40 semanas: <b>40 sem − IG ao nascer</b>.</li><li>Some esse tempo à data de nascimento → é a <b>data em que ele completaria 40 semanas</b> (anote no prontuário e na caderneta).</li><li>A idade corrigida é simplesmente a <b>idade contada a partir dessa data</b>, como se fosse um novo aniversário.</li></ol>
+<div class="ex">Exemplo: nasceu em 10/01/2026 com 30 semanas.
+Faltaram 40 − 30 = 10 semanas (70 dias) → data do termo = 21/03/2026.
+Consulta em 10/07/2026: cronológica = 6 meses · corrigida = de 21/03 a 10/07 = 3 meses e 19 dias.
+Avalie desenvolvimento e crescimento como um bebê de ~3,5 meses; vacinas de 6 meses.</div>
+<div class="ex">Atalho em meses: semanas que faltaram ÷ 4,3 → meses a descontar.
+28 sem → faltou 12 sem ≈ 2,8 m · 32 sem → 8 sem ≈ 1,9 m · 34 sem → 6 sem ≈ 1,4 m · 36 sem → 4 sem ≈ 0,9 m</div>
+<h3>Até quando corrigir</h3><ul><li>Até <b>2 anos</b> de idade cronológica; até <b>3 anos</b> se nasceu com <b>&lt;28 semanas</b> (Caderneta da Criança).</li><li>Prematuro tardio: a diferença fica clinicamente pequena após o 1º ano, mas a regra é a mesma.</li></ul>
+<h3>Para que usar cada idade</h3><div class="tbl"><table><thead><tr><th>Idade corrigida</th><th>Idade cronológica</th></tr></thead><tbody>
+<tr><td>Curvas de peso, comprimento e PC</td><td>Vacinas e seus prazos (rotavírus)</td></tr><tr><td>Marcos do desenvolvimento e M-CHAT</td><td>Início do ferro (30 dias de vida) e duração</td></tr>
+<tr><td>Início da alimentação complementar</td><td>Nirsevimabe (&lt;6 meses), triagem de ROP (4–6 semanas de vida)</td></tr><tr><td>Expectativas de sono, choro e comportamento</td><td>Documentos legais, licenças</td></tr></tbody></table></div></section>
+
+<section id="g-cresc"><h2>3. Crescimento</h2><ul>
+<li><b>Curvas:</b> INTERGROWTH-21st pós-natal para prematuros (27 a 64 semanas de IPM, presentes na Caderneta) → depois das 64 semanas, <b>curvas da OMS</b> plotando pela idade corrigida até 2–3 anos.</li>
+<li>Meça <b>peso, comprimento (deitado, 2 pessoas) e PC</b> em toda consulta.</li>
+<li><b>Metas de ganho:</b> antes do termo 15–20 g/kg/dia; termo a 3 meses corrigidos 25–35 g/dia (mínimo 20 g/dia); 3–6 m 15–20 g/dia; 6–12 m 10–15 g/dia.</li>
+<li><b>Catch-up:</b> PC primeiro (primeiros 6–12 meses), depois comprimento e por último peso. Falha de catch-up do PC = alerta neurológico. Ganho de peso desproporcional ao comprimento = risco metabólico futuro.</li>
+<li>PIG que não recupera estatura até 2–4 anos → endocrinologia (avaliar GH).</li></ul></section>
+
+<section id="g-alim"><h2>4. Alimentação</h2><ul>
+<li><b>Leite materno</b> é a primeira escolha (mais proteína e calorias no leite de mãe de prematuro). Apoiar ordenha e translactação; fortificar o leite humano após a alta só com indicação do serviço de seguimento.</li>
+<li>Sem leite materno: <b>fórmula para prematuro/pós-alta</b> (mais proteína, minerais) geralmente até 40–52 semanas de IPM ou conforme crescimento; depois fórmula de partida. Volume habitual: 150–180 mL/kg/dia.</li>
+<li><b>Alimentação complementar pela idade corrigida:</b> aos <b>6 meses corrigidos</b> se em aleitamento exclusivo; entre 4 e 6 meses corrigidos se fórmula, com sinais de prontidão (sustenta a cabeça, senta com apoio, perda do reflexo de protrusão da língua).</li>
+<li>Prematuros têm mais refluxo e disfagia: posição, pausas, fracionamento; investigar se baixo ganho, engasgos repetidos ou pneumonias.</li></ul></section>
+
+<section id="g-sup"><h2>5. Suplementos</h2><div class="tbl"><table><thead><tr><th>Suplemento</th><th>Quem</th><th>Dose e duração</th></tr></thead><tbody>
+<tr><td><b>Ferro</b> (SBP 2026)</td><td>PN 1.500–2.500 g ou prematuro</td><td>2 mg/kg/dia a partir de 30 dias por 1 ano, depois 1 mg/kg/dia até 24 meses</td></tr>
+<tr><td></td><td>PN 1.000–1.500 g</td><td>3 mg/kg/dia a partir de 30 dias por 1 ano, depois 1 mg/kg/dia até 24 m</td></tr>
+<tr><td></td><td>PN &lt;1.000 g</td><td>4 mg/kg/dia a partir de 30 dias por 1 ano, depois 1 mg/kg/dia até 24 m</td></tr>
+<tr><td><b>Vitamina D</b> (SBP 2024)</td><td>Todos</td><td>400 UI/dia no 1º ano (prematuro: quando &gt;1.500 g e dieta enteral plena); 600 UI/dia de 1 a 18 anos</td></tr>
+<tr><td><b>Zinco</b></td><td>Prematuro em aleitamento exclusivo</td><td>0,5–1 mg/kg/dia de 36 semanas de IPM até 6 meses corrigidos</td></tr>
+<tr><td><b>Vitaminas A/C</b></td><td>&lt;32 sem ou &lt;1.500 g</td><td>Polivitamínico conforme protocolo do serviço</td></tr></tbody></table></div>
+<p class="hint">Prematuro <b>não</b> faz os ciclos com pausa do bebê a termo: o ferro é contínuo. Ajustar a dose pelo peso a cada consulta.</p></section>
+
+<section id="g-vac"><h2>6. Vacinas</h2><ul>
+<li><b>Sempre pela idade cronológica</b>, mesmo no prematuro extremo, se estável. Não adiar "porque é prematuro".</li>
+<li><b>BCG:</b> quando atingir 2.000 g. <b>Hepatite B:</b> &lt;2.000 g ou &lt;33 sem → 4 doses (ao nascer + 2, 4, 6 meses via penta/hexa).</li>
+<li><b>Hexavalente acelular no CRIE:</b> nascidos com <b>&lt;33 semanas ou &lt;1.500 g</b> (2, 4, 6 m; reforços com DTPa aos 15 m e 4 anos).</li>
+<li><b>Rotavírus:</b> vacina viva — aplicar após a alta; D1 até 11m29d e D2 até 23m29d.</li>
+<li><b>Nirsevimabe (SUS, desde 2026):</b> prematuros ≤36s6d com &lt;6 meses (ano todo) e crianças &lt;2 anos com comorbidade (DBP, cardiopatia, imunodeficiência, Down, fibrose cística, doença neuromuscular) na sazonalidade. Substituiu o palivizumabe.</li>
+<li><b>Influenza</b> a partir de 6 meses e "estratégia casulo": vacinar pais e cuidadores (influenza, coqueluche/dTpa, COVID).</li></ul></section>
+
+<section id="g-tri"><h2>7. Triagens e exames</h2><div class="tbl"><table><thead><tr><th>O quê</th><th>Quem</th><th>Quando</th></tr></thead><tbody>
+<tr><td><b>ROP</b> (mapeamento de retina)</td><td>IG &lt;32 sem e/ou PN &lt;1.500 g; outros com fatores de risco</td><td>1º exame na 4ª–6ª semana de vida; repetir até vascularização completa (~45 sem de IPM)</td></tr>
+<tr><td><b>Audição</b></td><td>Todos; UTI &gt;5 dias ou indicadores de risco → PEATE</td><td>Até 1 mês; monitorar linguagem e audição até 3 anos</td></tr>
+<tr><td><b>Visão</b></td><td>Todos (mais estrabismo, miopia)</td><td>Reflexo vermelho em toda consulta; oftalmologista aos 6–12 m corrigidos</td></tr>
+<tr><td><b>Doença metabólica óssea</b></td><td>&lt;32 sem / &lt;1.500 g</td><td>Ca, P, fosfatase alcalina a partir de 4–6 semanas</td></tr>
+<tr><td><b>Anemia</b></td><td>Prematuro/BPN (grupo de risco)</td><td>Hemograma + ferritina entre 9 e 12 m, ou antes se sinais</td></tr>
+<tr><td><b>Pressão arterial</b></td><td>Ex-prematuro</td><td>Em todas as consultas desde o 1º ano</td></tr></tbody></table></div></section>
+
+<section id="g-dev"><h2>8. Desenvolvimento</h2><ul>
+<li>Avaliar marcos pela <b>idade corrigida</b> usando o instrumento da Caderneta (adequado / alerta / provável atraso).</li>
+<li><b>Hipertonia transitória</b> do prematuro (extensão de tronco e membros) é esperada e melhora até 12–18 m corrigidos. Diferente de paralisia cerebral: assimetria, piora progressiva, mãos fechadas com polegar incluso, reflexos primitivos persistentes.</li>
+<li>Detecção precoce de PC: <b>GMA</b> (até 5 m corrigidos) e <b>HINE</b> (3–24 m) — encaminhar cedo para estimulação/fisioterapia.</li>
+<li>Maior risco de atraso de linguagem, dificuldade escolar, TDAH e TEA: M-CHAT-R/F aos 18 e 24 m; acompanhar a escolaridade.</li></ul></section>
+
+<section id="g-prob"><h2>9. Problemas frequentes no seguimento</h2><ul>
+<li><b>Hérnia inguinal</b> (muito comum): encaminhar à cirurgia pediátrica <b>sem esperar</b> — risco de encarceramento. Hérnia umbilical: expectante.</li>
+<li><b>Displasia broncopulmonar:</b> sibilância recorrente, O₂ domiciliar, risco de VSR grave (nirsevimabe), evitar fumo, vacinar contactantes.</li>
+<li><b>Refluxo:</b> regurgitação é comum; tratar só se dor, baixo ganho ou complicação.</li>
+<li><b>Apneia/morte súbita:</b> sono de barriga para cima, sem cama compartilhada, sem objetos no berço.</li>
+<li><b>Anemia, raquitismo da prematuridade</b> (fosfatase alcalina elevada, fraturas), <b>criptorquidia</b> (reavaliar e encaminhar aos 6 m corrigidos), <b>estrabismo</b>.</li>
+<li>Apoio à família: depressão materna, ansiedade, licenças, rede de apoio (Método Canguru, grupos de pais).</li></ul></section>
+
+<section id="g-cons"><h2>10. Calendário de consultas</h2><div class="tbl"><table><thead><tr><th>Período</th><th>Frequência</th></tr></thead><tbody>
+<tr><td>Após a alta</td><td>1ª consulta até o 5º dia (Canguru: 3 na 1ª semana, 2 na 2ª, 1/semana até 2.500 g)</td></tr>
+<tr><td>Até 6 meses corrigidos</td><td>Mensal</td></tr><tr><td>6–12 meses corrigidos</td><td>A cada 2–3 meses</td></tr><tr><td>13–24 meses corrigidos</td><td>Trimestral</td></tr><tr><td>2–4 anos</td><td>Semestral</td></tr><tr><td>&gt; 4 anos</td><td>Anual até a adolescência</td></tr></tbody></table></div></section>
+
+<section id="g-fontes"><h2>Fontes</h2><ul>${REFS.map(([n, u]) => `<li>${esc(n)}${u ? ` — <a href="${u}" target="_blank" rel="noopener">link</a><span class="pu" hidden> ${esc(u)}</span>` : ""}</li>`).join("")}</ul>
+<p class="warn">Material de apoio. Confira protocolos locais (CRIE, ROP, fórmulas disponíveis) e as atualizações do PNI. Consultas às fontes em 01/10/2026.</p></section>`;
+const TABS = { idade: ["Idade e curva", tabIdade], vac: ["Vacinas com datas", tabVac], sup: ["Suplementos", tabSup], cresc: ["Metas de ganho", tabCresc], tri: ["Triagens e consultas", tabTri] };
+let tab = "idade";
+function render(){
+  const B = readBaby();
+  let h = `<div class="filters" style="margin-bottom:10px">${Object.entries(TABS).map(([k,[n]]) => `<button type="button" class="fbtn" data-pmtab="${k}" aria-pressed="${k===tab}">${n}</button>`).join("")}</div>`;
+  if (B.ok && B.pmaDays < 308) h += `<div class="box hot" style="margin-top:0"><b>IPM &lt;44 semanas (${wd(B.pmaDays)}):</b> muitos fármacos têm dose e intervalo neonatais. Use formulário neonatal antes de prescrever pelo catálogo (paracetamol: 10 mg/kg/dose 8/8h a 12/12h).</div>`;
+  h += TABS[tab][1](B);
+  $("pmPanel").innerHTML = h;
+  guiaRender();
+  $("pmTitle").textContent = B.ok ? (B.preterm ? `Seguimento do prematuro — ${classIG(B.ig)[0].toLowerCase()}` : "Seguimento — nascido a termo") : "Seguimento do prematuro";
+}
+function setTab(t){ if (TABS[t]) { tab = t; render(); } }
+let guiaDone = false;
+function guiaRender(){ if (guiaDone) return; guiaDone = true; $("pmGuia").innerHTML = GUIA; }
+return { render, setTab, guiaRender };
+})();
+
+// Modelos de prontuário de puericultura — portado de "Modelos-Prontuario-Puericultura" (set/2026), padrão DoseCerta.
+// Sexo vem da barra do paciente; idade da consulta é escolhida automaticamente pela idade (pode trocar).
+const MOD = (function(){
+/* ---------- blocos compartilhados ---------- */
+const VITD400 = "Colecalciferol (vitamina D3) solução oral ___ UI/gota — dar ___ gotas (= 400 UI) VO 1x/dia, uso contínuo. [ex.: 200 UI/gota = 2 gotas]";
+const VITD600 = "Colecalciferol (vitamina D3) solução oral ___ UI/gota — dar ___ gotas (= 600 UI) VO 1x/dia, uso contínuo. [ex.: 200 UI/gota = 3 gotas]";
+const FERRO_CICLO = (ini, fim) => `Sulfato ferroso solução oral 25 mg/mL de Fe elementar (1 gota ≈ 1,25 mg) — dar 8 a 10 gotas (10–12,5 mg) VO 1x/dia, longe do leite, por 3 meses (${ini} → ${fim}).`;
+const FERRO_PT = "Sulfato ferroso solução oral 25 mg/mL de Fe elementar (1 gota ≈ 1,25 mg) — dar ___ gotas VO 1x/dia (___ mg/kg/dia: 2 mg/kg se PN 1.500–2.500 g; 3 mg/kg se 1.000–1.500 g; 4 mg/kg se <1.000 g), até 12 meses; depois 1 mg/kg/dia até 24 meses.";
+const PARACET = "Paracetamol solução oral 200 mg/mL — dar ___ gotas (1 gota/kg/dose; máx. 35 gotas) VO se febre ≥37,8 °C ou dor após a vacina, com intervalo mínimo de 6 h.";
+
+const G = {
+  lact: {
+    M: "Genitália: típica masculina; testículos tópicos e de volume habitual bilateralmente; meato uretral tópico; fimose fisiológica (não retrair); sem hérnias inguinais ou hidrocele.",
+    F: "Genitália: típica feminina; pequenos e grandes lábios sem alterações; sem sinéquias, secreção ou lesões; regiões inguinais sem hérnias."
+  },
+  rn: {
+    M: "Genitália: típica masculina; testículos tópicos bilateralmente; meato uretral tópico; fimose fisiológica; bolsa escrotal sem hidrocele; sem hérnias inguinais.",
+    F: "Genitália: típica feminina; pequenos lábios e clitóris sem alterações; sem sinéquias; secreção vaginal esbranquiçada fisiológica ___ (ausente/presente)."
+  },
+  esc: {
+    M: "Genitália: típica masculina; testículos tópicos, volume ___ mL (orquidômetro); prepúcio ___ (retrátil/fimose); sem hérnias. Tanner G___P___.",
+    F: "Genitália típica feminina, sem sinéquias ou secreção. Mamas e pelos: Tanner M___P___."
+  }
+};
+
+const ANTRO_L = "Peso: ___ g (z ___) | Comprimento: ___ cm (z ___) | PC: ___ cm (z ___) | P/C: z ___ | IMC: ___ (z ___)";
+const ANTRO_E = "Peso: ___ kg (z ___) | Estatura: ___ cm (z ___) | IMC: ___ kg/m² (z ___)";
+const SV = "FC: ___ bpm | FR: ___ irpm | Tax: ___ °C";
+const PA = "PA: ___ x ___ mmHg (percentil ___ para sexo, idade e estatura)";
+
+const GERAL = "Geral: BEG, ativo(a) e reativo(a), corado(a), hidratado(a), acianótico(a), anictérico(a), afebril, eupneico(a).";
+const AR = "AR: tórax simétrico, sem retrações; MV presente bilateralmente, sem ruídos adventícios.";
+const ACV_L = "ACV: RCR em 2T, BNF, sem sopros; pulsos braquiais e femorais palpáveis e simétricos; TEC <2 s.";
+const ACV_E = "ACV: RCR em 2T, BNF, sem sopros; pulsos periféricos palpáveis e simétricos; TEC <2 s.";
+const ABD = "Abdome: plano/globoso, flácido, indolor, sem visceromegalias ou massas palpáveis; cicatriz umbilical sem hérnia ou granuloma.";
+const ANUS = "Ânus: tópico, pérvio, sem fissuras.";
+const COLUNA = "Coluna: linha média lombossacra sem fosseta, tufo piloso ou lesões.";
+const OTO = "Otoscopia: membranas timpânicas íntegras e translúcidas bilateralmente.";
+const ORO = "Oroscopia: mucosa úmida e corada, orofaringe sem alterações.";
+const OLHOS_L = "Olhos: reflexo vermelho presente e simétrico bilateralmente; reflexo fotomotor presente; Hirschberg centrado; cover test sem desvio; sem secreção.";
+const OLHOS_E = "Olhos: reflexo vermelho presente e simétrico; Hirschberg centrado; cover test sem desvio. Acuidade visual: OD ___ | OE ___ (tabela ___).";
+
+const ORI_SEMPRE = [
+  "Manter caderneta da criança sempre nas consultas e vacinas."
+];
+
+/* ---------- idades ---------- */
+const AGES = [
+{ id:"rn", label:"1ª sem", title:"1ª semana", sub:"Primeira consulta do RN · idealmente 3º–5º dia",
+  exam:(s)=>[
+  "EXAME FÍSICO",
+  ANTRO_L,
+  "Peso ao nascer: ___ g | Variação: ___% do PN (esperado: perda ≤10%, recuperar até 10–15 dias)",
+  SV,
+  "Geral: BEG, ativo e reativo ao manuseio, choro forte, postura em flexão generalizada, corado, hidratado, acianótico, anictérico (se ictérico: zona ___ de Kramer), afebril, eupneico.",
+  "Pele: íntegra; ___ (eritema tóxico / milium / mancha mongólica em ___ — achados fisiológicos).",
+  "Cabeça: normocefálica; fontanela anterior normotensa (___ x ___ cm); fontanela posterior ___; suturas sem cavalgamento; sem bossa ou cefalematoma.",
+  "Olhos: reflexo vermelho presente e simétrico bilateralmente; reflexo fotomotor presente; sem secreção.",
+  "Orelhas: implantação e forma habituais. Nariz: pérvio, sem secreção.",
+  "Boca: palato íntegro; freio lingual sem alterações; sem monilíase; sucção eficaz.",
+  "Pescoço: sem massas; ECM sem nodulações; clavículas íntegras, sem crepitação.",
+  AR,
+  ACV_L,
+  "Abdome: globoso, flácido, sem visceromegalias ou massas; coto umbilical ___ (mumificado/caído), sem hiperemia periumbilical, secreção ou odor.",
+  G.rn[s],
+  ANUS,
+  COLUNA,
+  "Membros: simétricos, sem deformidades; Ortolani e Barlow negativos bilateralmente; pés sem deformidades estruturais.",
+  "Neurológico: tônus em semiflexão; reflexos primitivos presentes e simétricos (sucção, busca, preensão palmar e plantar, Moro, marcha reflexa).",
+  "",
+  "DESENVOLVIMENTO (0–1 m): postura flexora, observa um rosto, reage ao som. Classificação: desenvolvimento adequado.",
+  "TRIAGENS NEONATAIS: pezinho ___ | orelhinha ___ | olhinho ___ | coraçãozinho ___ | linguinha ___",
+  "Mamada observada: pega ___, posição ___, sucção ___."
+  ],
+  presc:[ VITD400 ],
+  vac:"BCG e hepatite B ___ (aplicadas na maternidade, conferido na caderneta / encaminhado à sala de vacina). Mãe vacinada contra VSR na gestação: ___.",
+  ori:[
+  "Aleitamento materno exclusivo em livre demanda (8–12 mamadas/dia). Não oferecer água, chás ou outros leites. Revisadas pega e posição.",
+  "Sono seguro: bebê de barriga para cima, em berço próprio no quarto dos pais, sem travesseiro, protetores ou objetos soltos.",
+  "Coto umbilical: limpar com álcool 70% após o banho; não usar faixas, moedas ou pomadas. Costuma cair até ~15 dias.",
+  "Banho com água morna; testar a temperatura antes. Evitar fumo no domicílio; higiene das mãos das visitas.",
+  "Transporte sempre em bebê-conforto voltado para trás, no banco traseiro.",
+  "Nunca sacudir o bebê.",
+  "Observar a cor das fezes com o cartão da caderneta (fezes claras = procurar atendimento).",
+  "SINAIS DE ALERTA (procurar atendimento imediatamente): dificuldade para mamar, vômitos em tudo, febre ≥37,5 °C ou temperatura baixa, respiração rápida ou com esforço, gemência, pele amarelada abaixo do umbigo, fezes claras, umbigo vermelho ou com secreção, sonolência excessiva, convulsão."
+  ],
+  enc:[
+  "Solicito coleta do teste do pezinho (não realizado / 2ª amostra).",
+  "Encaminho para triagem auditiva (EOA/PEATE): teste da orelhinha não realizado / falha em ___.",
+  "Encaminho à oftalmologia pediátrica COM URGÊNCIA: reflexo vermelho ___ (ausente/assimétrico/leucocoria) em ___.",
+  "Encaminho à cardiologia pediátrica + solicito ecocardiograma: ___ (sopro / pulsos femorais diminuídos / teste do coraçãozinho alterado).",
+  "Encaminho à ortopedia pediátrica + solicito USG de quadril: Ortolani/Barlow positivo à ___.",
+  "Encaminho para avaliação de frênulo lingual (odontopediatria/fonoaudiologia): protocolo alterado.",
+  "Solicito bilirrubina total e frações: icterícia zona ___ de Kramer.",
+  "Indicação de nirsevimabe (SUS): prematuro ≤36s6d ___ / comorbidade ___ — encaminho à sala de vacina/referência.",
+  "Encaminho ao apoio à amamentação (dificuldade de pega/fissuras) / psicologia (sinais de depressão pós-parto)."
+  ],
+  ret:"Retorno em 1 mês (consulta do 1º mês), ou antes se sinais de alerta."
+},
+{ id:"m1", label:"1 m", title:"1 mês", sub:"Amamentação, icterícia prolongada, humor materno",
+  exam:(s)=>[
+  "EXAME FÍSICO", ANTRO_L,
+  "Ganho de peso: ___ g/dia desde a última consulta (esperado 25–35 g/dia; mínimo 20).",
+  SV, GERAL,
+  "Pele: íntegra, sem dermatite de fraldas ou lesões.",
+  "Cabeça: normocefálica, sem plagiocefalia; fontanela anterior normotensa (___ x ___ cm).",
+  "Olhos: reflexo vermelho presente e simétrico bilateralmente; fixa o olhar no rosto do examinador; sem secreção.",
+  "Boca: sem monilíase; palato íntegro.",
+  "Pescoço: ECM sem nodulações, rotação cervical livre e simétrica.",
+  AR, ACV_L, ABD, G.lact[s], ANUS, COLUNA,
+  "Quadril: Ortolani e Barlow negativos bilateralmente; pregas simétricas.",
+  "Neurológico: tônus adequado; reflexos primitivos presentes e simétricos (Moro, preensão palmar e plantar, sucção, busca).",
+  "",
+  "DESENVOLVIMENTO (0–1 m): postura flexora, observa um rosto, reage ao som, eleva a cabeça em prono. Classificação: desenvolvimento adequado."
+  ],
+  presc:[ VITD400, "SE PREMATURO/BAIXO PESO: " + FERRO_PT ],
+  vac:"Sem vacinas nesta idade. BCG e hepatite B conferidas na caderneta: ___.",
+  ori:[
+  "Manter aleitamento materno exclusivo em livre demanda.",
+  "Sono seguro de barriga para cima; colocar de bruços apenas acordado e supervisionado (\"tempo de barriga\").",
+  "Cólica do lactente é esperada até 3–4 meses: colo, contato pele a pele, massagem; não usar chás ou medicações sem orientação.",
+  "Regurgitação após mamadas é comum; manter o bebê elevado após mamar.",
+  "Nunca deixar o bebê sozinho no trocador ou na cama; nunca sacudir.",
+  "Conversar, cantar e olhar para o bebê durante as mamadas.",
+  "SINAIS DE ALERTA: pele amarelada persistente, fezes claras, não ganha peso, dificuldade para mamar, febre, respiração rápida, sonolência excessiva."
+  ],
+  enc:[
+  "Solicito bilirrubina total e frações: icterícia persistente com >14 dias de vida.",
+  "Encaminho para reteste auditivo (EOA/PEATE): triagem pendente/falha.",
+  "Encaminho à fisioterapia: torcicolo congênito / plagiocefalia posicional.",
+  "Encaminho ao apoio à amamentação: ganho ponderal insuficiente / dificuldade na pega.",
+  "Encaminho à psicologia/saúde mental: rastreio positivo para depressão pós-parto."
+  ],
+  ret:"Retorno aos 2 meses (vacinas + consulta), ou antes se sinais de alerta."
+},
+{ id:"m2", label:"2 m", title:"2 meses", sub:"Primeiras vacinas do calendário",
+  exam:(s)=>[
+  "EXAME FÍSICO", ANTRO_L, "Ganho de peso: ___ g/dia (esperado 25–30 g/dia).", SV, GERAL,
+  "Pele: íntegra; hemangiomas ___ (ausentes / presentes em ___, ___ cm).",
+  "Cabeça: normocefálica; fontanela anterior normotensa (___ x ___ cm); fontanela posterior fechada.",
+  "Olhos: reflexo vermelho presente e simétrico bilateralmente; fixa e segue objetos.",
+  AR, ACV_L, ABD, G.lact[s], ANUS, COLUNA,
+  "Quadril: Ortolani e Barlow negativos; abdução simétrica.",
+  "Neurológico: tônus e movimentação ativa simétricos; reflexos primitivos presentes e simétricos.",
+  "",
+  "DESENVOLVIMENTO (1–2 m): sorriso social, abre as mãos, emite sons, movimenta ativamente os membros. Classificação: desenvolvimento adequado."
+  ],
+  presc:[ VITD400, PARACET ],
+  vac:"Encaminhado à sala de vacina: pentavalente D1, VIP D1, rotavírus D1, pneumocócica 20 D1. Próxima: meningocócica C D1 aos 3 meses.",
+  ori:[
+  "Manter aleitamento materno exclusivo. Retorno ao trabalho: orientadas ordenha e armazenamento do leite.",
+  "Reações vacinais esperadas: febre baixa, dor e vermelhidão local por 24–48 h; usar antitérmico prescrito se necessário.",
+  "Sono seguro; tempo de barriga acordado.",
+  "Conversar, cantar, contato olho no olho; oferecer objetos coloridos.",
+  "Prevenção de quedas: não deixar sozinho em superfícies altas.",
+  "SINAIS DE ALERTA: febre alta ou persistente após vacina, choro inconsolável por >3 h, moleza, cansaço/suor durante as mamadas, respiração rápida."
+  ],
+  enc:[
+  "Encaminho à cirurgia pediátrica: hérnia inguinal ___ (à direita/esquerda).",
+  "Encaminho à dermatologia pediátrica: hemangioma em localização de risco / crescimento rápido em ___.",
+  "Encaminho à cardiologia pediátrica + ecocardiograma: sopro ___ / sinais de insuficiência cardíaca às mamadas.",
+  "Encaminho à neuropediatria: ausência de sorriso social / assimetria de movimentos."
+  ],
+  ret:"Retorno aos 4 meses. Sala de vacina aos 3 meses (meningocócica C)."
+},
+{ id:"m4", label:"4 m", title:"4 meses", sub:"Controle cefálico · olhos e quadril com novos testes",
+  exam:(s)=>[
+  "EXAME FÍSICO", ANTRO_L, "Ganho de peso: ___ g/dia (esperado ~20 g/dia).", SV, GERAL,
+  "Cabeça: normocefálica, sem plagiocefalia; fontanela anterior normotensa (___ x ___ cm).",
+  OLHOS_L,
+  AR, ACV_L, ABD, G.lact[s], ANUS, COLUNA,
+  "Quadril: abdução simétrica e sem limitação; pregas simétricas; Galeazzi negativo.",
+  "Neurológico: controle cefálico completo (sem queda da cabeça na manobra de tração); mãos abertas; tônus normal; Moro e RTCA em desaparecimento.",
+  "",
+  "DESENVOLVIMENTO (2–4 m): resposta ativa ao contato social, segura objetos, ri alto, de bruços levanta a cabeça apoiando-se nos antebraços. Classificação: desenvolvimento adequado."
+  ],
+  presc:[ VITD400, "SE FATOR DE RISCO (ex.: uso de leite de vaca): " + FERRO_CICLO("4 m","7 m"), PARACET ],
+  vac:"Encaminhado à sala de vacina: pentavalente D2, VIP D2, rotavírus D2, pneumocócica D2 (VPC10/VPC20 conforme disponibilidade). Meningocócica C D1 (3 m) conferida: ___. Próxima: meningocócica C D2 aos 5 meses.",
+  ori:[
+  "Manter aleitamento materno exclusivo até 6 meses; não introduzir outros alimentos antes disso.",
+  "Criança começa a rolar: nunca deixar sozinha em cama, sofá ou trocador.",
+  "Manter objetos pequenos, sacolas plásticas e cordões fora do alcance.",
+  "Estimular: brinquedos coloridos e sonoros, tempo de barriga, conversar.",
+  "Evitar telas (TV, celular, tablet) antes dos 2 anos.",
+  "SINAIS DE ALERTA: não sustenta a cabeça, mãos sempre fechadas, não sorri ou não acompanha objetos, olho desviado constante."
+  ],
+  enc:[
+  "Encaminho à oftalmologia pediátrica: estrabismo ___ (Hirschberg descentrado / cover test com desvio).",
+  "Encaminho à ortopedia pediátrica + USG/RX de quadril: limitação da abdução / Galeazzi positivo à ___.",
+  "Encaminho à neuropediatria + estimulação precoce: ausência de controle cefálico / hipertonia / persistência de reflexos primitivos.",
+  "Testículo não palpável na bolsa: reavaliar aos 6 meses (encaminhar se persistir)."
+  ],
+  ret:"Retorno aos 6 meses. Sala de vacina aos 5 meses (meningocócica C D2)."
+},
+{ id:"m6", label:"6 m", title:"6 meses", sub:"Introdução alimentar · ferro · testículos",
+  exam:(s)=>[
+  "EXAME FÍSICO", ANTRO_L, SV, GERAL,
+  "Cabeça: normocefálica; fontanela anterior normotensa (___ x ___ cm).",
+  OLHOS_L,
+  "Boca: ___ dentes (esperado início ~6 m); gengivas e mucosa sem alterações; sem manchas brancas.",
+  OTO,
+  AR, ACV_L, ABD, G.lact[s], ANUS, COLUNA,
+  "Quadril: abdução simétrica sem limitação; Galeazzi negativo.",
+  "Neurológico: senta com apoio; Moro e preensão palmar ausentes; tônus normal.",
+  "",
+  "DESENVOLVIMENTO (4–6 m): busca ativa de objetos, leva objetos à boca, localiza o som, rola. Classificação: desenvolvimento adequado."
+  ],
+  presc:[ VITD400, FERRO_CICLO("6 m","9 m") + " Após, pausa de 3 meses; ciclo II aos 12 m.",
+  "Vitamina A 100.000 UI VO, dose única, administrada na unidade (se área de risco do programa).", PARACET ],
+  vac:"Encaminhado à sala de vacina: pentavalente D3, VIP D3, COVID-19 D1, influenza (1ª vez: 2 doses com 30 dias). Meningocócica C D2 (5 m) conferida: ___. Próxima: COVID-19 D2 aos 7 meses.",
+  ori:[
+  "Introdução alimentar: manter leite materno + 3 refeições (almoço ou jantar + 2 lanches de fruta). Prato com cereal ou tubérculo, feijão, legumes/verduras e carne ou ovo.",
+  "Comida amassada com garfo (nunca liquidificada ou peneirada); oferecer água potável nos intervalos.",
+  "Não oferecer açúcar até 2 anos, mel até 1 ano, nem ultraprocessados (biscoitos, embutidos, sucos de caixa, refrigerante).",
+  "Prevenção de engasgo: criança sentada e supervisionada; evitar uva inteira, pipoca, castanhas e pedaços duros.",
+  "Primeiro dente: escovar 2x/dia com escova macia e creme dental com flúor (≥1.000 ppm) na quantidade de um grão de arroz. Agendar consulta odontológica.",
+  "Não usar andador. Proteger tomadas e evitar quedas.",
+  "SINAIS DE ALERTA: não rola, não busca objetos, não vira para o som, perda de habilidades já adquiridas."
+  ],
+  enc:[
+  "Encaminho à cirurgia pediátrica/urologia pediátrica: testículo não palpável na bolsa escrotal à ___ aos 6 meses.",
+  "Encaminho à odontologia: primeira consulta odontológica.",
+  "Encaminho à nutrição: dificuldade na introdução alimentar / ganho ponderal inadequado.",
+  "Encaminho à neuropediatria + estimulação precoce: marcos ausentes para a faixa anterior."
+  ],
+  ret:"Retorno aos 9 meses. Sala de vacina aos 7 meses (COVID-19 D2)."
+},
+{ id:"m9", label:"9 m", title:"9 meses", sub:"Senta sem apoio · febre amarela · acidentes",
+  exam:(s)=>[
+  "EXAME FÍSICO", ANTRO_L, SV, GERAL,
+  "Cabeça: fontanela anterior normotensa (___ x ___ cm).",
+  OLHOS_L,
+  "Boca: ___ dentes, sem manchas brancas ou cáries.",
+  OTO, ORO,
+  AR, ACV_L, ABD, G.lact[s], ANUS, COLUNA,
+  "Quadril: abdução simétrica; Galeazzi negativo.",
+  "Neurológico: senta sem apoio; reação de paraquedas presente; pinça em formação; uso simétrico das mãos.",
+  "",
+  "DESENVOLVIMENTO (6–9 m): brinca de esconde-achou, transfere objetos entre as mãos, duplica sílabas, senta sem apoio. Classificação: desenvolvimento adequado."
+  ],
+  presc:[ VITD400, "Sulfato ferroso: encerrado o ciclo I aos 9 meses — pausa até 12 meses (prematuro/baixo peso: manter dose por kg sem pausa).", PARACET ],
+  vac:"Encaminhado à sala de vacina: febre amarela D1, COVID-19 D3. COVID-19 D2 (7 m) conferida: ___. Influenza conforme campanha.",
+  ori:[
+  "Manter leite materno + almoço, jantar e 2 lanches de fruta. Alimentos picados, desfiados, em pedaços macios para pegar com a mão.",
+  "Criança engatinha: proteger escadas, tomadas e quinas; produtos de limpeza e medicamentos trancados e fora do alcance.",
+  "Afogamento: nunca deixar sozinha no banho; esvaziar baldes e bacias; piscinas cercadas.",
+  "Estranhar pessoas desconhecidas é esperado nesta idade.",
+  "Ler, nomear objetos e conversar; evitar telas.",
+  "SINAIS DE ALERTA: não senta sem apoio, não balbucia sílabas, não responde ao nome, usa só uma das mãos."
+  ],
+  enc:[
+  "Encaminho à neuropediatria + estimulação precoce: não senta sem apoio / assimetria / preferência manual precoce.",
+  "Encaminho à audiologia (audiometria/PEATE) e fonoaudiologia: não balbucia / não reage a sons.",
+  "Encaminho à odontologia: manchas brancas / cárie precoce."
+  ],
+  ret:"Retorno aos 12 meses."
+},
+{ id:"m12", label:"12 m", title:"12 meses", sub:"Comida da família · ciclo II de ferro",
+  exam:(s)=>[
+  "EXAME FÍSICO", ANTRO_L, SV, GERAL,
+  "Cabeça: fontanela anterior ___ (normotensa ___ cm / fechada).",
+  OLHOS_L,
+  "Boca: ___ dentes, sem cáries ou manchas brancas.",
+  OTO, ORO,
+  AR, ACV_L, ABD, G.lact[s], ANUS, COLUNA,
+  "Membros: geno varo fisiológico; pés planos flexíveis; quadril sem limitação.",
+  "Neurológico: fica em pé com apoio, anda com apoio; pinça polpa a polpa; tônus normal.",
+  "",
+  "DESENVOLVIMENTO (9–12 m): imita gestos, faz pinça, produz jargão, anda com apoio. Classificação: desenvolvimento adequado."
+  ],
+  presc:[ VITD600, FERRO_CICLO("12 m","15 m"),
+  "SE FATOR DE RISCO (prematuridade, baixo peso, falha da profilaxia, alimentação ou crescimento inadequados): solicito hemograma completo, ferritina sérica e PCR." ],
+  vac:"Encaminhado à sala de vacina: pneumocócica 20 (reforço), meningocócica ACWY, tríplice viral D1.",
+  ori:[
+  "Criança passa a comer a comida da família: café da manhã, lanche, almoço, lanche da tarde e jantar; manter leite materno.",
+  "Leite de vaca integral só a partir de agora, sem excesso; evitar mamadeira noturna (risco de cárie).",
+  "Sem açúcar até 2 anos; sem ultraprocessados; água ao longo do dia.",
+  "Queimaduras: cabo de panela voltado para dentro, criança longe do fogão e de líquidos quentes. Janelas e sacadas com tela.",
+  "Intoxicações: medicamentos e produtos de limpeza trancados, nunca em garrafas de refrigerante.",
+  "Escovação 2x/dia com creme dental com flúor (grão de arroz).",
+  "SINAIS DE ALERTA: não fica em pé com apoio, não aponta, não imita, não fala sílabas, perda de habilidades."
+  ],
+  enc:[
+  "Encaminho à odontologia: ausência de erupção dentária aos 12–13 meses / cárie.",
+  "Encaminho à neuropediatria: não fica em pé com apoio / regressão do desenvolvimento.",
+  "Encaminho à fonoaudiologia + audiometria: ausência de balbucio/jargão."
+  ],
+  ret:"Retorno aos 15 meses (vacinas + consulta)."
+},
+{ id:"m15", label:"15 m", title:"15 meses", sub:"Marcha independente · reforços vacinais",
+  exam:(s)=>[
+  "EXAME FÍSICO", ANTRO_L, SV, GERAL,
+  "Cabeça: fontanela anterior ___ (fechada/em fechamento).",
+  OLHOS_L,
+  "Boca: ___ dentes, sem cáries.",
+  OTO, ORO,
+  AR, ACV_L, ABD, G.lact[s], ANUS, COLUNA,
+  "Membros e marcha: marcha independente com base alargada; geno varo fisiológico.",
+  "",
+  "DESENVOLVIMENTO (12–15 m): mostra o que quer, coloca blocos na caneca, diz uma palavra, anda sem apoio. Classificação: desenvolvimento adequado."
+  ],
+  presc:[ VITD600, "Sulfato ferroso: encerrado o ciclo II aos 15 meses (prematuro/baixo peso: manter 1 mg/kg/dia até 24 meses).", PARACET ],
+  vac:"Encaminhado à sala de vacina: DTP (1º reforço), VIP (1º reforço), tetraviral (tríplice viral D2 + varicela D1), hepatite A.",
+  ori:[
+  "Comida da família com 5–6 refeições; manter leite materno.",
+  "Birras são esperadas: manter calma, rotina e limites consistentes.",
+  "Prevenção de quedas (escadas, janelas) e afogamentos (piscinas, baldes).",
+  "Calçado apenas para proteção; andar descalço em casa é benéfico.",
+  "SINAIS DE ALERTA: não anda com apoio, não fala nenhuma palavra, não aponta, pouco contato visual."
+  ],
+  enc:[
+  "Encaminho à ortopedia pediátrica: marcha na ponta dos pés persistente / claudicação.",
+  "Encaminho à fonoaudiologia + audiometria: ausência de palavras."
+  ],
+  ret:"Retorno aos 18 meses."
+},
+{ id:"m18", label:"18 m", title:"18 meses", sub:"Linguagem · M-CHAT-R/F",
+  exam:(s)=>[
+  "EXAME FÍSICO", ANTRO_L, SV, GERAL,
+  OLHOS_L,
+  "Boca: ___ dentes, sem cáries.",
+  OTO, ORO,
+  AR, ACV_L, ABD, G.lact[s], ANUS, COLUNA,
+  "Membros e marcha: marcha estável, anda para trás; geno varo fisiológico.",
+  "",
+  "DESENVOLVIMENTO (15–18 m): usa colher ou garfo, torre de 2 cubos, fala 3 palavras, anda para trás. Classificação: desenvolvimento adequado.",
+  "M-CHAT-R/F: ___ pontos (0–2 baixo risco / 3–7 entrevista de seguimento / ≥8 alto risco)."
+  ],
+  presc:[ VITD600, "Sulfato ferroso apenas se prematuro/baixo peso: 1 mg/kg/dia até 24 meses." ],
+  vac:"Sem vacinas de rotina nesta idade. Caderneta conferida: ___ (em dia / atualizar ___).",
+  ori:[
+  "Estimular linguagem: ler, nomear objetos, conversar, cantar.",
+  "Evitar telas antes dos 2 anos, inclusive nas refeições.",
+  "Sono de 11–14 h/dia com rotina fixa.",
+  "Prevenção de afogamento, intoxicação e queimaduras.",
+  "SINAIS DE ALERTA: não fala 3 palavras, não aponta para mostrar algo, não responde ao nome, perda de habilidades."
+  ],
+  enc:[
+  "M-CHAT-R/F positivo (___ pontos): encaminho para avaliação diagnóstica de TEA (neuropediatria/CER) e início de intervenção precoce com fonoaudiologia, terapia ocupacional e psicologia.",
+  "Encaminho à fonoaudiologia + audiometria: atraso de linguagem expressiva.",
+  "Encaminho à neuropediatria: não anda / regressão do desenvolvimento."
+  ],
+  ret:"Retorno aos 24 meses."
+},
+{ id:"m24", label:"24 m", title:"24 meses", sub:"Estatura em pé · IMC · 2º M-CHAT",
+  exam:(s)=>[
+  "EXAME FÍSICO", ANTRO_E + " | PC: ___ cm (z ___)",
+  "(estatura medida em pé; se deitado, descontar 0,7 cm)",
+  SV, GERAL,
+  OLHOS_L,
+  "Boca: ___ dentes, sem cáries; amígdalas sem hipertrofia.",
+  OTO,
+  AR, ACV_L, ABD, G.lact[s], ANUS, COLUNA,
+  "Membros e marcha: corre com equilíbrio; joelhos ___ (varo/retos/valgo fisiológico); pés planos flexíveis.",
+  "",
+  "DESENVOLVIMENTO (18–24 m): tira a roupa, torre de 3 cubos, aponta 2 figuras, chuta bola. Classificação: desenvolvimento adequado.",
+  "M-CHAT-R/F: ___ pontos."
+  ],
+  presc:[ VITD600, "Sulfato ferroso: encerrado aos 24 meses (prematuro/baixo peso).",
+  "Albendazol 400 mg (suspensão 40 mg/mL) — tomar 10 mL VO dose única (conforme protocolo municipal)." ],
+  vac:"Sem vacinas de rotina. Influenza anual (6 m a 5 anos). Caderneta conferida: ___.",
+  ori:[
+  "Telas: no máximo 1 h/dia, com supervisão e conteúdo adequado; nunca nas refeições ou antes de dormir.",
+  "Desfralde quando houver sinais de prontidão (avisa, fica seca por 2 h, interesse), sem pressão.",
+  "Comida da família; limitar açúcar e ultraprocessados; leite sem excesso.",
+  "Escovação supervisionada 2x/dia com creme dental com flúor; consulta odontológica a cada 6 meses.",
+  "Cadeirinha no banco traseiro; atenção a piscinas e janelas.",
+  "SINAIS DE ALERTA: não forma frases de 2 palavras, não corre, não entende ordens simples, perda de linguagem."
+  ],
+  enc:[
+  "M-CHAT-R/F positivo: encaminho para avaliação diagnóstica de TEA e intervenção precoce.",
+  "Encaminho à nutrição: IMC z ___ (risco de sobrepeso >+1 / sobrepeso >+2 / magreza <−2).",
+  "Encaminho à fonoaudiologia + audiometria: ausência de frases de 2 palavras.",
+  "Encaminho à odontologia: consulta de rotina / cárie."
+  ],
+  ret:"Retorno aos 3 anos (ou 30 meses, conforme o serviço)."
+},
+{ id:"a3", label:"3 a", title:"3 anos", sub:"PA anual · primeira acuidade visual",
+  exam:(s)=>[
+  "EXAME FÍSICO", ANTRO_E, PA, SV, GERAL,
+  OLHOS_E,
+  "Boca: dentição decídua completa, sem cáries; amígdalas grau ___.",
+  OTO,
+  AR, ACV_E, ABD, G.lact[s], ANUS, COLUNA,
+  "Membros e marcha: marcha e corrida sem alterações; geno valgo fisiológico; pés planos flexíveis.",
+  "",
+  "DESENVOLVIMENTO (30–36 m): brinca com outras crianças, imita linha, reconhece 2 ações, arremessa bola. Fala compreensível. Classificação: desenvolvimento adequado."
+  ],
+  presc:[ VITD600 ],
+  vac:"Sem vacinas de rotina. Influenza anual. Próximas vacinas aos 4 anos. Caderneta conferida: ___.",
+  ori:[
+  "Telas no máximo 1 h/dia, supervisionadas; sem telas 1 h antes de dormir.",
+  "Sono de 10–13 h/dia com rotina.",
+  "3 refeições + 2 lanches com a comida da família; evitar bebidas açucaradas e ultraprocessados.",
+  "Brincar ativo e ao ar livre todos os dias.",
+  "Segurança: cadeirinha no banco traseiro, mão dada no trânsito, afogamento, produtos tóxicos trancados.",
+  "Ensinar sobre partes íntimas do corpo e que ninguém pode tocá-las.",
+  "Escovação supervisionada e dentista a cada 6 meses."
+  ],
+  enc:[
+  "Encaminho à oftalmologia: acuidade visual reduzida (OD ___ / OE ___) / estrabismo.",
+  "Encaminho à otorrinolaringologia: ronco com pausas respiratórias / respiração oral / hipertrofia amigdaliana.",
+  "Encaminho à fonoaudiologia: fala pouco compreensível para estranhos.",
+  "PA ≥P90: repetir em 6 meses; ≥P95: repetir em 1–2 semanas e investigar (nefrologia/cardiologia pediátrica).",
+  "Encaminho à nutrição: IMC z ___ (sobrepeso/obesidade)."
+  ],
+  ret:"Retorno anual (4 anos), ou antes se necessário."
+},
+{ id:"a4", label:"4–5 a", title:"4 a 5 anos", sub:"Reforços dos 4 anos · visão · escola",
+  exam:(s)=>[
+  "EXAME FÍSICO", ANTRO_E, PA, SV, GERAL,
+  OLHOS_E,
+  "Boca: dentes sem cáries; amígdalas grau ___.",
+  OTO,
+  AR, ACV_E, ABD, G.lact[s], ANUS, COLUNA,
+  "Membros e marcha: sem alterações; pula em um pé; geno valgo fisiológico.",
+  "",
+  "DESENVOLVIMENTO (42–60 m): copia círculo e cruz, fala clara, pula em um pé, veste-se sem ajuda, define palavras, equilíbrio em um pé por ___ s. Classificação: desenvolvimento adequado."
+  ],
+  presc:[ VITD600, PARACET ],
+  vac:"Encaminhado à sala de vacina (4 anos): DTP (2º reforço), VIP (2º reforço), varicela D2, febre amarela (reforço). Influenza anual até 5 anos 11 meses.",
+  ori:[
+  "Assento de elevação no banco traseiro até 10 anos ou 1,45 m de altura.",
+  "Bicicleta com capacete; aulas de natação e supervisão constante na água.",
+  "Telas no máximo 1 h/dia; sono de 10–13 h; atividade física diária.",
+  "Escola: acompanhar aprendizagem, comportamento e possíveis situações de bullying.",
+  "Enurese noturna pode ser normal até 5 anos.",
+  "Escovação e dentista a cada 6 meses."
+  ],
+  enc:[
+  "Encaminho à oftalmologia: acuidade <0,7 ou diferença ≥2 linhas entre os olhos.",
+  "Encaminho à fonoaudiologia / psicopedagogia: dificuldade de fala ou aprendizagem.",
+  "Encaminho à urologia/nefrologia pediátrica: enurese diurna / enurese após 5 anos com sintomas miccionais.",
+  "Encaminho à otorrinolaringologia: ronco com apneia.",
+  "PA ≥P90: seguir protocolo de reavaliação."
+  ],
+  ret:"Retorno anual."
+},
+{ id:"a6", label:"6–10 a", title:"6 a 10 anos", sub:"Consulta anual · escola, puberdade e risco cardiovascular",
+  exam:(s)=>[
+  "EXAME FÍSICO", ANTRO_E, "Circunferência abdominal: ___ cm (se excesso de peso)", PA, SV, GERAL,
+  OLHOS_E,
+  "Boca: dentição mista, sem cáries; oclusão ___.",
+  OTO, "Pescoço: tireoide não palpável/sem nódulos; sem linfonodomegalias.",
+  "Pele: sem acantose nigricans ou lesões.",
+  AR, ACV_E, ABD, G.esc[s],
+  "Coluna: teste de Adams negativo (sem giba); sem desvios laterais.",
+  "Membros e marcha: sem alterações.",
+  "",
+  "DESENVOLVIMENTO: desempenho escolar ___; socialização adequada; sem queixas comportamentais."
+  ],
+  presc:[ VITD600,
+  "SE 9–11 ANOS (ou 2–8 anos com fator de risco): solicito perfil lipídico (colesterol total, HDL, LDL, não-HDL, triglicerídeos)." ],
+  vac:"HPV dose única (9–14 anos) ___; meningocócica ACWY (11–14 anos) ___; dengue (Qdenga, 10–14 anos, municípios prioritários) ___. Conferir atrasos (febre amarela, tríplice viral, varicela).",
+  ori:[
+  "Transporte: banco traseiro com dispositivo de retenção até 10 anos ou 1,45 m.",
+  "Telas no máximo 1–2 h/dia supervisionadas; sem telas 1 h antes de dormir; supervisão da internet (cyberbullying).",
+  "Sono de 9–12 h por noite.",
+  "Atividade física de pelo menos 1 h/dia.",
+  "Café da manhã, lanche escolar saudável e água; limitar açúcar, ultraprocessados e fast food.",
+  "Conversar sobre corpo, puberdade e prevenção de abuso.",
+  "Dentista a cada 6 meses; protetor solar."
+  ],
+  enc:[
+  "Encaminho à endocrinologia pediátrica: sinais puberais antes de 8 anos (menina) / 9 anos (menino) / baixa estatura (z <−2) ou queda de canal.",
+  "Encaminho à ortopedia + solicito RX panorâmico de coluna: teste de Adams positivo.",
+  "Encaminho à oftalmologia: acuidade visual reduzida.",
+  "Encaminho à neuropediatria/psicologia/psicopedagogia: queixa escolar ou de atenção (SNAP-IV ___).",
+  "Encaminho à nutrição: IMC z ___ (sobrepeso >+1 / obesidade >+2).",
+  "PA ≥P90: seguir protocolo de reavaliação; ≥P95 persistente: investigar."
+  ],
+  ret:"Retorno anual."
+}
+];
+
+
+/* ---------- exame físico enxuto ---------- */
+const GS = {
+  lact:{ M:"GENITÁLIA: TÍPICA MASCULINA, TESTÍCULOS TÓPICOS BILATERAIS, MEATO TÓPICO, FIMOSE FISIOLÓGICA, SEM HÉRNIAS/HIDROCELE.",
+         F:"GENITÁLIA: TÍPICA FEMININA, SEM SINÉQUIAS OU SECREÇÃO, SEM HÉRNIAS." },
+  esc:{ M:"GENITÁLIA: TÍPICA MASCULINA, TESTÍCULOS TÓPICOS, SEM HÉRNIAS. TANNER G___P___.",
+        F:"GENITÁLIA: TÍPICA FEMININA, SEM ALTERAÇÕES. TANNER M___P___." }
+};
+const S_ANT_L = "PESO ___ G (Z ___) | COMP ___ CM (Z ___) | PC ___ CM (Z ___) | IMC Z ___ | FC ___ | FR ___ | TAX ___";
+const S_ANT_E = "PESO ___ KG (Z ___) | EST ___ CM (Z ___) | IMC ___ (Z ___) | PA ___X___ MMHG (P___) | FC ___ | FR ___";
+const S_GER = "BEG, ATIVO(A), CORADO(A), HIDRATADO(A), ACIANÓTICO(A), ANICTÉRICO(A), AFEBRIL, EUPNEICO(A).";
+const S_CARD = "AR: MV+ BILATERAL, SEM RA. ACV: RCR 2T, BNF, SEM SOPROS, PULSOS FEMORAIS PALPÁVEIS, TEC <2 S.";
+const S_ABD = "ABD: FLÁCIDO, INDOLOR, SEM VMG OU MASSAS.";
+const S_OLHO = "OLHOS: RV PRESENTE E SIMÉTRICO BILATERAL, HIRSCHBERG CENTRADO, COVER TEST SEM DESVIO.";
+const SHORT = {
+ rn:(s)=>["EXAME FÍSICO", S_ANT_L, "PN ___ G | VARIAÇÃO ___% DO PN",
+  "BEG, ATIVO E REATIVO, CHORO FORTE, POSTURA FLEXORA, CORADO, HIDRATADO, ACIANÓTICO, ANICTÉRICO (OU ICTÉRICO ZONA ___ KRAMER), AFEBRIL.",
+  "CABEÇA: FA NORMOTENSA ___ X ___ CM, SEM BOSSA/CEFALEMATOMA. OLHOS: RV PRESENTE E SIMÉTRICO BILATERAL. BOCA: PALATO ÍNTEGRO, FREIO LINGUAL NORMAL. CLAVÍCULAS ÍNTEGRAS.",
+  S_CARD,
+  "ABD: FLÁCIDO, SEM VMG; COTO UMBILICAL ___ SEM SINAIS FLOGÍSTICOS.",
+  s==="M" ? "GENITÁLIA: TÍPICA MASCULINA, TESTÍCULOS TÓPICOS BILATERAIS, MEATO TÓPICO. ÂNUS PÉRVIO." : "GENITÁLIA: TÍPICA FEMININA, SEM ALTERAÇÕES. ÂNUS PÉRVIO.",
+  "COLUNA ÍNTEGRA. ORTOLANI E BARLOW NEGATIVOS. REFLEXOS PRIMITIVOS PRESENTES E SIMÉTRICOS.",
+  "DNPM ADEQUADO (0–1 M). TRIAGENS: PEZINHO ___ | ORELHINHA ___ | OLHINHO ___ | CORAÇÃOZINHO ___ | LINGUINHA ___"],
+ m1:(s)=>["EXAME FÍSICO", S_ANT_L, "GANHO ___ G/DIA", S_GER,
+  "FA NORMOTENSA ___ CM. OLHOS: RV PRESENTE E SIMÉTRICO BILATERAL, FIXA O OLHAR. ECM SEM NODULAÇÕES.",
+  S_CARD, S_ABD + " CICATRIZ UMBILICAL SEM GRANULOMA.", GS.lact[s],
+  "ORTOLANI E BARLOW NEGATIVOS. REFLEXOS PRIMITIVOS PRESENTES E SIMÉTRICOS.",
+  "DNPM ADEQUADO (0–1 M): POSTURA FLEXORA, OBSERVA ROSTO, REAGE AO SOM, ELEVA A CABEÇA."],
+ m2:(s)=>["EXAME FÍSICO", S_ANT_L, "GANHO ___ G/DIA", S_GER,
+  "FA NORMOTENSA ___ CM. OLHOS: RV PRESENTE E SIMÉTRICO BILATERAL, FIXA E SEGUE.",
+  S_CARD, S_ABD, GS.lact[s],
+  "ORTOLANI E BARLOW NEGATIVOS. TÔNUS E MOVIMENTAÇÃO SIMÉTRICOS.",
+  "DNPM ADEQUADO (1–2 M): SORRISO SOCIAL, ABRE AS MÃOS, EMITE SONS, MOVIMENTA MEMBROS."],
+ m4:(s)=>["EXAME FÍSICO", S_ANT_L, S_GER,
+  "FA NORMOTENSA ___ CM. " + S_OLHO,
+  S_CARD, S_ABD, GS.lact[s],
+  "QUADRIL: ABDUÇÃO SIMÉTRICA, GALEAZZI NEGATIVO. CONTROLE CEFÁLICO COMPLETO, MÃOS ABERTAS.",
+  "DNPM ADEQUADO (2–4 M): CONTATO SOCIAL ATIVO, SEGURA OBJETOS, RI ALTO, APOIA NOS ANTEBRAÇOS."],
+ m6:(s)=>["EXAME FÍSICO", S_ANT_L, S_GER,
+  "FA NORMOTENSA ___ CM. " + S_OLHO + " ___ DENTES. OTOSCOPIA NORMAL.",
+  S_CARD, S_ABD, GS.lact[s],
+  "QUADRIL: ABDUÇÃO SIMÉTRICA. SENTA COM APOIO; MORO AUSENTE.",
+  "DNPM ADEQUADO (4–6 M): BUSCA OBJETOS, LEVA À BOCA, LOCALIZA O SOM, ROLA."],
+ m9:(s)=>["EXAME FÍSICO", S_ANT_L, S_GER,
+  "FA ___ CM. " + S_OLHO + " ___ DENTES SEM CÁRIES. OTOSCOPIA NORMAL.",
+  S_CARD, S_ABD, GS.lact[s],
+  "SENTA SEM APOIO, PARAQUEDAS PRESENTE, USO SIMÉTRICO DAS MÃOS.",
+  "DNPM ADEQUADO (6–9 M): ESCONDE-ACHOU, TRANSFERE OBJETOS, DUPLICA SÍLABAS, SENTA SEM APOIO."],
+ m12:(s)=>["EXAME FÍSICO", S_ANT_L, S_GER,
+  "FA ___ (___ CM/FECHADA). " + S_OLHO + " ___ DENTES SEM CÁRIES. OTOSCOPIA NORMAL.",
+  S_CARD, S_ABD, GS.lact[s],
+  "GENO VARO FISIOLÓGICO. ANDA COM APOIO, PINÇA PRESENTE.",
+  "DNPM ADEQUADO (9–12 M): IMITA GESTOS, FAZ PINÇA, JARGÃO, ANDA COM APOIO."],
+ m15:(s)=>["EXAME FÍSICO", S_ANT_L, S_GER,
+  S_OLHO + " ___ DENTES SEM CÁRIES. OTOSCOPIA NORMAL.",
+  S_CARD, S_ABD, GS.lact[s],
+  "MARCHA INDEPENDENTE, BASE ALARGADA.",
+  "DNPM ADEQUADO (12–15 M): MOSTRA O QUE QUER, BLOCOS NA CANECA, 1 PALAVRA, ANDA SEM APOIO."],
+ m18:(s)=>["EXAME FÍSICO", S_ANT_L, S_GER,
+  S_OLHO + " ___ DENTES SEM CÁRIES. OTOSCOPIA NORMAL.",
+  S_CARD, S_ABD, GS.lact[s],
+  "MARCHA ESTÁVEL, ANDA PARA TRÁS.",
+  "DNPM ADEQUADO (15–18 M): USA COLHER, TORRE DE 2 CUBOS, 3 PALAVRAS, ANDA PARA TRÁS. M-CHAT-R/F: ___ PONTOS."],
+ m24:(s)=>["EXAME FÍSICO", S_ANT_E.replace(" | PA ___X___ MMHG (P___)", "") + " | PC ___ CM (Z ___)", S_GER,
+  S_OLHO + " ___ DENTES SEM CÁRIES. OTOSCOPIA NORMAL.",
+  S_CARD, S_ABD, GS.lact[s],
+  "CORRE COM EQUILÍBRIO; JOELHOS ___ (FISIOLÓGICO).",
+  "DNPM ADEQUADO (18–24 M): TIRA ROUPA, TORRE DE 3 CUBOS, APONTA 2 FIGURAS, CHUTA BOLA. M-CHAT-R/F: ___ PONTOS."],
+ a3:(s)=>["EXAME FÍSICO", S_ANT_E, S_GER,
+  S_OLHO + " AV: OD ___ OE ___. DENTES SEM CÁRIES; AMÍGDALAS GRAU ___. OTOSCOPIA NORMAL.",
+  S_CARD.replace("PULSOS FEMORAIS", "PULSOS"), S_ABD, GS.lact[s],
+  "MARCHA NORMAL; GENO VALGO FISIOLÓGICO.",
+  "DNPM ADEQUADO (30–36 M): BRINCA COM OUTRAS CRIANÇAS, IMITA LINHA, RECONHECE 2 AÇÕES, ARREMESSA BOLA."],
+ a4:(s)=>["EXAME FÍSICO", S_ANT_E, S_GER,
+  S_OLHO + " AV: OD ___ OE ___. DENTES SEM CÁRIES; AMÍGDALAS GRAU ___. OTOSCOPIA NORMAL.",
+  S_CARD.replace("PULSOS FEMORAIS", "PULSOS"), S_ABD, GS.lact[s],
+  "MARCHA NORMAL; PULA EM UM PÉ.",
+  "DNPM ADEQUADO: COPIA CÍRCULO/CRUZ, FALA CLARA, VESTE-SE SEM AJUDA, EQUILÍBRIO EM UM PÉ ___ S."],
+ a6:(s)=>["EXAME FÍSICO", S_ANT_E, S_GER,
+  "AV: OD ___ OE ___; COVER TEST SEM DESVIO. DENTIÇÃO MISTA SEM CÁRIES. TIREOIDE NÃO PALPÁVEL. SEM ACANTOSE.",
+  S_CARD.replace("PULSOS FEMORAIS", "PULSOS"), S_ABD, GS.esc[s],
+  "ADAMS NEGATIVO.",
+  "DESEMPENHO ESCOLAR ___; SOCIALIZAÇÃO ADEQUADA."]
+};
+
+/* ---------- montagem ---------- */
+
+const st = { age: null, ver: 'enx' };
+try { const s = store.get('dc_mod'); if (s && s.ver) st.ver = s.ver; } catch(e){}
+const AGE_M = { rn:0, m1:1, m2:2, m4:4, m6:6, m9:9, m12:12, m15:15, m18:18, m24:24, a3:36, a4:48, a6:72 };
+function autoAge(meses){ let id = 'rn'; for (const a of AGES) if (meses >= AGE_M[a.id] - 0.3) id = a.id; return id; }
+function texts(a, sex, ver){
+  const exam = (ver === "comp" ? a.exam(sex) : SHORT[a.id](sex)).join("\n");
+  const presc = "PRESCRIÇÃO\n" + a.presc.map((p, i) => `${i + 1}. ${p}`).join("\n");
+  const vac = "VACINAS\n" + a.vac;
+  const ori = "ORIENTAÇÕES AO ACOMPANHANTE\nOriento:\n" + a.ori.map(o => "- " + o).join("\n");
+  const enc = "ENCAMINHAMENTOS (usar só o que se aplicar)\n" + a.enc.map(o => "- " + o).join("\n");
+  const ret = "RETORNO\n" + a.ret;
+  const plano = [presc, vac, ori, ret].join("\n\n");
+  const U = (x) => x.toUpperCase();
+  return { exam:U(exam), presc:U(presc), vac:U(vac), ori:U(ori), enc:U(enc), ret:U(ret), plano:U(plano) };
+}
+const escH = (s) => s.replace(/[&<>]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;" }[c]));
+const mark = (s) => escH(s).replace(/_{3,}/g, m => `<span class="md-b">${m}</span>`);
+function block(id, title, small, text, cls){
+  return `<div class="opt md-block ${cls || ""}"><div class="opt-h"><h4>${title}${small ? ` <span class="src">${small}</span>` : ""}</h4>
+  <button class="btn btn-line btn-sm" type="button" data-mcopy="${id}">Copiar</button></div><pre class="md-pre">${mark(text)}</pre></div>`;
+}
+let current = {}, lastM = 0;
+function render(meses){
+  if (meses !== undefined) lastM = meses;
+  if (st.age === null || st._auto !== false) { st.age = autoAge(lastM); }
+  const a = AGES.find(x => x.id === st.age) || AGES[0];
+  const sex = $('ptSex').value === 'F' ? 'F' : 'M';
+  const t = texts(a, sex, st.ver);
+  current = { exam: t.exam, presc: t.presc, vac: t.vac, ori: t.ori, enc: t.enc, ret: t.ret, all: t.exam + "\n\n" + t.plano };
+  const btns = `<div class="filters" style="margin-bottom:6px">${AGES.map(x => `<button type="button" class="fbtn" data-mage="${x.id}" aria-pressed="${x.id===a.id}">${x.label}</button>`).join('')}</div>
+  <div class="acc-filter" role="group" aria-label="Versão do exame"><span>Exame físico:</span><button class="fbtn" type="button" data-mver="enx" aria-pressed="${st.ver==='enx'}">Enxuto</button><button class="fbtn" type="button" data-mver="comp" aria-pressed="${st.ver==='comp'}">Completo</button>
+  <span style="margin-left:auto"></span><button class="btn btn-primary btn-sm" type="button" data-mcopy="all">Copiar exame + plano</button></div>`;
+  $('mdBox').innerHTML = btns + `<div class="dx-title" style="font-size:1rem">${a.title} <span class="src">· ${escH(a.sub)} · ${sex==='M'?'menino':'menina'}</span></div>
+  ${(() => { const ig = parseFloat($('pnIG').value)||40, pn = parseFloat($('pnPN').value)||0; return (ig < 37 || (pn && pn < 2500)) ? `<div class="warnline" style="margin-top:8px">Prematuro/baixo peso: os modelos trazem o ferro em ciclos do bebê a termo — troque pelo esquema contínuo por kg (card “Seguimento do prematuro” → Suplementos). Vacinas pela idade cronológica; exame e marcos pela idade corrigida.</div>` : ''; })()}
+  <div class="md-grid">
+    ${block("exam", st.ver === "comp" ? "Exame físico normal — completo" : "Exame físico normal — enxuto", "", t.exam)}
+    ${block("presc", "Prescrição", "", t.presc)}
+    ${block("vac", "Vacinas", "PNI 2026", t.vac)}
+    ${block("ori", "Orientações ao acompanhante", "", t.ori)}
+    ${block("enc", "Encaminhamentos se houver alteração", "fora do “Copiar exame + plano”", t.enc, "md-enc")}
+    ${block("ret", "Retorno", "", t.ret)}
+  </div>`;
+}
+function pick(id){ st.age = id; st._auto = false; }
+function ver(v){ st.ver = v; try { store.set('dc_mod', { ver: v }); } catch(e){} }
+function text(id){ return current[id] || ''; }
+return { render, pick, ver, text };
+})();
+
+// Sala Vermelha Pediátrica — portado do guia de plantão (set/2026), no padrão DoseCerta.
+// Peso e idade vêm da barra do paciente. Escopo isolado para não colidir com nf/esc/QUICK do app.
+const SV = (function(){
+/* ===== helpers =====
+ D(k, unidade, opções): dose por kg.
+   opções: max (máx por dose), maxd (máx por dia), div (nº de doses/dia quando k é dose diária),
+           c (concentração por mL da apresentação), cu (unidade do volume, padrão "mL"), min (mín por dose),
+           dia:true (k é dose diária), vol:true (k já é volume em mL/kg)
+*/
+const D = (k, u, o = {}) => ({ t: "d", k, u, ...o });
+const TOPICS = [];
+const T = (o) => TOPICS.push(o);
+
+/* ================= ABORDAGEM ================= */
+T({ id: "abordagem", cat: "Abordagem inicial", title: "Primeiros 5 minutos: triagem, ABCDE e peso",
+  cor: "vermelho", alias: ["triagem", "manchester", "abcde", "peso", "sinais vitais", "triangulo"],
+  resumo: "Classifique, avalie pelo Triângulo de Avaliação Pediátrica, faça ABCDE, estime o peso e cheque glicemia.",
+  secs: [
+    { h: "Classificação de risco (Protocolo de Manchester)", li: [
+      "**Vermelho — emergência:** atendimento imediato (sala vermelha).",
+      "**Laranja — muito urgente:** até 10 min.",
+      "**Amarelo — urgente:** até 60 min.",
+      "**Verde — pouco urgente:** até 120 min. **Azul — não urgente:** até 240 min.",
+      "Reclassifique sempre que a criança piorar enquanto espera." ] },
+    { h: "Triângulo de Avaliação Pediátrica (olhar da porta, 30 s)", li: [
+      "**Aparência (TICLS):** tônus, interação, consolabilidade, olhar, fala/choro.",
+      "**Respiração:** ruídos (estridor, sibilo, gemência), tiragem, batimento de asa de nariz, posição.",
+      "**Circulação da pele:** palidez, pele moteada, cianose.",
+      "Aparência alterada = disfunção do SNC ou choque. Respiração alterada = desconforto/insuficiência respiratória. Pele alterada = choque." ] },
+    { h: "ABCDE", li: [
+      "**A** — via aérea pérvia? posicionar, aspirar, cânula; pensar em corpo estranho.",
+      "**B** — FR, esforço, SpO₂ (alvo 94–98%), ausculta. O₂ se SpO₂ <94%.",
+      "**C** — FC, pulsos centrais × periféricos, TEC (normal ≤2 s), PA, diurese. Acesso IV; se falhar em 90 s ou 2 tentativas → **intraósseo**.",
+      "**D** — AVDI/Glasgow, pupilas, **glicemia capilar** (tratar se <60 mg/dL).",
+      "**E** — despir, temperatura, pele (petéquias!), trauma." ] },
+    { h: "Sinais vitais normais (aproximados)", table: {
+      head: ["Idade", "FC (bpm)", "FR (irpm)", "PAS mínima (mmHg)"],
+      rows: [["RN – 3 m", "100–180", "30–60", "60"], ["3 m – 1 a", "100–160", "30–50", "70"],
+             ["1 – 3 a", "90–150", "24–40", "70 + 2×idade"], ["4 – 5 a", "80–140", "22–34", "70 + 2×idade"],
+             ["6 – 10 a", "70–120", "18–30", "70 + 2×idade (até 90)"], ["> 10 a", "60–100", "12–20", "90"]] } },
+    { h: "Peso estimado (APLS) — use o peso real sempre que possível", li: [
+      "0–12 meses: **(0,5 × idade em meses) + 4**",
+      "1–5 anos: **(2 × idade) + 8**",
+      "6–12 anos: **(3 × idade) + 7**",
+      "Fita de Broselow ou peso referido pela mãe também servem. Obeso: doses de emergência pelo peso ideal (exceto succinilcolina, que é pelo peso real)." ] },
+    { h: "Material por idade", table: {
+      head: ["", "Lactente", "1–3 a", "4–7 a", "8–12 a"],
+      rows: [["Tubo com cuff (mm)", "3,0–3,5", "3,5–4,0", "4,5–5,0", "5,5–6,5"], ["Lâmina", "Reta 0–1", "Reta/curva 1–2", "Curva 2", "Curva 2–3"],
+             ["Máscara laríngea", "1 – 1,5", "2", "2 – 2,5", "2,5 – 3"], ["Sonda de aspiração (Fr)", "6–8", "8–10", "10", "10–12"],
+             ["Sonda vesical (Fr)", "5–8", "8", "8–10", "10–12"]] } },
+  ],
+  rx: [
+    { h: "Hipoglicemia (glicemia <60 mg/dL)", li: [
+      ["Glicose 10%: ", D(2, "mL", { vol: true, max: 250 }), " IV em bolus lento (0,2 g/kg). Refazer glicemia em 15 min; pode repetir até 5 mL/kg."],
+      "Depois: manter soro com glicose (VIG 5–8 mg/kg/min) e investigar a causa.",
+      ["Sem acesso: glucagon IM/SC ", D(0, "mg", { bands: [[25, 0.5], [1e9, 1]], c: 1 }), " (0,5 mg se <25 kg; 1 mg se ≥25 kg)."],
+      "Consciente e deglutindo: 0,3 g/kg de açúcar VO (ex.: suco com açúcar)." ] },
+  ],
+  fontes: ["manchester", "pals2025", "apls"] });
+
+/* ================= PCR ================= */
+T({ id: "pcr", cat: "Ressuscitação", title: "Parada cardiorrespiratória (PALS 2025)", cor: "vermelho",
+  alias: ["pcr", "parada", "rcp", "adrenalina", "desfibrilacao", "fv", "assistolia", "aesp"],
+  resumo: "Compressões de qualidade + ventilação, adrenalina precoce nos ritmos não chocáveis, choque 2 → 4 J/kg nos chocáveis.",
+  secs: [
+    { h: "Reconhecer", li: [
+      "Não responde + não respira (ou só gasping) + sem pulso em 10 s → **iniciar RCP**.",
+      "**FC <60 bpm com má perfusão** apesar de oxigenação/ventilação adequadas → também iniciar compressões." ] },
+    { h: "RCP de alta qualidade", li: [
+      "Frequência **100–120/min**; profundidade **≥1/3 do diâmetro AP** (~4 cm no lactente, ~5 cm na criança, 5–6 cm no adolescente); retorno total do tórax; interrupções <10 s.",
+      "Lactente: **2 polegares com mãos envolvendo o tórax** ou **região hipotenar de uma mão** (técnica de 2 dedos não é mais recomendada — AHA 2025).",
+      "Sem via aérea avançada: **15:2** (2 socorristas) ou 30:2 (1 socorrista).",
+      "Com via aérea avançada: compressões contínuas + **1 ventilação a cada 2–3 s (20–30/min)**.",
+      "Trocar quem comprime a cada 2 min. Monitorar ETCO₂ se intubado (queda súbita / subida >40 = checar RCE)." ] },
+    { h: "Ritmos", li: [
+      "**Chocáveis (FV / TV sem pulso):** choque → 2 min de RCP → checar ritmo.",
+      "**Não chocáveis (assistolia / AESP):** RCP + **adrenalina o mais cedo possível** → repetir a cada 3–5 min.",
+      "Causas reversíveis (**6H e 5T**): hipóxia, hipovolemia, H⁺ (acidose), hipo/hipercalemia, hipotermia, hipoglicemia; tensão no tórax (pneumotórax), tamponamento, toxinas, trombose pulmonar, trombose coronária." ] },
+    { h: "Pós-parada (RCE)", li: [
+      "SpO₂ **94–99%** (evitar hiperóxia), PaCO₂ normal (35–45).",
+      "PAS e PAM **acima do percentil 10** para a idade; adrenalina/noradrenalina se necessário.",
+      "Controle de temperatura: evitar febre (manter ≤37,5 °C); tratar convulsões; glicemia normal; ECG, gasometria, eletrólitos." ] },
+  ],
+  rx: [
+    { h: "Adrenalina (ampola 1 mg/mL)", li: [
+      "Diluir **1 mL de adrenalina + 9 mL de SF 0,9%** = 0,1 mg/mL (1:10.000).",
+      ["IV/IO: ", D(0.01, "mg", { max: 1, c: 0.1 }), " a cada 3–5 min, seguido de flush de 5 mL de SF."],
+      ["Pelo tubo (sem acesso): ", D(0.1, "mg", { max: 2.5, c: 1 }), " da ampola pura (1 mg/mL), seguido de 5 mL de SF e 5 ventilações."] ] },
+    { h: "Desfibrilação (FV/TV sem pulso)", li: [
+      ["1º choque: ", D(2, "J", {}), " · 2º choque: ", D(4, "J", {}), " · seguintes: ≥4 J/kg, máx. 10 J/kg ou a dose de adulto."],
+      "Pás infantis se <10 kg (ou <1 ano). DEA com atenuador em <8 anos; sem atenuador, usar mesmo assim." ] },
+    { h: "Antiarrítmico (FV/TV refratária após o 2º–3º choque)", li: [
+      ["Amiodarona (50 mg/mL): ", D(5, "mg", { max: 300, c: 50 }), " IV/IO em bolus — pode repetir até 3 doses (total 15 mg/kg)."],
+      ["OU lidocaína 2% (20 mg/mL): ", D(1, "mg", { max: 100, c: 20 }), " IV/IO em bolus."] ] },
+  ],
+  fontes: ["pals2025"] });
+
+/* ================= ARRITMIAS ================= */
+T({ id: "arritmias", cat: "Ressuscitação", title: "Bradicardia e taquicardia com pulso", cor: "vermelho",
+  alias: ["tsv", "taquicardia", "bradicardia", "adenosina", "cardioversao", "atropina"],
+  resumo: "Instável = choque/alteração de consciência/hipotensão. Bradicardia com má perfusão → RCP + adrenalina. TSV estável → vagal e adenosina; instável → cardioversão.",
+  secs: [
+    { h: "Bradicardia", li: [
+      "Causa mais comum em criança: **hipóxia** → primeiro oxigenar e ventilar.",
+      "FC <60 com má perfusão apesar de O₂/ventilação → **compressões**.",
+      "Atropina só se tônus vagal aumentado (ex.: laringoscopia) ou BAV primário." ] },
+    { h: "Taquicardia de QRS estreito", li: [
+      "**TSV:** FC geralmente >220 (lactente) ou >180 (criança), início e fim súbitos, sem variação com choro/febre, onda P ausente ou anormal.",
+      "**Taquicardia sinusal:** FC variável, onda P normal, causa aparente (febre, dor, hipovolemia) — tratar a causa.",
+      "QRS largo (>0,09 s) = tratar como **TV** até prova em contrário." ] },
+    { h: "Manobras vagais (TSV estável)", li: [
+      "Lactente: **saco de gelo com água gelada na face** por 15–20 s (sem ocluir nariz/boca).",
+      "Criança maior: Valsalva modificada (soprar seringa de 10 mL por 15 s e deitar com pernas elevadas).",
+      "Nunca comprimir globo ocular." ] },
+  ],
+  rx: [
+    { h: "Bradicardia com má perfusão", li: [
+      ["Adrenalina 0,1 mg/mL: ", D(0.01, "mg", { max: 1, c: 0.1 }), " IV/IO a cada 3–5 min."],
+      ["Atropina (0,25 mg/mL — confira; há ampola de 0,5 mg/mL): ", D(0.02, "mg", { max: 0.5, c: 0.25 }), " IV/IO; pode repetir 1 vez."] ] },
+    { h: "TSV", li: [
+      ["Adenosina (3 mg/mL) 1ª dose: ", D(0.1, "mg", { max: 6, c: 3 }), " IV em **push rápido** na veia mais próxima do coração, seguido de flush imediato de 5–10 mL de SF (técnica das 2 seringas / torneira)."],
+      ["2ª dose: ", D(0.2, "mg", { max: 12, c: 3 }), " se não reverter em 1–2 min."],
+      ["Instável: cardioversão sincronizada ", D(0.5, "J", {}), " a 1 J/kg; se falhar, 2 J/kg. Sedação/analgesia se não atrasar (ex.: cetamina 1 mg/kg)."] ] },
+    { h: "TV com pulso estável (com especialista)", li: [
+      ["Amiodarona: ", D(5, "mg", { max: 300, c: 50 }), " IV **em 20–60 min** (diluída em SG 5%)."] ] },
+  ],
+  fontes: ["pals2025"] });
+
+/* ================= IOT ================= */
+T({ id: "iot", cat: "Ressuscitação", title: "Intubação: sequência rápida e sedação contínua", cor: "vermelho",
+  alias: ["iot", "sri", "intubacao", "sequencia rapida", "sedacao", "cetamina", "rocuronio", "fentanil", "midazolam", "tubo"],
+  resumo: "Prepare tudo (checklist), pré-oxigene, escolha indutor pelo cenário (cetamina no choque/asma), rocurônio 1–1,2 mg/kg, confirme com capnografia.",
+  secs: [
+    { h: "Indicações", li: [
+      "Insuficiência respiratória que não melhora com O₂/CNAF/VNI; apneia; Glasgow ≤8 ou queda rápida; incapacidade de proteger via aérea; choque refratário; necessidade de transporte seguro." ] },
+    { h: "Preparação (SOAP-ME)", li: [
+      "**S**ucção pronta · **O**xigênio (pré-oxigenar 3 min com O₂ 100%; manter cateter nasal durante a laringoscopia) · **A**via aérea: tubo do tamanho calculado + 0,5 acima e abaixo, lâmina, fio-guia, máscara laríngea de resgate · **P**osição (coxim sob ombros no lactente) · **M**onitor (SpO₂, ECG, PA, capnografia) · **E**quipamento/drogas aspiradas e rotuladas.",
+      "Choque: bolus de fluido e vasoativo **prontos antes** da indução." ] },
+    { h: "Tubo e posição", li: [
+      "Com cuff: **(idade ÷ 4) + 3,5**; sem cuff: **(idade ÷ 4) + 4**. RN a termo 3,0–3,5.",
+      "Profundidade (lábio): **3 × diâmetro interno do tubo** (cm) ou (idade ÷ 2) + 12.",
+      "Confirmar: **capnografia** (padrão ouro), expansão simétrica, ausculta, RX.",
+      "Piora após IOT — **DOPE**: Deslocamento, Obstrução, Pneumotórax, Equipamento." ] },
+    { h: "Ventilação inicial", li: [
+      "Volume corrente 6–8 mL/kg (peso ideal), PEEP 5 cmH₂O, FR normal para a idade, FiO₂ para SpO₂ 92–97%, pressão de platô <28–30." ] },
+  ],
+  rx: [
+    { h: "Pré-medicação (opcional)", li: [
+      ["Atropina (0,25 mg/mL): ", D(0.02, "mg", { max: 0.5, c: 0.25 }), " IV — considerar em lactentes, bradicardia prévia ou uso de succinilcolina. Sem dose mínima."],
+      ["Fentanil (50 mcg/mL): ", D(1, "mcg", { max: 100, c: 50 }), " a 2 mcg/kg IV **lento** (rápido causa tórax rígido) — útil na HIC; evitar no choque."] ] },
+    { h: "Indutor (escolha um)", li: [
+      ["**Cetamina** (50 mg/mL): ", D(1.5, "mg", { max: 150, c: 50 }), " IV (faixa 1–2 mg/kg) — **escolha no choque e na asma**. Se escetamina (S+), usar metade da dose."],
+      ["Etomidato (2 mg/mL): ", D(0.3, "mg", { max: 20, c: 2 }), " IV — estável hemodinamicamente; **evitar na sepse**."],
+      ["Midazolam (5 mg/mL): ", D(0.1, "mg", { max: 5, c: 5 }), " IV (0,1–0,2 mg/kg) — causa hipotensão."],
+      ["Propofol (10 mg/mL): ", D(1.5, "mg", { max: 150, c: 10 }), " IV (1–2 mg/kg) — só se estável; hipotensão importante."] ] },
+    { h: "Bloqueador neuromuscular", li: [
+      ["**Rocurônio** (10 mg/mL): ", D(1.2, "mg", { max: 100, c: 10 }), " IV (1–1,2 mg/kg); age em 45–60 s. Reversão: sugamadex 16 mg/kg em emergência."],
+      ["OU succinilcolina (100 mg em 10 mL = 10 mg/mL): ", D(2, "mg", { max: 150, c: 10 }), " IV (1–2 mg/kg; 2 mg/kg no lactente). Contraindicada: hipercalemia, queimadura/esmagamento >48 h, doença neuromuscular, história de hipertermia maligna."] ] },
+    { h: "Sedação e analgesia contínuas após IOT (bomba de infusão)", li: [
+      "**Fentanil** 1–4 mcg/kg/h — solução pura 50 mcg/mL (ou diluir 2 mL em 8 mL de SF = 10 mcg/mL para lactentes).",
+      ["Velocidade para 2 mcg/kg/h com fentanil 50 mcg/mL: ", D(0.04, "mL/h", { vol: true, un: "mL/h" }), "."],
+      "**Midazolam** 0,05–0,2 mg/kg/h — diluir 50 mg (10 mL de 5 mg/mL) em 40 mL de SF = 1 mg/mL.",
+      ["Velocidade para 0,1 mg/kg/h com midazolam 1 mg/mL: ", D(0.1, "mL/h", { vol: true, un: "mL/h" }), "."],
+      "Alternativa no broncoespasmo/choque: cetamina 0,5–2 mg/kg/h." ] },
+  ],
+  fontes: ["pals2025", "learnpicu"] });
+
+/* ================= SEPSE ================= */
+T({ id: "sepse", cat: "Ressuscitação", title: "Sepse e choque séptico (SSC pediátrico 2026)", cor: "vermelho",
+  alias: ["sepse", "choque", "choque septico", "vasoativo", "noradrenalina", "fluido", "phoenix"],
+  resumo: "ATB em até 1 h no choque (3 h na sepse sem choque), bolus de cristaloide balanceado 10–20 mL/kg com reavaliação, vasoativo precoce se não responde.",
+  secs: [
+    { h: "Suspeitar", li: [
+      "Infecção + **taquicardia, taquipneia, TEC >2 s (ou enchimento em flash), pulsos finos ou amplos, pele moteada, alteração de consciência, oligúria**. Hipotensão é sinal **tardio** na criança.",
+      "Petéquias/púrpura + febre = meningococcemia até prova em contrário.",
+      "**Critérios de Phoenix (2024):** sepse = infecção com disfunção orgânica ameaçadora (≥2 pontos no escore de Phoenix); **choque séptico = sepse com ≥1 ponto cardiovascular** (hipotensão, lactato elevado ou vasoativo)." ] },
+    { h: "Primeira hora", li: [
+      "O₂, monitor, **2 acessos IV ou IO**, glicemia, **lactato**, gasometria, hemograma, PCR, eletrólitos, função renal, coagulação, **hemoculturas** (sem atrasar o ATB).",
+      "**Antimicrobiano:** o mais rápido possível — ideal **≤1 h no choque séptico** e **≤3 h na sepse sem choque** (após avaliação).",
+      "**Fluidos:** bolus de **10–20 mL/kg de cristaloide balanceado** (Ringer lactato/Plasma-Lyte; SF 0,9% se não houver ou se hiponatremia/HIC) em 5–20 min. Reavaliar após **cada** bolus.",
+      "Com UTI disponível: até **40–60 mL/kg na 1ª hora**. Sem UTI: até 40 mL/kg no choque e **sem bolus** na sepse sem choque.",
+      "**Parar** fluido se: hepatomegalia, estertores, piora do esforço respiratório ou choque resolvido." ] },
+    { h: "Vasoativo", li: [
+      "Se choque persiste após 40–60 mL/kg (ou antes, se sobrecarga): **adrenalina** ou **noradrenalina** — não esperar acesso central; pode iniciar **em veia periférica** diluída.",
+      "Choque frio (extremidades frias, TEC lento) → adrenalina tende a ser melhor; choque quente (vasodilatado) → noradrenalina.",
+      "Choque refratário a catecolaminas → **hidrocortisona**; considerar insuficiência adrenal." ] },
+    { h: "Alvos", li: [
+      "PAM ≥ percentil 5–50 para a idade, TEC ≤2 s, pulsos normais, diurese ≥1 mL/kg/h, melhora da consciência e do lactato.",
+      "Glicemia 70–180; cálcio ionizado normal; Hb ≥7 g/dL se estável." ] },
+  ],
+  rx: [
+    { h: "Fluidos", li: [
+      ["Ringer lactato: ", D(20, "mL", { vol: true, max: 1000 }), " IV/IO em 5–20 min (ou 10 mL/kg se cardiopata/desnutrido). Reavaliar e repetir."] ] },
+    { h: "Antibiótico empírico (comunidade, >1 mês)", li: [
+      ["Ceftriaxona: ", D(100, "mg", { dia: true, maxd: 4000, div: 1 }), " IV 1x/dia (ou dividir 12/12h)."],
+      ["+ Vancomicina se suspeita de S. aureus/MRSA, cateter, pele/partes moles, meningite: ", D(15, "mg", { max: 750 }), " IV 6/6h, correr em 1–2 h."],
+      "< 1 mês: ampicilina + cefotaxima (ou gentamicina) — ver 'Lactente febril'. Foco abdominal: + metronidazol. Imunossuprimido/neutropênico: cefepima (± vanco)." ] },
+    { h: "Drogas vasoativas (bomba) — regra prática", li: [
+      ["**Adrenalina** 0,05–0,3 mcg/kg/min (até 1): diluir ", D(0.3, "mg", { vol: false, c: 1 }), " (peso × 0,3 mg) em SF até 50 mL → **1 mL/h = 0,1 mcg/kg/min**."],
+      ["**Noradrenalina** 0,05–0,3 mcg/kg/min (até 1–2): mesma regra — ", D(0.3, "mg", { c: 1 }), " em 50 mL → 1 mL/h = 0,1 mcg/kg/min."],
+      ["**Dobutamina** 5–10 mcg/kg/min (disfunção miocárdica): ", D(3, "mg", { c: 12.5 }), " (peso × 3 mg) em 50 mL → **1 mL/h = 1 mcg/kg/min**."],
+      "Periférico: usar concentrações mais baixas (dobrar o volume da diluição) e acesso calibroso; vigiar extravasamento." ] },
+    { h: "Choque refratário a catecolamina", li: [
+      ["Hidrocortisona (100 mg/frasco): ", D(2, "mg", { max: 100 }), " IV em bolus, depois 1 mg/kg (máx. 50 mg) 6/6h."] ] },
+  ],
+  fontes: ["ssc2026", "phoenix"] });
+
+/* ================= ANAFILAXIA ================= */
+T({ id: "anafilaxia", cat: "Ressuscitação", title: "Anafilaxia", cor: "vermelho",
+  alias: ["anafilaxia", "alergia", "choque anafilatico", "adrenalina im", "urticaria", "edema de glote"],
+  resumo: "Adrenalina IM na coxa é o tratamento — sem atraso e repetindo a cada 5–15 min. Anti-histamínico e corticoide são adjuvantes.",
+  secs: [
+    { h: "Diagnóstico (critérios WAO)", li: [
+      "Início agudo (minutos a horas) com **pele/mucosa** (urticária, prurido, angioedema) **+** comprometimento **respiratório** OU **hipotensão/má perfusão** OU sintomas **GI graves**; ou",
+      "**Hipotensão, broncoespasmo ou edema laríngeo** logo após exposição a alérgeno provável, mesmo **sem** lesão de pele.",
+      "Gatilhos mais comuns em criança: alimentos (leite, ovo, amendoim, castanhas, frutos do mar), medicamentos, insetos." ] },
+    { h: "Manejo", li: [
+      "Remover o gatilho. **Adrenalina IM imediatamente** (vasto lateral da coxa). Repetir a cada 5–15 min se necessário.",
+      "Posição: deitado com pernas elevadas (sentado se dispneia; decúbito lateral se vômitos). **Não levantar bruscamente.**",
+      "O₂, monitor, acesso IV, **expansão volêmica** se hipotensão/má perfusão.",
+      "Broncoespasmo persistente: salbutamol. Estridor: adrenalina nebulizada.",
+      "Refratário a 2–3 doses IM + fluido: **adrenalina em infusão contínua** (UTI).",
+      "Observar **6–8 h** (casos leves) e **12–24 h** (graves, necessidade de >1 dose ou asma) — reação bifásica." ] },
+  ],
+  rx: [
+    { h: "Prescrição", li: [
+      ["**Adrenalina 1 mg/mL (1:1000) IM** na face anterolateral da coxa: ", D(0.01, "mg", { max: 0.5, amax: { age: 12, below: 0.3 }, c: 1 }), " (máx. 0,3 mg em <12 anos; 0,5 mg em adolescentes). Repetir a cada 5–15 min."],
+      ["SF 0,9% ou Ringer: ", D(20, "mL", { vol: true, max: 1000 }), " IV rápido se hipotensão/má perfusão; repetir conforme resposta."],
+      ["Adrenalina em infusão (refratária): 0,1–1 mcg/kg/min — diluir ", D(0.3, "mg", { c: 1 }), " (peso × 0,3 mg) em SF até 50 mL → 1 mL/h = 0,1 mcg/kg/min."],
+      ["Adjuvante — difenidramina (50 mg/mL): ", D(1, "mg", { max: 50, c: 50 }), " IV lento (evitar prometazina em <2 anos)."],
+      ["Adjuvante — metilprednisolona: ", D(1, "mg", { max: 60 }), " IV (não trata a crise; pode reduzir sintomas prolongados)."],
+      ["Broncoespasmo: salbutamol spray 100 mcg com espaçador — ", "4–10 jatos", " a cada 20 min."] ] },
+    { h: "Alta", li: [
+      "Anti-histamínico oral por 3–5 dias se urticária; plano escrito de ação; **prescrever/orientar adrenalina autoinjetável** (0,15 mg se 10–25 kg; 0,3 mg se ≥25 kg); encaminhar ao alergista." ] },
+  ],
+  fontes: ["sbpanafilaxia", "wao"] });
+
+/* ================= RESPIRATÓRIO ================= */
+T({ id: "ivas", cat: "Respiratório", title: "IVAS: resfriado, gripe, faringoamigdalite, OMA e sinusite", cor: "verde",
+  alias: ["ivas", "resfriado", "gripe", "influenza", "faringite", "amigdalite", "otite", "oma", "sinusite", "rinossinusite", "oseltamivir"],
+  resumo: "A maioria é viral: sintomáticos e sinais de alerta. Antibiótico só na faringite estreptocócica, OMA com critério e sinusite bacteriana.",
+  secs: [
+    { h: "Resfriado comum", li: [
+      "Coriza, obstrução nasal, espirros, tosse, febre baixa nos 3 primeiros dias; dura 7–10 dias (tosse até 3 semanas).",
+      "Tratamento: lavagem nasal com SF, hidratação, antitérmico. Mel para tosse em **>1 ano**.",
+      "**Não usar** descongestionantes, antitussígenos, anti-histamínicos ou mucolíticos em <6 anos." ] },
+    { h: "Gripe (influenza)", li: [
+      "Início súbito: febre alta, mialgia, cefaleia, tosse, dor de garganta. Lactente: febre sem foco, sonolência.",
+      "**Oseltamivir** para: SRAG (qualquer idade) e síndrome gripal em grupo de risco — **<5 anos**, doença crônica, imunossupressão, obesidade, uso crônico de AAS, gestante. Iniciar idealmente em até 48 h (mas não negar depois disso se grave).",
+      "Alerta: dispneia, SpO₂ <95%, piora após melhora (pneumonia bacteriana secundária), desidratação, sonolência." ] },
+    { h: "Faringoamigdalite", li: [
+      "**Viral** (a maioria; <3 anos quase sempre): coriza, tosse, rouquidão, conjuntivite, aftas, diarreia.",
+      "**Estreptocócica** (pico 5–15 anos): início súbito, febre, dor forte, exsudato, petéquias no palato, linfonodo cervical anterior doloroso, **sem** coriza/tosse; escarlatina (rash áspero, língua em framboesa).",
+      "Confirmar com **teste rápido/cultura** quando disponível. Tratar para prevenir febre reumática (até 9 dias do início).",
+      "Complicações: abscesso periamigdaliano (trismo, voz de 'batata quente', úvula desviada) ou retrofaríngeo (rigidez cervical, disfagia) → TC e ORL." ] },
+    { h: "Otite média aguda (OMA)", li: [
+      "Diagnóstico = **abaulamento** da membrana timpânica (moderado/grave) ou otorreia recente; ou abaulamento leve + otalgia <48 h ou hiperemia intensa. **Hiperemia isolada não é OMA.**",
+      "**Antibiótico:** <6 meses; 6–23 m bilateral; qualquer idade com otorreia ou quadro grave (febre ≥39 °C, otalgia intensa, >48 h).",
+      "**Observação 48–72 h** (com retorno garantido): ≥6 m unilateral não grave; ≥2 anos bilateral não grave. Analgesia sempre.",
+      "Amoxicilina-clavulanato se: amoxicilina nos últimos 30 dias, conjuntivite purulenta associada, falha terapêutica." ] },
+    { h: "Rinossinusite bacteriana aguda", li: [
+      "Suspeitar se: sintomas **>10 dias** sem melhora; **piora após melhora** inicial; ou início **grave** (febre ≥39 °C + secreção purulenta ≥3 dias).",
+      "Diagnóstico clínico — **não pedir RX de seios**. TC só se complicação (edema/celulite orbitária, sinais neurológicos)." ] },
+  ],
+  rx: [
+    { h: "Sintomáticos", li: [
+      ["Paracetamol 200 mg/mL (gotas): ", D(15, "mg", { max: 750, c: 200, gt: 20 }), " VO até 6/6h se dor ou febre."],
+      ["Dipirona 500 mg/mL (gotas): ", D(20, "mg", { max: 1000, c: 500, gt: 20 }), " VO até 6/6h (evitar em <3 meses/<5 kg)."],
+      ["Ibuprofeno 50 mg/mL: ", D(10, "mg", { max: 400, c: 50 }), " VO 8/8h (>6 meses; evitar se desidratação, dengue ou varicela)."],
+      "Soro fisiológico 0,9% nasal: 1–2 mL em cada narina várias vezes ao dia." ] },
+    { h: "Influenza — oseltamivir 12/12h por 5 dias", li: [
+      ["Oseltamivir: ", D(3, "mg", { bands: [[15, 30], [23, 45], [40, 60], [1e9, 75]], infantK: 3 }), " VO 12/12h (≤15 kg 30 mg · 15–23 kg 45 mg · 23–40 kg 60 mg · >40 kg 75 mg · <1 ano 3 mg/kg)."] ] },
+    { h: "Faringoamigdalite estreptocócica", li: [
+      ["Amoxicilina 250 mg/5 mL: ", D(50, "mg", { dia: true, maxd: 1000, div: 2, c: 50 }), " VO 12/12h por **10 dias** (ou dose diária única, máx. 1 g)."],
+      ["OU penicilina G benzatina IM dose única: ", D(0, "UI", { bands: [[26.99, 600000], [1e9, 1200000]] }), " (<27 kg 600.000 UI; ≥27 kg 1.200.000 UI)."],
+      ["Alergia não grave: cefalexina 250 mg/5 mL ", D(20, "mg", { max: 500, c: 50 }), " VO 12/12h por 10 dias."],
+      ["Alergia grave (anafilaxia): azitromicina 200 mg/5 mL ", D(12, "mg", { max: 500, c: 40 }), " VO 1x/dia por 5 dias."] ] },
+    { h: "OMA", li: [
+      ["Amoxicilina 400 mg/5 mL: ", D(90, "mg", { dia: true, maxd: 4000, div: 2, c: 80 }), " VO 12/12h (80–90 mg/kg/dia) — **10 dias** se <2 anos ou grave; 7 dias se 2–5 anos; 5–7 dias se ≥6 anos."],
+      ["Amoxicilina + clavulanato (400 + 57 mg/5 mL): ", D(90, "mg", { dia: true, maxd: 4000, div: 2, c: 80 }), " (de amoxicilina) VO 12/12h, mesma duração."],
+      ["Alergia não grave: cefuroxima 250 mg/5 mL ", D(30, "mg", { dia: true, maxd: 1000, div: 2, c: 50 }), " VO 12/12h."] ] },
+    { h: "Sinusite bacteriana", li: [
+      ["Amoxicilina 400 mg/5 mL: ", D(90, "mg", { dia: true, maxd: 4000, div: 2, c: 80 }), " VO 12/12h por 10 dias (45 mg/kg/dia se sem fator de risco; clavulanato se <2 anos, creche ou ATB recente)."] ] },
+  ],
+  fontes: ["msinfluenza", "einsteinoma", "sbpfaringite"] });
+
+T({ id: "crupe", cat: "Respiratório", title: "Laringotraqueobronquite (crupe)", cor: "laranja",
+  alias: ["crupe", "laringite", "estridor", "tosse ladrante", "dexametasona"],
+  resumo: "Tosse ladrante + estridor em 6 m–3 a. Dexametasona para todos; adrenalina nebulizada se estridor em repouso.",
+  secs: [
+    { h: "Quadro clínico", li: [
+      "Pródromo de coriza 1–2 dias → **tosse 'de cachorro'**, **rouquidão**, **estridor inspiratório**, piora à noite e com choro. Pico 6 m–3 anos, outono/inverno (parainfluenza).",
+      "Diagnóstico clínico. **Não examinar orofaringe à força nem pedir RX** de rotina; manter a criança calma no colo." ] },
+    { h: "Gravidade (Alberta)", li: [
+      "**Leve:** estridor só ao chorar/agitar, sem tiragem em repouso.",
+      "**Moderada:** estridor em repouso + tiragem leve/moderada, sem agitação.",
+      "**Grave:** estridor em repouso (às vezes bifásico), tiragem importante, agitação.",
+      "**Insuficiência respiratória iminente:** letargia, cianose, SpO₂ <92%, estridor que 'diminui' com esforço ruim." ] },
+    { h: "Diagnósticos diferenciais — pensar se atípico", li: [
+      "**Epiglotite:** febre alta, toxemia, **salivação, disfagia, posição do tripé**, sem tosse ladrante → não manipular, via aérea em centro cirúrgico.",
+      "**Traqueíte bacteriana:** febre alta, toxemia, sem resposta à adrenalina.",
+      "**Corpo estranho**, anafilaxia, abscesso retrofaríngeo." ] },
+    { h: "Conduta", li: [
+      "Todos: **dexametasona** (dose única; VO se tolera).",
+      "Moderada/grave: **adrenalina nebulizada**; observar **2–4 h** após (efeito rebote).",
+      "O₂ se SpO₂ <92%. Internar se: >2 nebulizações de adrenalina, estridor em repouso 4 h após corticoide, <6 meses, desidratação, retorno em 24 h." ] },
+  ],
+  rx: [
+    { h: "Prescrição", li: [
+      ["Dexametasona (4 mg/mL IV/IM, ou VO): ", D(0.6, "mg", { max: 10, c: 4 }), " dose única (0,15 mg/kg é suficiente no leve)."],
+      ["Adrenalina 1 mg/mL **pura** nebulizada: ", D(0.5, "mL", { vol: true, max: 5 }), " (máx. 5 mL) com O₂ 6–8 L/min; pode repetir a cada 20 min nos graves."],
+      "Alta: sintomáticos, umidificação não é necessária, retorno se estridor em repouso, tiragem ou sonolência." ] },
+  ],
+  fontes: ["alberta"] });
+
+T({ id: "bronquiolite", cat: "Respiratório", title: "Bronquiolite viral aguda", cor: "laranja",
+  alias: ["bronquiolite", "vsr", "sibilancia lactente", "alto fluxo", "cnaf"],
+  resumo: "Lactente <2 anos, primeiro episódio de sibilância após coriza. Tratamento é suporte: aspirar, oxigenar, hidratar.",
+  secs: [
+    { h: "Quadro clínico", li: [
+      "**<2 anos** (pico <6 m), pródromo de coriza 2–3 dias → tosse, taquipneia, tiragem, **sibilos e/ou crepitações** difusos. Pior entre o **3º e 5º dia**; melhora em 2–3 semanas.",
+      "Principal agente: **VSR**. Apneia pode ser o 1º sinal em prematuros e <2 meses." ] },
+    { h: "Diagnóstico", li: [
+      "Clínico. **Não pedir** RX, hemograma ou gasometria de rotina — só se grave, dúvida diagnóstica ou piora atípica.",
+      "Painel viral útil para isolamento e em lactente febril <60 dias." ] },
+    { h: "Fatores de risco / internar se", li: [
+      "<3 meses, prematuro (<35 sem) com <6 m, cardiopatia, pneumopatia crônica, imunodeficiência, doença neuromuscular.",
+      "Apneia, SpO₂ persistente <90–92%, desconforto moderado/grave, FR >60–70, recusa alimentar/ingesta <50%, desidratação, cuidado domiciliar inseguro." ] },
+    { h: "Tratamento — o que FAZER", li: [
+      "**Aspiração/lavagem nasal** com SF antes das mamadas.",
+      "**O₂** se SpO₂ <90–92% (manter 92–96%). **Cateter nasal de alto fluxo (CNAF)** se desconforto moderado/grave ou falha do O₂ convencional: 1–2 L/kg/min, FiO₂ para SpO₂ alvo.",
+      "Hidratação: fracionar dieta; **sonda nasogástrica** ou soro **isotônico** se não consegue mamar (restringir a 2/3 da manutenção se internado grave).",
+      "Piora com CNAF → CPAP/VNI → IOT." ] },
+    { h: "O que NÃO fazer (rotina)", li: [
+      "Broncodilatador, adrenalina, **corticoide**, antibiótico (salvo infecção bacteriana), fisioterapia respiratória, **salina hipertônica** no PS (evidência fraca; pode ser tentada em internados)." ] },
+  ],
+  rx: [
+    { h: "Prescrição (internação)", li: [
+      "Dieta fracionada, cabeceira elevada 30°, aspiração nasal com SF 0,9% antes das mamadas e SOS.",
+      "O₂ por cateter nasal/máscara se SpO₂ <92%, alvo 92–96%.",
+      ["CNAF: fluxo ", D(2, "L/min", { vol: true, un: "L/min", max: 50 }), " (1–2 L/kg/min) se desconforto moderado/grave."],
+      ["Se não mama: soro isotônico em ", D(4, "mL/h", { holliday: true }), " (manutenção de Holliday-Segar; considerar 2/3 dela) ou dieta por SNG."],
+      "Monitorização de SpO₂ contínua se O₂; FR, esforço e diurese." ] },
+  ],
+  fontes: ["aapbronq", "sbpbronq"] });
+
+T({ id: "asma", cat: "Respiratório", title: "Crise de asma", cor: "laranja",
+  alias: ["asma", "broncoespasmo", "sibilancia", "salbutamol", "ipratropio", "sulfato de magnesio", "crise asmatica"],
+  resumo: "Salbutamol a cada 20 min na 1ª hora, corticoide sistêmico em até 1 h, ipratrópio nos moderados/graves, sulfato de magnésio se não responde.",
+  secs: [
+    { h: "Classificação da crise", table: {
+      head: ["", "Leve/moderada", "Grave", "Risco de morte"],
+      rows: [["Fala", "Frases", "Palavras", "Não fala"], ["Consciência", "Normal/agitado", "Agitado", "Sonolento, confuso"],
+             ["Musculatura acessória", "Não/leve", "Sim, importante", "Respiração paradoxal"], ["SpO₂ (ar ambiente)", "≥92%", "<92%", "<90%"],
+             ["Ausculta", "Sibilos", "Sibilos ± MV reduzido", "Tórax silencioso"], ["FC", "Normal/aumentada", ">180 (0–3 a) / >150 (4–5 a) / >120 (>5 a)", "Bradicardia"]] } },
+    { h: "Conduta", li: [
+      "O₂ para SpO₂ **94–98%**. Sentado, ambiente calmo.",
+      "**Salbutamol spray com espaçador** (preferido) ou nebulização a cada **20 min por 1 hora**.",
+      "**Corticoide sistêmico na 1ª hora** (VO se consegue engolir).",
+      "**Ipratrópio** junto do salbutamol nas crises moderadas/graves (1ª hora).",
+      "Sem resposta após 1 h ou grave: **sulfato de magnésio IV**; considerar UTI, salbutamol/terbutalina IV, VNI.",
+      "IOT só se falência (preferir **cetamina**); ventilação com FR baixa e tempo expiratório longo.",
+      "**Não usar** de rotina: aminofilina, antibiótico, RX (só se suspeita de pneumotórax/pneumonia)." ] },
+    { h: "Alta (após ≥1 h estável com salbutamol a cada 3–4 h, SpO₂ ≥94%)", li: [
+      "Corticoide oral 3–5 dias, salbutamol 4/4h por 24–48 h e depois SOS, técnica do espaçador revisada, iniciar/ajustar **corticoide inalatório**, plano de ação escrito, retorno em até 7 dias." ] },
+  ],
+  rx: [
+    { h: "Broncodilatador", li: [
+      "**Salbutamol spray 100 mcg/jato com espaçador:** <6 anos 4–6 jatos; ≥6 anos 4–10 jatos — a cada 20 min por 3 vezes; depois de 1/1h a 4/4h conforme resposta.",
+      ["OU salbutamol nebulização (5 mg/mL; 1 mL = 20 gotas): ", D(0.15, "mg", { min: 2.5, max: 5, c: 5, gt: 20 }), " + SF 0,9% até 4 mL, com O₂ 6–8 L/min, a cada 20 min por 3 vezes."],
+      "**Brometo de ipratrópio** nas crises moderadas/graves, junto do salbutamol a cada 20 min por 3 vezes: nebulização 0,25 mg/mL — **<6 anos 20 gotas (250 mcg); ≥6 anos 40 gotas (500 mcg)**; ou spray 20 mcg/jato — 4 jatos (<6 a) / 8 jatos (≥6 a)." ] },
+    { h: "Corticoide", li: [
+      ["Prednisolona 3 mg/mL: ", D(1, "mg", { max: 40, c: 3 }), " VO 1x/dia (1–2 mg/kg; máx. 40 mg) por 3–5 dias."],
+      ["OU dexametasona: ", D(0.6, "mg", { max: 16, c: 4 }), " VO/IM/IV dose única (pode repetir no dia seguinte)."],
+      ["Sem VO: metilprednisolona ", D(1, "mg", { max: 60 }), " IV 6/6h a 12/12h (ataque até 2 mg/kg, máx. 60 mg)."] ] },
+    { h: "Crise grave sem resposta", li: [
+      ["Sulfato de magnésio 50% (500 mg/mL): ", D(50, "mg", { max: 2000, c: 500 }), " IV (25–50 mg/kg; máx. 2 g), diluído em 20–50 mL de SF 0,9%, correr em 20 min. Monitorar PA."] ] },
+  ],
+  fontes: ["gina2025", "asthmahandbook"] });
+
+T({ id: "pneumonia", cat: "Respiratório", title: "Pneumonia adquirida na comunidade", cor: "amarelo",
+  alias: ["pneumonia", "pac", "broncopneumonia", "amoxicilina", "penicilina cristalina", "derrame pleural"],
+  resumo: "Febre + tosse + taquipneia. Amoxicilina VO é a escolha no ambulatório; penicilina cristalina ou ampicilina na internação.",
+  secs: [
+    { h: "Quadro clínico", li: [
+      "Febre, tosse, **taquipneia** (melhor sinal isolado), tiragem, crepitações, MV diminuído localizado; dor abdominal em pneumonia de base.",
+      "**Taquipneia (OMS):** <2 m ≥60 · 2–11 m ≥50 · 1–4 a ≥40 · ≥5 a >30 irpm.",
+      "Sibilância difusa em <5 anos sugere etiologia viral; em escolar, pensar em Mycoplasma (tosse arrastada, cefaleia)." ] },
+    { h: "Diagnóstico", li: [
+      "Clínico. **RX não é necessário** no caso leve ambulatorial; pedir se internação, grave, dúvida, suspeita de derrame ou falha terapêutica.",
+      "Internados: hemograma, PCR, hemocultura; USG de tórax se derrame (toracocentese se significativo)." ] },
+    { h: "Internar se", li: [
+      "<2–3 meses; SpO₂ <92%; tiragem subcostal importante, gemência, BAN, FR >70 (lactente) / >50 (criança); toxemia; não aceita VO/desidratação; complicações (derrame, necrose, abscesso); doença de base; falha em 48–72 h de VO." ] },
+  ],
+  rx: [
+    { h: "Ambulatorial", li: [
+      ["Amoxicilina 400 mg/5 mL: ", D(50, "mg", { dia: true, maxd: 4000, div: 2, c: 80 }), " VO 12/12h (ou 8/8h) por 5–7 dias. Reavaliar em 48–72 h."],
+      ["Suspeita de atípico (≥5 anos): azitromicina 200 mg/5 mL ", D(10, "mg", { max: 500, c: 40 }), " VO 1x/dia por 5 dias."] ] },
+    { h: "Internação (enfermaria)", li: [
+      ["Penicilina G cristalina: ", D(200000, "UI", { dia: true, maxd: 24000000, div: 4 }), " IV 6/6h (150.000–200.000 UI/kg/dia)."],
+      ["OU ampicilina: ", D(50, "mg", { max: 2000 }), " IV 6/6h."],
+      "< 2 meses: ampicilina + gentamicina (ver 'Lactente febril')." ] },
+    { h: "Grave / complicada / UTI", li: [
+      ["Ceftriaxona: ", D(100, "mg", { dia: true, maxd: 4000, div: 2 }), " IV 12/12h (50–100 mg/kg/dia)."],
+      ["+ Oxacilina se suspeita de S. aureus (pneumatocele, empiema, pós-varicela/influenza): ", D(50, "mg", { max: 2000 }), " IV 6/6h (200 mg/kg/dia)."],
+      ["(MRSA/alergia: clindamicina ", D(10, "mg", { max: 600 }), " IV 6/6h a 8/8h, ou vancomicina 15 mg/kg 6/6h.)"] ] },
+  ],
+  fontes: ["sbppac"] });
+
+/* ================= HIDRATAÇÃO ================= */
+T({ id: "diarreia", cat: "Hidratação e GI", title: "Diarreia aguda e desidratação (Planos A, B e C)", cor: "amarelo",
+  alias: ["diarreia", "gastroenterite", "desidratacao", "vomito", "plano a", "plano b", "plano c", "sro", "ondansetrona", "zinco"],
+  resumo: "Avalie a hidratação e escolha o plano do MS. Ondansetrona se vômitos atrapalham a TRO. Antibiótico só em disenteria com comprometimento ou cólera.",
+  secs: [
+    { h: "Avaliar a hidratação (MS)", table: {
+      head: ["", "Hidratado (A)", "Algum grau (B) — 2 ou mais sinais", "Grave (C) — 2 ou mais sinais"],
+      rows: [["Estado geral", "Alerta", "Irritado, intranquilo", "Comatoso, hipotônico, letárgico"], ["Olhos", "Normais", "Fundos", "Muito fundos"],
+             ["Lágrimas", "Presentes", "Ausentes", "Ausentes"], ["Sede", "Bebe normal", "Sedento, bebe rápido", "Bebe mal ou não bebe"],
+             ["Sinal da prega", "Desaparece rápido", "Desaparece lento", "Muito lento (>2 s)"], ["Pulso", "Cheio", "Rápido, débil", "Muito débil/ausente"],
+             ["Enchimento capilar", "≤2 s", "3–5 s", ">5 s"]] } },
+    { h: "Conduta", li: [
+      "**Plano A** (casa): SRO após cada evacuação, manter alimentação e aleitamento, **zinco**, sinais de alerta.",
+      "**Plano B** (na unidade): **SRO 50–100 mL/kg em 4–6 h**, em pequenas quantidades; reavaliar. Hidratou → Plano A.",
+      "**Plano C** (grave): **hidratação venosa imediata** (fase rápida) e reavaliar a cada 15–30 min.",
+      "Vômitos atrapalhando a TRO: **ondansetrona** (>6 meses) e tentar de novo em 15–30 min; SNG (gastróclise 20–30 mL/kg/h) é alternativa.",
+      "**Antibiótico:** só disenteria (sangue nas fezes) com comprometimento do estado geral, cólera grave ou imunossuprimido. Não usar antidiarreicos (loperamida)." ] },
+  ],
+  rx: [
+    { h: "Plano A / B", li: [
+      "SRO após cada evacuação: **<1 ano 50–100 mL · 1–10 anos 100–200 mL · >10 anos à vontade**.",
+      ["Plano B: SRO ", D(75, "mL", { vol: true }), " (50–100 mL/kg) em 4–6 h na unidade."],
+      ["Zinco: ", D(0, "mg", { ageBands: [[0.5, 10], [99, 20]] }), " VO 1x/dia por 10–14 dias (<6 meses 10 mg; ≥6 meses 20 mg)."],
+      ["Ondansetrona (VO/IV, >6 m): ", D(0.15, "mg", { max: 4, c: 2 }), " (ampola 2 mg/mL; ou comprimido orodispersível 4 mg) dose única."] ] },
+    { h: "Plano C — fase rápida", li: [
+      ["**<5 anos:** SF 0,9% ", D(20, "mL", { vol: true, max: 1000 }), " em 30 min — repetir até hidratar (RN e cardiopatas: 10 mL/kg)."],
+      ["**≥5 anos:** SF 0,9% ", D(30, "mL", { vol: true, max: 1000 }), " em 30 min, depois Ringer lactato ", D(70, "mL", { vol: true, max: 2500 }), " em 2 h 30 min."] ] },
+    { h: "Plano C — manutenção + reposição (após hidratar)", li: [
+      ["Manutenção (Holliday-Segar): ", D(4, "mL/h", { holliday: true }), " de SG 5% + SF 0,9% (4:1) — ou solução isotônica."],
+      ["Reposição: ", D(50, "mL", { vol: true }), " /dia de SG 5% + SF 0,9% (1:1), ajustando às perdas."],
+      "KCl 10%: 2 mL para cada 100 mL de soro (após diurese). Reavaliar em 2–4 h; iniciar SRO/dieta assim que possível." ] },
+    { h: "Disenteria com comprometimento", li: [
+      ["Ciprofloxacino (suspensão 250 mg/5 mL): ", D(15, "mg", { max: 500, c: 50 }), " VO 12/12h por 3 dias."] ] },
+  ],
+  fontes: ["msdiarreia", "sbpdiarreia"] });
+
+T({ id: "hv", cat: "Hidratação e GI", title: "Hidratação venosa de manutenção", cor: "azul",
+  alias: ["hidratacao venosa", "soro de manutencao", "holliday", "hv", "isotonico", "vig"],
+  resumo: "Holliday-Segar para o volume; solução isotônica com glicose e potássio para quase todos (AAP 2018).",
+  secs: [
+    { h: "Volume (Holliday-Segar)", li: [
+      "Até 10 kg: **100 mL/kg/dia** · 10–20 kg: **1.000 mL + 50 mL/kg acima de 10** · >20 kg: **1.500 mL + 20 mL/kg acima de 20** (máx. ~2.400 mL/dia).",
+      "Atalho por hora (4-2-1): 4 mL/kg/h nos 1ºs 10 kg + 2 mL/kg/h nos próximos 10 + 1 mL/kg/h acima de 20.",
+      "Restringir (2/3) se: bronquiolite/pneumonia grave, meningite, TCE, pós-operatório, SIADH." ] },
+    { h: "Solução", li: [
+      "**Isotônica** (Na 130–154 mEq/L) + **glicose 5%** + **K 20 mEq/L** para crianças de 28 dias a 18 anos — reduz hiponatremia hospitalar.",
+      "Exceções (discutir): RN, insuficiência renal/cardíaca, hepatopatia, hipernatremia, diabetes insípido.",
+      "Checar eletrólitos e glicemia diariamente enquanto em soro." ] },
+  ],
+  rx: [
+    { h: "Prescrição", li: [
+      ["Volume de manutenção: ", D(0, "mL/dia", { hollidayDay: true }), " → velocidade ", D(4, "mL/h", { holliday: true }), "."],
+      "Receita de solução isotônica (≈ Na 139, glicose 4,5%, K 23 mEq/L): **SF 0,9% 500 mL + Glicose 50% 50 mL + KCl 19,1% 5 mL**.",
+      "Alternativa pronta: solução balanceada (Plasma-Lyte/Ringer) com glicose 5% + KCl conforme protocolo do serviço.",
+      "Concentração máxima em veia periférica: glicose 12,5%; potássio 40–60 mEq/L." ] },
+  ],
+  fontes: ["aapfluids"] });
+
+/* ================= NEURO ================= */
+T({ id: "convulsao", cat: "Neurológico", title: "Crise convulsiva e estado de mal epiléptico", cor: "vermelho",
+  alias: ["convulsao", "crise", "estado de mal", "epilepsia", "midazolam", "diazepam", "fenitoina", "levetiracetam", "fenobarbital", "convulsao febril"],
+  resumo: "Crise >5 min = tratar. Benzodiazepínico (até 2 doses) → 2ª linha em 15–20 min (levetiracetam, fenitoína ou fenobarbital) → refratário: IOT + infusão.",
+  secs: [
+    { h: "0–5 min", li: [
+      "ABC, decúbito lateral, O₂, monitor, **glicemia capilar**, acesso IV/IO. Cronometrar a crise.",
+      "Coletar: eletrólitos (Na, Ca, Mg), gasometria, hemograma; nível sérico se usa anticonvulsivante; toxicológico se suspeita." ] },
+    { h: "Tempo de tratamento", li: [
+      "**5 min:** 1º benzodiazepínico (IM/intranasal/bucal se sem acesso).",
+      "**10 min:** 2º benzodiazepínico (máx. 2 doses no total, incluindo a pré-hospitalar).",
+      "**15–20 min:** droga de 2ª linha — levetiracetam, fenitoína/fosfenitoína, valproato ou fenobarbital (eficácia semelhante; ~50% param).",
+      "**40 min / refratário:** IOT e infusão contínua (midazolam) em UTI; considerar 2ª droga de 2ª linha antes.",
+      "Pensar: hipoglicemia, hiponatremia, hipocalcemia (lactente), meningite/encefalite, TCE/maus-tratos, intoxicação, HIC." ] },
+    { h: "Convulsão febril", li: [
+      "**Simples:** 6 m–5 anos, generalizada, <15 min, única em 24 h, sem déficit pós-ictal prolongado → não precisa de exames, EEG ou imagem de rotina; procurar o foco da febre.",
+      "**Punção lombar** se sinais meníngeos/sonolência persistente; considerar se 6–12 m sem vacina Hib/pneumo completa ou em uso de antibiótico.",
+      "**Complexa** (focal, >15 min, recorrente em 24 h): investigar conforme o quadro.",
+      "Orientar: risco de recorrência ~30%; antitérmico **não** previne crise; como agir em casa." ] },
+  ],
+  rx: [
+    { h: "1ª linha — benzodiazepínico (até 2 doses)", li: [
+      ["Sem acesso: **midazolam IM ou intranasal** (5 mg/mL): ", D(0.2, "mg", { max: 10, c: 5 }), " (IN: dividir entre as narinas com atomizador)."],
+      ["Com acesso: midazolam IV ", D(0.2, "mg", { max: 10, c: 5 }), " (0,1–0,2 mg/kg) OU diazepam IV (5 mg/mL) ", D(0.3, "mg", { max: 10, c: 5 }), " lento."],
+      ["Diazepam retal (sem acesso, se não houver midazolam): ", D(0.5, "mg", { max: 20, c: 5 }), " (usar a ampola com seringa sem agulha)."] ] },
+    { h: "2ª linha (escolha uma)", li: [
+      ["**Levetiracetam** (100 mg/mL): ", D(60, "mg", { max: 4500, c: 100 }), " IV diluído em 100 mL de SF 0,9%, em 15 min."],
+      ["**Fenitoína** (50 mg/mL): ", D(20, "mg", { max: 1500, c: 50 }), " IV diluída **só em SF 0,9%**, velocidade ≤1 mg/kg/min (máx. 50 mg/min) — monitorar ECG e PA."],
+      ["**Fenobarbital** (100 mg/mL): ", D(20, "mg", { max: 1000, c: 100 }), " IV em 20 min (depressão respiratória e hipotensão)."],
+      ["Valproato IV (se disponível): ", D(40, "mg", { max: 3000 }), " em 10 min (evitar <2 anos, hepatopatia, doença mitocondrial)."] ] },
+    { h: "Refratário (UTI, após IOT)", li: [
+      ["Midazolam: bolus ", D(0.2, "mg", { max: 10, c: 5 }), " e infusão 0,05–2 mg/kg/h (solução 1 mg/mL: 50 mg em 50 mL)."],
+      "Alternativas: cetamina (bolus 1–2 mg/kg + 0,5–3 mg/kg/h), tiopental/propofol conforme serviço; EEG contínuo." ] },
+    { h: "Hipoglicemia associada", li: [
+      ["Glicose 10%: ", D(2, "mL", { vol: true, max: 250 }), " IV (0,2 g/kg)."] ] },
+  ],
+  fontes: ["abemse", "ilae"] });
+
+T({ id: "tce", cat: "Neurológico", title: "Traumatismo cranioencefálico (TCE)", cor: "laranja",
+  alias: ["tce", "trauma de cranio", "queda", "pecarn", "tomografia", "glasgow", "hipertensao intracraniana"],
+  resumo: "Use a regra PECARN para decidir TC no TCE leve. No grave: evitar hipóxia e hipotensão, IOT, salina hipertônica se sinais de herniação.",
+  secs: [
+    { h: "Glasgow pediátrico (<2 anos — resposta verbal)", li: [
+      "Verbal: **5** balbucia/sorri, segue objetos · **4** choro consolável · **3** choro inconsolável/irritado · **2** gemidos · **1** nenhuma.",
+      "TCE leve = Glasgow 14–15 · moderado 9–13 · grave ≤8." ] },
+    { h: "PECARN (Glasgow 14–15) — <2 anos", li: [
+      "**TC indicada:** Glasgow 14 ou alteração do estado mental, ou fratura de crânio palpável.",
+      "**Observar ou TC (decisão compartilhada):** hematoma de couro cabeludo occipital/parietal/temporal, perda de consciência ≥5 s, mecanismo grave, criança 'não está normal' para os pais.",
+      "Nenhum dos itens: risco muito baixo (<0,02%) — **sem TC**." ] },
+    { h: "PECARN — ≥2 anos", li: [
+      "**TC indicada:** Glasgow 14 ou alteração do estado mental, ou sinais de fratura de base de crânio (hemotímpano, olhos de guaxinim, sinal de Battle, rinorreia/otorreia).",
+      "**Observar ou TC:** perda de consciência, vômitos, mecanismo grave, cefaleia intensa.",
+      "**Mecanismo grave:** acidente automobilístico com ejeção/morte/capotamento; atropelamento; ciclista sem capacete; queda >0,9 m (<2 a) ou >1,5 m (≥2 a); impacto de objeto em alta velocidade.",
+      "Observação: 4–6 h após o trauma; piora → TC." ] },
+    { h: "TCE grave", li: [
+      "IOT (Glasgow ≤8), SpO₂ ≥94%, **PaCO₂ 35–40** (hiperventilação só se herniação), PAS normal para a idade, cabeceira 30° e cabeça na linha média, colar cervical, normotermia e normoglicemia, tratar convulsões.",
+      "Sinais de herniação (anisocoria, postura, tríade de Cushing): **salina hipertônica 3%** ou manitol, neurocirurgia imediata.",
+      "Sempre considerar **maus-tratos** (história incompatível, <1 ano, lesões em fases diferentes)." ] },
+  ],
+  rx: [
+    { h: "HIC / herniação", li: [
+      ["NaCl 3%: ", D(4, "mL", { vol: true, max: 250 }), " IV em 10–20 min (3–5 mL/kg). Preparo de 100 mL: **SF 0,9% 89 mL + NaCl 20% 11 mL**."],
+      ["OU manitol 20%: ", D(0.75, "g", { max: 50, c: 0.2 }), " IV em 20 min (0,5–1 g/kg)."] ] },
+    { h: "TCE leve em observação", li: [
+      ["Analgesia: dipirona ", D(20, "mg", { max: 1000, c: 500, gt: 20 }), " VO ou paracetamol; ondansetrona ", D(0.15, "mg", { max: 4, c: 2 }), " se vômitos."],
+      "Alta com adulto responsável; retornar se vômitos repetidos, sonolência, cefaleia progressiva, convulsão, alteração de comportamento ou marcha." ] },
+  ],
+  fontes: ["pecarn"] });
+
+/* ================= INFECCIOSO ================= */
+T({ id: "febre", cat: "Infeccioso", title: "Lactente febril e febre sem sinais localizatórios", cor: "laranja",
+  alias: ["febre", "lactente febril", "febre sem sinais", "fssl", "neonato febril", "ampicilina", "gentamicina", "cefotaxima"],
+  resumo: "Febre ≥38 °C: ≤21 dias → investigação completa, internação e ATB. 22–60 dias → urina + marcadores decidem. 3–36 meses vacinados → foco principal é ITU.",
+  secs: [
+    { h: "Qualquer idade com aparência toxêmica", li: [
+      "Toxemia (letargia, má perfusão, hipoventilação, cianose) = **sepse**: culturas + ATB imediato + suporte (ver Sepse)." ] },
+    { h: "8–21 dias (bem aparente) — AAP 2021", li: [
+      "EAS + urocultura (sondagem), hemocultura, **punção lombar**; internar e iniciar ATB (ampicilina + gentamicina ou ceftazidima/cefotaxima).",
+      "Aciclovir se: vesículas, convulsão, hipotermia, alteração de enzimas hepáticas, pleocitose liquórica, mãe com herpes." ] },
+    { h: "22–28 dias", li: [
+      "EAS, hemocultura e **marcadores inflamatórios**: procalcitonina >0,5 ng/mL, PCR >2 mg/dL (20 mg/L), neutrófilos >4.000/mm³ ou T >38,5 °C = alterado.",
+      "Marcador alterado → **punção lombar**, internar, ATB. Todos normais → LCR opcional; internar ou alta com ATB parenteral e retorno em 24 h." ] },
+    { h: "29–60 dias", li: [
+      "EAS e marcadores inflamatórios (hemocultura se alterados). Tudo normal → **alta sem ATB** com retorno em 24–36 h.",
+      "EAS alterado e marcadores normais → tratar ITU VO (ou IV) com retorno em 24 h. Marcadores alterados → considerar LCR; ceftriaxona." ] },
+    { h: "3–36 meses, vacinados e bem aparentes", li: [
+      "Procurar o foco. Sem foco e febre ≥39 °C: **EAS + urocultura** em meninas <24 m, meninos <12 m (ou não circuncidados <24 m) e febre >48 h.",
+      "Vacinação incompleta (pneumo/Hib) e T ≥39 °C: considerar hemograma e hemocultura.",
+      "Febre ≥5 dias: pensar em **doença de Kawasaki** (conjuntivite não purulenta, lábios/língua, exantema, extremidades, linfonodo cervical)." ] },
+  ],
+  rx: [
+    { h: "Antibióticos no lactente jovem", li: [
+      ["≤28 dias — ampicilina: ", D(50, "mg"), " IV 8/8h (≤7 dias) ou 6/6h (>7 dias); **100 mg/kg/dose** se meningite."],
+      ["+ gentamicina (10 ou 40 mg/mL): ", D(4, "mg"), " IV 1x/dia (4–5 mg/kg; ajustar por idade gestacional)."],
+      ["OU + cefotaxima (se meningite): ", D(50, "mg"), " IV 8/8h (6/6h em >7 dias)."],
+      ["Aciclovir (se indicado): ", D(20, "mg"), " IV 8/8h."],
+      ["29–60 dias — ceftriaxona: ", D(50, "mg", { max: 2000 }), " IV/IM 1x/dia (**100 mg/kg/dia** se suspeita de meningite)."] ] },
+  ],
+  fontes: ["aap2021febrile"] });
+
+T({ id: "meningite", cat: "Infeccioso", title: "Meningite bacteriana", cor: "vermelho",
+  alias: ["meningite", "meningococo", "puncao lombar", "liquor", "dexametasona", "ceftriaxona", "quimioprofilaxia"],
+  resumo: "Não atrasar o antibiótico: se a punção demorar, colher hemocultura e tratar. Dexametasona antes ou junto da 1ª dose em >6 semanas.",
+  secs: [
+    { h: "Quadro clínico", li: [
+      "Criança maior: febre, cefaleia, vômitos, rigidez de nuca, Kernig/Brudzinski, alteração de consciência, convulsão.",
+      "Lactente: **febre ou hipotermia, irritabilidade/choro 'paradoxal', recusa alimentar, fontanela abaulada, letargia** — sinais meníngeos frequentemente ausentes.",
+      "Petéquias/púrpura progressivas = **meningococcemia**: ATB imediato." ] },
+    { h: "Diagnóstico", li: [
+      "**Punção lombar** — adiar (e dar ATB antes) se: instabilidade hemodinâmica/respiratória, sinais de HIC/déficit focal, Glasgow ≤8, coagulopatia/plaquetas <50 mil, infecção no local.",
+      "TC antes da punção só se déficit focal, papiledema, Glasgow baixo ou imunossupressão.",
+      "LCR bacteriano: turvo, **células >1.000 com predomínio de neutrófilos, glicose baixa (<40 ou razão <0,4), proteína alta**; Gram, cultura, látex/PCR.",
+      "**Notificação compulsória imediata.**" ] },
+  ],
+  rx: [
+    { h: "Prescrição (>1 mês)", li: [
+      ["Dexametasona (4 mg/mL): ", D(0.15, "mg", { max: 10, c: 4 }), " IV 6/6h por 2–4 dias — **15–20 min antes ou junto da 1ª dose de ATB** (>6 semanas de vida)."],
+      ["Ceftriaxona: ", D(50, "mg", { max: 2000 }), " IV 12/12h (100 mg/kg/dia; máx. 4 g/dia)."],
+      ["+ Vancomicina se Gram com cocos Gram-positivos ou grave: ", D(15, "mg", { max: 1000 }), " IV 6/6h (60 mg/kg/dia)."],
+      "< 1 mês: ampicilina 100 mg/kg/dose + cefotaxima (ver 'Lactente febril'). Isolamento respiratório por 24 h de ATB." ] },
+    { h: "Quimioprofilaxia de contactantes (meningococo)", li: [
+      ["Rifampicina: ", D(10, "mg", { max: 600 }), " VO 12/12h por 2 dias (<1 mês: 5 mg/kg). Adultos: 600 mg 12/12h."],
+      "Alternativas: ceftriaxona IM dose única (125 mg <12 anos; 250 mg ≥12 anos) ou ciprofloxacino 500 mg VO (adultos). Hib: rifampicina 20 mg/kg 1x/dia por 4 dias." ] },
+  ],
+  fontes: ["msmeningite", "aap2021febrile"] });
+
+T({ id: "itu", cat: "Infeccioso", title: "Infecção do trato urinário (ITU)", cor: "amarelo",
+  alias: ["itu", "infeccao urinaria", "pielonefrite", "cistite", "urocultura", "cefalexina"],
+  resumo: "Principal infecção bacteriana grave do lactente febril. Urocultura por sondagem antes do ATB; VO se bem, IV se toxêmico ou <2–3 meses.",
+  secs: [
+    { h: "Quadro", li: [
+      "Lactente: **febre sem foco**, irritabilidade, vômitos, baixo ganho de peso. Maior: disúria, polaciúria, urgência, dor lombar/abdominal, enurese nova." ] },
+    { h: "Diagnóstico", li: [
+      "Sem controle esfincteriano: urina por **sondagem vesical** (ou punção suprapúbica). Saco coletor **só serve se negativo**.",
+      "EAS sugestivo: leucocitúria, nitrito positivo, bacteriúria. **Confirmar com urocultura**: ≥50.000 UFC/mL (sondagem) ou ≥100.000 (jato médio).",
+      "Após 1ª ITU febril em <2 anos: **USG de rins e vias urinárias**." ] },
+    { h: "Internar / IV se", li: [
+      "<2–3 meses, toxemia/sepse, vômitos que impedem VO, desidratação, falha de VO em 48 h, uropatia conhecida/imunossupressão." ] },
+  ],
+  rx: [
+    { h: "Oral (7–10 dias na ITU febril; 3–5 dias na cistite)", li: [
+      ["Cefalexina 250 mg/5 mL: ", D(50, "mg", { dia: true, maxd: 4000, div: 4, c: 50 }), " VO 6/6h (50–100 mg/kg/dia)."],
+      ["OU cefuroxima 250 mg/5 mL: ", D(30, "mg", { dia: true, maxd: 1000, div: 2, c: 50 }), " VO 12/12h."],
+      ["OU amoxicilina + clavulanato 400+57 mg/5 mL: ", D(50, "mg", { dia: true, maxd: 1750, div: 2, c: 80 }), " VO 12/12h (se sensível)."] ] },
+    { h: "Parenteral", li: [
+      ["Ceftriaxona: ", D(75, "mg", { max: 2000 }), " IV/IM 1x/dia (50–75 mg/kg/dia) — trocar para VO quando afebril 24–48 h."],
+      ["OU gentamicina (se sem nefropatia): ", D(6, "mg", { max: 300 }), " IV 1x/dia (5–7,5 mg/kg/dia)."],
+      "Ajustar pelo antibiograma. Reavaliar em 48–72 h." ] },
+  ],
+  fontes: ["aapitu", "sbpitu"] });
+
+T({ id: "dengue", cat: "Infeccioso", title: "Dengue (MS 2024)", cor: "amarelo",
+  alias: ["dengue", "arbovirose", "sinais de alarme", "grupo a", "grupo b", "grupo c", "grupo d", "plaquetas", "hematocrito"],
+  resumo: "Classifique em A, B, C ou D. Hidratação é o tratamento. Sinais de alarme → soro IV. Nunca AINE nem AAS.",
+  secs: [
+    { h: "Suspeita", li: [
+      "Febre 2–7 dias + 2 ou mais: náusea/vômitos, exantema, mialgia/artralgia, cefaleia/dor retro-orbitária, petéquias/prova do laço +, leucopenia. Criança: febre + sem foco pode bastar em área endêmica.",
+      "**Fase crítica:** entre o 3º e 7º dia, geralmente na **queda da febre** — é quando surgem os sinais de alarme." ] },
+    { h: "Sinais de alarme (→ grupo C)", li: [
+      "Dor abdominal intensa e contínua · vômitos persistentes · acúmulo de líquidos (ascite, derrame pleural/pericárdico) · hipotensão postural/lipotimia · hepatomegalia >2 cm · sangramento de mucosa · letargia/irritabilidade · **aumento progressivo do hematócrito**." ] },
+    { h: "Sinais de choque (→ grupo D)", li: [
+      "Taquicardia, extremidades frias, TEC >2 s, pulso fraco, **PA convergente (diferencial ≤20 mmHg)**, hipotensão, oligúria; sangramento grave; disfunção grave de órgão." ] },
+    { h: "Grupos", li: [
+      "**A:** sem alarme, sem sangramento, sem risco → casa com hidratação oral; hemograma a critério.",
+      "**B:** sem alarme, **com** sangramento de pele (petéquias/prova do laço+) **ou** condição de risco (lactente, comorbidade, risco social) → hemograma obrigatório; hidratação oral supervisionada até o resultado.",
+      "**C:** sinais de alarme → **hidratação IV imediata**, internação mínimo 48 h.",
+      "**D:** choque/sangramento grave/disfunção de órgão → **expansão rápida**, UTI." ] },
+  ],
+  rx: [
+    { h: "Grupos A e B — hidratação oral (criança)", li: [
+      ["Volume diário: ", D(0, "mL/dia", { dengueOral: true }), " (<10 kg 130 mL/kg · 10–20 kg 100 mL/kg · >20 kg 80 mL/kg) — **1/3 em SRO** e 2/3 em água, sucos, chás; 1/3 do total nas primeiras 4–6 h."],
+      ["Paracetamol 200 mg/mL: ", D(15, "mg", { max: 750, c: 200, gt: 20 }), " VO 6/6h ou dipirona ", D(20, "mg", { max: 1000, c: 500, gt: 20 }), " VO 6/6h."],
+      "**Proibido:** AAS, ibuprofeno e outros AINE; corticoide. Retorno no dia da melhora da febre (fase crítica) e se sinais de alarme." ] },
+    { h: "Grupo C", li: [
+      ["Fase de expansão: SF 0,9% ", D(10, "mL", { vol: true, max: 1000 }), " na 1ª hora; reavaliar (clínica + hematócrito em 2 h); repetir até 3 vezes."],
+      ["Melhorou → manutenção: ", D(25, "mL", { vol: true }), " em 6 h, depois 25 mL/kg em 8 h. Meta de diurese 1 mL/kg/h."],
+      "Sem melhora após 3 fases → conduzir como grupo D." ] },
+    { h: "Grupo D", li: [
+      ["SF 0,9% ", D(20, "mL", { vol: true, max: 1000 }), " em até 20 min; repetir até 3 vezes, reavaliando a cada 15–30 min e hematócrito a cada 2 h."],
+      ["Sem resposta com hematócrito em alta: albumina ", D(0.75, "g", { max: 50 }), " (0,5–1 g/kg); hematócrito em queda/sangramento: concentrado de hemácias 10–15 mL/kg. Vasoativo se persistir."] ] },
+  ],
+  fontes: ["msdengue"] });
+
+/* ================= METABÓLICO ================= */
+T({ id: "cad", cat: "Metabólico", title: "Cetoacidose diabética (CAD)", cor: "vermelho",
+  alias: ["cad", "cetoacidose", "diabetes", "insulina", "hiperglicemia", "edema cerebral"],
+  resumo: "Fluido primeiro, insulina regular 0,05–0,1 U/kg/h 1 h depois, potássio desde o início, glicose no soro quando <250–300. Vigiar edema cerebral.",
+  secs: [
+    { h: "Diagnóstico", li: [
+      "**Glicemia >200 mg/dL + pH <7,3 ou bicarbonato <18 + cetonemia ≥3 mmol/L ou cetonúria ≥2+.**",
+      "Gravidade: leve pH <7,3 / HCO₃ <18 · moderada pH <7,2 / HCO₃ <10 · grave pH <7,1 / HCO₃ <5.",
+      "Quadro: poliúria, polidipsia, perda de peso, vômitos, dor abdominal, respiração de Kussmaul, hálito cetônico, desidratação, sonolência." ] },
+    { h: "Monitorização", li: [
+      "Glicemia capilar **1/1h**; gasometria, Na, K, cloro a cada 2–4 h; balanço hídrico; **neurológico 1/1h**.",
+      "Sódio corrigido = Na + 1,6 × [(glicemia − 100)/100]. Deve subir conforme a glicose cai." ] },
+    { h: "Edema cerebral (principal causa de morte)", li: [
+      "Cefaleia, bradicardia, hipertensão, vômitos recorrentes, irritabilidade/sonolência, alteração pupilar, incontinência — geralmente 4–12 h após início do tratamento.",
+      "Tratar **imediatamente** (antes da TC): manitol ou salina 3%, reduzir fluido em 1/3, cabeceira elevada." ] },
+  ],
+  rx: [
+    { h: "Fluidos", li: [
+      ["Se má perfusão: SF 0,9% ou Ringer ", D(10, "mL", { vol: true, max: 1000 }), " em 20–30 min (pode repetir; choque: 20 mL/kg)."],
+      "Depois: repor déficit estimado (5–10%) **em 24–48 h** + manutenção, com SF 0,9%/solução balanceada. Não repor diurese osmótica.",
+      "**Potássio:** acrescentar **40 mEq/L** de soro assim que K <5,5 e houver diurese (KCl 19,1% ≈ 1,6 mL para cada 100 mL). Se K <3,0: repor antes da insulina.",
+      "Glicose <250–300 mg/dL: trocar para soro com **glicose 5%** (10% se <150 e ainda acidótico). Não reduzir a insulina abaixo de 0,05 U/kg/h enquanto houver acidose." ] },
+    { h: "Insulina regular IV (iniciar 1 h após o início dos fluidos; sem bolus)", li: [
+      "Preparo: **insulina regular 50 U em 50 mL de SF 0,9% (1 U/mL)** — lavar o equipo com 20 mL da solução.",
+      ["0,1 U/kg/h: ", D(0.1, "mL/h", { vol: true, un: "mL/h" }), " · 0,05 U/kg/h (<5 anos, CAD leve): ", D(0.05, "mL/h", { vol: true, un: "mL/h" }), "."],
+      "Meta: queda de glicemia de 50–100 mg/dL/h. Bicarbonato **não** é indicado de rotina." ] },
+    { h: "Edema cerebral", li: [
+      ["Manitol 20%: ", D(0.75, "g", { max: 50, c: 0.2 }), " IV em 10–15 min (0,5–1 g/kg) OU NaCl 3%: ", D(4, "mL", { vol: true, max: 250 }), " em 10–15 min (2,5–5 mL/kg)."] ] },
+  ],
+  fontes: ["ispad2022", "rchdka"] });
+
+/* ================= TOXICOLOGIA ================= */
+T({ id: "intox", cat: "Toxicologia e trauma", title: "Intoxicações exógenas", cor: "laranja",
+  alias: ["intoxicacao", "envenenamento", "carvao ativado", "naloxona", "paracetamol", "acetilcisteina", "organofosforado", "toxindrome", "ciatox"],
+  resumo: "ABCDE + glicemia, reconhecer a toxíndrome, ligar para o CIATox. Carvão ativado até 1 h se indicado. Antídoto certo na dose certa.",
+  secs: [
+    { h: "Primeiros passos", li: [
+      "ABCDE, glicemia, ECG (QRS e QT), temperatura. Descobrir: o quê, quanto, quando, via.",
+      "**Disque-Intoxicação: 0800 722 6001** (24 h) — ou CIATox regional.",
+      "**Não induzir vômito.** Cáusticos e hidrocarbonetos: não dar carvão nem lavagem; jejum; endoscopia em 12–24 h se cáustico sintomático." ] },
+    { h: "Toxíndromes", table: {
+      head: ["Síndrome", "Sinais", "Exemplos"],
+      rows: [["Anticolinérgica", "Pele quente e seca, midríase, taquicardia, retenção urinária, delírio", "Anti-histamínicos, atropina, tricíclicos, antiparkinsonianos"],
+             ["Colinérgica", "Miose, sialorreia, broncorreia, bradicardia, vômitos, diarreia, fasciculação", "Organofosforados, carbamatos ('chumbinho')"],
+             ["Opioide", "Miose, depressão respiratória, sonolência", "Codeína, tramadol, morfina, fentanil"],
+             ["Simpaticomimética", "Midríase, taquicardia, hipertensão, sudorese, agitação", "Cocaína, anfetaminas, descongestionantes"],
+             ["Sedativo-hipnótica", "Sonolência, hipotonia, pupilas normais", "Benzodiazepínicos, anticonvulsivantes"],
+             ["Extrapiramidal", "Distonia, torcicolo, crise oculógira", "Metoclopramida, bromoprida, haloperidol"]] } },
+  ],
+  rx: [
+    { h: "Descontaminação", li: [
+      ["Carvão ativado: ", D(1, "g", { max: 50 }), " VO/SNG (diluído em água ou suco), idealmente **até 1 h** — não usar se rebaixamento sem via aérea protegida, cáusticos, hidrocarbonetos, álcool, ferro, lítio."] ] },
+    { h: "Antídotos", li: [
+      ["**Naloxona** (0,4 mg/mL): ", D(0.1, "mg", { max: 2, c: 0.4 }), " IV/IM/IN; repetir a cada 2–3 min (dose menor, 0,01 mg/kg, se usuário crônico)."],
+      ["**N-acetilcisteína IV** (paracetamol ≥150 mg/kg ou nível tóxico no nomograma a partir de 4 h): 1ª bolsa ", D(150, "mg"), " em 1 h · 2ª ", D(50, "mg"), " em 4 h · 3ª ", D(100, "mg"), " em 16 h (diluir em SG 5%, volume conforme peso)."],
+      ["**Atropina** (organofosforado/carbamato): ", D(0.05, "mg", { max: 2, c: 0.25 }), " IV a cada 5–10 min até secar secreções (0,02–0,05 mg/kg) — o alvo é secreção pulmonar, não a pupila."],
+      ["**Biperideno** (reação extrapiramidal; 5 mg/mL): ", D(0.04, "mg", { max: 2, c: 5 }), " IM/IV lento; pode repetir em 30 min."],
+      ["**Bicarbonato de sódio 8,4%** (tricíclico com QRS >100 ms): ", D(1.5, "mEq", { max: 100, c: 1 }), " IV (1–2 mEq/kg); diluir 1:1 em lactentes."],
+      ["**Flumazenil** (0,1 mg/mL) — evitar se convulsão/uso crônico/coingestão de tricíclico: ", D(0.01, "mg", { max: 0.2, c: 0.1 }), " IV."],
+      ["Hipoglicemia (sulfonilureia, álcool, betabloqueador): glicose 10% ", D(2, "mL", { vol: true, max: 250 }), " IV."] ] },
+  ],
+  fontes: ["ciatox"] });
+
+T({ id: "queimadura", cat: "Toxicologia e trauma", title: "Queimaduras", cor: "laranja",
+  alias: ["queimadura", "parkland", "scq", "superficie corporal queimada", "grande queimado"],
+  resumo: "Calcule a superfície corporal queimada (2º e 3º graus). Criança com ≥10% SCQ: hidratação venosa pela fórmula de Parkland (3 mL/kg/%SCQ) + manutenção com glicose se <30 kg.",
+  secs: [
+    { h: "Avaliação", li: [
+      "ABCDE; **via aérea**: queimadura de face, vibrissas queimadas, escarro carbonáceo, rouquidão, estridor → IOT precoce.",
+      "Profundidade: **1º grau** (eritema, não conta na SCQ) · **2º superficial** (bolhas, muito doloroso) · **2º profundo** (esbranquiçado, menos dor) · **3º grau** (branco/marrom, indolor, seco).",
+      "**SCQ na criança:** palma da mão do paciente (com dedos) ≈ 1%. Lactente: cabeça 18%, cada membro inferior 14%, cada membro superior 9%, tronco anterior 18%, posterior 18%. A cada ano acima de 1: cabeça −1% e cada perna +0,5% (use Lund-Browder).",
+      "Sempre pensar em maus-tratos (padrão em luva/meia, bordas nítidas, história incompatível) e intoxicação por CO." ] },
+    { h: "Conduta", li: [
+      "Resfriar com água corrente em temperatura ambiente por 20 min (até 3 h após); não usar gelo. Remover roupas/adornos. Manter aquecido.",
+      "Analgesia potente precoce. Curativo limpo e não aderente; não romper bolhas no PS.",
+      "Profilaxia do tétano conforme caderneta. Sem antibiótico profilático.",
+      "**Encaminhar a centro de queimados:** 2º grau >10% SCQ, qualquer 3º grau, face/mãos/pés/genitália/articulações, elétrica, química, inalação, lesão circunferencial, comorbidades ou maus-tratos." ] },
+  ],
+  rx: [
+    { h: "Hidratação (≥10% SCQ em criança) — ATLS 10ª ed.", li: [
+      ["Ringer lactato — Parkland 3 mL × kg × %SCQ nas primeiras 24 h: ", D(3, "mL", { vol: true, perSCQ: true }), " por cada 1% de SCQ; **metade nas primeiras 8 h** (contadas da hora da queimadura) e metade nas 16 h seguintes."],
+      ["<30 kg: somar a manutenção com glicose (SG 5% em solução isotônica): ", D(4, "mL/h", { holliday: true }), "."],
+      "Ajustar pela **diurese: 1 mL/kg/h** em <30 kg (0,5 mL/kg/h se maior); sondagem vesical se ≥15–20% SCQ." ] },
+    { h: "Analgesia", li: [
+      ["Morfina (10 mg/mL — diluir 1 mL + 9 mL SF = 1 mg/mL): ", D(0.1, "mg", { max: 5, c: 1 }), " IV lento; repetir conforme dor."],
+      ["Sem acesso: fentanil intranasal (50 mcg/mL) ", D(1.5, "mcg", { max: 100, c: 50 }), " (dividir entre as narinas)."],
+      ["Curativos: cetamina ", D(1, "mg", { max: 100, c: 50 }), " IV (analgesia/sedação para procedimento; 0,5–1,5 mg/kg)."] ] },
+  ],
+  fontes: ["atls", "msqueimadura"] });
+
+/* ================= ANALGESIA ================= */
+T({ id: "analgesia", cat: "Toxicologia e trauma", title: "Febre, dor e sedação para procedimentos", cor: "verde",
+  alias: ["febre", "dor", "analgesia", "dipirona", "paracetamol", "ibuprofeno", "morfina", "cetamina", "sedacao procedimento", "fentanil intranasal"],
+  resumo: "Tratar desconforto, não o número do termômetro. Escada analgésica por peso; cetamina é a sedação de escolha para procedimentos dolorosos no PS.",
+  secs: [
+    { h: "Febre", li: [
+      "Objetivo: conforto. Não alternar antitérmicos de rotina. Banho morno opcional (nunca álcool/água fria).",
+      "Sinais de alerta em qualquer febre: toxemia, petéquias, rigidez de nuca, desconforto respiratório, desidratação, <3 meses." ] },
+    { h: "Dor", li: [
+      "Use escalas: FLACC (<4 anos), faces (4–7), numérica (≥8).",
+      "Leve: dipirona/paracetamol/ibuprofeno · Moderada: + opioide fraco ou fentanil IN · Intensa: morfina IV ou fentanil; cetamina em dose analgésica." ] },
+    { h: "Sedação para procedimentos (sutura, redução de fratura)", li: [
+      "Jejum não deve atrasar procedimento urgente. Monitor, O₂, aspirador, material de via aérea e alguém dedicado à via aérea.",
+      "**Cetamina** preserva reflexos e respiração; efeitos: vômito, laringoespasmo (raro), agitação na recuperação. Evitar em <3 meses." ] },
+  ],
+  rx: [
+    { h: "Antitérmicos/analgésicos", li: [
+      ["Dipirona 500 mg/mL gotas: ", D(20, "mg", { max: 1000, c: 500, gt: 20 }), " VO até 6/6h · IV: ", D(20, "mg", { max: 1000, c: 500 }), " diluída em SF, lenta."],
+      ["Paracetamol 200 mg/mL gotas: ", D(15, "mg", { max: 750, c: 200, gt: 20 }), " VO até 6/6h (máx. 75 mg/kg/dia)."],
+      ["Ibuprofeno 50 mg/mL: ", D(10, "mg", { max: 400, c: 50 }), " VO 8/8h (>6 meses)."],
+      ["Morfina 1 mg/mL (diluída): ", D(0.1, "mg", { max: 5, c: 1 }), " IV lento até 4/4h."],
+      ["Fentanil intranasal (50 mcg/mL): ", D(1.5, "mcg", { max: 100, c: 50 }), " IN (pode repetir 0,5–1 mcg/kg em 10 min)."] ] },
+    { h: "Sedação para procedimento", li: [
+      ["Cetamina IV (50 mg/mL): ", D(1.5, "mg", { max: 100, c: 50 }), " em 1 min (1–2 mg/kg); repetir 0,5 mg/kg se necessário."],
+      ["Cetamina IM: ", D(4, "mg", { max: 200, c: 50 }), " (3–4 mg/kg)."],
+      ["Ondansetrona antes (reduz vômitos): ", D(0.15, "mg", { max: 4, c: 2 }), " IV."],
+      ["Midazolam intranasal (ansiólise; 5 mg/mL): ", D(0.3, "mg", { max: 10, c: 5 }), " com atomizador."] ] },
+  ],
+  fontes: ["sbpdor"] });
+
+const REFS = {
+  pals2025: ["AHA/AAP — 2025 Guidelines for CPR and ECC: Pediatric Basic and Advanced Life Support (out/2025)", "https://newsroom.heart.org/news/updated-cpr-guidelines-released-for-pediatric-and-neonatal-emergency-care-and-resuscitation"],
+  pals2025b: ["JournalFeed — New AHA 2025 Pediatric BLS: big changes for little patients", "https://journalfeed.org/article-a-day/2025/new-aha-2025-pediatric-bls-big-changes-for-little-patients/"],
+  manchester: ["Grupo Brasileiro de Classificação de Risco — Sistema Manchester de Classificação de Risco", ""],
+  apls: ["APLS — Advanced Paediatric Life Support, 7ª ed. (fórmulas de peso por idade)", ""],
+  learnpicu: ["LearnPICU — Intubation / RSI (doses e tamanho de tubo)", "https://www.learnpicu.com/respiratory/intubation-rsi"],
+  ssc2026: ["Surviving Sepsis Campaign — International Guidelines for Sepsis and Septic Shock in Children 2026 (Intensive Care Med)", "https://link.springer.com/article/10.1007/s00134-026-08360-2"],
+  phoenix: ["Schlapbach LJ et al. International Consensus Criteria for Pediatric Sepsis (Phoenix). JAMA 2024", ""],
+  sbpanafilaxia: ["SBP — Anafilaxia: atualização 2021", "https://www.sbp.com.br/fileadmin/user_upload/22970c-GPA-Anafilaxia_-_Atualizacao_2021.pdf"],
+  wao: ["World Allergy Organization — Anaphylaxis Guidance 2020", ""],
+  msinfluenza: ["Ministério da Saúde — Guia/Protocolo de tratamento de influenza (oseltamivir)", ""],
+  einsteinoma: ["Hospital Israelita Albert Einstein — Guia do episódio de cuidado: OMA em crianças (v.4)", "https://medicalsuite.einstein.br/pratica-medica/Pathways/Otite%20Me%CC%81dia%20Aguda%20em%20Crianc%CC%A7as%20e%20Adolescentes%20V.4.pdf"],
+  sbpfaringite: ["SBP — Faringoamigdalites / IDSA 2012 — Group A Streptococcal Pharyngitis", ""],
+  alberta: ["Alberta/University of Calgary — Croup, Pediatric: Emergency and Inpatient guideline", "https://papers.ucalgary.ca/paediatrics/assets/croup-guideline.pdf"],
+  aapbronq: ["AAP — Clinical Practice Guideline: Bronchiolitis (Ralston et al., Pediatrics 2014)", ""],
+  sbpbronq: ["Afya/CBUEP 2024 — Bronquiolite viral aguda: além dos guidelines", "https://portal.afya.com.br/pediatria/cbuep-2024-bronquiolite-viral-aguda-alem-dos-guidelines"],
+  gina2025: ["GINA — Global Strategy for Asthma Management and Prevention, 2025 update", "https://ginasthma.org/wp-content/uploads/2025/11/GINA-2025-Update-25_11_08-WMS.pdf"],
+  asthmahandbook: ["Australian Asthma Handbook — Managing acute asthma in children 6–11 years in the ED", "https://www.asthmahandbook.org.au/acute-asthma/children-6-11-years/managing-acute-asthma-in-children-6-11-years-in-ed"],
+  sbppac: ["SBP — Pneumonias adquiridas na comunidade não complicadas (Documento Científico, 2021)", "https://www.sbp.com.br/fileadmin/user_upload/23054d-DC-Pneumonias_Adquiridas_Nao_Complicadas.pdf"],
+  msdiarreia: ["Ministério da Saúde — Manejo do paciente com diarreia (cartaz)", "https://bvsms.saude.gov.br/bvs/cartazes/manejo_paciente_diarreia_cartaz.pdf"],
+  sbpdiarreia: ["SBP — Diarreia aguda infecciosa (Guia Prático, 2023)", "https://www.sbp.com.br/fileadmin/user_upload/sbp/2023/junho/14/24048aPRESS-GPA-Diarreia_Aguda_Infecciosa-pSITE.pdf"],
+  aapfluids: ["Feld LG et al. AAP Clinical Practice Guideline: Maintenance IV Fluids in Children. Pediatrics 2018", ""],
+  abemse: ["ABEM — Key Advances: Pediatric Status Epilepticus (2024)", "https://www.abem.org/wp-content/uploads/2024/10/Key-Advances_Pediatric-Status-Epilepticus_Practice-Advance.pdf"],
+  ilae: ["ESETT (Kapur J et al., NEJM 2019) — levetiracetam, fosfenitoína e valproato no estado de mal", ""],
+  pecarn: ["Kuppermann N et al. PECARN — Identification of children at very low risk of clinically-important brain injuries after head trauma. Lancet 2009", ""],
+  aap2021febrile: ["AAP — Evaluation and Management of Well-Appearing Febrile Infants 8 to 60 Days Old (Pediatrics 2021)", "https://publications.aap.org/pediatrics/article/148/2/e2021052228/179783/Evaluation-and-Management-of-Well-Appearing"],
+  msmeningite: ["Ministério da Saúde — Guia de Vigilância em Saúde: meningites (quimioprofilaxia)", ""],
+  aapitu: ["AAP — Urinary Tract Infection: Clinical Practice Guideline (2011, reafirmado 2016)", ""],
+  sbpitu: ["SBP — Infecção do trato urinário (Departamento de Nefrologia)", ""],
+  msdengue: ["Ministério da Saúde — Dengue: diagnóstico e manejo clínico, adulto e criança, 6ª ed. (2024)", "https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/svsa/dengue/dengue-diagnostico-e-manejo-clinico-adulto-e-crianca"],
+  ispad2022: ["ISPAD Clinical Practice Consensus Guidelines 2022: Diabetic ketoacidosis and hyperglycemic hyperosmolar state", "https://www.researchgate.net/publication/364397763_ISPAD_Clinical_Practice_Consensus_Guidelines_2022_Diabetic_ketoacidosis_and_hyperglycemic_hyperosmolar_state"],
+  rchdka: ["Royal Children's Hospital Melbourne — Clinical Practice Guideline: Diabetic ketoacidosis", "https://www.rch.org.au/clinicalguide/guideline_index/Diabetic_Ketoacidosis/"],
+  ciatox: ["ANVISA/Rede Renaciat — Disque-Intoxicação 0800 722 6001", ""],
+  atls: ["American College of Surgeons — ATLS, 10ª ed. (queimaduras)", ""],
+  msqueimadura: ["Afya — Avaliação e manejo inicial de queimaduras (pediatria)", "https://portal.afya.com.br/pediatria/avaliacao-e-manejo-inicial-de-queimaduras"],
+  sbpdor: ["SBP / Tratado de Pediatria 6ª ed. — analgesia e sedação em pediatria", ""],
+};
+
+/* ===== formatação (escopo local) ===== */
+const nf = (x) => {
+  if (x === null || x === undefined || isNaN(x)) return "—";
+  const a = Math.abs(x);
+  const d = a >= 100 ? 0 : a >= 10 ? 1 : a >= 1 ? 2 : a >= 0.1 ? 2 : 3;
+  return Number(x.toFixed(d)).toLocaleString("pt-BR", { maximumFractionDigits: d });
+};
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const md = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+let W = null, AGE = null;
+const holliday = (w) => { let d = w <= 10 ? 100 * w : w <= 20 ? 1000 + 50 * (w - 10) : 1500 + 20 * (w - 20); return Math.min(d, 2400); };
+
+function doseHTML(d) {
+  const u = d.u, rule = [];
+  const maxTxt = () => (d.max ? `máx. ${nf(d.max)} ${u}` : "");
+  if (d.holliday) rule.push("manutenção de Holliday-Segar");
+  else if (d.hollidayDay) rule.push("Holliday-Segar (mL/dia)");
+  else if (d.dengueOral) rule.push("130/100/80 mL/kg/dia conforme peso");
+  else if (d.bands) rule.push("dose conforme faixa de peso");
+  else if (d.ageBands) rule.push("dose conforme idade");
+  else if (d.perSCQ) rule.push(`${nf(d.k)} mL/kg por 1% de SCQ`);
+  else if (d.dia) rule.push(`${nf(d.k)} ${u}/kg/dia ÷ ${d.div}` + (d.maxd ? ` (máx. ${nf(d.maxd)} ${u}/dia)` : ""));
+  else if (d.vol) rule.push(`${nf(d.k)} ${u === "mL" ? "mL" : u}/kg` + (d.max ? ` (máx. ${nf(d.max)})` : ""));
+  else { rule.push(`${nf(d.k)} ${u}/kg`); if (d.max) rule.push(maxTxt()); }
+  if (!W) {
+    let extra = "";
+    if (d.c && !d.dia && !d.vol && !d.bands && !d.ageBands) { const mlkg = d.k / d.c; extra = ` = ${nf(mlkg)} mL/kg` + (d.gt ? ` (${nf(mlkg * d.gt)} gotas/kg)` : ""); }
+    if (d.bands && d.infantK) rule.push(`<1 ano: ${nf(d.infantK)} ${u}/kg`);
+    return `<span class="sv-dose">${esc(rule.join("; "))}${esc(extra)}</span>`;
+  }
+  let amt, unit = u, out = "";
+  if (d.holliday) { const day = holliday(W); return `<span class="sv-dose">${nf(day / 24)} mL/h <small>(${nf(day)} mL/dia · Holliday-Segar)</small></span>`; }
+  if (d.hollidayDay) { const day = holliday(W); return `<span class="sv-dose">${nf(day)} mL/dia <small>(${nf(day / 24)} mL/h)</small></span>`; }
+  if (d.dengueOral) { const k = W < 10 ? 130 : W <= 20 ? 100 : 80; const day = k * W; return `<span class="sv-dose">${nf(day)} mL/dia <small>(${k} mL/kg; SRO ${nf(day / 3)} mL; 1ª 4–6 h: ${nf(day / 3)} mL)</small></span>`; }
+  if (d.perSCQ) { return `<span class="sv-dose">${nf(d.k * W)} mL × %SCQ <small>(ex.: 10% = ${nf(d.k * W * 10)} mL em 24 h; metade em 8 h = ${nf(d.k * W * 5 / 8)} mL/h)</small></span>`; }
+  if (d.bands) {
+    if (d.infantK && AGE !== null && AGE < 1) amt = d.infantK * W;
+    else { amt = d.bands.find((b) => W <= b[0])[1]; }
+  } else if (d.ageBands) {
+    if (AGE === null) return `<span class="sv-dose">informe a idade <small>(${esc(rule.join("; "))})</small></span>`;
+    amt = d.ageBands.find((b) => AGE < b[0])[1];
+  } else if (d.dia) {
+    let day = d.k * W; if (d.maxd) day = Math.min(day, d.maxd);
+    amt = day / d.div; if (d.max) amt = Math.min(amt, d.max);
+    out = ` <small>(${nf(day)} ${u}/dia)</small>`;
+  } else {
+    amt = d.k * W;
+    if (d.min) amt = Math.max(amt, d.min);
+    let mx = d.max;
+    if (d.amax && (AGE === null || AGE < d.amax.age)) mx = Math.min(mx || Infinity, d.amax.below);
+    if (mx) amt = Math.min(amt, mx);
+  }
+  let vol = "";
+  if (d.c) { const ml = amt / d.c; vol = ` = <b>${nf(ml)} mL</b>` + (d.gt ? ` (${Math.max(1, Math.round(ml * d.gt))} gotas)` : ""); }
+  const perDose = d.dia ? "/dose" : "";
+  const capped = !d.vol && !d.bands && !d.ageBands && !d.dia && d.max && d.k * W > d.max ? " · dose máxima" : "";
+  return `<span class="sv-dose">${nf(amt)} ${esc(unit)}${perDose}${vol}${out}<small> [${esc(rule.join("; "))}${capped}]</small></span>`;
+}
+function lineHTML(li) { if (typeof li === "string") return md(li); return li.map((p) => (typeof p === "string" ? md(p) : doseHTML(p))).join(""); }
+function tableHTML(t) {
+  return `<div class="tbl-wrap sv-tbl"><table class="vt"><thead><tr>${t.head.map((h) => `<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${t.rows.map((r) => `<tr>${r.map((c) => `<td>${md(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+function ettHTML() {
+  if (AGE === null) return `<p class="sv-wnote">Informe a <b>idade</b> na barra do paciente para calcular tubo e profundidade.</p>`;
+  if (AGE < 1) return `<div class="sv-ett"><div>Tubo com cuff: 3,0–3,5 mm</div><div>Profundidade: ~9–10,5 cm</div><div>Lâmina reta 0–1</div></div>`;
+  const cuff = Math.round((AGE / 4 + 3.5) * 2) / 2, semc = Math.round((AGE / 4 + 4) * 2) / 2;
+  return `<div class="sv-ett"><div>Com cuff: ${nf(cuff)} mm</div><div>Sem cuff: ${nf(semc)} mm</div><div>Profundidade: ${nf(cuff * 3)} cm no lábio</div><div>Ter à mão: ${nf(cuff - 0.5)} e ${nf(cuff + 0.5)}</div></div>`;
+}
+function wnote(){ return W ? `<p class="sv-wnote">Doses calculadas para <b>${nf(W)} kg</b>${AGE !== null ? ` · <b>${nf(AGE)} ano(s)</b>` : ""} (barra do paciente). Confira sempre a concentração do frasco disponível.</p>` : `<p class="sv-wnote">Digite o <b>peso</b> na barra do paciente para ver as doses em mg e mL.</p>`; }
+function topicHTML(t) {
+  let h = `<div class="sv-kick">${esc(t.cat)}</div><div class="dx-title"><span class="sv-dot c-${t.cor}"></span>${esc(t.title)}</div>`;
+  h += `<p class="sv-lead">${md(t.resumo)}</p>` + wnote();
+  for (const s of t.secs) {
+    h += `<section class="sv-s"><h4>${esc(s.h)}</h4>`;
+    if (s.li) h += `<ul>${s.li.map((l) => `<li>${lineHTML(l)}</li>`).join("")}</ul>`;
+    if (s.table) h += tableHTML(s.table);
+    h += `</section>`;
+  }
+  if (t.id === "iot") h += `<section class="sv-s"><h4>Tubo para esta criança</h4>${ettHTML()}</section>`;
+  for (const r of t.rx) h += `<div class="opt sv-rx"><div class="opt-h"><h4>${esc(r.h)}</h4><span class="src">prescrição</span></div><ol>${r.li.map((l) => `<li>${lineHTML(l)}</li>`).join("")}</ol></div>`;
+  const fs = (t.fontes || []).map((k) => REFS[k]).filter(Boolean);
+  if (fs.length) h += `<div class="sv-src"><b>Fontes:</b> ${fs.map(([n, u]) => (u ? `<a href="${u}" target="_blank" rel="noopener">${esc(n)}</a>` : esc(n))).join(" · ")}</div>`;
+  h += `<p class="disclaimer">Material de apoio para consulta rápida. Confira doses, diluições e protocolos do seu serviço antes de prescrever.</p>`;
+  return h;
+}
+const QUICK = [
+  ["Adrenalina PCR (0,1 mg/mL)", D(0.01, "mg", { max: 1, c: 0.1 }), "IV/IO a cada 3–5 min"],
+  ["Adrenalina IM anafilaxia (1 mg/mL)", D(0.01, "mg", { max: 0.5, amax: { age: 12, below: 0.3 }, c: 1 }), "coxa; máx. 0,3 mg (<12 a) / 0,5 mg (≥12 a)"],
+  ["Choque desfibrilação", D(2, "J", {}), "depois 4 J/kg"],
+  ["Amiodarona (50 mg/mL)", D(5, "mg", { max: 300, c: 50 }), "FV/TV sem pulso"],
+  ["Adenosina (3 mg/mL)", D(0.1, "mg", { max: 6, c: 3 }), "2ª: 0,2 mg/kg"],
+  ["Atropina (0,25 mg/mL)", D(0.02, "mg", { max: 0.5, c: 0.25 }), ""],
+  ["Cetamina (50 mg/mL)", D(1.5, "mg", { max: 150, c: 50 }), "indução"],
+  ["Etomidato (2 mg/mL)", D(0.3, "mg", { max: 20, c: 2 }), "indução"],
+  ["Fentanil (50 mcg/mL)", D(1, "mcg", { max: 100, c: 50 }), "1–2 mcg/kg"],
+  ["Midazolam (5 mg/mL)", D(0.2, "mg", { max: 10, c: 5 }), "convulsão IM/IN/IV"],
+  ["Rocurônio (10 mg/mL)", D(1.2, "mg", { max: 100, c: 10 }), ""],
+  ["Succinilcolina (10 mg/mL)", D(2, "mg", { max: 150, c: 10 }), ""],
+  ["Diazepam IV (5 mg/mL)", D(0.3, "mg", { max: 10, c: 5 }), ""],
+  ["Levetiracetam (100 mg/mL)", D(60, "mg", { max: 4500, c: 100 }), "em 15 min"],
+  ["Fenitoína (50 mg/mL)", D(20, "mg", { max: 1500, c: 50 }), "≤1 mg/kg/min"],
+  ["Fenobarbital (100 mg/mL)", D(20, "mg", { max: 1000, c: 100 }), "em 20 min"],
+  ["Glicose 10%", D(2, "mL", { vol: true, max: 250 }), "hipoglicemia"],
+  ["Bolus de cristaloide", D(20, "mL", { vol: true, max: 1000 }), "10–20 mL/kg"],
+  ["Sulfato de magnésio 50%", D(50, "mg", { max: 2000, c: 500 }), "asma, em 20 min"],
+  ["Dexametasona (4 mg/mL)", D(0.6, "mg", { max: 10, c: 4 }), "crupe"],
+  ["Ceftriaxona (meningite)", D(50, "mg", { max: 2000 }), "12/12h"],
+  ["Naloxona (0,4 mg/mL)", D(0.1, "mg", { max: 2, c: 0.4 }), ""],
+  ["NaCl 3%", D(4, "mL", { vol: true, max: 250 }), "HIC"],
+  ["Manutenção (Holliday)", D(4, "mL/h", { holliday: true }), ""],
+];
+function quickHTML() {
+  return `<div class="sv-kick">Consulta rápida</div><div class="dx-title">Doses de emergência por peso</div>${wnote()}<div class="tbl-wrap sv-tbl"><table class="vt"><thead><tr><th>Droga</th><th>Dose</th><th>Obs.</th></tr></thead><tbody>${QUICK.map(([n, d, o]) => `<tr><td><b>${esc(n)}</b></td><td>${doseHTML(d)}</td><td>${esc(o)}</td></tr>`).join("")}</tbody></table></div>`;
+}
+const CATS = [...new Set(TOPICS.map((t) => t.cat))];
+let current = "tabela";
+const norm = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+function navHTML(filter) {
+  const f = norm(filter || "");
+  const match = (t) => !f || norm(t.title + " " + t.alias.join(" ")).includes(f);
+  let h = `<button class="dx-btn" type="button" data-sv="tabela" aria-current="${current === "tabela"}"><span class="dot" style="background:var(--danger)"></span>Tabela rápida de doses</button>`;
+  for (const c of CATS) {
+    const ts = TOPICS.filter((t) => t.cat === c && match(t));
+    if (!ts.length) continue;
+    h += `<div class="dx-group">${esc(c)}</div>` + ts.map((t) => `<button class="dx-btn" type="button" data-sv="${t.id}" aria-current="${current === t.id}"><span class="dot c-${t.cor}"></span>${esc(t.title)}</button>`).join("");
+  }
+  return h;
+}
+function readPt(){ const p = pt(); W = p.wReal > 0 && p.wReal < 200 ? p.wReal : null; AGE = $('ptAgeVal').value === '' ? null : p.a; }
+function render(){
+  readPt();
+  $('svNav').innerHTML = navHTML($('svSearch').value);
+  $('svMain').innerHTML = current === "tabela" ? quickHTML() : topicHTML(TOPICS.find((t) => t.id === current) || TOPICS[0]);
+}
+function go(id){ current = id; try { store.set('dc_sv_topic', id); } catch(e){} render(); }
+function estimar(){
+  readPt(); if (AGE === null) { $('ptAgeVal').focus(); return null; }
+  const w = AGE < 1 ? 0.5 * (AGE * 12) + 4 : AGE <= 5 ? 2 * AGE + 8 : 3 * AGE + 7;
+  return Math.round(w * 10) / 10;
+}
+function init(){ const s = store.get('dc_sv_topic'); if (s && (s === 'tabela' || TOPICS.some(t => t.id === s))) current = s; }
+return { render, go, estimar, init, navOnly: () => { $('svNav').innerHTML = navHTML($('svSearch').value); }, count: TOPICS.length };
+
+})();
 
 // =====================================================================
 // APLICAÇÃO
@@ -2338,22 +4279,29 @@ function renderRefs(){
 // ---------------- navegação e eventos ----------------
 function setView(v){
   curView = v;
-  ['rx','sus','puer','calc','ref'].forEach(k => { $('view-'+k).hidden = k!==v; $('tab-'+k).setAttribute('aria-selected', k===v); });
+  ['rx','sv','sus','puer','calc','ref'].forEach(k => { $('view-'+k).hidden = k!==v; $('tab-'+k).setAttribute('aria-selected', k===v); });
   if (v==='sus') { renderDxList(); renderDx(); }
   if (v==='calc') renderCalc();
   if (v==='puer') { renderPuer(); puEvo(); }
+  if (v==='sv') SV.render();
   try { history.replaceState(null, '', '#'+v); } catch(e){}
   store.set('prescrimed_view', v);
 }
 let toastT;
 function toast(m){ const t = $('toast'); t.textContent = m; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => t.hidden = true, 2200); }
 
-function refreshAll(){ renderChips(); renderCatalog(); recalcItems(); checkSafety(); syncPreview(); if (curView==='sus') renderDx(); if (curView==='calc') renderCalc(); if (curView==='puer') { renderPuer(); puEvo(); } }
+function refreshAll(){ renderChips(); renderCatalog(); recalcItems(); checkSafety(); syncPreview(); if (curView==='sus') renderDx(); if (curView==='calc') renderCalc(); if (curView==='puer') { renderPuer(); puEvo(); } if (curView==='sv') SV.render(); }
 
 document.addEventListener('click', e => {
   const t = e.target.closest('button,[data-rx]'); if (!t) return;
   if (t.dataset.view) return setView(t.dataset.view);
   if (t.dataset.cat) { curCat = t.dataset.cat; renderFilters(); renderCatalog(); return; }
+  if (t.dataset.sv) { SV.go(t.dataset.sv); if (window.innerWidth < 1100) $('svMain').scrollIntoView({behavior:'smooth', block:'start'}); else window.scrollTo({top:0}); return; }
+  if (t.id==='btnSvEst') { const w = SV.estimar(); if (w===null) { toast('Informe a idade na barra do paciente'); return; } $('ptWeight').value = w; refreshAll(); toast(`Peso estimado (APLS): ${nf(w,1)} kg`); return; }
+  if (t.dataset.mage) { MOD.pick(t.dataset.mage); MOD.render(); return; }
+  if (t.dataset.mver) { MOD.ver(t.dataset.mver); MOD.render(); return; }
+  if (t.dataset.mcopy) { const txt = MOD.text(t.dataset.mcopy); if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(() => toast('Texto copiado'), () => fallbackCopy(txt)); else fallbackCopy(txt); return; }
+  if (t.dataset.pmtab) { PREM.setTab(t.dataset.pmtab); return; }
   if (t.dataset.susf) { susFilter = t.dataset.susf; document.querySelectorAll('[data-susf]').forEach(b => b.setAttribute('aria-pressed', b===t)); renderDx(); return; }
   if (t.dataset.mk) { PUER.marcos[t.dataset.mk] = t.dataset.mv; renderPuer(); puEvo(); return; }
   if (t.dataset.cons !== undefined) { PUER.consultaSel = +t.dataset.cons; renderConsulta(0); return; }
@@ -2384,7 +4332,7 @@ document.addEventListener('click', e => {
 function fallbackCopy(txt){
   const ta = document.createElement('textarea'); ta.value = txt; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select();
   let ok = false; try { ok = document.execCommand('copy'); } catch(e){}
-  document.body.removeChild(ta); toast(ok ? 'Receita copiada' : 'Não foi possível copiar automaticamente — selecione o texto da folha.');
+  document.body.removeChild(ta); toast(ok ? 'Copiado' : 'Não foi possível copiar automaticamente — selecione o texto.');
 }
 document.addEventListener('input', e => {
   const t = e.target;
@@ -2394,6 +4342,7 @@ document.addEventListener('input', e => {
   if (['ptAllergies','ptComorb'].includes(t.id)) { checkSafety(); syncPreview(); return; }
   if (t.id==='searchDrug') return renderCatalog();
   if (t.id==='dxSearch') return renderDxList();
+  if (t.id==='svSearch') return SV.navOnly();
   if (t.id==='pnFen') { PUER.fen = parseInt(t.value) || 0; renderMarcosOnly(); return; }
   if (t.id && t.id.startsWith('pn') && t.type!=='date' && t.type!=='checkbox') { renderPuer(); puEvo(); return; }
 });
@@ -2423,6 +4372,7 @@ function syncAgeFromDN(){
   if (dias < 31) { v = dias; u = 'dias'; } else if (dias < 730.5) { v = Math.floor(dias/30.4375); u = 'meses'; } else { v = Math.floor(dias/365.25); u = 'anos'; }
   $('ptAgeVal').value = v; $('ptAgeUnit').value = u;
 }
+document.addEventListener('toggle', e => { if (e.target.id==='pmGuiaBox' && e.target.open) PREM.guiaRender(); }, true);
 document.addEventListener('keydown', e => { if (e.key==='Escape' && !$('docModal').hidden) $('docModal').hidden = true; });
 
 // ---------------- início ----------------
@@ -2435,10 +4385,11 @@ document.addEventListener('keydown', e => { if (e.key==='Escape' && !$('docModal
   if (dr && Array.isArray(dr.items) && dr.items.length) { items = dr.items; $('extraNotes').value = dr.notes || ''; }
   else { ['amox250','dipirona_gotas','lavagem_nasal'].forEach(r => prescribe(r, true)); $('extraNotes').value = QUICK[1][1](); }
   { const d = new Date(); $('pnDC').value = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+  SV.init();
   renderFilters(); renderQuick(); renderRefs();
   refreshAll();
   const h = (location.hash||'').replace('#','');
-  setView(['rx','sus','puer','calc','ref'].includes(h) ? h : (store.get('prescrimed_view') || 'rx'));
+  setView(['rx','sv','sus','puer','calc','ref'].includes(h) ? h : (store.get('prescrimed_view') || 'rx'));
 })();
 
 </script>
