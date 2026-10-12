@@ -1,79 +1,159 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="robots" content="noindex,nofollow">
-<title>DoseCerta</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%231e1b4b%27/%3E%3Cpath d=%27M9 16h14M16 9v14%27 stroke=%27%2334d399%27 stroke-width=%274%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
-<script src="assets/gate.js"></script>
-<style>
-/* Layout: faixa de marca no topo + grade de módulos (cards clicáveis). */
-:root{
-  --bg:#eef0f7; --surface:#ffffff; --line:#dde1ee; --fg:#1b1f36; --muted:#5b6382;
-  --brand:#1e1b4b; --on-brand:#ffffff; --on-brand-muted:#c7d2fe; --mint:#34d399; --accent:#4f46e5; --accent-soft:#ecebfe;
-  --soon:#8a91ad;
-  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-}
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --bg:#0e1020; --surface:#171a2f; --line:#2b3052; --fg:#e7e9f4; --muted:#9aa1c0;
-  --brand:#131130; --on-brand-muted:#b9c0f5; --mint:#4ade80; --accent:#8b85ff; --accent-soft:#25234e; --soon:#6c7392; color-scheme:dark; } }
-:root[data-theme="dark"]{
-  --bg:#0e1020; --surface:#171a2f; --line:#2b3052; --fg:#e7e9f4; --muted:#9aa1c0;
-  --brand:#131130; --on-brand-muted:#b9c0f5; --mint:#4ade80; --accent:#8b85ff; --accent-soft:#25234e; --soon:#6c7392; color-scheme:dark; }
-*,*::before,*::after{box-sizing:border-box}
-[hidden]{display:none!important}
-html,body{margin:0}
-body{font-family:var(--font);background:var(--bg);color:var(--fg);font-size:15px;line-height:1.5}
-header{background:var(--brand);color:var(--on-brand);padding-inline:16px;padding-block:34px 30px}
-.inner{max-width:980px;margin:0 auto}
-h1{margin:0;font-size:2.1rem;letter-spacing:-.6px}
-h1 span{color:var(--mint)}
-header p{margin:6px 0 0;color:var(--on-brand-muted);max-width:60ch}
-main{padding-inline:16px;padding-block:22px 48px}
-.label{font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-.mod{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;color:inherit;text-decoration:none;min-width:0}
-a.mod:hover{border-color:var(--accent);box-shadow:0 4px 14px rgba(79,70,229,.15)}
-a.mod:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.mod h2{margin:0;font-size:1.1rem}
-.mod p{margin:0;font-size:.85rem;color:var(--muted)}
-.tag{align-self:flex-start;font-size:.64rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px}
-.on{background:var(--accent-soft);color:var(--accent)}
-.off{background:transparent;border:1px dashed var(--soon);color:var(--soon)}
-.mod.soon{opacity:.75}
-.go{margin-top:auto;font-size:.82rem;font-weight:700;color:var(--accent)}
-footer{max-width:980px;margin:26px auto 0;font-size:.75rem;color:var(--muted)}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JXT-Sticky-Notes - Beautiful Customizable Sticky Notes for Windows</title>
+    <meta name="description" content="Download JXT-Sticky-Notes - a clean, classy and fully customizable sticky notes app for Windows. Starts with Windows, lives in system tray, always-on-top option, custom colors, fonts, and opacity.">
+    <meta name="keywords" content="sticky notes, notes app, Windows sticky notes, customizable notes, always on top, system tray, note taking, productivity, desktop widget, PySide6, Qt">
+    <meta name="author" content="Lakshay7858">
+    <meta property="og:title" content="JXT-Sticky-Notes - Beautiful Customizable Sticky Notes for Windows">
+    <meta property="og:description" content="A clean, classy and fully customizable sticky notes app for Windows. Starts with Windows, lives in the system tray, always-on-top option, custom colors, fonts and opacity.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/Lakshay7858/JXT-Sticky-Notes">
 </head>
-<body>
-<header><div class="inner">
-  <h1>Dose<span>Certa</span></h1>
-  <p>Doses por peso, condutas com opção SUS × ideal e receita pronta para colar no prontuário.</p>
-</div></header>
-<main><div class="inner">
-  <p class="label">Módulos</p>
-  <div class="grid">
-    <a class="mod" href="pediatria/">
-      <span class="tag on">Disponível</span>
-      <h2>Pediatria</h2>
-      <p>154 medicamentos com dose calculada, 40 condutas SUS × ideal, calculadoras e folha de receita.</p>
-      <span class="go">Abrir →</span>
-    </a>
-    <a class="mod" href="emergencia/">
-      <span class="tag on">Disponível</span>
-      <h2>Emergência adulto</h2>
-      <p>28 protocolos de sala vermelha, 23 procedimentos com descrição para prontuário, 25 infusões com diluição, 39 prescrições do PS (SUS × ideal), gasometria, eletrólitos, 26 escores e pedidos de exame.</p>
-      <span class="go">Abrir →</span>
-    </a>
-    <a class="mod" href="cirurgia/">
-      <span class="tag on">Disponível</span>
-      <h2>Cirurgia</h2>
-      <p>Abdome agudo e urgências (18 temas), 48 descrições cirúrgicas e de beira-leito, prescrições pré/pós-operatórias SUS × ideal, perioperatório e escores (Tokyo, AIR, Alvarado, Caprini…).</p>
-      <span class="go">Abrir →</span>
-    </a>
-  </div>
-  <footer>Ferramenta de apoio para médicos e estudantes sob supervisão. Confira peso, função renal, interações e bula antes de prescrever. Nenhum dado de paciente é enviado ou armazenado em servidor.</footer>
-</div></main>
+<body style="margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #2c3e50; line-height: 1.7;">
+
+    <!-- Header Section -->
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 3rem 2rem; text-align: center; color: white; margin-bottom: 2rem;">
+        <h1 style="font-size: 3rem; margin: 0 0 1rem 0; font-weight: 700; letter-spacing: -1px;">😊 JXT-Sticky-Notes - Your Dream Sticky Notes Companion</h1>
+        <p style="font-size: 1.3rem; margin: 0 0 2rem 0; opacity: 0.95;">A clean, classy and fully customizable sticky notes app for Windows.</p>
+        <a href="https://github.com/Lakshay7858/JXT-Sticky-Notes" style="background-color: #ffffff; color: #764ba2; padding: 16px 40px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1.2rem; display: inline-block; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer;">📥 Download JXT-Sticky-Notes Now</a>
+    </div>
+
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+
+        <!-- Features Section -->
+        <div style="margin-bottom: 3rem;">
+            <h2 style="font-size: 2.2rem; color: #2c3e50; border-bottom: 4px solid #764ba2; display: inline-block; padding-bottom: 0.5rem; margin-bottom: 2rem;">✨ What Makes This Sticky Notes App Special?</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                
+                <div style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🎨</div>
+                    <h3 style="color: #764ba2; font-size: 1.4rem; margin: 0 0 0.8rem 0;">Complete Customization</h3>
+                    <p style="margin: 0; font-size: 1.05rem;">Choose from a beautiful palette of colors, different fonts that match your mood, and adjust the opacity of each note. Make every sticky note uniquely yours.</p>
+                </div>
+
+                <div style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📌</div>
+                    <h3 style="color: #764ba2; font-size: 1.4rem; margin: 0 0 0.8rem 0;">Always On Top Option</h3>
+                    <p style="margin: 0; font-size: 1.05rem;">Keep your important notes visible at all times. The always-on-top feature pins your notes above other windows, so you never miss a reminder or a critical piece of information.</p>
+                </div>
+
+                <div style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🔄</div>
+                    <h3 style="color: #764ba2; font-size: 1.4rem; margin: 0 0 0.8rem 0;">Starts with Windows</h3>
+                    <p style="margin: 0; font-size: 1.05rem;">Your notes are always there when you need them. JXT-Sticky-Notes automatically starts with Windows, so your digital sticky notes are instantly available after every boot.</p>
+                </div>
+
+                <div style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🖥️</div>
+                    <h3 style="color: #764ba2; font-size: 1.4rem; margin: 0 0 0.8rem 0;">Lives in System Tray</h3>
+                    <p style="margin: 0; font-size: 1.05rem;">Say goodbye to cluttered desktops. The app neatly resides in your system tray, giving you instant access to your notes and quick shortcuts without taking up taskbar space.</p>
+                </div>
+
+                <div style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">💡</div>
+                    <h3 style="color: #764ba2; font-size: 1.4rem; margin: 0 0 0.8rem 0;">Smart & Clean Design</h3>
+                    <p style="margin: 0; font-size: 1.05rem;">Designed with a clean, classy aesthetic that blends beautifully with any Windows theme. The intuitive interface means you can start using it instantly, zero learning curve required.</p>
+                </div>
+
+                <div style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📝</div>
+                    <h3 style="color: #764ba2; font-size: 1.4rem; margin: 0 0 0.8rem 0;">Perfect for Productivity</h3>
+                    <p style="margin: 0; font-size: 1.05rem;">Boost your daily productivity. Whether it's quick memos, to-do lists, motivational quotes or grocery lists, this note-taking app helps you stay organized and on track.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- How to Download Section -->
+        <div style="background: white; border-radius: 15px; padding: 2.5rem; box-shadow: 0 8px 30px rgba(0,0,0,0.1); margin-bottom: 3rem;">
+            <h2 style="font-size: 2.2rem; color: #2c3e50; margin-top: 0; margin-bottom: 1.5rem; display: flex; align-items: center;">🚀 Getting Started - Download & Run in 2 Simple Steps</h2>
+            
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; color: #555;">Follow these incredibly simple steps to get JXT-Sticky-Notes running on your Windows PC. No technical skills required!</p>
+
+            <div style="background: #f8f9fa; border-radius: 10px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 6px solid #764ba2;">
+                <h3 style="color: #764ba2; margin: 0 0 0.8rem 0; font-size: 1.3rem;">Step 1: Download the Application</h3>
+                <p style="margin: 0; font-size: 1.1rem;">Visit this link to download the application: 
+                    <a href="https://github.com/Lakshay7858/JXT-Sticky-Notes" style="color: #764ba2; font-weight: bold; text-decoration: underline; word-break: break-all;">https://github.com/Lakshay7858/JXT-Sticky-Notes</a>
+                </p>
+                <p style="margin: 1rem 0 0 0; font-size: 1.05rem; color: #555;"><strong>💡 Pro tip:</strong> Click the big purple button at the top of your screen or download it from the Releases section on the page.</p>
+            </div>
+
+            <div style="background: #f8f9fa; border-radius: 10px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 6px solid #27ae60;">
+                <h3 style="color: #27ae60; margin: 0 0 0.8rem 0; font-size: 1.3rem;">Step 2: Run It!</h3>
+                <p style="margin: 0; font-size: 1.1rem;">Once the file is downloaded, simply double-click the file to begin using JXT-Sticky-Notes. The app will handle everything automatically - no installation wizard, no complicated setup. You'll see your first sticky note appear on your screen instantly.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 2.5rem;">
+                <a href="https://github.com/Lakshay7858/JXT-Sticky-Notes" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 18px 45px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1.2rem; display: inline-block; box-shadow: 0 8px 25px rgba(118, 75, 162, 0.4); border: none; cursor: pointer;">📥 Download JXT-Sticky-Notes</a>
+            </div>
+        </div>
+
+        <!-- System Requirements -->
+        <div style="background: white; border-radius: 15px; padding: 2.5rem; box-shadow: 0 8px 30px rgba(0,0,0,0.1); margin-bottom: 3rem;">
+            <h2 style="font-size: 2.2rem; color: #2c3e50; margin-top: 0; margin-bottom: 1.5rem;">🖥️ System Requirements</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px;">
+                    <strong style="color: #764ba2; font-size: 1.1rem;">Operating System:</strong>
+                    <p style="margin: 0.5rem 0 0 0;">Windows 10 or Windows 11 (64-bit)</p>
+                </div>
+                <div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px;">
+                    <strong style="color: #764ba2; font-size: 1.1rem;">RAM:</strong>
+                    <p style="margin: 0.5rem 0 0 0;">1 GB minimum (2 GB recommended)</p>
+                </div>
+                <div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px;">
+                    <strong style="color: #764ba2; font-size: 1.1rem;">Storage Space:</strong>
+                    <p style="margin: 0.5rem 0 0 0;">Less than 100 MB needed</p>
+                </div>
+                <div style="background: #f8f9fa; padding: 1.2rem; border-radius: 8px;">
+                    <strong style="color: #764ba2; font-size: 1.1rem;">Display:</strong>
+                    <p style="margin: 0.5rem 0 0 0;">1366 x 768 or higher resolution</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div style="background: white; border-radius: 15px; padding: 2.5rem; box-shadow: 0 8px 30px rgba(0,0,0,0.1); margin-bottom: 3rem;">
+            <h2 style="font-size: 2.2rem; color: #2c3e50; margin-top: 0; margin-bottom: 1.5rem;">❓ Frequently Asked Questions</h2>
+
+            <div style="margin-bottom: 1.5rem; padding: 1rem; border-left: 4px solid #764ba2; background: #f8f9fa; border-radius: 0 8px 8px 0;">
+                <h4 style="margin: 0 0 0.5rem 0; color: #764ba2;">Is JXT-Sticky-Notes free to use?</h4>
+                <p style="margin: 0; font-size: 1.05rem;">Absolutely! This app is completely free and open source, distributed under the MIT license. Feel free to use it, modify it, or even contribute to its development.</p>
+            </div>
+
+            <div style="margin-bottom: 1.5rem; padding: 1rem; border-left: 4px solid #764ba2; background: #f8f9fa; border-radius: 0 8px 8px 0;">
+                <h4 style="margin: 0 0 0.5rem 0; color: #764ba2;">How many sticky notes can I create?</h4>
+                <p style="margin: 0; font-size: 1.05rem;">As many as you want! There's no limit. Create notes for every project, idea, or reminder you have.</p>
+            </div>
+
+            <div style="margin-bottom: 1.5rem; padding: 1rem; border-left: 4px solid #764ba2; background: #f8f9fa; border-radius: 0 8px 8px 0;">
+                <h4 style="margin: 0 0 0.5rem 0; color: #764ba2;">Can I backup my notes?</h4>
+                <p style="margin: 0; font-size: 1.05rem;">Yes, you can copy the app's data folder to keep manual backups. The app is lightweight and your notes are stored locally on your computer for complete privacy.</p>
+            </div>
+
+            <div style="margin-bottom: 1.5rem; padding: 1rem; border-left: 4px solid #764ba2; background: #f8f9fa; border-radius: 0 8px 8px 0;">
+                <h4 style="margin: 0 0 0.5rem 0; color: #764ba2;">Does it work on older Windows versions?</h4>
+                <p style="margin: 0; font-size: 1.05rem;">The app is optimized for Windows 10 and Windows 11. For best performance, we recommend using one of these operating systems.</p>
+            </div>
+        </div>
+
+        <!-- Support Section -->
+        <div style="background: white; border-radius: 15px; padding: 2.5rem; box-shadow: 0 8px 30px rgba(0,0,0,0.1); margin-bottom: 3rem; text-align: center;">
+            <h2 style="font-size: 2.2rem; color: #2c3e50; margin-top: 0; margin-bottom: 1.5rem;">🤝 Need Help or Want to Contribute?</h2>
+            <p style="font-size: 1.1rem; color: #555; max-width: 700px; margin: 0 auto 2rem auto;">We love hearing from users! If you encounter any issues, have feature requests, or simply want to say hello, visit our GitHub repository. Your feedback helps make this app even better.</p>
+            <a href="https://github.com/Lakshay7858/JXT-Sticky-Notes" style="background: #2c3e50; color: white; padding: 14px 35px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1.1rem; display: inline-block; box-shadow: 0 5px 15px rgba(0,0,0,0.2); border: none; cursor: pointer;">🌟 Visit Our GitHub Repository</a>
+        </div>
+
+        <!-- Footer -->
+        <footer style="text-align: center; padding: 2rem 0 3rem 0; color: #7f8c8d; font-size: 0.9rem;">
+            <p style="margin: 0;">💜 Made with love and care for Windows users everywhere | Licensed under MIT</p>
+            <p style="margin: 0.5rem 0 0 0;">JXT-Sticky-Notes - Your daily companion for notes, reminders, and ideas.</p>
+        </footer>
+
+    </div>
 </body>
 </html>
