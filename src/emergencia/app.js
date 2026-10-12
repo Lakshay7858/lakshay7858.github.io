@@ -35,6 +35,7 @@ function renderSv() {
   let h = `<div class="sv-kick">${esc(t.cat)}</div><div class="dx-title"><span class="sv-dot c-${t.cor}"></span>${esc(t.title)}</div><p class="sv-lead">${md(t.resumo)}</p>`;
   h += p.has ? `<p class="sv-wnote">Doses calculadas para <b>${nf(p.w, 1)} kg</b>${p.age ? ` · ${nf(p.age, 0)} anos` : ''}${p.clcr ? ` · ClCr ${nf(p.clcr, 0)} mL/min` : ''}. Confira a apresentação disponível.</p>` : `<p class="sv-wnote">Informe o <b>peso</b> na barra do paciente para ver as doses calculadas.</p>`;
   t.secs.forEach((s) => { h += `<section class="sv-s"><h4>${esc(s.h)}</h4>${s.li ? `<ul>${s.li.map((l) => `<li>${lineHTML(l, p)}</li>`).join('')}</ul>` : ''}${s.table ? tableHTML(s.table) : ''}</section>`; });
+  if (t.proc) h += procFormHTML(t);
   t.rx.forEach((r, i) => { h += `<div class="opt sv-rx"><div class="opt-h"><h4>${esc(r.h)}</h4><button class="btn btn-line btn-sm" type="button" data-svcopy="${i}">Copiar</button></div><ol class="rx-ol">${r.li.map((l) => `<li>${lineHTML(l, p)}</li>`).join('')}</ol></div>`; });
   const fs = (t.fontes || []).map((k) => REFS[k]).filter(Boolean);
   if (fs.length) h += `<div class="sv-src"><b>Fontes:</b> ${fs.map(([n, u]) => (u ? `<a href="${u}" target="_blank" rel="noopener">${esc(n)}</a>` : esc(n))).join(' · ')}</div>`;
@@ -167,6 +168,8 @@ document.addEventListener('click', (e) => {
   if (d.view) return setView(d.view);
   if (d.sv) { ST.sv = d.sv; store.set('dc_em_sv', d.sv); renderSvNav(); renderSv(); return scrollMain('svMain'); }
   if (d.svcopy !== undefined) { const tp = TOPICS.find((x) => x.id === ST.sv), p = P(); const r = tp.rx[+d.svcopy]; return copyText(`${r.h.toUpperCase()}\n` + r.li.map((l, i) => `${i + 1}. ${lineTXT(l, p)}`).join('\n'), 'Prescrição copiada'); }
+  if (t.id === 'pfReset') { PF_ST[ST.sv] = {}; return renderSv(); }
+  if (t.id === 'pfCopy') return copyText($('pfOut').textContent, 'Descrição copiada');
   if (d.inf) { INF_ST.id = d.inf; renderInfNav(); renderInf(); return scrollMain('infMain'); }
   if (d.iu) { INF_ST.unit[INF_ST.id] = d.iu; return renderInf(); }
   if (d.iw) { INF_ST.wsel = d.iw; return renderInf(); }
@@ -185,6 +188,7 @@ document.addEventListener('input', (e) => {
   const t = e.target;
   if (['ptWeight', 'ptHeight', 'ptAge', 'ptCr', 'ptAllergies'].includes(t.id)) { renderChips(); if (ST.view !== 'calc' || CALC_ST.id === 'renal' || CALC_ST.id === 'sodio') refreshView(); else calcRun(); return; }
   if (t.id === 'svSearch') return renderSvNav();
+  if (t.dataset && t.dataset.pf) return pfUpdate(t);
   if (t.id === 'psSearch') return renderPsNav();
   if (t.id === 'infDose') return infOut('dose');
   if (t.id === 'infRate') return infOut('rate');
@@ -196,10 +200,17 @@ document.addEventListener('input', (e) => {
 document.addEventListener('change', (e) => {
   const t = e.target;
   if (t.id === 'ptSex') { renderChips(); return refreshView(); }
+  if (t.dataset && t.dataset.pf) return pfUpdate(t);
   if (t.id === 'scSel') { SC_ST.id = t.value; return renderCalc(); }
   if (t.dataset && t.dataset.cin) { CALC_ST.v[t.id] = t.value; store.set('dc_em_calc', CALC_ST.v); return calcRun(); }
 });
 
+function pfUpdate(el) {
+  const tp = TOPICS.find((x) => x.id === ST.sv); if (!tp || !tp.proc) return;
+  (PF_ST[tp.id] || (PF_ST[tp.id] = {}))[el.dataset.pf] = el.value;
+  if (el.tagName === 'SELECT') { const y = window.scrollY; renderSv(); window.scrollTo(0, y); return; }
+  $('pfOut').textContent = tp.proc.texto(procValues(tp), P());
+}
 (function init() {
   const s = store.get('dc_em_pt');
   if (s) { if (s.sex) $('ptSex').value = s.sex; if (s.age) $('ptAge').value = s.age; if (s.w) $('ptWeight').value = s.w; if (s.h) $('ptHeight').value = s.h; if (s.cr) $('ptCr').value = s.cr; }

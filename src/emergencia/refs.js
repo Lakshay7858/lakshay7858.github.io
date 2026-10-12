@@ -49,10 +49,19 @@ const REFS = {
   abp_agitacao: ['ABP — Consenso brasileiro sobre manejo da agitação psicomotora', ''],
   nice_agitation: ['NICE NG10 — Violence and aggression: short-term management', ''],
   asam2020: ['ASAM 2020 — Alcohol Withdrawal Management Guideline', ''],
+  das2018: ['Difficult Airway Society 2015/2018 — unanticipated difficult intubation and CICO (bisturi–bougie–tubo)', ''],
+  nejmv: ['NEJM — Videos in Clinical Medicine (CVC, linha arterial, toracostomia, paracentese, PL, sondagens)', 'https://www.nejm.org/multimedia/medical-videos'],
+  asacvc2020: ['ASA 2020 Practice Guidelines for Central Venous Access', ''],
+  bts2023: ['British Thoracic Society 2023 — Guideline for pleural disease', ''],
+  aasld2021: ['AASLD 2021 — Diagnosis, evaluation and management of ascites, SBP and hepatorenal syndrome', ''],
+  idsa_men: ['IDSA — Bacterial meningitis guideline / ESCMID 2016', ''],
+  esc2015peric: ['ESC 2015 Guidelines on pericardial diseases', ''],
+  acep_psa: ['ACEP 2014 — Clinical policy: procedural sedation and analgesia in the ED', ''],
 };
 const MATERIAIS_EM = [
   'Medicina de Emergência: abordagem prática (HC-FMUSP) — padrões de diluição e reposição de eletrólitos',
   'Guia da UPA 2026; Guia de Prescrições do PS Zerado; Prescrição no PS — Ficha Verde',
   'ECG na Emergência (CardioPS); Antibióticos na Prática; Arboviroses; Caderno de bolso de exames laboratoriais',
   '100 medicações mais utilizadas em hospitais; Guia de Prescrição Digital 2026',
+  'Manual de Procedimentos Médicos 2025 (técnicas de procedimentos)',
 ];
